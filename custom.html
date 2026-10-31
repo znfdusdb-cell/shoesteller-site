@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI 맞춤 디자인 의뢰 · 슈즈텔러</title>
+<link rel="stylesheet" href="./forms.css">
+<script src="./config.js"></script>
+<script src="./chat.js" defer></script>
+<style>.dir { background: #fff; border: 1px solid #ccc; border-radius: 10px; padding: 12px; margin: 0 0 10px; } .dir h3 { margin: 0 0 4px; font-size: 17px; } .dir p { margin: 2px 0; font-size: 15px; }</style>
+</head>
+<body>
+<!-- 취향 5문항 → 서버(/sapi/shoesteller/custom-draft)가 Haiku로 방향 3안. 하루 상한 SITE_AI_DAILY_MAX·비용 가드 안.
+     의뢰서 저장은 SITE_COLLECT_ON=1 + 필수 동의일 때만(site_leads 테이블, kind=custom). -->
+<main>
+  <a class="back" href="./index.html">← 처음으로</a>
+  <h1>나만의 디자인 의뢰하기</h1>
+  <p class="lead">다섯 가지만 알려주시면 디자인 방향 3가지를 먼저 보여드려요.</p>
+  <p class="note"><b>AI가 만든 방향 초안이며 최종 디자인은 비움 작가가 그립니다.</b></p>
+  <form id="custom-form" novalidate>
+    <fieldset><label class="label" for="color">1. 좋아하는 색</label><input type="text" id="color" name="color" maxlength="80" placeholder="예: 연한 하늘색, 크림색"></fieldset>
+    <fieldset><label class="label" for="mood">2. 원하는 분위기</label><input type="text" id="mood" name="mood" maxlength="80" placeholder="예: 귀엽게, 차분하게, 강렬하게"></fieldset>
+    <fieldset><label class="label" for="likes">3. 좋아하는 것</label><textarea id="likes" name="likes" maxlength="200" placeholder="예: 우리 집 강아지, 바다, 좋아하는 노래 가사"></textarea></fieldset>
+    <fieldset><label class="label" for="use">4. 어디에 신을 건가요</label><input type="text" id="use" name="use" maxlength="80" placeholder="예: 커플 선물, 결혼식, 매일 출근"></fieldset>
+    <fieldset><label class="label" for="ref">5. 참고 이미지 링크 (선택)</label><input type="text" id="ref" name="ref" maxlength="300" inputmode="url" placeholder="https://"></fieldset>
+    <fieldset>
+      <legend>의뢰서를 남기려면 (선택)</legend>
+      <input type="text" name="name" placeholder="이름" autocomplete="name" aria-label="이름">
+      <input type="tel" name="phone" placeholder="010-0000-0000" inputmode="numeric" autocomplete="tel" aria-label="휴대폰 번호" style="margin-top:8px">
+      <label class="choice"><input type="checkbox" name="agree_required"><span>[필수] 의뢰 상담을 위해 이름·연락처를 수집·이용하는 데 동의합니다. <span class="todo">확인 필요: 보관 기간</span></span></label>
+      <label class="choice"><input type="checkbox" name="agree_ads"><span>[선택] 수업·키트 소식(광고성 정보) 받기</span></label>
+    </fieldset>
+    <p class="err" id="err" aria-live="polite"></p>
+    <button type="submit">디자인 방향 3안 보기</button>
+  </form>
+  <section id="result" hidden tabindex="-1">
+    <h2>디자인 방향 초안</h2>
+    <div id="dirs"></div>
+    <p class="note"><b>AI가 만든 방향 초안이며 최종 디자인은 비움 작가가 그립니다.</b></p>
+    <p class="note" id="saved"></p>
+  </section>
+</main>
+<script src="./custom.js"></script>
+</body>
+</html>
