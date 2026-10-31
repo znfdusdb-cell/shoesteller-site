@@ -2,208 +2,144 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>슈즈텔러 · 커스텀 비움</title>
-<meta name="description" content="흰 신발 한 켤레를, 세상에 하나뿐인 내 신발로.">
-<link rel="stylesheet" href="./style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>슈즈텔러 — 내 손으로 만든 신발</title>
+<meta name="description" content="흰 신발 한 켤레를 세상에 하나뿐인 내 신발로. 스튜디오에서 직접 디자인해 주문하거나, 홍대 공방에서 내 손으로 그려요.">
+<link rel="stylesheet" href="./site.css">
 <script src="./config.js"></script>
-<script src="./chat.js" defer></script>
+<script src="./shoe.js"></script>
 </head>
-<body>
-<!-- 원고: research shoesteller-site-sb7-copy-v1 (1~7·10·11절). [확인 필요] 자리는 class="todo"로 남김. 가격·사진·주소를 채우지 말 것. -->
-
-<header class="hero" id="top">
-  <div class="wrap">
-    <p class="eyebrow">슈즈텔러 · 커스텀 비움</p>
-    <h1>흰 신발 한 켤레를, 세상에 하나뿐인 내 신발로.</h1>
-    <p class="lead">그림을 못 그려도 괜찮아요. 도안부터 물감까지, 내 손으로 완성하게 도와드려요.</p>
-    <div class="cta">
-      <a class="btn btn-main" href="./book.html">수업 예약하기</a>
-      <a class="btn btn-sub" href="./join.html">가입하고 첫 수업 쿠폰 받기</a>
-    </div>
-    <div class="photo todo">[확인 필요: 완성 신발 대표 사진 1장]</div>
-  </div>
-</header>
-
+<body data-page="home">
+<!-- 원고: research shoesteller-site-sb7-copy-v1. 가격·날짜·주소처럼 두뇌에 없는 사실은 class="todo". 결제는 마지막 단계. -->
 <main>
-<section class="problem" id="problem">
-  <div class="wrap">
-    <h2>갖고 싶은 건 '어디서 산 신발'이 아니라 '내 신발'인데</h2>
-    <ul class="cards">
-      <li>매장에 있는 신발은 다 누군가와 같아요. 직접 그려보고 싶어도 어떤 물감을, 어떤 순서로 써야 할지 모르죠.</li>
-      <li>"나는 그림 못 그리는데", "비싼 신발 망치면 어떡하지" 하는 마음에 시작을 미루게 돼요.</li>
-      <li>사람의 가치는 태어날 때 정해지는 게 아니라 만들어 가는 거예요. 내 것을 만드는 일은 가장 가까운 물건, 매일 신는 신발에서 시작할 수 있어요.</li>
-    </ul>
-  </div>
-</section>
-
-<section class="guide" id="guide">
-  <div class="wrap two">
-    <div>
-      <h2>길은 저희가 비춰드릴게요. 그리는 건 당신이에요.</h2>
-      <p>처음 붓을 드는 순간이 제일 어렵다는 걸 알아요. 그래서 정답 대신 질문부터 해요. 어떤 신발을 갖고 싶은지.</p>
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-art">
+      <div class="hero-chips" id="hero-chips" role="group" aria-label="색 조합 미리보기"></div>
+      <svg id="hero-shoe" role="img" aria-label="흰 캔버스 운동화. 색 조합을 누르면 바뀝니다"></svg>
     </div>
-    <div>
-      <p class="strong">하루 10켤레를 그리던 손으로, 이제 그리는 법을 알려드려요.</p>
-      <p class="todo">[확인 필요: 누적 작업 켤레 수 / 수강생 수 / 후기 2~3개 / 공방 사진]</p>
+    <div class="hero-text">
+      <div>
+        <h1 id="h1">사는 신발 말고,<br>만드는 신발.</h1>
+        <p class="lead">흰 신발 한 켤레가 세상에 하나뿐인 내 신발이 되는 곳. 그림을 못 그려도 괜찮아요. 디자인은 스튜디오에서, 붓질은 공방에서 함께해요.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn" href="./studio.html">내 디자인 만들기</a>
+        <a class="btn ghost" href="./shop.html">완성 디자인 보기</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="plan" id="plan">
-  <div class="wrap">
-    <h2>계획</h2>
-    <ol class="steps">
-      <li><b>고르기</b> 수업, 키트, 프리미엄 주문 중 나에게 맞는 걸 고르세요.</li>
-      <li><b>그리기</b> 도안을 고르고 물감 쓰는 순서를 따라 내 손으로 그려요. 막히는 곳은 옆에서 함께 풀어요.</li>
-      <li><b>신고 나가기</b> 완성한 신발과 과정 영상을 받아요. 신을수록 생기는 흔적도 만든 사람의 기록이 돼요.</li>
-    </ol>
-  </div>
-</section>
+  <section class="doors" aria-label="세 가지 길">
+    <a class="door door-studio" href="./studio.html">
+      <span class="k">STUDIO</span>
+      <h3>직접 디자인해서 주문하기</h3>
+      <svg data-cw="물감 튐" aria-hidden="true"></svg>
+      <p>부위마다 색을 고르고, 패턴·글자·그림을 올려요. 완성한 디자인 그대로 비움 작가가 그려서 보내드려요.</p>
+      <span class="go">스튜디오 열기</span>
+    </a>
+    <a class="door" href="./shop.html">
+      <span class="k">SHOP</span>
+      <h3>완성 디자인 고르기</h3>
+      <svg data-cw="첫 붓" aria-hidden="true"></svg>
+      <p>지금까지 그려온 디자인 중에서 고르세요. 사이즈만 정하면 돼요.</p>
+      <span class="go">숍 보기</span>
+    </a>
+    <a class="door" href="./classes.html">
+      <span class="k">CLASS</span>
+      <h3>홍대 공방에서 내 손으로 그리기</h3>
+      <svg data-cw="레몬" aria-hidden="true"></svg>
+      <p>소수 정원. 도안과 물감 순서가 있어서 따라가면 완성돼요. 과정은 영상으로 남겨 드려요.</p>
+      <span class="go">수업 보기</span>
+    </a>
+  </section>
 
-<section class="products" id="products">
-  <div class="wrap">
-    <h2>상품 안내</h2>
-    <div class="grid">
-      <article class="product premium" id="premium">
-        <h3>프리미엄 주문 제작<small>비움 작가가 직접</small></h3>
-        <ul>
-          <li><b>기존 디자인</b> 지금까지 그려온 디자인 중에서 골라 주문.</li>
-          <li><b>개인 디자인</b> 내 이야기를 듣고 세상에 하나뿐인 디자인으로.</li>
+  <section class="sec" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">신발 한 켤레가 내 것이 되는 순서</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><b>고르기</b><p>스튜디오에서 직접 디자인하거나, 숍에서 완성 디자인을 고르거나, 공방 수업을 예약해요.</p></li>
+        <li><span class="n">2</span><b>그리기</b><p>주문한 디자인은 비움 작가가 그려요. 수업에서는 도안과 물감 순서를 따라 내 손으로 그려요. 막히는 곳은 옆에서 함께 풀어요.</p></li>
+        <li><span class="n">3</span><b>신고 나가기</b><p>완성한 신발과 과정 영상을 받아요. 신을수록 생기는 흔적도 만든 사람의 기록이 돼요.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="story" aria-labelledby="story-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="story-h">갖고 싶은 건 '어디서 산 신발'이 아니라 '내 신발'인데</h2>
+        <p class="lead">매장에 있는 신발은 다 누군가와 같아요. 직접 그려보고 싶어도 어떤 물감을 어떤 순서로 써야 할지 모르고, "비싼 신발 망치면 어떡하지" 하는 마음에 시작을 미루게 되죠.</p>
+        <ul class="x-list" aria-label="이제 그만해도 되는 것">
+          <li>남들과 같은 신발을 신는 것</li>
+          <li>물감이 번지고 갈라질까 봐 미루는 것</li>
+          <li>"나는 그림 못 그리는데"로 끝내는 것</li>
         </ul>
-        <dl class="facts">
-          <dt>가격</dt><dd class="todo">[확인 필요: 기존 디자인 가격 / 개인 디자인 가격]</dd>
-          <dt>제작 기간</dt><dd class="todo">[확인 필요]</dd>
-          <dt>한 달 접수 수량</dt><dd class="todo">[확인 필요]</dd>
-        </dl>
-        <a class="btn btn-main" href="./design.html">기존 디자인 고르기</a>
-        <a class="btn btn-sub" href="./custom.html">AI로 내 디자인 방향 보기</a>
-        <a class="btn btn-sub" href="./book.html?type=premium">프리미엄 문의하기</a>
-      </article>
-
-      <article class="product" id="class">
-        <h3>홍대 공방 커스텀 수업<small>11월 오픈</small></h3>
-        <ul>
-          <li>소수 정원으로, 내 신발 한 켤레를 처음부터 끝까지 완성하는 수업.</li>
-          <li>매 회 과정을 촬영해 완성 영상을 드려요(공유는 자유).</li>
-        </ul>
-        <dl class="facts">
-          <dt>일정</dt><dd class="todo">[확인 필요]</dd>
-          <dt>시간</dt><dd class="todo">[확인 필요]</dd>
-          <dt>정원</dt><dd class="todo">[확인 필요]</dd>
-          <dt>가격</dt><dd class="todo">[확인 필요]</dd>
-          <dt>장소</dt><dd class="todo">[확인 필요: 공방 주소]</dd>
-          <dt>준비물·신발 지참 여부</dt><dd class="todo">[확인 필요]</dd>
-        </dl>
-        <a class="btn btn-main" href="./book.html?type=class">수업 예약하기</a>
-      </article>
-
-      <article class="product soon" id="kit">
-        <h3>커스텀 키트<small>2027년 1~2월 출시 예정</small></h3>
-        <p>도안, 물감, 순서가 적힌 교재, 수업 영상 링크를 한 상자에.</p>
-        <a class="btn btn-sub" href="./join.html?interest=kit">출시 알림 받기</a>
-      </article>
-
-      <article class="product soon" id="online">
-        <h3>온라인 수업<small>2027년 3~4월 예정</small></h3>
-        <a class="btn btn-sub" href="./join.html?interest=online">알림 받기</a>
-      </article>
+      </div>
+      <div>
+        <p class="statement">하루 10켤레를 그리던 손으로, 이제 그리는 법을 알려드려요.</p>
+        <div class="paint-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p class="lead">처음 붓을 드는 순간이 제일 어렵다는 걸 알아요. 그래서 정답 대신 질문부터 해요. 어떤 신발을 갖고 싶은지. 길은 저희가 비춰드릴게요. 그리는 건 당신이에요.</p>
+        <p class="lead"><span class="todo">누적 작업 켤레 수 · 수강생 수 · 후기는 확정 후 표시</span></p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="class-guide" id="class-guide">
-  <div class="wrap">
-    <!-- 원고: research shoesteller-class-draft-v1 (B절). 가격·날짜·정원·시간·주소는 회장 확정 전 숫자 금지. 해외 사례 가격·정원·시간은 쓰지 않는다. 촬영 동의 문구는 법률 확인 전이라 본문 노출 금지. -->
-    <h2>수업 안내</h2>
-    <p class="lead">홍대 공방에서, 내 신발 한 켤레를 처음부터 끝까지 완성하는 수업이에요. 그림을 못 그려도 도안과 순서가 있어서 따라가면 돼요.</p>
-
-    <h3>수업은 이렇게 흘러가요</h3>
-    <ol class="steps flow">
-      <li><b>도안 고르기</b> 어떤 신발을 갖고 싶은지 이야기하며 도안을 골라요.</li>
-      <li><b>밑그림·채색</b> 물감 쓰는 순서를 따라 내 손으로 그려요. 막히는 곳은 옆에서 함께 풀어요.</li>
-      <li><b>건조·마감 안내</b> 말리는 법과 마감 방법을 알려드려요.</li>
-      <li><b>물감 테스트</b> 자투리 시편에 물감을 칠해 문지르고 긁고 구부려 봐요. 내 신발은 망치지 않아요.</li>
-      <li><b>영상 확인</b> 오늘 과정을 담은 영상을 함께 확인해요.</li>
-    </ol>
-
-    <h3>가져가는 것</h3>
-    <ul class="take">
-      <li>직접 완성한 신발 한 켤레</li>
-      <li>과정을 담은 영상(매 회 촬영)</li>
-    </ul>
-    <p class="todo">[확인 필요: 영상 전달 방식]</p>
-
-    <h3>수업 정보</h3>
-    <dl class="facts">
-      <dt>일정</dt><dd class="todo">[확인 필요]</dd>
-      <dt>시간</dt><dd class="todo">[확인 필요]</dd>
-      <dt>정원</dt><dd class="todo">[확인 필요]</dd>
-      <dt>가격</dt><dd class="todo">[확인 필요]</dd>
-      <dt>장소</dt><dd class="todo">[확인 필요: 공방 주소]</dd>
-      <dt>신발 지참 여부</dt><dd class="todo">[확인 필요]</dd>
-      <dt>신발 소재 안내</dt><dd class="todo">[확인 필요: 지참/제공 확정 후 가능한 소재와 불가 소재]</dd>
-    </dl>
-
-    <h3>촬영과 물감 테스트</h3>
-    <p>수업 과정은 수강생에게 완성 영상으로 드리기 위해 촬영해요. 물감 테스트 결과는 영상으로 공개하며, 내구성을 보장한다고 약속하지 않아요. 건조가 끝나기 전 결과는 그렇다고 표기해요.</p>
-    <p class="todo">[확인 필요: 촬영 동의 안내 문구 — 필수/선택 분리, 법률 확인 후]</p>
-
-    <h3>문의하기</h3>
-    <div class="cta">
-      <a class="btn btn-main" href="./book.html?type=class">수업 문의하기</a>
-      <span class="btn btn-sub todo">[확인 필요: 인스타그램 DM 링크]</span>
+  <section class="sec" id="class" aria-labelledby="class-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="class-h">홍대 공방 커스텀 수업</h2>
+        <p class="lead">소수 정원으로, 내 신발 한 켤레를 처음부터 끝까지 완성해요. 매 회 과정을 촬영해 완성 영상을 드려요.</p>
+        <dl class="facts">
+          <dt>첫 수업</dt><dd>11월 오픈 <span class="todo">날짜·시간 확정 후 표시</span></dd>
+          <dt>정원</dt><dd><span class="todo">확정 후 표시</span></dd>
+          <dt>가격</dt><dd><span class="todo">확정 후 표시</span></dd>
+          <dt>장소</dt><dd>홍대 공방 <span class="todo">주소 확정 후 표시</span></dd>
+        </dl>
+        <p style="margin-top:26px"><a class="btn" href="./book.html?type=class">수업 예약하기</a> <a class="btn ghost" href="./classes.html">수업 자세히</a></p>
+      </div>
+      <div>
+        <svg data-cw="체크 그린" aria-hidden="true"></svg>
+      </div>
     </div>
-    <p class="note">문의 내용을 확인한 뒤 직접 답해 드려요.</p>
-  </div>
-</section>
-
-<section class="fail" id="fail" aria-labelledby="fail-h">
-  <div class="wrap">
-    <h2 id="fail-h" class="sr">실패</h2>
-    <ul class="x-list">
-      <li>누구나 신는 똑같은 신발로 끝나는 것</li>
-      <li>사놓고 서랍에 넣어둔 미완성 DIY</li>
-      <li>혼자 하다가 망쳐버린 신발</li>
-    </ul>
-  </div>
-</section>
-
-<section class="success" id="success" aria-labelledby="success-h">
-  <div class="wrap">
-    <h2 id="success-h" class="sr">성공</h2>
-    <p class="quote">"이거 어디서 샀어?" "내가 그렸어."</p>
-    <p>내 손으로 완성한 신발, 그 과정을 담은 영상, 그리고 다음 '내 것'을 만들 자신감.</p>
-    <p class="todo">[확인 필요: 수강생·고객 완성 사진과 한 줄 후기]</p>
-    <p class="series"><b>내 것으로 사는 사람들</b> 완성한 분을 인터뷰로 소개. 출연은 선택</p>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="wrap">
-    <h2>자주 묻는 질문</h2>
-    <details><summary>그림을 전혀 못 그려도 되나요?</summary><p>네. 도안과 순서가 있어서 따라가면 완성돼요.</p></details>
-    <details><summary>신발은 가져가나요?</summary><p class="todo">[확인 필요]</p></details>
-    <details><summary>그린 그림이 까지지 않나요?</summary><p>지금 물감 테스트를 하고 있고 결과를 영상으로 공개해요. 직접 그린 신발에 생기는 흔적은 만든 사람의 기록이 되기도 해요.</p><p class="todo">[확인 필요: 관리법]</p></details>
-    <details><summary>단체 수업도 되나요?</summary><p class="todo">[확인 필요]</p></details>
-  </div>
-</section>
+  </section>
 </main>
 
-<footer class="foot">
+<section class="band" aria-labelledby="band-h">
   <div class="wrap">
-    <p class="links">
-      <span class="todo">[확인 필요: 인스타그램 주소]</span>
-      <span class="todo">[확인 필요: 유튜브 주소]</span>
-      <span class="todo">[확인 필요: 아이디어스 주소]</span>
-      <a href="https://smartstore.naver.com/bium4581" rel="noopener">스마트스토어</a>
-      <a href="./privacy.html">개인정보 처리방침</a>
-    </p>
-    <p class="todo">[확인 필요: 사업자 정보 — 상호·대표·사업자등록번호·통신판매업 신고번호·주소]</p>
-    <p>슈즈텔러는 '내 것으로 사는 사람들'을 돕습니다.</p>
+    <div>
+      <h3 id="band-h">가입하면 첫 주문·첫 수업 쿠폰을 드려요</h3>
+      <p>키트와 온라인 수업 소식도 가장 먼저 알려드려요. <span class="todo">쿠폰 금액·조건 확정 후 표시</span></p>
+    </div>
+    <a class="btn" href="./join.html">쿠폰 받기</a>
   </div>
-</footer>
+</section>
+
+<script src="./site.js"></script>
 <script src="./track.js"></script>
+<script src="./chat.js" defer></script>
+<script>
+(function () {
+  var S = window.ShoeArt, base = S.defaultState();
+  // 첫 화면: 물감 칩을 누르면 신발이 바로 바뀐다 — 스튜디오 맛보기
+  var hero = document.getElementById('hero-shoe'), chips = document.getElementById('hero-chips');
+  var names = Object.keys(S.COLORWAYS), cur = 0;
+  function paint(i) {
+    cur = i; S.render(hero, i < 0 ? base : S.applyColorway(base, S.COLORWAYS[names[i]]), 'hero');
+    [].forEach.call(chips.children, function (c, j) { c.setAttribute('aria-pressed', j === i + 1 ? 'true' : 'false'); });
+  }
+  function chip(color, label, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'ch'; b.style.background = color; b.setAttribute('aria-label', label);
+    b.addEventListener('click', function () { paint(i); }); chips.appendChild(b);
+  }
+  chip('#ffffff', '흰 신발', -1);
+  var chipColor = { '첫 붓': '#e4322b', '코발트 밤': '#1f4fd8', '레몬': '#f2c400', '체크 그린': '#1f8a4c', '물감 튐': '#111111', '핑크 줄': '#ff8fb1' };
+  names.forEach(function (n, i) { chip(chipColor[n] || '#999', n, i); });
+  paint(-1);
+  // 처음 한 번, 흰 신발에 물감이 들어오는 순간
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function () { if (cur === -1) paint(0); }, 1400);
+  // 문 세 개·수업 그림
+  [].forEach.call(document.querySelectorAll('svg[data-cw]'), function (svg, i) { S.render(svg, S.applyColorway(base, S.COLORWAYS[svg.getAttribute('data-cw')]), 'cw' + i); });
+})();
+</script>
 </body>
 </html>
