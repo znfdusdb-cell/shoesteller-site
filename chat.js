@@ -9,14 +9,14 @@
     { k: /수업|일정|클래스|공방/, q: '수업 일정', a: '홍대 공방 커스텀 수업은 11월에 소수 정원으로 열 예정이에요. 날짜·시간은 ' + LATER },
     { k: /배송|택배|받아/, q: '배송', a: LATER }
   ];
-  var css = '#stc-b{position:fixed;right:16px;bottom:16px;z-index:50;width:56px;height:56px;border-radius:50%;border:0;background:#222;color:#fff;font-size:24px;box-shadow:0 2px 8px rgba(0,0,0,.25)}' +
-    '#stc-p{position:fixed;right:12px;bottom:80px;z-index:50;width:min(340px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:#fff;border:1px solid #ccc;border-radius:12px;padding:12px;font:15px/1.5 system-ui,sans-serif;color:#222;box-shadow:0 4px 16px rgba(0,0,0,.2)}' +
-    '#stc-p .m{margin:6px 0;padding:8px 10px;border-radius:10px;background:#f3f1ed}#stc-p .u{background:#222;color:#fff;margin-left:30px}' +
-    '#stc-p .tag{display:block;font-size:12px;color:#888}#stc-p button.q{margin:3px 3px 0 0;padding:6px 10px;border:1px solid #ccc;border-radius:16px;background:#fff;font:inherit;font-size:14px}' +
-    '#stc-p input,#stc-p textarea{width:100%;box-sizing:border-box;margin:4px 0;padding:8px;font:inherit;border:1px solid #ccc;border-radius:8px}#stc-p label{display:flex;gap:6px;font-size:13px}' +
-    '#stc-p .send{width:100%;padding:10px;border:0;border-radius:8px;background:#222;color:#fff;font:inherit;font-weight:700}';
+  var css = '#stc-b{position:fixed;right:16px;bottom:var(--chat-bottom,16px);z-index:50;height:48px;padding:0 18px;border-radius:999px;border:3px solid #000;background:#000;color:#fff;font:700 15px "Noto Sans KR",system-ui,sans-serif;cursor:pointer}' +
+    '#stc-p{position:fixed;right:12px;bottom:calc(var(--chat-bottom,16px) + 60px);z-index:50;width:min(360px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:#fff;border:3px solid #000;padding:14px;font:15px/1.5 "Noto Sans KR",system-ui,sans-serif;color:#000}' +
+    '#stc-p .m{margin:6px 0;padding:8px 10px;background:#f3f0e8}#stc-p .u{background:#000;color:#fff;margin-left:30px}' +
+    '#stc-p .tag{display:block;font-size:12px;color:#888}#stc-p button.q{margin:3px 3px 0 0;padding:6px 12px;border:2px solid #000;border-radius:16px;background:#fff;font:inherit;font-size:14px;cursor:pointer}' +
+    '#stc-p input,#stc-p textarea{width:100%;box-sizing:border-box;margin:4px 0;padding:8px;font:inherit;border:2px solid #000}#stc-p label{display:flex;gap:6px;font-size:13px}' +
+    '#stc-p .send{width:100%;padding:10px;border:0;border-radius:999px;background:#000;color:#fff;font:inherit;font-weight:700;cursor:pointer}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
-  var b = document.createElement('button'); b.id = 'stc-b'; b.type = 'button'; b.setAttribute('aria-label', '문의 채팅 열기'); b.textContent = '💬';
+  var b = document.createElement('button'); b.id = 'stc-b'; b.type = 'button'; b.setAttribute('aria-label', '문의 채팅 열기'); b.textContent = '문의';
   var p = document.createElement('div'); p.id = 'stc-p'; p.hidden = true; p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', '문의 채팅');
   p.innerHTML = '<div id="stc-log"><div class="m">안녕하세요, 슈즈텔러예요. 궁금한 걸 골라 주시거나 적어 주세요.</div></div>' +
     '<div id="stc-qs"></div><input id="stc-in" maxlength="200" placeholder="질문을 적어 주세요" aria-label="질문">' +
@@ -53,7 +53,7 @@
     if (!body.name || !/^010-\d{4}-\d{4}$/.test(ph) || !body.agree_required) { say('이름, 010-0000-0000 번호, 필수 동의를 확인해 주세요.'); return; }
     fetch(((window.SHOESTELLER || {}).API_BASE || '').replace(/\/$/, '') + '/sapi/shoesteller/inquiry', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(function (r) { return r.json(); })
-      .then(function (d) { say(d.saved ? '문의를 받았어요. 확인 후 연락드릴게요.' : d.ok ? '지금은 문의 저장을 준비 중이에요. 스마트스토어 문의하기로 남겨 주세요.' : '보내지 못했어요. 다시 시도해 주세요.'); })
+      .then(function (d) { say(d.saved ? '문의를 받았어요. 확인 후 연락드릴게요.' : d.ok ? '지금은 문의 저장을 준비 중이에요. 인스타그램 DM으로 남겨 주시면 답드릴게요.' : '보내지 못했어요. 다시 시도해 주세요.'); })
       .catch(function () { say('연결이 잠시 끊겼어요. 다시 시도해 주세요.'); });
   });
 })();
