@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>클래스 — 홍대 공방 커스텀 수업 · 슈즈텔러</title>
+<meta name="description" content="홍대 공방에서 내 신발 한 켤레를 처음부터 끝까지 완성하는 소수 정원 수업. 도안과 물감 순서가 있어서 그림을 못 그려도 돼요.">
+<link rel="stylesheet" href="./site.css">
+<script src="./config.js"></script>
+<script src="./shoe.js"></script>
+</head>
+<body data-page="classes">
+<!-- 원고: research shoesteller-class-draft-v1. 가격·날짜·정원·주소는 확정 전 숫자 금지. 촬영 동의 문구는 법률 확인 전 노출 금지. -->
+<main>
+  <section class="page-head"><div class="wrap two">
+    <div>
+      <h1>홍대 공방 커스텀 수업</h1>
+      <p class="lead">소수 정원으로, 내 신발 한 켤레를 처음부터 끝까지 완성해요. 그림을 못 그려도 도안과 물감 순서가 있어서 따라가면 돼요. 매 회 과정을 촬영해 완성 영상을 드려요.</p>
+      <p style="margin-top:24px"><a class="btn" href="./book.html?type=class">수업 예약하기</a></p>
+    </div>
+    <svg data-cw="레몬" aria-hidden="true"></svg>
+  </div></section>
+
+  <section class="sec" aria-labelledby="flow-h"><div class="wrap">
+    <h2 id="flow-h">수업은 이렇게 흘러가요</h2>
+    <ol class="steps five">
+      <li><span class="n">1</span><b>도안 고르기</b><p>어떤 신발을 갖고 싶은지 이야기하며 도안을 골라요.</p></li>
+      <li><span class="n">2</span><b>밑그림·채색</b><p>물감 쓰는 순서를 따라 내 손으로 그려요. 막히는 곳은 옆에서 함께 풀어요.</p></li>
+      <li><span class="n">3</span><b>건조·마감</b><p>말리는 법과 마감 방법을 알려드려요.</p></li>
+      <li><span class="n">4</span><b>물감 테스트</b><p>자투리 시편에 칠해 문지르고 긁고 구부려 봐요. 내 신발은 망치지 않아요.</p></li>
+      <li><span class="n">5</span><b>영상 확인</b><p>오늘 과정을 담은 영상을 함께 확인해요.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="sec" aria-labelledby="info-h"><div class="wrap two">
+    <div>
+      <h2 id="info-h">수업 정보</h2>
+      <dl class="facts">
+        <dt>첫 수업</dt><dd>11월 오픈 <span class="todo">날짜·시간 확정 후 표시</span></dd>
+        <dt>정원</dt><dd><span class="todo">확정 후 표시</span></dd>
+        <dt>가격</dt><dd id="class-price"></dd>
+        <dt>장소</dt><dd>홍대 공방 <span class="todo">주소 확정 후 표시</span></dd>
+        <dt>신발</dt><dd><span class="todo">지참·제공 확정 후 표시(가능한 소재와 불가 소재 안내)</span></dd>
+        <dt>가져가는 것</dt><dd>직접 완성한 신발 한 켤레, 과정을 담은 영상</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>촬영과 물감 테스트</h3>
+      <p class="lead">수업 과정은 수강생에게 완성 영상으로 드리기 위해 촬영해요. 물감 테스트 결과는 영상으로 공개하며, 내구성을 보장한다고 약속하지 않아요. 건조가 끝나기 전 결과는 그렇다고 표기해요.</p>
+      <p style="margin-top:22px"><a class="btn" href="./book.html?type=class">수업 예약하기</a> <a class="btn ghost" href="./join.html?interest=class">일정 알림 받기</a></p>
+      <p class="note" style="margin-top:12px">예약 내용을 확인한 뒤 직접 답해 드려요. 결제는 그때 안내해요.</p>
+    </div>
+  </div></section>
+</main>
+<script src="./site.js"></script>
+<script src="./track.js"></script>
+<script>
+(function () { var S = window.ShoeArt, CFG = window.SHOESTELLER || {};
+  [].forEach.call(document.querySelectorAll('svg[data-cw]'), function (svg, i) { S.render(svg, S.applyColorway(S.defaultState(), S.COLORWAYS[svg.getAttribute('data-cw')]), 'c' + i); });
+  var p = CFG.PRICES && CFG.PRICES['class']; document.getElementById('class-price').innerHTML = p ? Number(p).toLocaleString('ko-KR') + '원' : '<span class="todo">확정 후 표시</span>';
+})();
+</script>
+<script src="./chat.js" defer></script>
+</body>
+</html>
