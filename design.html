@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>기존 디자인 주문 · 슈즈텔러</title>
+<link rel="stylesheet" href="./forms.css">
+<script src="./config.js"></script>
+<script src="./chat.js" defer></script>
+<style>
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0 0 20px; }
+.gallery button { padding: 0; border: 2px solid transparent; border-radius: 10px; background: #fff; font: inherit; text-align: left; overflow: hidden; }
+.gallery button[aria-pressed=true] { border-color: #222; }
+.gallery img, .gallery .ph { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.gallery .ph { display: flex; align-items: center; justify-content: center; padding: 8px; color: #888; background: #f3f3f3; font-size: 13px; text-align: center; }
+.gallery span.n { display: block; padding: 6px 8px; font-size: 14px; }
+.summary { white-space: pre-wrap; background: #fff; border: 1px solid #ccc; border-radius: 8px; padding: 12px; font-size: 14px; }
+@media (min-width: 720px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+</style>
+</head>
+<body>
+<!-- 결제는 스마트스토어 상품 페이지에서만. 이 화면은 고르고 적는 것까지(저장·결제 없음). 사진·이름·상품 링크는 [회장 자료]. -->
+<main>
+  <a class="back" href="./index.html">← 처음으로</a>
+  <h1>기존 디자인으로 주문하기</h1>
+  <p class="lead">비움 작가가 그려온 디자인 중에서 고르고, 사이즈와 요청사항을 적은 뒤 스마트스토어에서 결제해요.</p>
+  <p><span class="todo">[회장 자료: 가격·제작 기간]</span></p>
+  <h2 class="label">1. 디자인 고르기</h2>
+  <div class="gallery" id="gallery"></div>
+  <p class="err" id="err-design" aria-live="polite"></p>
+  <fieldset>
+    <label class="label" for="size">2. 신발 사이즈 (mm)</label>
+    <select id="size"><option value="">골라 주세요</option></select>
+    <p class="err" id="err-size" aria-live="polite"></p>
+  </fieldset>
+  <fieldset>
+    <label class="label" for="memo">3. 요청사항 (선택)</label>
+    <textarea id="memo" maxlength="300" placeholder="예: 이니셜 넣어 주세요, 색을 조금 더 밝게"></textarea>
+  </fieldset>
+  <button type="button" id="go">스마트스토어에서 결제하기</button>
+  <section id="next" hidden tabindex="-1">
+    <p class="note">스마트스토어 주문서의 '배송 메모'에 아래 내용을 붙여 넣어 주세요.</p>
+    <p class="summary" id="summary"></p>
+    <button type="button" class="btn sub" id="copy">내용 복사하기</button>
+    <a class="btn" id="store" rel="noopener" target="_blank">스마트스토어 열기</a>
+  </section>
+</main>
+<script src="./design.js"></script>
+</body>
+</html>
