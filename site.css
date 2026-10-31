@@ -105,6 +105,27 @@ p { margin: 0; }
 .x-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 20px; height: 3px; background: var(--red); transform: rotate(-45deg); }
 .x-list li::after { content: ""; position: absolute; left: 0; top: .5em; width: 20px; height: 3px; background: var(--red); transform: rotate(45deg); }
 
+/* 세 가지 방법 비교 — 모바일은 한 줄씩, 넓으면 세 칸 */
+.ways { display: grid; grid-template-columns: 1fr; margin-top: 36px; border: 3px solid var(--rule); }
+.way { padding: 24px; display: grid; gap: 12px; align-content: start; border-bottom: 3px solid var(--rule); }
+.way:last-child { border-bottom: 0; }
+.way .k { font-family: var(--display); font-size: 15px; letter-spacing: .04em; color: var(--ink-2); }
+.way p, .way ul { color: var(--ink-2); font-size: 16px; }
+.way ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.way .pr { color: var(--ink); font-size: 15px; }
+.way .acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.way > .btn { justify-self: start; }
+@media (min-width: 821px) { .ways { grid-template-columns: repeat(3, 1fr); } .way { border-bottom: 0; border-right: 3px solid var(--rule); } .way:last-child { border-right: 0; } }
+
+/* 자주 묻는 질문 — details 아코디언(JS 없음) */
+.faq { margin-top: 32px; border-top: 3px solid var(--rule); max-width: 900px; }
+.faq details { border-bottom: 3px solid var(--rule); }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 40px 18px 0; font-weight: 700; font-size: 18px; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--display); font-size: 28px; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding: 0 0 20px; color: var(--ink-2); font-size: 16px; max-width: 40em; }
+
 /* 쿠폰 띠 */
 .band { background: var(--yellow); border-top: 3px solid var(--rule); }
 .band .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding: 30px 0; }
