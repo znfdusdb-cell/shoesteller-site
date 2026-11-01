@@ -21,7 +21,7 @@
       '<p>' + (biz.name ? [biz.name, biz.owner && '대표 ' + biz.owner, biz.reg && '사업자등록 ' + biz.reg, biz.mail && '통신판매업 ' + biz.mail, biz.addr].filter(Boolean).join(' / ') : '<span class="todo">사업자 정보(상호·대표·사업자등록번호·통신판매업 신고번호·주소)는 확정 후 표시</span>') + '</p>' +
       '<p><a href="./privacy.html">개인정보 처리방침</a></p></div>';
     document.body.appendChild(foot);
-    if (page !== 'join' && page !== 'book') {
+    if (page !== 'join' && page !== 'book' && page !== 'checklist') {
       var s = document.createElement('div');
       s.className = 'sticky-cta';
       s.innerHTML = page === 'shop' ? '<a class="btn" href="./studio.html">내 디자인 직접 만들기</a>' : '<a class="btn" href="./studio.html">내 디자인 만들기</a>';
