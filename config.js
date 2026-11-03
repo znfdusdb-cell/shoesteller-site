@@ -4,7 +4,7 @@
 //   PRODUCTS: 숍에 보이는 완성 디자인. colorway는 shoe.js의 조합 이름 또는 부위별 색 객체. photo가 있으면 그림 대신 사진.
 window.SHOESTELLER = {
   API_BASE: 'https://brain.sauptycoon.com',
-  PRICES: { custom: null, class: null, kit: null },
+  PRICES: { existing: null, custom: null, class: null, kit: null },
   PRODUCTS: [
     { sku: 'd-first-brush', name: '첫 붓', colorway: '첫 붓', price: null, tag: '기존 디자인', desc: '앞코와 붓 자국 한 줄. 처음 커스텀하는 분이 가장 많이 고르는 조합.' },
     { sku: 'd-cobalt-night', name: '코발트 밤', colorway: '코발트 밤', price: null, tag: '기존 디자인', desc: '옆면과 혀를 코발트로, 밑창은 검정. 붓 자국은 노랑 한 줄.' },
