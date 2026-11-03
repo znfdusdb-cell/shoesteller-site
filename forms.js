@@ -44,9 +44,17 @@
     }
   } else if (kind === 'book') {
     var t = params.get('type');
+    if (t === 'order') t = 'premium';  // '상담·주문하기'(첫 화면·취향 찾기)
     if (t === 'class' || t === 'premium') {
       form.querySelector('input[name=type][value=' + t + ']').checked = true;
       showType(t);
+    }
+    // 취향 찾기(taste.html)의 답 요약 → 개인 디자인 + '원하는 느낌 한 줄'에 미리 채움(저장 안 함, 보내기 전까지 화면에만)
+    var story = (params.get('story') || '').trim().slice(0, 200);
+    if (story && t === 'premium') {
+      form.elements.feel.value = story;
+      var dp = form.querySelector('input[name=design][value=personal]');
+      if (dp) dp.checked = true;
     }
     form.addEventListener('change', function (e) {
       if (e.target.name === 'type') { showType(e.target.value); setErr('type', ''); }
