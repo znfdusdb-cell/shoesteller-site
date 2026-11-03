@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>문의·예약 · 슈즈텔러</title>
+<title>상담·주문·예약 · 슈즈텔러</title>
 <link rel="stylesheet" href="./site.css">
 <script src="./chat.js" defer></script>
 </head>
@@ -11,13 +11,13 @@
 <!-- 서버 .env SITE_COLLECT_ON=1일 때만 저장(꺼져 있으면 '오픈 준비 중'). 결제는 받지 않는다. -->
 <main class="wrap">
   <section id="form-wrap">
-    <div class="page-head"><h1>문의·예약</h1>
-    <p class="lead">예약 확정과 결제는 연락드린 뒤 안내해 드려요.</p></div>
+    <div class="page-head"><h1 id="book-h1">상담·주문·예약</h1>
+    <p class="lead">주문·예약 확정과 결제는 연락드린 뒤 안내해 드려요.</p></div>
     <form class="form" id="book-form" data-form="book" novalidate>
       <fieldset>
         <legend>무엇을 도와드릴까요 <span class="req">(필수)</span></legend>
+        <label class="choice"><input type="radio" name="type" value="premium"> <span>상담·주문 (기존 디자인·개인 디자인)</span></label>
         <label class="choice"><input type="radio" name="type" value="class"> <span>공방 수업 예약</span></label>
-        <label class="choice"><input type="radio" name="type" value="premium"> <span>프리미엄 주문 문의</span></label>
         <label class="choice"><input type="radio" name="type" value="etc"> <span>기타 문의</span></label>
         <p class="err" id="err-type" aria-live="polite"></p>
       </fieldset>
@@ -47,12 +47,10 @@
           <input type="text" id="feel" name="feel" placeholder="이 신발을 신고 어디에 가고 싶어요?">
         </fieldset>
       </div>
-      <div data-for="etc" hidden>
-        <fieldset>
-          <label class="label" for="message">문의 내용</label>
-          <textarea id="message" name="message"></textarea>
-        </fieldset>
-      </div>
+      <fieldset>
+        <label class="label" for="message">문의 내용</label>
+        <textarea id="message" name="message" maxlength="500"></textarea>
+      </fieldset>
       <fieldset>
         <label class="label" for="name">이름 <span class="req">(필수)</span></label>
         <input type="text" id="name" name="name" autocomplete="name">
