@@ -44,15 +44,22 @@
     }
   } else if (kind === 'book') {
     var t = params.get('type');
-    if (t === 'order') t = 'premium';  // '상담·주문하기'(첫 화면·취향 찾기)
+    // '상담·주문하기'(첫 화면·취향 찾기)는 서버 신청 종류 premium으로 받는다 — 제목만 '상담·주문'
+    if (t === 'order') {
+      t = 'premium';
+      document.getElementById('book-h1').textContent = '상담·주문';
+      document.title = '상담·주문 · 슈즈텔러';
+    }
     if (t === 'class' || t === 'premium') {
       form.querySelector('input[name=type][value=' + t + ']').checked = true;
       showType(t);
     }
-    // 취향 찾기(taste.html)의 답 요약 → 개인 디자인 + '원하는 느낌 한 줄'에 미리 채움(저장 안 함, 보내기 전까지 화면에만)
-    var story = (params.get('story') || '').trim().slice(0, 200);
+    var d = params.get('design');
+    if (t === 'premium' && (d === 'existing' || d === 'personal')) form.querySelector('input[name=design][value=' + d + ']').checked = true;
+    // 취향 찾기(taste.html)의 답 요약 → 개인 디자인 + '문의 내용'에 미리 채움(저장 안 함, 보내기 전까지 화면에만)
+    var story = (params.get('story') || '').trim().slice(0, 500);
     if (story && t === 'premium') {
-      form.elements.feel.value = story;
+      form.elements.message.value = story;
       var dp = form.querySelector('input[name=design][value=personal]');
       if (dp) dp.checked = true;
     }
