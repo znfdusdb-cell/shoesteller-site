@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>가입하고 첫 수업 쿠폰 받기 · 슈즈텔러</title>
+<title>가입하고 첫 주문·첫 수업 쿠폰 받기 · 슈즈텔러</title>
 <link rel="stylesheet" href="./site.css">
 <script src="./chat.js" defer></script>
 </head>
@@ -11,9 +11,9 @@
 <!-- 서버 .env SITE_COLLECT_ON=1일 때만 저장(꺼져 있으면 '오픈 준비 중'). 결제는 받지 않는다. -->
 <main class="wrap">
   <section id="form-wrap">
-    <div class="page-head"><h1>가입하고 첫 수업 쿠폰 받기</h1>
-    <p class="lead">가입하면 첫 수업에 쓸 수 있는 쿠폰을 드려요. 키트·온라인 수업 소식도 가장 먼저 알려드려요.</p></div>
-    <p class="note"><span class="todo">쿠폰 금액·조건 확정 후 표시</span></p>
+    <div class="page-head"><h1>가입하고 첫 주문·첫 수업 쿠폰 받기</h1>
+    <p class="lead">가입하면 첫 주문·첫 수업 쿠폰을 드려요. 새 디자인과 키트 소식도 가장 먼저 알려 드려요.</p></div>
+    <p class="note"><span class="todo">쿠폰 금액·조건·유효기간 확정 후 표시</span></p>
     <form class="form" id="join-form" data-form="join" novalidate>
       <fieldset>
         <label class="label" for="name">이름 <span class="req">(필수)</span></label>
@@ -28,9 +28,9 @@
       <fieldset>
         <legend>관심 있는 것 (여러 개 골라도 돼요)</legend>
         <div class="chips">
+          <label><input type="checkbox" name="interest" value="premium"> 프리미엄 주문</label>
           <label><input type="checkbox" name="interest" value="class"> 공방 수업</label>
           <label><input type="checkbox" name="interest" value="kit"> 키트</label>
-          <label><input type="checkbox" name="interest" value="premium"> 프리미엄 주문</label>
           <label><input type="checkbox" name="interest" value="online"> 온라인 수업</label>
         </div>
       </fieldset>
