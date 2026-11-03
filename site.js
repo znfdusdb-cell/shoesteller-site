@@ -24,7 +24,7 @@
     if (page !== 'join' && page !== 'book' && page !== 'checklist' && page !== 'taste') {
       var s = document.createElement('div');
       s.className = 'sticky-cta';
-      s.innerHTML = page === 'shop' ? '<a class="btn" href="./studio.html">내 디자인 직접 만들기</a>' : '<a class="btn" href="./studio.html">내 디자인 만들기</a>';
+      s.innerHTML = page === 'home' ? '<a class="btn" href="./book.html?type=order">상담·주문하기</a>' : page === 'shop' ? '<a class="btn" href="./studio.html">내 디자인 직접 만들기</a>' : '<a class="btn" href="./studio.html">내 디자인 만들기</a>';
       document.body.appendChild(s);
     }
   }
