@@ -9,12 +9,13 @@
     { k: /수업|일정|클래스|공방/, q: '수업 일정', a: '홍대 공방 커스텀 수업은 11월에 소수 정원으로 열 예정이에요. 날짜·시간은 ' + LATER },
     { k: /배송|택배|받아/, q: '배송', a: LATER }
   ];
-  var css = '#stc-b{position:fixed;right:16px;bottom:var(--chat-bottom,16px);z-index:50;height:48px;padding:0 18px;border-radius:999px;border:3px solid #000;background:#000;color:#fff;font:700 15px "Noto Sans KR",system-ui,sans-serif;cursor:pointer}' +
-    '#stc-p{position:fixed;right:12px;bottom:calc(var(--chat-bottom,16px) + 60px);z-index:50;width:min(360px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:#fff;border:3px solid #000;padding:14px;font:15px/1.5 "Noto Sans KR",system-ui,sans-serif;color:#000}' +
-    '#stc-p .m{margin:6px 0;padding:8px 10px;background:#f3f0e8}#stc-p .u{background:#000;color:#fff;margin-left:30px}' +
-    '#stc-p .tag{display:block;font-size:12px;color:#888}#stc-p button.q{margin:3px 3px 0 0;padding:6px 12px;border:2px solid #000;border-radius:16px;background:#fff;font:inherit;font-size:14px;cursor:pointer}' +
-    '#stc-p input,#stc-p textarea{width:100%;box-sizing:border-box;margin:4px 0;padding:8px;font:inherit;border:2px solid #000}#stc-p label{display:flex;gap:6px;font-size:13px}' +
-    '#stc-p .send{width:100%;padding:10px;border:0;border-radius:999px;background:#000;color:#fff;font:inherit;font-weight:700;cursor:pointer}';
+  var css = '#stc-b{position:fixed;right:16px;bottom:var(--chat-bottom,16px);z-index:50;height:46px;padding:0 20px;border-radius:999px;border:1px solid var(--brass-soft,#d9bf93);background:var(--brass-soft,#d9bf93);color:var(--ink,#171512);font:500 14px "Noto Sans KR",system-ui,sans-serif;letter-spacing:.04em;cursor:pointer;box-shadow:0 6px 18px rgba(20,18,16,.18);transition:transform .16s cubic-bezier(.23,1,.32,1)}#stc-b:active{transform:scale(.96)}' +
+    '#stc-p{position:fixed;right:12px;bottom:calc(var(--chat-bottom,16px) + 58px);z-index:50;width:min(360px,calc(100vw - 24px));max-height:70vh;overflow:auto;background:var(--surface,#fbfaf8);border:1px solid var(--line,rgba(23,21,18,.14));border-radius:14px;padding:16px;font:15px/1.6 "Noto Sans KR",system-ui,sans-serif;color:var(--ink,#171512);box-shadow:0 18px 48px rgba(20,18,16,.18);transform-origin:bottom right;transition:opacity .2s cubic-bezier(.23,1,.32,1),transform .2s cubic-bezier(.23,1,.32,1)}' +
+    '@starting-style{#stc-p{opacity:0;transform:scale(.96) translateY(6px)}}' +
+    '#stc-p .m{margin:6px 0;padding:10px 12px;background:var(--tone,#e9e5df);border-radius:12px 12px 12px 4px}#stc-p .u{background:var(--stage,#141210);color:var(--on-stage,#efe9df);margin-left:36px;border-radius:12px 12px 4px 12px}' +
+    '#stc-p .tag{display:block;font-size:11px;letter-spacing:.06em;color:var(--ink-3,#8f8880)}#stc-p button.q{margin:4px 4px 0 0;padding:6px 14px;border:1px solid #cfc9c0;border-radius:999px;background:transparent;font:inherit;font-size:13px;cursor:pointer}' +
+    '#stc-p input,#stc-p textarea{width:100%;box-sizing:border-box;margin:6px 0;padding:10px 12px;font:inherit;border:1px solid #cfc9c0;border-radius:4px;background:#fff}#stc-p summary{cursor:pointer;font-size:14px;color:var(--ink-2,#57524c);margin-top:6px}#stc-p label{display:flex;gap:6px;font-size:13px;color:var(--ink-2,#57524c)}' +
+    '#stc-p .send{width:100%;margin-top:6px;padding:12px;border:0;border-radius:999px;background:var(--stage,#141210);color:var(--on-stage,#efe9df);font:inherit;font-weight:500;cursor:pointer}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   var b = document.createElement('button'); b.id = 'stc-b'; b.type = 'button'; b.setAttribute('aria-label', '문의 채팅 열기'); b.textContent = '문의';
   var p = document.createElement('div'); p.id = 'stc-p'; p.hidden = true; p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', '문의 채팅');
