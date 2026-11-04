@@ -203,8 +203,9 @@
     b.addEventListener('click', function () { paint(i); }); chips.appendChild(b);
   }
   chip('#ffffff', '흰 신발', -1);
-  var chipColor = { '첫 붓': '#e4322b', '코발트 밤': '#1f4fd8', '레몬': '#f2c400', '체크 그린': '#1f8a4c', '물감 튐': '#111111', '핑크 줄': '#ff8fb1' };
-  names.forEach(function (n, i) { chip(chipColor[n] || '#999', n, i); });
+  // 칩은 흰 신발 + 물감 4색(빨강·파랑·노랑·초록)만 — 나머지 조합은 숍에서
+  var chipColor = { '첫 붓': '#e4322b', '코발트 밤': '#1f4fd8', '레몬': '#f2c400', '체크 그린': '#1f8a4c' };
+  names.forEach(function (n, i) { if (chipColor[n]) chip(chipColor[n], n, i); });
   paint(-1);
   // 처음 한 번, 흰 신발에 물감이 들어오는 순간
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function () { if (cur === -1) paint(0); }, 1400);
