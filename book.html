@@ -10,9 +10,17 @@
 <body data-page="book">
 <!-- 서버 .env SITE_COLLECT_ON=1일 때만 저장(꺼져 있으면 '오픈 준비 중'). 결제는 받지 않는다. -->
 <main class="wrap">
-  <section id="form-wrap">
-    <div class="page-head"><h1 id="book-h1">상담·주문·예약</h1>
-    <p class="lead">주문·예약 확정과 결제는 연락드린 뒤 안내해 드려요.</p></div>
+  <section id="form-wrap" class="split">
+    <div class="split-intro">
+      <p class="eyebrow">문의</p>
+      <h1 id="book-h1">상담·주문·예약</h1>
+      <p class="lead">주문·예약 확정과 결제는 연락드린 뒤 안내해 드려요.</p>
+      <ol class="flow">
+        <li><span class="num">01</span><b>무엇이 필요한지 골라 적어 주세요</b><p>기존 디자인, 개인 디자인, 공방 수업, 그 밖의 궁금한 것.</p></li>
+        <li><span class="num">02</span><b>확인 후 직접 연락드려요</b><p>남겨 주신 번호로 비움 작가가 연락해요.</p></li>
+        <li><span class="num">03</span><b>확정과 결제는 그때 안내해요</b><p>여기서는 결제를 받지 않아요. 보내는 것만으로 비용이 생기지 않아요.</p></li>
+      </ol>
+    </div>
     <form class="form" id="book-form" data-form="book" novalidate>
       <fieldset>
         <legend>무엇을 도와드릴까요 <span class="req">(필수)</span></legend>
@@ -23,8 +31,7 @@
       </fieldset>
       <div data-for="class" hidden>
         <fieldset>
-          <label class="label" for="date">희망 날짜</label>
-          <p><span class="todo">확인 필요: 수업 일정표</span></p>
+          <label class="label" for="date">희망 날짜 <span class="todo">확인 필요: 수업 일정표</span></label>
           <input type="date" id="date" name="date">
         </fieldset>
         <fieldset>
