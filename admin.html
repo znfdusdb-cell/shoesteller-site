@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>BIUM 사이트 관리</title>
+<link rel="icon" href="assets/brand/logo-black-160.png">
+<style>
+  :root { --b: #111; --g1: #F4F4F2; --g2: #DDDDD8; --g3: #77776F; --ok: #1B7F3B; --err: #B3261E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; color: var(--b); background: #fff; font-size: 15px; line-height: 1.5; padding-bottom: 96px; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  header.top { position: sticky; top: 0; z-index: 10; background: var(--b); color: #fff; display: flex; align-items: center; gap: 10px; padding: 12px 16px; }
+  header.top img { width: 28px; height: 30px; filter: invert(1); }
+  header.top b { letter-spacing: .3em; font-size: 15px; }
+  header.top span { font-size: 12px; opacity: .7; margin-left: auto; }
+  header.top a { color: #fff; font-size: 12px; }
+  nav.tabs { position: sticky; top: 54px; z-index: 9; background: #fff; display: flex; overflow-x: auto; border-bottom: 1px solid var(--g2); scrollbar-width: none; }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs button { flex: 0 0 auto; border: 0; background: none; padding: 14px 16px; font-size: 14px; color: var(--g3); border-bottom: 2px solid transparent; }
+  nav.tabs button.on { color: var(--b); border-color: var(--b); font-weight: 600; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px; }
+  h2 { font-size: 20px; margin: 4px 0 6px; font-weight: 600; }
+  .hint { color: var(--g3); font-size: 13px; margin: 0 0 18px; }
+  label.f { display: grid; gap: 6px; margin-bottom: 14px; font-size: 13px; color: var(--g3); }
+  label.f > span b { color: var(--b); font-weight: 600; }
+  input[type=text], input[type=number], input[type=password], input[type=url], select, textarea { width: 100%; border: 1px solid var(--g2); border-radius: 0; padding: 11px 12px; background: #fff; color: var(--b); font-size: 15px; }
+  textarea { min-height: 88px; resize: vertical; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; padding: 0 18px; border: 1px solid var(--b); background: var(--b); color: #fff; font-size: 14px; letter-spacing: .04em; text-decoration: none; }
+  .btn.line { background: #fff; color: var(--b); }
+  .btn.small { min-height: 34px; padding: 0 12px; font-size: 13px; }
+  .btn.danger { border-color: var(--err); background: #fff; color: var(--err); }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; }
+  .card { border: 1px solid var(--g2); padding: 16px; margin-bottom: 14px; }
+  .list { display: grid; gap: 8px; }
+  .item { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; border: 1px solid var(--g2); padding: 8px; background: #fff; text-align: left; width: 100%; }
+  .item img { width: 64px; height: 64px; object-fit: cover; background: var(--g1); }
+  .item b { display: block; font-weight: 600; font-size: 14px; }
+  .item small { color: var(--g3); }
+  .item .tag { font-size: 11px; border: 1px solid var(--b); padding: 1px 6px; }
+  .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-bottom: 10px; }
+  .ph { position: relative; aspect-ratio: 1 / 1; background: var(--g1); border: 1px solid var(--g2); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .ph .acts { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; background: rgba(0,0,0,.55); }
+  .ph .acts button { border: 0; background: none; color: #fff; padding: 4px 8px; font-size: 13px; }
+  .ph .first { position: absolute; left: 4px; top: 4px; background: var(--b); color: #fff; font-size: 10px; padding: 1px 5px; }
+  .upl { display: grid; place-items: center; aspect-ratio: 1 / 1; border: 1px dashed var(--g3); color: var(--g3); font-size: 13px; text-align: center; background: #fff; }
+  .upl input { display: none; }
+  .pinbox { position: relative; max-width: 360px; cursor: crosshair; margin-bottom: 8px; }
+  .pinbox img { width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover; background: var(--g1); }
+  .pinbox .dot { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.5), 0 1px 6px rgba(0,0,0,.4); pointer-events: none; }
+  video.pv { width: 100%; max-height: 320px; background: #000; display: block; margin-bottom: 10px; }
+  .search { margin-bottom: 14px; }
+  .grp { font-size: 12px; letter-spacing: .14em; color: var(--g3); margin: 22px 0 8px; border-bottom: 1px solid var(--b); padding-bottom: 4px; }
+  .kv { margin-bottom: 14px; }
+  .kv .k { font-size: 11px; color: var(--g3); margin-bottom: 4px; }
+  .kv .row2 textarea { min-height: 60px; }
+  .savebar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: #fff; border-top: 1px solid var(--b); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: flex; gap: 10px; align-items: center; }
+  .savebar .msg { flex: 1; font-size: 13px; color: var(--g3); }
+  .savebar .msg.dirty { color: var(--b); font-weight: 600; }
+  .savebar .msg.ok { color: var(--ok); }
+  .savebar .msg.err { color: var(--err); }
+  .login { max-width: 440px; margin: 40px auto; padding: 0 16px; }
+  .login ol { padding-left: 20px; color: var(--g3); font-size: 13px; }
+  .login ol b { color: var(--b); }
+  .back { border: 0; background: none; padding: 0; margin-bottom: 12px; font-size: 14px; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .check { display: flex; gap: 8px; align-items: center; margin-bottom: 14px; font-size: 14px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="top"><img src="assets/brand/logo-black-160.png" alt=""><b>BIUM</b><span id="who"></span><a href="index.html" target="_blank" rel="noopener">사이트 보기</a></header>
+
+<section class="login" id="login" hidden>
+  <h2>사이트 관리</h2>
+  <p class="hint">처음 한 번만 GitHub 열쇠(토큰)를 넣으면 이 기기에서 계속 쓸 수 있어요. 열쇠는 이 기기 안에만 저장되고 다른 곳으로 보내지 않아요.</p>
+  <label class="f"><span><b>GitHub 열쇠</b> (github_pat_로 시작)</span><input type="password" id="tok" autocomplete="off" placeholder="github_pat_..."></label>
+  <label class="check"><input type="checkbox" id="remember" checked> 이 기기에서 기억하기</label>
+  <button class="btn" type="button" id="go" style="width:100%">들어가기</button>
+  <p class="hint" id="login-err" style="color:var(--err);margin-top:10px"></p>
+  <details style="margin-top:20px"><summary class="hint" style="cursor:pointer">열쇠 만드는 법 (5분, 한 번만)</summary>
+    <ol>
+      <li>github.com 로그인 → 오른쪽 위 사진 → <b>Settings</b></li>
+      <li>맨 아래 <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b></li>
+      <li>이름: BIUM 사이트 관리 / 만료: 1년</li>
+      <li>Repository access: <b>Only select repositories</b> → <b>shoesteller-site</b></li>
+      <li>Permissions → Repository permissions → <b>Contents: Read and write</b></li>
+      <li><b>Generate token</b> → 나온 글자를 복사해 위 칸에 붙여넣기</li>
+    </ol>
+  </details>
+</section>
+
+<div id="app" hidden>
+  <nav class="tabs" id="tabs">
+    <button type="button" data-tab="video">홈 영상</button>
+    <button type="button" data-tab="products">작품</button>
+    <button type="button" data-tab="looks">룩북</button>
+    <button type="button" data-tab="text">사이트 문구</button>
+    <button type="button" data-tab="content">안내 글</button>
+    <button type="button" data-tab="settings">연결 설정</button>
+  </nav>
+  <main id="view"></main>
+</div>
+
+<div class="savebar" id="savebar" hidden>
+  <div class="msg" id="msg">바뀐 것 없음</div>
+  <button class="btn line small" type="button" id="undo">되돌리기</button>
+  <button class="btn" type="button" id="save" disabled>저장하고 올리기</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var OWNER = 'znfdusdb-cell', REPO = 'shoesteller-site', BRANCH = 'main', FILE = 'assets/products.js';
+  var API = 'https://api.github.com/repos/' + OWNER + '/' + REPO;
+  var PREFIX = '/* BIUM 사이트 데이터 — 사이트 관리 페이지(admin.html)가 이 파일을 통째로 다시 쓴다. 직접 고칠 땐 JSON 형식을 지킬 것. */\nwindow.SHOES = ';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var token = '', S = null, orig = '', uploads = {}, tab = 'video', editing = null;
+
+  /* 저장소에 안 올라간 새 파일은 미리보기용 주소로 보여 준다 */
+  function src(path) { return uploads[path] ? uploads[path].url : path; }
+
+  /* ---------- GitHub ---------- */
+  function gh(path, opt) {
+    opt = opt || {};
+    return fetch(path.indexOf('http') === 0 ? path : API + path, {
+      method: opt.method || 'GET',
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json' },
+      body: opt.body ? JSON.stringify(opt.body) : undefined,
+      cache: 'no-store'
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { var e = new Error('GitHub ' + r.status + ' ' + t.slice(0, 160)); e.status = r.status; throw e; });
+      return r.status === 204 ? null : r.json();
+    });
+  }
+  function b64utf8(str) { var bytes = new TextEncoder().encode(str), bin = ''; for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin); }
+  function utf8b64(b64) { var bin = atob(b64.replace(/\s/g, '')), bytes = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i); return new TextDecoder().decode(bytes); }
+  function blobB64(blob) { return new Promise(function (res, rej) { var fr = new FileReader(); fr.onload = function () { res(String(fr.result).split(',')[1]); }; fr.onerror = rej; fr.readAsDataURL(blob); }); }
+
+  function parseData(text) {
+    var a = text.indexOf('window.SHOES'), b = text.indexOf('{', a), e = text.lastIndexOf('}');
+    return JSON.parse(text.slice(b, e + 1));
+  }
+
+  function load() {
+    $('#msg').textContent = '불러오는 중…';
+    return gh('/contents/' + FILE + '?ref=' + BRANCH + '&t=' + Date.now()).then(function (j) {
+      S = parseData(utf8b64(j.content));
+      orig = JSON.stringify(S); uploads = {};
+      $('#login').hidden = true; $('#app').hidden = false; $('#savebar').hidden = false;
+      $('#who').textContent = '마지막 저장 ' + (S.UPDATED ? new Date(S.UPDATED).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '-');
+      render(); dirty();
+    });
+  }
+
+  function save() {
+    var btn = $('#save'); btn.disabled = true; $('#msg').className = 'msg'; $('#msg').textContent = '올리는 중… 창을 닫지 마세요';
+    S.UPDATED = new Date().toISOString();
+    var text = PREFIX + JSON.stringify(S, null, 1) + ';\n';
+    var used = JSON.stringify(S);
+    var paths = Object.keys(uploads).filter(function (p) { return used.indexOf(p) !== -1; });
+    var head, tree = [];
+    return gh('/git/ref/heads/' + BRANCH).then(function (ref) {
+      head = ref.object.sha;
+      return gh('/git/commits/' + head);
+    }).then(function (c) {
+      var base = c.tree.sha;
+      var jobs = paths.map(function (p, i) {
+        return blobB64(uploads[p].blob).then(function (b64) {
+          $('#msg').textContent = '파일 올리는 중… (' + (i + 1) + '/' + paths.length + ')';
+          return gh('/git/blobs', { method: 'POST', body: { content: b64, encoding: 'base64' } });
+        }).then(function (bl) { tree.push({ path: p, mode: '100644', type: 'blob', sha: bl.sha }); });
+      });
+      return jobs.reduce(function (pr, j) { return pr.then(function () { return j; }); }, Promise.resolve()).then(function () {
+        return gh('/git/blobs', { method: 'POST', body: { content: b64utf8(text), encoding: 'base64' } });
+      }).then(function (bl) {
+        tree.push({ path: FILE, mode: '100644', type: 'blob', sha: bl.sha });
+        return gh('/git/trees', { method: 'POST', body: { base_tree: base, tree: tree } });
+      });
+    }).then(function (t) {
+      return gh('/git/commits', { method: 'POST', body: { message: '사이트 관리에서 수정 (' + new Date().toLocaleString('ko-KR') + ')', tree: t.sha, parents: [head] } });
+    }).then(function (c) {
+      return gh('/git/refs/heads/' + BRANCH, { method: 'PATCH', body: { sha: c.sha } });
+    }).then(function () {
+      orig = JSON.stringify(S);
+      paths.forEach(function (p) { uploads[p].saved = true; });
+      dirty();
+      $('#msg').className = 'msg ok'; $('#msg').textContent = '저장했어요. 1~3분 뒤 사이트에 보여요.';
+      $('#who').textContent = '마지막 저장 ' + new Date().toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }).catch(function (e) {
+      $('#msg').className = 'msg err';
+      $('#msg').textContent = e.status === 401 || e.status === 403 ? '열쇠 권한이 없어요. Contents 쓰기 권한을 확인해 주세요.' : e.status === 422 ? '파일이 너무 커요. 영상은 40MB 아래로 줄여 주세요.' : '저장 못 했어요: ' + e.message;
+      btn.disabled = false;
+    });
+  }
+
+  function dirty() {
+    var d = JSON.stringify(S) !== orig;
+    $('#save').disabled = !d;
+    var m = $('#msg');
+    if (d) { m.className = 'msg dirty'; m.textContent = '바뀐 게 있어요. 저장해야 사이트에 반영돼요.'; }
+    else if (!/ok|err/.test(m.className)) { m.className = 'msg'; m.textContent = '바뀐 것 없음'; }
+  }
+  window.addEventListener('beforeunload', function (e) { if (S && JSON.stringify(S) !== orig) { e.preventDefault(); e.returnValue = ''; } });
+
+  /* ---------- 사진·영상 ---------- */
+  function stamp() { var d = new Date(); return d.getFullYear() + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2) + '-' + d.getTime().toString(36).slice(-5); }
+  function addUpload(path, blob) { uploads[path] = { blob: blob, url: URL.createObjectURL(blob) }; return path; }
+  function photoFrom(file, max) {
+    max = max || 1600;
+    return new Promise(function (res, rej) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var s = Math.min(1, max / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        c.toBlob(function (b) { URL.revokeObjectURL(url); b ? res(addUpload('assets/up/' + stamp() + '.jpg', b)) : rej(new Error('사진 변환 실패')); }, 'image/jpeg', 0.86);
+      };
+      img.onerror = function () { rej(new Error('이 사진 형식은 열 수 없어요. JPG나 PNG로 올려 주세요.')); };
+      img.src = url;
+    });
+  }
+  function posterFrom(file) {
+    return new Promise(function (res) {
+      var v = document.createElement('video'), url = URL.createObjectURL(file);
+      v.muted = true; v.playsInline = true; v.preload = 'auto'; v.src = url;
+      v.addEventListener('loadeddata', function () { v.currentTime = Math.min(0.5, (v.duration || 1) / 4); });
+      v.addEventListener('seeked', function () {
+        var c = document.createElement('canvas'), s = Math.min(1, 1600 / v.videoWidth);
+        c.width = Math.round(v.videoWidth * s); c.height = Math.round(v.videoHeight * s);
+        c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+        c.toBlob(function (b) { res(b ? addUpload('assets/up/poster-' + stamp() + '.jpg', b) : null); }, 'image/jpeg', 0.84);
+      });
+      v.addEventListener('error', function () { res(null); });
+    });
+  }
+  function pickFile(accept, cb) { var i = document.createElement('input'); i.type = 'file'; i.accept = accept; i.onchange = function () { if (i.files[0]) cb(i.files[0]); }; i.click(); }
+  function fail(e) { var m = $('#msg'); m.className = 'msg err'; m.textContent = e.message || String(e); }
+
+  /* ---------- 화면 ---------- */
+  var VIEWS = {
+    video: function (v) {
+      var V = S.VIDEO || (S.VIDEO = {});
+      v.innerHTML = '<h2>홈 영상</h2><p class="hint">사이트 첫 화면에 소리 없이 반복되는 영상이에요. MP4로 40MB 아래, 15~30초를 권해요. 휴대폰용 세로 영상은 따로 넣지 않으면 가로 영상을 잘라서 보여 줘요.</p>' +
+        '<div class="card"><b>컴퓨터용(가로)</b><video class="pv" src="' + esc(src(V.desktop)) + '" poster="' + esc(src(V.poster)) + '" muted loop playsinline controls></video><button class="btn line small" type="button" id="up-d">가로 영상 바꾸기</button></div>' +
+        '<div class="card"><b>휴대폰용(세로)</b><video class="pv" src="' + esc(src(V.mobile || V.desktop)) + '" muted loop playsinline controls></video><div class="toolbar"><button class="btn line small" type="button" id="up-m">세로 영상 바꾸기</button>' + (V.mobile && V.mobile !== V.desktop ? '<button class="btn line small" type="button" id="rm-m">세로 영상 빼기(가로 영상 사용)</button>' : '') + '</div></div>';
+      function take(kind) {
+        pickFile('video/mp4,video/quicktime,video/*', function (f) {
+          if (f.size > 40 * 1024 * 1024) return fail('영상이 ' + Math.round(f.size / 1048576) + 'MB예요. 40MB 아래로 줄여 주세요(휴대폰 편집 앱에서 1080p로 내보내기).');
+          var p = addUpload('assets/up/hero-' + kind + '-' + stamp() + '.mp4', f);
+          if (kind === 'd') { V.desktop = p; V.webm = ''; posterFrom(f).then(function (pp) { if (pp) V.poster = pp; render(); dirty(); }); }
+          else V.mobile = p;
+          render(); dirty();
+        });
+      }
+      $('#up-d').onclick = function () { take('d'); };
+      $('#up-m').onclick = function () { take('m'); };
+      if ($('#rm-m')) $('#rm-m').onclick = function () { V.mobile = ''; render(); dirty(); };
+    },
+
+    products: function (v) {
+      if (editing != null && S.products[editing]) return productEdit(v, S.products[editing]);
+      editing = null;
+      v.innerHTML = '<h2>작품</h2><p class="hint">눌러서 이름·가격·설명·사진을 바꿔요. 맨 위 작품이 사이트에서도 먼저 보여요.</p>' +
+        '<div class="toolbar"><button class="btn small" type="button" id="p-add">+ 새 작품</button></div><div class="list">' +
+        S.products.map(function (p, i) {
+          var c = (S.categories.filter(function (x) { return x.id === p.cat; })[0] || {}).ko || p.cat;
+          return '<button class="item" type="button" data-i="' + i + '"><img src="' + esc(src(p.photos[0] || '')) + '" alt=""><span><b>' + esc(p.name) + '</b><small>' + esc(c) + ' · ' + Number(p.price || 0).toLocaleString('ko-KR') + '원</small></span>' + (p.isNew ? '<span class="tag">NEW</span>' : '<span></span>') + '</button>';
+        }).join('') + '</div>';
+      $$('.item', v).forEach(function (b) { b.onclick = function () { editing = +b.getAttribute('data-i'); render(); scrollTo(0, 0); }; });
+      $('#p-add').onclick = function () {
+        S.products.unshift({ id: 'w' + Date.now().toString(36), cat: S.categories[0].id, base: S.bases[0].id, isNew: true, name: '새 작품', en: '', sub: '', price: 0, reviews: 0, photos: [], fit: 'cover', desc: '' });
+        editing = 0; render(); dirty(); scrollTo(0, 0);
+      };
+    },
+
+    looks: function (v) {
+      v.innerHTML = '<h2>룩북</h2><p class="hint">사진을 누르면 그 자리에 점(신발 위치)이 찍혀요. 점이나 VIEW PRODUCTS를 누른 손님에게 고른 작품이 떠요.</p>' +
+        '<div class="toolbar"><button class="btn small" type="button" id="l-add">+ 새 룩</button></div>' +
+        S.lookbook.map(function (l, i) {
+          var pin = l.pin || [50, 80];
+          return '<div class="card" data-i="' + i + '"><div class="pinbox"><img src="' + esc(src(l.photo)) + '" alt=""><span class="dot" style="left:' + pin[0] + '%;top:' + pin[1] + '%"></span></div>' +
+            '<div class="toolbar"><button class="btn line small" type="button" data-act="photo">사진 바꾸기</button><button class="btn line small" type="button" data-act="up"' + (i ? '' : ' disabled') + '>위로</button><button class="btn danger small" type="button" data-act="del">이 룩 빼기</button></div>' +
+            '<div class="row2"><label class="f"><span><b>제목</b></span><input type="text" data-k="ko" value="' + esc(l.ko) + '"></label><label class="f"><span>영어 제목</span><input type="text" data-k="en" value="' + esc(l.en) + '"></label></div>' +
+            '<label class="f"><span><b>사진 속 작품</b></span><select data-k="product">' + S.products.map(function (p) { return '<option value="' + esc(p.id) + '"' + (p.id === l.product ? ' selected' : '') + '>' + esc(p.name) + '</option>'; }).join('') + '</select></label>' +
+            '<label class="f"><span>함께 입은 옷 (한 줄에 하나)</span><textarea data-k="items">' + esc((l.items || []).join('\n')) + '</textarea></label></div>';
+        }).join('');
+      $$('.card', v).forEach(function (card) {
+        var i = +card.getAttribute('data-i'), l = S.lookbook[i];
+        $('.pinbox', card).onclick = function (e) {
+          var r = this.getBoundingClientRect();
+          l.pin = [Math.round((e.clientX - r.left) / r.width * 100), Math.round((e.clientY - r.top) / r.height * 100)];
+          $('.dot', card).style.left = l.pin[0] + '%'; $('.dot', card).style.top = l.pin[1] + '%'; dirty();
+        };
+        $$('[data-k]', card).forEach(function (el) { el.oninput = el.onchange = function () { var k = el.getAttribute('data-k'); l[k] = k === 'items' ? el.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean) : el.value; dirty(); }; });
+        $('[data-act=photo]', card).onclick = function () { pickFile('image/*', function (f) { photoFrom(f, 1400).then(function (p) { l.photo = p; render(); dirty(); }).catch(fail); }); };
+        $('[data-act=up]', card).onclick = function () { S.lookbook.splice(i - 1, 0, S.lookbook.splice(i, 1)[0]); render(); dirty(); };
+        $('[data-act=del]', card).onclick = function () { if (confirm('이 룩을 뺄까요?')) { S.lookbook.splice(i, 1); render(); dirty(); } };
+      });
+      $('#l-add').onclick = function () { pickFile('image/*', function (f) { photoFrom(f, 1400).then(function (p) { S.lookbook.push({ photo: p, pin: [50, 80], ko: '새 룩', en: '', product: S.products[0].id, items: [] }); render(); dirty(); }).catch(fail); }); };
+    },
+
+    text: function (v) {
+      var G = { nav: '메뉴', util: '맨 위 아이콘', ticker: '맨 위 알림 띠', hero: '첫 화면(영상 위 글자)', works: '작품 목록', fb: '축구 커스텀 배너', cat: '분류', class: '수업', look: '룩북', color: '색 고르기', disc: '작가 소개', faq: '자주 묻는 질문', news: '소식 받기', foot: '맨 아래', kakao: '카톡 버튼', cart: '장바구니', search: '검색', login: '로그인', pd: '작품 상세', co: '주문서' };
+      var keys = Object.keys(S.TEXT || {});
+      var groups = {};
+      keys.forEach(function (k) { var g = k.split('.')[0]; (groups[g] = groups[g] || []).push(k); });
+      v.innerHTML = '<h2>사이트 문구</h2><p class="hint">사이트에 보이는 제목·버튼 글자예요. 왼쪽이 한국어, 오른쪽이 영어(EN 눌렀을 때)예요. 찾고 싶은 말을 검색해 보세요.</p>' +
+        '<input class="search" type="text" id="q" placeholder="예: 작품 보기, 장바구니">' +
+        Object.keys(groups).map(function (g) {
+          return '<div class="grp" data-g="' + esc(g) + '">' + esc(G[g] || g) + '</div>' + groups[g].map(function (k) {
+            var val = S.TEXT[k];
+            return '<div class="kv" data-key="' + esc(k) + '"><div class="k">' + esc(k) + '</div><div class="row2"><textarea data-l="0" rows="2">' + esc(val[0]) + '</textarea><textarea data-l="1" rows="2">' + esc(val[1]) + '</textarea></div></div>';
+          }).join('');
+        }).join('');
+      $$('.kv textarea', v).forEach(function (t) {
+        t.oninput = function () { var k = t.closest('.kv').getAttribute('data-key'); S.TEXT[k][+t.getAttribute('data-l')] = t.value; dirty(); };
+      });
+      $('#q').oninput = function () {
+        var q = this.value.trim().toLowerCase();
+        $$('.kv', v).forEach(function (kv) { kv.hidden = q && kv.textContent.toLowerCase().indexOf(q) === -1 && !$$('textarea', kv).some(function (t) { return t.value.toLowerCase().indexOf(q) !== -1; }); });
+        $$('.grp', v).forEach(function (g) { var n = g.nextElementSibling, any = false; while (n && n.classList.contains('kv')) { if (!n.hidden) any = true; n = n.nextElementSibling; } g.hidden = !any; });
+      };
+    },
+
+    content: function (v) {
+      var L = { lead_time: '제작 기간', revisions: '시안 수정', shipping: '배송', returns: '교환·반품', care: '관리법', materials: '재료', size_guide: '사이즈 안내', own_shoes: '내 신발 보내기', response_time: '문의 답변', class_info: '수업 안내', kit_info: '키트 안내', privacy: '개인정보 처리방침', terms: '이용약관', about: '브랜드 소개(이야기)', coupon: '웰컴 쿠폰', business: '사업자 정보', privacy_officer: '개인정보 책임자' };
+      var C = S.CONTENT;
+      v.innerHTML = '<h2>안내 글</h2><p class="hint">작품 상세의 접는 칸, 자주 묻는 질문, 약관·개인정보 페이지에 들어가는 글이에요.</p>' +
+        Object.keys(C).map(function (k) {
+          var val = C[k];
+          if (typeof val !== 'string') return '<label class="f"><span><b>' + esc(L[k] || k) + '</b> (목록)</span><textarea data-k="' + esc(k) + '" data-json="1" rows="6">' + esc(JSON.stringify(val, null, 1)) + '</textarea></label>';
+          return '<label class="f"><span><b>' + esc(L[k] || k) + '</b></span><textarea data-k="' + esc(k) + '" rows="' + Math.min(10, Math.max(3, Math.ceil(val.length / 38))) + '">' + esc(val) + '</textarea></label>';
+        }).join('');
+      $$('textarea', v).forEach(function (t) {
+        t.oninput = function () {
+          var k = t.getAttribute('data-k');
+          if (t.getAttribute('data-json')) { try { C[k] = JSON.parse(t.value); t.style.borderColor = ''; } catch (e) { t.style.borderColor = 'var(--err)'; return; } }
+          else C[k] = t.value;
+          dirty();
+        };
+      });
+    },
+
+    settings: function (v) {
+      var F = [
+        ['KAKAO', '카카오 채널 채팅 주소', '오른쪽 아래 문의 버튼이 여는 주소'],
+        ['NAVER_BOOKING', '네이버 예약(플레이스) 주소', '넣으면 사이트의 수업 신청 버튼이 전부 네이버 예약으로 가요'],
+        ['NAVERPAY_CLIENT_ID', '네이버페이 클라이언트 ID', '가맹 승인 뒤 받는 값. 넣으면 주문서에 네이버페이가 켜져요'],
+        ['NAVERPAY_CHAIN_ID', '네이버페이 체인 ID', '네이버페이 가맹 정보에 함께 나와요'],
+        ['GOOGLE_CLIENT_ID', '구글 로그인 클라이언트 ID', '넣으면 "Google로 계속하기"가 작동해요']
+      ];
+      v.innerHTML = '<h2>연결 설정</h2><p class="hint">바깥 서비스와 잇는 값이에요. 모르는 칸은 비워 두면 그 기능만 "준비 중"으로 보여요.</p>' +
+        F.map(function (f) { return '<label class="f"><span><b>' + f[1] + '</b><br>' + f[2] + '</span><input type="text" data-k="' + f[0] + '" value="' + esc(S[f[0]] || '') + '" autocomplete="off"></label>'; }).join('') +
+        '<label class="f"><span><b>고를 수 있는 사이즈</b> (쉼표로 구분, mm)</span><input type="text" id="sizes" value="' + esc((S.SIZES || []).join(', ')) + '"></label>' +
+        '<div class="card"><b>이 기기의 열쇠</b><p class="hint" style="margin:6px 0 10px">다른 사람 폰이라면 다 쓰고 지워 주세요.</p><button class="btn danger small" type="button" id="forget">열쇠 지우고 나가기</button></div>';
+      $$('[data-k]', v).forEach(function (el) { el.oninput = function () { S[el.getAttribute('data-k')] = el.value.trim(); dirty(); }; });
+      $('#sizes').oninput = function () { S.SIZES = this.value.split(/[,\s]+/).map(Number).filter(function (n) { return n > 100; }); dirty(); };
+      $('#forget').onclick = function () { try { localStorage.removeItem('bium_admin_tok'); } catch (e) {} location.reload(); };
+    }
+  };
+
+  function productEdit(v, p) {
+    var i = S.products.indexOf(p);
+    v.innerHTML = '<button class="back" type="button" id="back">← 작품 목록</button><h2>' + esc(p.name) + '</h2>' +
+      '<p class="hint">사진은 맨 앞 장이 목록과 대표 사진이 돼요. 사진은 자동으로 줄여서 올라가요.</p>' +
+      '<div class="photos" id="photos">' + p.photos.map(function (ph, k) {
+        return '<div class="ph"><img src="' + esc(src(ph)) + '" alt="">' + (k ? '' : '<span class="first">대표</span>') + '<div class="acts"><button type="button" data-left="' + k + '"' + (k ? '' : ' hidden') + '>←</button><button type="button" data-rm="' + k + '">삭제</button></div></div>';
+      }).join('') + '<label class="upl">+ 사진 추가<input type="file" accept="image/*" multiple id="ph-add"></label></div>' +
+      '<label class="f"><span><b>사진 보이는 방식</b></span><select data-k="fit"><option value="cover"' + (p.fit !== 'contain' ? ' selected' : '') + '>칸에 꽉 채우기(가장자리 잘림)</option><option value="contain"' + (p.fit === 'contain' ? ' selected' : '') + '>사진 전체 보이기(여백 생김)</option></select></label>' +
+      '<label class="f"><span><b>이름</b></span><input type="text" data-k="name" value="' + esc(p.name) + '"></label>' +
+      '<div class="row2"><label class="f"><span>영어 이름</span><input type="text" data-k="en" value="' + esc(p.en) + '"></label><label class="f"><span><b>가격(원)</b></span><input type="number" inputmode="numeric" data-k="price" value="' + esc(p.price) + '"></label></div>' +
+      '<label class="f"><span>한 줄 설명 (예: 나이키 코트 · 연보라 스우시)</span><input type="text" data-k="sub" value="' + esc(p.sub) + '"></label>' +
+      '<div class="row2"><label class="f"><span><b>분류</b></span><select data-k="cat">' + S.categories.map(function (c) { return '<option value="' + c.id + '"' + (c.id === p.cat ? ' selected' : '') + '>' + esc(c.ko) + '</option>'; }).join('') + '</select></label>' +
+      '<label class="f"><span><b>신발 종류</b></span><select data-k="base">' + S.bases.map(function (c) { return '<option value="' + c.id + '"' + (c.id === p.base ? ' selected' : '') + '>' + esc(c.ko) + '</option>'; }).join('') + '</select></label></div>' +
+      '<label class="f"><span><b>설명</b></span><textarea data-k="desc" rows="5">' + esc(p.desc) + '</textarea></label>' +
+      '<label class="check"><input type="checkbox" data-k="isNew"' + (p.isNew ? ' checked' : '') + '> NEW 표시</label>' +
+      '<div class="toolbar"><button class="btn line small" type="button" id="p-up"' + (i ? '' : ' disabled') + '>목록에서 위로</button><button class="btn danger small" type="button" id="p-del">이 작품 삭제</button></div>';
+    $('#back').onclick = function () { editing = null; render(); };
+    $$('[data-k]', v).forEach(function (el) {
+      el.oninput = el.onchange = function () {
+        var k = el.getAttribute('data-k');
+        p[k] = el.type === 'checkbox' ? el.checked : k === 'price' ? Number(el.value || 0) : el.value;
+        if (k === 'name') $('h2', v).textContent = el.value;
+        dirty();
+      };
+    });
+    $$('[data-rm]', v).forEach(function (b) { b.onclick = function () { p.photos.splice(+b.getAttribute('data-rm'), 1); render(); dirty(); }; });
+    $$('[data-left]', v).forEach(function (b) { b.onclick = function () { var k = +b.getAttribute('data-left'); p.photos.splice(k - 1, 0, p.photos.splice(k, 1)[0]); render(); dirty(); }; });
+    $('#ph-add').onchange = function () {
+      var fs = [].slice.call(this.files);
+      fs.reduce(function (pr, f) { return pr.then(function () { return photoFrom(f).then(function (path) { p.photos.push(path); }); }); }, Promise.resolve())
+        .then(function () { render(); dirty(); }).catch(fail);
+    };
+    $('#p-up').onclick = function () { S.products.splice(i - 1, 0, S.products.splice(i, 1)[0]); editing = i - 1; render(); dirty(); };
+    $('#p-del').onclick = function () {
+      var inLook = S.lookbook.some(function (l) { return l.product === p.id; });
+      if (inLook) return alert('룩북에서 이 작품을 쓰고 있어요. 룩북에서 다른 작품으로 바꾼 뒤 지워 주세요.');
+      if (confirm('"' + p.name + '"을(를) 지울까요?')) { S.products.splice(i, 1); editing = null; render(); dirty(); }
+    };
+  }
+
+  function render() {
+    $$('#tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tab') === tab); });
+    VIEWS[tab]($('#view'));
+  }
+  $$('#tabs button').forEach(function (b) { b.onclick = function () { tab = b.getAttribute('data-tab'); editing = null; render(); scrollTo(0, 0); }; });
+  $('#save').onclick = save;
+  $('#undo').onclick = function () { if (JSON.stringify(S) !== orig && confirm('저장하지 않은 수정을 모두 되돌릴까요?')) { S = JSON.parse(orig); editing = null; render(); dirty(); } };
+
+  /* ---------- 들어가기 ---------- */
+  function enter(t, remember) {
+    token = t.trim();
+    $('#login-err').textContent = '';
+    return load().then(function () {
+      try { remember ? localStorage.setItem('bium_admin_tok', token) : localStorage.removeItem('bium_admin_tok'); } catch (e) {}
+    }).catch(function (e) {
+      $('#login').hidden = false; $('#app').hidden = true; $('#savebar').hidden = true;
+      $('#login-err').textContent = e.status === 401 ? '열쇠가 맞지 않아요. 다시 복사해 주세요.' : e.status === 404 || e.status === 403 ? '이 열쇠로는 shoesteller-site에 들어갈 수 없어요. 저장소 선택과 Contents 권한을 확인해 주세요.' : '불러오지 못했어요: ' + e.message;
+    });
+  }
+  $('#go').onclick = function () { var t = $('#tok').value; if (t.trim()) enter(t, $('#remember').checked); };
+  $('#tok').onkeydown = function (e) { if (e.key === 'Enter') $('#go').click(); };
+  var saved = ''; try { saved = localStorage.getItem('bium_admin_tok') || ''; } catch (e) {}
+  if (saved) enter(saved, true); else $('#login').hidden = false;
+})();
+</script>
+</body>
+</html>

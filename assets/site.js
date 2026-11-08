@@ -13,45 +13,7 @@
 
   /* 언어 */
   var LANG = store.get('bium_lang', 'ko');
-  var T = {
-    'nav.custom': ['커스텀', 'Custom'], 'nav.class': ['수업', 'Class'], 'nav.story': ['이야기', 'Story'],
-    'nav.all': ['전체 작품', 'All works'], 'nav.flower': ['사계절 꽃신', 'Seasonal flowers'], 'nav.football': ['축구 커스텀', 'Football custom'], 'nav.story2': ['이야기 커스텀', 'Story custom'], 'nav.lookbook': ['룩북', 'Lookbook'], 'nav.base': ['신발 종류로 보기', 'By base shoe'],
-    'nav.c1': ['홍대 공방 수업 · 2026.11', 'Hongdae workshop · Nov 2026'], 'nav.c2': ['커스텀 키트 · 2027.1', 'Custom kit · Jan 2027'], 'nav.c3': ['온라인 수업 · 2027.3', 'Online class · Mar 2027'], 'nav.c4': ['수업 예약 남기기', 'Reserve a seat'],
-    'nav.s1': ['작가 비움', 'About BIUM'], 'nav.s2': ['유튜브 · 만드는 과정', 'YouTube · Process'], 'nav.s3': ['후기 188개 · 아이디어스', '188 reviews · idus'], 'nav.s4': ['자주 묻는 질문', 'FAQ'],
-    'util.login': ['로그인', 'Login'], 'util.search': ['검색', 'Search'], 'util.cart': ['장바구니', 'Bag'],
-    'ticker': ['11월 홍대 공방 커스텀 수업 첫 개강 · 소수 정원 · ', 'Hongdae custom workshop opens in November · small class · '], 'ticker.link': ['예약 남기기', 'Reserve'],
-    'hero.lbl': ['New works · Hand-painted in Seoul', 'New works · Hand-painted in Seoul'], 'hero.h1': ['내 이야기를 신다. 손으로 그리는 커스텀 신발.', 'Wear your story. Hand-painted custom sneakers.'], 'hero.btn': ['작품 보기', 'See works'],
-    'works.h': ['New works', 'New works'], 'works.all': ['전체 보기', 'View all'], 'works.consult': ['상담하기', 'Consult'], 'works.size': ['사이즈 선택 → 담기', 'Pick a size → add'],
-    'fb.lbl': ['Football custom', 'Football custom'], 'fb.h': ['응원하는 팀을 신는다.', 'Wear the team you love.'], 'fb.p': ['아스날, 첼시, 리버풀, 토트넘, 국가대표. 엠블럼과 등번호, 좋아하는 선수의 모습까지 흰 운동화 위에 그려요. 경기장에 신고 가는 날을 위해.', 'Arsenal, Chelsea, Liverpool, Spurs, Korea. Emblems, numbers and your favourite player, hand-painted on white sneakers. For matchday.'], 'fb.btn': ['축구 커스텀 상담', 'Football custom'],
-    'cat.h': ['Shop by base', 'Shop by base'], 'cat.p': ['어떤 신발에 그릴지부터 골라요. 가지고 있는 신발을 보내 주셔도 돼요.', 'Start from the base shoe. You can also send us your own pair.'],
-    'class.h': ['Explore class', 'Explore class'], 'class.btn': ['수업 예약 남기기', 'Reserve a seat'],
-    'class.1': ['홍대 공방 수업', 'Hongdae workshop'], 'class.1p': ['소수 정원으로 처음 열어요. 도안과 물감 순서를 따라 내 손으로 한 켤레.', 'First small-class workshop. Paint your own pair following our templates.'],
-    'class.2': ['커스텀 키트', 'Custom kit'], 'class.2p': ['집에서 혼자 그릴 수 있게 도안과 물감을 한 상자에. 출시 알림을 받아 두세요.', 'Templates and paints in one box, for home. Get notified at launch.'],
-    'class.3': ['온라인 수업', 'Online class'], 'class.3p': ['키트와 함께 따라 그리는 영상 수업. 벚꽃 그리는 법부터.', 'Video lessons to paint along with the kit. Cherry blossoms first.'],
-    'look.h': ['Shop our looks', 'Shop our looks'], 'look.p': ['우리 신발을 신은 모델 컷. 사진 속 신발은 바로 담을 수 있어요.', 'Models wearing our shoes. The pair in each photo can be added to your bag.'], 'look.shop': ['Shop the look', 'Shop the look'], 'look.view': ['자세히', 'View'], 'look.btn': ['VIEW PRODUCTS', 'VIEW PRODUCTS'], 'look.wear': ['함께 입은 옷', 'Also in the look'],
-    'color.lbl': ['Choose your color', 'Choose your color'], 'color.h': ['꽃신, 스우시 색부터 골라요', 'Pick the swoosh colour first'], 'color.p': ['꽃은 계절에 맞춰, 스우시는 취향에 맞춰. 분홍이면 벚꽃, 연보라면 코스모스가 어울려요. 다른 색도 상담 때 같이 정해요.', 'Flowers follow the season, the swoosh follows you. Pink suits cherry blossom, lilac suits cosmos. Other colours on request.'], 'color.1': ['분홍 · 벚꽃', 'Pink · Cherry'], 'color.2': ['연보라 · 코스모스', 'Lilac · Cosmos'], 'color.btn': ['이 꽃신 보기', 'View this pair'],
-    'disc.h': ['Discover', 'Discover'], 'disc.kr': ['· 작가 비움', '· About BIUM'], 'disc.p': ['6년 넘게 신발에 그림을 그려 왔어요. tvN 방송, 서울패션위크 송가인 콜라보, 국립발레단 토슈즈, 그리고 아이디어스 후기 188개(평점 4.98). 그림을 그리는 사람에서 가르치고 쓰는 사람으로, 이제는 누구나 자기 이야기를 신발에 담을 수 있게 수업과 키트를 준비하고 있어요.', 'Six years of painting on shoes. tvN, Seoul Fashion Week collaboration, National Ballet pointe shoes, and 188 reviews on idus (4.98). From painter to teacher: classes and kits so anyone can put their story on a pair.'], 'disc.p2': ['슈즈텔러는 커스텀 비움의 신발 라인이에요. 가방과 옷으로도 이어질 예정이에요.', 'Shoesteller is the footwear line of Custom BIUM. Bags and clothing to follow.'],
-    'faq.h': ['FAQ', 'FAQ'],
-    'news.h': ['Newsletter', 'Newsletter'], 'news.p': ['가입하면 첫 주문·첫 수업 쿠폰과 첫 커스텀 체크리스트(흰 신발 망치지 않는 7단계)를 드려요. 새 작품과 키트 소식도 가장 먼저.', 'Sign up for a first-order and first-class coupon plus our 7-step checklist for keeping white shoes clean. New works and kit news first.'], 'news.btn': ['쿠폰 받기', 'Get coupon'], 'news.ph': ['이메일 주소', 'Email address'],
-    'foot.p': ['슈즈텔러는 커스텀 비움의 신발 라인이에요. 흰 신발 위에 손으로 그리는 이야기, 서울.', 'Shoesteller is the footwear line of Custom BIUM. Stories hand-painted on white shoes, Seoul.'],
-    'foot.company': ['Company', 'Company'], 'foot.cs': ['Customer service', 'Customer service'], 'foot.terms': ['Terms and privacy', 'Terms and privacy'],
-    'foot.1': ['작가 비움', 'About BIUM'], 'foot.2': ['만드는 과정', 'Process'], 'foot.3': ['홍대 공방', 'Hongdae workshop'], 'foot.4': ['후기', 'Reviews'],
-    'foot.5': ['상담·주문', 'Consult / Order'], 'foot.6': ['수업 예약', 'Class reservation'], 'foot.7': ['자주 묻는 질문', 'FAQ'], 'foot.8': ['카카오톡 문의', 'KakaoTalk'], 'foot.9': ['개인정보 처리방침', 'Privacy policy'], 'foot.10': ['이용약관·배송·교환', 'Terms · Shipping · Returns'],
-    'kakao': ['카톡 문의', 'Chat'],
-    'cart.h': ['Bag', 'Bag'], 'cart.empty': ['장바구니가 비어 있어요.', 'Your bag is empty.'], 'cart.total': ['합계', 'Total'], 'cart.go': ['주문서 작성', 'Checkout'], 'cart.cont': ['계속 보기', 'Continue'], 'cart.added': ['담았어요', 'Added to bag'], 'cart.size': ['사이즈', 'Size'],
-    'search.h': ['Search', 'Search'], 'search.ph': ['작품 이름, 팀, 꽃 이름으로 찾기', 'Search by name, team or flower'], 'search.none': ['찾는 작품이 없어요. 상담으로 새로 그려 드려요.', 'Nothing found. We can paint it for you.'],
-    'login.h': ['로그인', 'Login'], 'login.p': ['이메일만 있으면 돼요. 주문 내역과 쿠폰을 이 기기에서 바로 볼 수 있어요.', 'Just your email. Orders and coupons are kept on this device.'], 'login.name': ['이름', 'Name'], 'login.email': ['이메일', 'Email'], 'login.btn': ['로그인', 'Login'], 'login.out': ['로그아웃', 'Logout'], 'login.hi': ['안녕하세요', 'Hello'],
-    'pd.size': ['사이즈 (mm)', 'Size (mm)'], 'pd.qty': ['수량', 'Qty'], 'pd.add': ['장바구니 담기', 'Add to bag'], 'pd.buy': ['바로 주문', 'Buy now'], 'pd.pick': ['사이즈를 먼저 골라 주세요', 'Please pick a size first'], 'pd.consult': ['내 신발로 상담', 'Consult with my own pair'],
-    'pd.d1': ['작품 설명', 'About this pair'], 'pd.d2': ['주문 진행', 'How it works'], 'pd.d3': ['물감과 관리', 'Paint and care'], 'pd.d4': ['배송·제작 기간', 'Shipping and lead time'],
-    'pd.p2': ['①주문 후 이야기와 사진을 보내 주세요 ②시안을 보내 드리고 마음에 들 때까지 고쳐요 ③확정 후 그려서 보내 드려요.', '① Send us your story and photos after ordering ② We send a sketch and revise until you love it ③ We paint and ship.'],
-    'pd.p3': ['가죽·캔버스 전용 물감을 쓰고 마감제로 보호해요. 세탁기는 피하고 젖은 천으로 닦아 주세요. 내구성을 보장한다고 약속하진 않아요. 테스트 영상은 유튜브에 공개해요.', 'Leather/canvas paints sealed with a finisher. No washing machine; wipe with a damp cloth. We do not guarantee durability; test videos are on YouTube.'],
-    'pd.p4': ['제작 기간은 디자인에 따라 달라 주문 확인 때 안내해 드려요. 결제는 주문서 확인 후 안내해요.', 'Lead time depends on the design and is confirmed with your order. Payment is arranged after order confirmation.'],
-    'pd.more': ['같이 보는 작품', 'You may also like'], 'pd.home': ['홈', 'Home'],
-    'co.h': ['주문서', 'Checkout'], 'co.name': ['이름', 'Name'], 'co.phone': ['연락처', 'Phone'], 'co.email': ['이메일', 'Email'], 'co.addr': ['배송 주소', 'Address'], 'co.note': ['그리고 싶은 이야기 · 요청 사항', 'Your story · requests'], 'co.pay': ['결제 방법', 'Payment'],
-    'co.pay1': ['계좌이체', 'Bank transfer'], 'co.pay1s': ['주문 확인 후 계좌를 알려 드려요. 수수료 없음.', 'We send bank details after confirming. No fee.'],
-    'co.pay2': ['카드·간편결제', 'Card / Pay'], 'co.pay2s': ['준비 중이에요. 열리면 가장 먼저 알려 드려요.', 'Coming soon.'],
-    'co.send': ['주문서 보내기', 'Send order'], 'co.sendk': ['카카오톡으로 주문서 보내기', 'Send via KakaoTalk'], 'co.done': ['주문서를 복사했어요. 카카오톡 채팅창에 붙여 넣어 주세요.', 'Order copied. Paste it into the KakaoTalk chat.'], 'co.items': ['주문 내역', 'Items'], 'co.empty': ['장바구니가 비어 있어요.', 'Your bag is empty.']
-  };
+  var T = S.TEXT || {};
   function t(k) { var v = T[k]; return v ? (LANG === 'en' ? v[1] : v[0]) : k; }
   function applyLang(root) {
     $$('[data-t]', root).forEach(function (el) { el.textContent = t(el.getAttribute('data-t')); });
