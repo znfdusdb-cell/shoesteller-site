@@ -411,10 +411,10 @@ window.SHOES = {
  ],
  "lookbook": [
   {
-   "photo": "assets/look/look1.jpg",
+   "photo": "assets/look/sq1.jpg",
    "pin": [
-    85,
-    74
+    88,
+    73
    ],
    "ko": "봄, 벚꽃",
    "en": "Spring, cherry blossom",
@@ -426,10 +426,10 @@ window.SHOES = {
    ]
   },
   {
-   "photo": "assets/look/look2.jpg",
+   "photo": "assets/look/sq2.jpg",
    "pin": [
-    72,
-    73
+    34,
+    70
    ],
    "ko": "가을, 코스모스",
    "en": "Autumn, cosmos",
@@ -441,10 +441,10 @@ window.SHOES = {
    ]
   },
   {
-   "photo": "assets/look/look3.jpg",
+   "photo": "assets/look/sq3.jpg",
    "pin": [
-    65,
-    77
+    62,
+    76
    ],
    "ko": "구너의 주말",
    "en": "Gooner weekend",
@@ -456,10 +456,10 @@ window.SHOES = {
    ]
   },
   {
-   "photo": "assets/look/look4.jpg",
+   "photo": "assets/look/sq4.jpg",
    "pin": [
     50,
-    77
+    72
    ],
    "ko": "경기장 가는 날",
    "en": "Matchday",
@@ -471,9 +471,9 @@ window.SHOES = {
    ]
   },
   {
-   "photo": "assets/look/look5.jpg",
+   "photo": "assets/look/sq5.jpg",
    "pin": [
-    62,
+    35,
     73
    ],
    "ko": "블루스",
@@ -486,10 +486,10 @@ window.SHOES = {
    ]
   },
   {
-   "photo": "assets/look/look6.jpg",
+   "photo": "assets/look/sq6.jpg",
    "pin": [
-    68,
-    69
+    24,
+    73
    ],
    "ko": "밤하늘",
    "en": "Night sky",
@@ -1009,6 +1009,126 @@ window.SHOES = {
   "co.empty": [
    "장바구니가 비어 있어요.",
    "Your bag is empty."
+  ],
+  "studio.h": [
+   "흰 신발이 내 이야기가 되기까지",
+   "From a white pair to your story"
+  ],
+  "studio.p": [
+   "가운데 선을 밀어 보세요. 신고 싶은 신발 모델을 넣으면 그 모양 위에 직접 색을 칠하고 내 그림과 글자를 올릴 수 있어요. 만든 그대로 손으로 그려 드려요.",
+   "Slide the line. Enter your shoe model, paint it, add your own pictures and words — we hand-paint exactly what you design."
+  ],
+  "studio.ph": [
+   "신발 모델명 (예: 에어포스1, 척70 하이)",
+   "Shoe model (e.g. Air Force 1)"
+  ],
+  "studio.go": [
+   "열기",
+   "Open"
+  ],
+  "studio.btn": [
+   "스튜디오에서 디자인하기",
+   "Design in the studio"
+  ],
+  "nav.studio": [
+   "스튜디오",
+   "Studio"
+  ],
+  "nav.new": [
+   "새 작품",
+   "New arrivals"
+  ],
+  "nav.bystory": [
+   "이야기로 고르기",
+   "By story"
+  ],
+  "util.consult": [
+   "상담·주문",
+   "Consult"
+  ],
+  "cart.rm": [
+   "삭제",
+   "Remove"
+  ],
+  "qa.h": [
+   "옵션 선택",
+   "Choose options"
+  ],
+  "shop.h": [
+   "전체 작품",
+   "All works"
+  ],
+  "shop.count": [
+   "개 작품",
+   "works"
+  ],
+  "works.view": [
+   "전체 보기",
+   "View all"
+  ],
+  "fb2.h": [
+   "축구 커스텀",
+   "Football custom"
+  ],
+  "fb2.btn": [
+   "SHOP NOW",
+   "SHOP NOW"
+  ],
+  "fb2.ex": [
+   "EXPLORE FOOTBALL",
+   "EXPLORE FOOTBALL"
+  ],
+  "disc2.h": [
+   "DISCOVER BIUM",
+   "DISCOVER BIUM"
+  ],
+  "story.h": [
+   "OUR STORY",
+   "OUR STORY"
+  ],
+  "faq2.h": [
+   "FAQ",
+   "FAQ"
+  ],
+  "hero.lbl2": [
+   "NEW WORKS",
+   "NEW WORKS"
+  ],
+  "hero.shop": [
+   "SHOP NOW",
+   "SHOP NOW"
+  ],
+  "pd.select": [
+   "사이즈를 골라 주세요",
+   "SELECT YOUR SIZE"
+  ],
+  "pd.trust1": [
+   "한 켤레씩 손으로 그려요",
+   "Hand-painted, pair by pair"
+  ],
+  "pd.trust2": [
+   "무료 배송 (제주·도서산간 +3,000원)",
+   "Free shipping in Korea"
+  ],
+  "pd.trust3": [
+   "상품별 무상 A/S",
+   "Free repair (varies by item)"
+  ],
+  "pd.more2": [
+   "YOU MAY ALSO LIKE",
+   "YOU MAY ALSO LIKE"
+  ],
+  "pd.readmore": [
+   "더 보기",
+   "Read more"
+  ],
+  "ba.before": [
+   "BEFORE · 흰 신발",
+   "BEFORE · White pair"
+  ],
+  "ba.after": [
+   "AFTER · 손으로 그린 뒤",
+   "AFTER · Hand-painted"
   ]
  },
  "VIDEO": {
@@ -1017,5 +1137,12 @@ window.SHOES = {
   "mobile": "assets/video/hero-mobile.mp4",
   "poster": "assets/video/poster.jpg"
  },
- "UPDATED": "2026-11-08T01:06:53.635Z"
+ "UPDATED": "2026-11-08T01:06:53.635Z",
+ "STUDIO": {
+  "before": "assets/ba/before.jpg",
+  "after": "assets/ba/after.jpg",
+  "title_ko": "흰 신발이 내 이야기가 되기까지",
+  "title_en": "From a white pair to your story",
+  "product": "af1cherry"
+ }
 };

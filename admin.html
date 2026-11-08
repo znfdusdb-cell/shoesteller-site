@@ -96,7 +96,7 @@
 
 <div id="app" hidden>
   <nav class="tabs" id="tabs">
-    <button type="button" data-tab="video">홈 영상</button>
+    <button type="button" data-tab="video">홈 영상·비교 사진</button>
     <button type="button" data-tab="products">작품</button>
     <button type="button" data-tab="looks">룩북</button>
     <button type="button" data-tab="text">사이트 문구</button>
@@ -259,6 +259,12 @@
           render(); dirty();
         });
       }
+      var SD = S.STUDIO || (S.STUDIO = {});
+      v.insertAdjacentHTML('beforeend', '<h2 style="margin-top:28px">비포·애프터 사진</h2><p class="hint">첫 화면 "CUSTOM STUDIO"에서 가운데 선을 밀어 비교하는 두 장이에요. 같은 신발을 같은 자리·같은 각도에서 그리기 전과 후로 찍으면 가장 좋아요. 정사각형으로 보여요.</p>' +
+        '<div class="row2"><div class="card"><b>그리기 전</b><div class="ph" style="margin:8px 0"><img src="' + esc(src(SD.before)) + '" alt=""></div><button class="btn line small" type="button" id="up-b">바꾸기</button></div>' +
+        '<div class="card"><b>그린 뒤</b><div class="ph" style="margin:8px 0"><img src="' + esc(src(SD.after)) + '" alt=""></div><button class="btn line small" type="button" id="up-a">바꾸기</button></div></div>');
+      $('#up-b').onclick = function () { pickFile('image/*', function (f) { photoFrom(f, 1400).then(function (p) { SD.before = p; render(); dirty(); }).catch(fail); }); };
+      $('#up-a').onclick = function () { pickFile('image/*', function (f) { photoFrom(f, 1400).then(function (p) { SD.after = p; render(); dirty(); }).catch(fail); }); };
       $('#up-d').onclick = function () { take('d'); };
       $('#up-m').onclick = function () { take('m'); };
       if ($('#rm-m')) $('#rm-m').onclick = function () { V.mobile = ''; render(); dirty(); };
@@ -307,7 +313,7 @@
     },
 
     text: function (v) {
-      var G = { nav: '메뉴', util: '맨 위 아이콘', ticker: '맨 위 알림 띠', hero: '첫 화면(영상 위 글자)', works: '작품 목록', fb: '축구 커스텀 배너', cat: '분류', class: '수업', look: '룩북', color: '색 고르기', disc: '작가 소개', faq: '자주 묻는 질문', news: '소식 받기', foot: '맨 아래', kakao: '카톡 버튼', cart: '장바구니', search: '검색', login: '로그인', pd: '작품 상세', co: '주문서' };
+      var G = { studio: '커스텀 스튜디오', nav: '메뉴', util: '맨 위 아이콘', ticker: '맨 위 알림 띠', hero: '첫 화면(영상 위 글자)', works: '작품 목록', fb: '축구 커스텀 배너', cat: '분류', class: '수업', look: '룩북', color: '색 고르기', disc: '작가 소개', faq: '자주 묻는 질문', news: '소식 받기', foot: '맨 아래', kakao: '카톡 버튼', cart: '장바구니', search: '검색', login: '로그인', pd: '작품 상세', co: '주문서' };
       var keys = Object.keys(S.TEXT || {});
       var groups = {};
       keys.forEach(function (k) { var g = k.split('.')[0]; (groups[g] = groups[g] || []).push(k); });

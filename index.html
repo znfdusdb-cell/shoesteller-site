@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/products.js"></script>
 </head>
@@ -23,93 +23,81 @@
       if (V.desktop) h += '<source src="' + V.desktop + '" type="video/mp4">';
       v.innerHTML = h; v.load(); })();</script>
     <button class="mute" type="button" id="toggle-play" aria-label="영상 멈춤"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg></button>
-    <div class="over"><div><span class="lbl" data-t="hero.lbl"></span><h1 data-t="hero.h1"></h1></div><a class="btn inv" href="#works" data-t="hero.btn"></a></div>
+    <div class="over"><p class="big" data-t="hero.lbl2"></p><a class="btn cream" href="shop.html?new=1" data-t="hero.shop"></a></div>
   </section>
 
-  <section class="sec" id="works" aria-labelledby="works-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><h2 class="h2" id="works-h" data-t="works.h"></h2>
-          <div class="tabs" role="tablist" aria-label="작품 종류" style="margin-top:14px" id="work-tabs">
-            <button role="tab" aria-selected="true" data-tab="all" data-t="nav.all"></button>
-            <button role="tab" aria-selected="false" data-tab="flower" data-t="nav.flower"></button>
-            <button role="tab" aria-selected="false" data-tab="football" data-t="nav.football"></button>
-            <button role="tab" aria-selected="false" data-tab="story" data-t="nav.story2"></button>
-          </div></div>
-        <div style="display:flex;gap:20px;align-items:center"><button class="link" type="button" id="show-all" data-t="works.all"></button><div class="arrows"><button type="button" data-dir="-1" aria-label="이전">←</button><button type="button" data-dir="1" aria-label="다음">→</button></div></div>
+  <section class="msec" id="works" aria-labelledby="works-h">
+    <p class="mtitle" id="works-h" data-t="works.h"></p>
+    <div class="mbar wrap">
+      <div class="mtabs" role="tablist" aria-label="작품 종류" id="work-tabs">
+        <button role="tab" aria-selected="true" data-tab="all" data-t="nav.all"></button>
+        <button role="tab" aria-selected="false" data-tab="flower" data-t="nav.flower"></button>
+        <button role="tab" aria-selected="false" data-tab="story" data-t="nav.story2"></button>
       </div>
-      <div class="track" id="work-track"></div>
-      <p class="sub" id="base-note" hidden style="margin-top:12px;font-size:13px;color:var(--grey-3)"></p>
+      <div class="mright"><a class="ulink" href="shop.html" data-t="works.view"></a><div class="arrows"><button type="button" data-dir="-1" data-for="work-track" aria-label="이전">&#8249;</button><button type="button" data-dir="1" data-for="work-track" aria-label="다음">&#8250;</button></div></div>
     </div>
+    <div class="track" id="work-track"></div>
   </section>
 
-  <section class="banner" aria-labelledby="fb-h">
-    <div class="wrap">
-      <div class="pics"><img src="assets/fb/f08.jpg" alt="파란 스우시 위에 두 팔을 벌린 무드릭 10번" loading="lazy"><img src="assets/fb/f07.jpg" alt="HAZARD 10 글자와 첼시 엠블럼을 그린 신발" loading="lazy"></div>
-      <div class="txt"><span class="lbl" data-t="fb.lbl"></span><h2 id="fb-h" data-t="fb.h"></h2><p data-t="fb.p"></p><div><button class="btn inv" type="button" data-tab="football" data-goto="works" data-t="fb.btn"></button></div></div>
-    </div>
+  <section class="hero banner2" aria-labelledby="fb-h">
+    <picture><source media="(max-width: 759px)" srcset="assets/fb/f09.jpg"><img src="assets/fb/f03.jpg" alt="파란 하늘 아래 축구장에서 신은 포그바 커스텀 신발" loading="lazy"></picture>
+    <div class="over"><p class="big" id="fb-h" data-t="fb2.h"></p><a class="btn cream" href="shop.html?cat=football" data-t="fb2.btn"></a></div>
   </section>
 
-  <section class="sec" id="bases" aria-labelledby="bases-h">
-    <div class="wrap">
-      <div class="sec-head"><div><h2 class="h2" id="bases-h" data-t="cat.h"></h2><p style="color:var(--grey-3);margin-top:8px;max-width:36em" data-t="cat.p"></p></div></div>
-      <div class="cats" id="base-cards"></div>
-    </div>
+  <section class="msec" aria-labelledby="fbx-h">
+    <p class="mtitle" id="fbx-h" data-t="fb2.ex"></p>
+    <div class="mbar wrap"><div class="mtabs"><a class="ulink" href="book.html?type=order&design=personal" data-t="fb.btn"></a></div>
+      <div class="mright"><a class="ulink" href="shop.html?cat=football" data-t="works.view"></a><div class="arrows"><button type="button" data-dir="-1" data-for="fb-track" aria-label="이전">&#8249;</button><button type="button" data-dir="1" data-for="fb-track" aria-label="다음">&#8250;</button></div></div></div>
+    <div class="track" id="fb-track"></div>
   </section>
 
-  <section class="sec" id="class" aria-labelledby="class-h" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><h2 class="h2" id="class-h" data-t="class.h"></h2><a class="link" href="book.html?type=class" data-t="class.btn"></a></div>
-      <div class="trio">
-        <a class="cat" href="class.html#workshop"><span class="when">2026.11</span><img src="assets/p01.jpg" alt="프리지아를 칠하는 손" loading="lazy"><div class="cap"><b data-t="class.1"></b><span data-t="class.1p"></span></div></a>
-        <a class="cat" href="class.html#kit"><span class="when">2027.01</span><img src="assets/09.jpg" alt="나무 벤치 위 프리지아 그림 운동화" loading="lazy"><div class="cap"><b data-t="class.2"></b><span data-t="class.2p"></span></div></a>
-        <a class="cat" href="class.html#online"><span class="when">2027.03</span><img src="assets/13-l.jpg" alt="벚꽃을 그린 흰 벨크로 신발" loading="lazy"><div class="cap"><b data-t="class.3"></b><span data-t="class.3p"></span></div></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec color" aria-labelledby="color-h" style="background:var(--grey-1)">
-    <div class="wrap">
-      <div class="ph"><img src="assets/04.jpg" class="on" data-color="pink" alt="분홍 스우시 벚꽃 운동화"><img src="assets/10.jpg" data-color="lilac" alt="연보라 스우시 코스모스 운동화" loading="lazy"></div>
-      <div class="txt"><span class="lbl" data-t="color.lbl"></span><h2 id="color-h" data-t="color.h"></h2><p style="color:var(--grey-3)" data-t="color.p"></p>
-        <div class="sw" role="group" aria-label="스우시 색"><button type="button" aria-pressed="true" data-color="pink" data-pid="cherry"><i style="background:#F2A7C0"></i><span data-t="color.1"></span></button><button type="button" aria-pressed="false" data-color="lilac" data-pid="cosmos"><i style="background:#B9A6DC"></i><span data-t="color.2"></span></button></div>
-        <div><a class="link" id="color-link" href="product.html?id=cherry" data-t="color.btn"></a></div></div>
-    </div>
-  </section>
-
-  <section class="sec looksec" id="looks" aria-labelledby="looks-h">
-    <h2 class="looks-title" id="looks-h">SHOP OUR LOOKS</h2>
-    <div class="lk-wrap">
-      <button class="lk-nav prev" type="button" aria-label="이전 룩">&#8592;</button>
+  <section class="msec looksec" id="looks" aria-labelledby="looks-h">
+    <p class="mtitle" id="looks-h">SHOP OUR LOOKS</p>
+    <div class="lk-m">
       <div class="lk-track" id="look-grid"></div>
-      <button class="lk-nav next" type="button" aria-label="다음 룩">&#8594;</button>
+      <button class="btn lk-btn" type="button" id="lk-view" data-t="look.btn"></button>
     </div>
-    <div class="lk-dots" id="look-dots"></div>
-  </section>
-
-  <section class="sec" id="story" aria-labelledby="story-h" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><h2 class="h2" id="story-h"><span data-t="disc.h"></span> <span class="kr" data-t="disc.kr"></span></h2><a class="link" href="https://www.youtube.com/@bium4581">YouTube</a></div>
-      <div class="discover"><img src="assets/05.jpg" alt="꽃잎이 떨어진 땅 위의 벚꽃 운동화" loading="lazy"><img src="assets/09.jpg" alt="나무 벤치 위 프리지아 운동화" loading="lazy"><img src="assets/fb/f05.jpg" alt="제라드 초상을 그린 신발 옆면" loading="lazy"></div>
-      <div style="display:grid;gap:12px;max-width:40em;margin-top:28px"><p id="about-p"></p><p style="color:var(--grey-3);font-size:13px" data-t="disc.p2"></p></div>
+    <div class="lk-d wrap">
+      <button class="lk-nav prev" type="button" aria-label="이전 룩">&#8249;</button>
+      <div class="lk-stage" id="look-desk"></div>
+      <button class="lk-nav next" type="button" aria-label="다음 룩">&#8250;</button>
     </div>
   </section>
 
-  <section class="sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
-    <div class="wrap" style="max-width:860px">
-      <h2 class="h2" id="faq-h" style="margin-bottom:20px" data-t="faq.h"></h2>
-      <div class="faq" id="faq-list"></div>
+  <section class="msec stsec" id="studio" aria-labelledby="studio-h">
+    <p class="mtitle" id="studio-h">CUSTOM STUDIO</p>
+    <div class="ba" id="ba">
+      <img class="ba-after" alt="그림을 그린 뒤의 신발" loading="lazy">
+      <div class="ba-before"><img alt="그리기 전 흰 신발" loading="lazy"></div>
+      <div class="ba-line"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span></div>
+      <input type="range" min="0" max="100" value="50" aria-label="그리기 전과 후 비교">
+    </div>
+    <div class="ba-caps wrap"><div><span data-t="ba.before"></span><a class="ulink" href="studio.html" data-t="studio.btn"></a></div><div><span data-t="ba.after"></span><a class="ulink" id="ba-prod" href="shop.html" data-t="look.view"></a></div></div>
+    <div class="st-cta wrap">
+      <p data-t="studio.p"></p>
+      <form class="st-model" id="st-go" action="studio.html"><input name="model" type="text" data-tp="studio.ph" autocomplete="off" aria-label="신발 모델명"><button type="submit" data-t="studio.go"></button></form>
     </div>
   </section>
 
-  <section class="news" aria-labelledby="news-h">
-    <div class="wrap">
-      <div><h2 class="h2" id="news-h" data-t="news.h"></h2><p style="margin-top:10px" data-t="news.p"></p></div>
-      <form id="news-form"><label class="sr" for="email">이메일</label><input id="email" type="email" data-tp="news.ph" required autocomplete="email"><button class="btn" type="submit" data-t="news.btn"></button></form>
+  <section class="msec" id="discover" aria-labelledby="disc-h">
+    <p class="mtitle" id="disc-h" data-t="disc2.h"></p>
+    <div class="pillars">
+      <a href="class.html#workshop"><img src="assets/p01.jpg" alt="프리지아를 칠하는 손" loading="lazy"><span><b data-t="class.1"></b><i data-t="class.1p"></i></span></a>
+      <a href="class.html#kit"><img src="assets/09.jpg" alt="나무 벤치 위 프리지아 그림 운동화" loading="lazy"><span><b data-t="class.2"></b><i data-t="class.2p"></i></span></a>
+      <a href="class.html#online"><img src="assets/13-l.jpg" alt="벚꽃을 그린 흰 벨크로 신발" loading="lazy"><span><b data-t="class.3"></b><i data-t="class.3p"></i></span></a>
     </div>
+  </section>
+
+  <section class="msec" id="story" aria-labelledby="story-h">
+    <p class="mtitle" id="story-h" data-t="story.h"></p>
+    <div class="wrap story"><p id="about-p"></p><p class="mute2" data-t="disc.p2"></p><a class="ulink" href="https://www.youtube.com/@bium4581">YouTube</a></div>
+  </section>
+
+  <section class="msec" id="faq" aria-labelledby="faq-h">
+    <p class="mtitle" id="faq-h" data-t="faq2.h"></p>
+    <div class="wrap faqw"><div class="faq" id="faq-list"></div></div>
   </section>
 </main>
-
 <script src="assets/site.js"></script>
 <script>
 (function () {
@@ -118,88 +106,69 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
 
-  /* 작품 목록: 탭(종류) + 신발 종류 필터 */
-  var track = $('#work-track'), tabs = $$('#work-tabs [role="tab"]'), cur = 'all', base = null, asGrid = false;
-  function render() {
-    var list = S.products.filter(function (p) { return (cur === 'all' || p.cat === cur) && (!base || p.base === base); });
-    track.innerHTML = list.map(B.cardHtml).join('');
-    track.className = asGrid ? 'grid' : 'track';
-    B.applyLang(track);
-    var note = $('#base-note');
-    if (base) { var b = S.bases.filter(function (x) { return x.id === base; })[0]; note.hidden = false; note.innerHTML = (B.lang() === 'en' ? b.en : b.ko) + ' · ' + list.length + ' <button class="link" type="button" id="clear-base">×</button>'; $('#clear-base').addEventListener('click', function () { base = null; render(); }); }
-    else note.hidden = true;
-  }
-  function showTab(name) { cur = name; tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-tab') === name ? 'true' : 'false'); }); render(); track.scrollLeft = 0; }
-  tabs.forEach(function (t) { t.addEventListener('click', function () { showTab(t.getAttribute('data-tab')); }); });
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('[data-tab]'); if (!a || a.getAttribute('role') === 'tab') return;
-    showTab(a.getAttribute('data-tab')); base = null; render();
-    if (a.getAttribute('data-goto') || a.getAttribute('href') === 'index.html#works') { e.preventDefault(); $('#works').scrollIntoView({ behavior: 'smooth' }); }
-  });
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('[data-base]'); if (!a || a.classList.contains('card')) return;
-    e.preventDefault(); base = a.getAttribute('data-base'); cur = 'all'; tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-tab') === 'all' ? 'true' : 'false'); }); asGrid = true; render(); $('#works').scrollIntoView({ behavior: 'smooth' });
-  });
-  $('#show-all').addEventListener('click', function () { asGrid = !asGrid; render(); });
-  $$('.arrows button').forEach(function (b) { b.addEventListener('click', function () { var card = $('.card', track); var w = card ? card.getBoundingClientRect().width + 12 : 300; track.scrollBy({ left: w * Number(b.getAttribute('data-dir')), behavior: 'smooth' }); }); });
-  render();
+  /* 새 작품 캐러셀 (탭) + 축구 캐러셀 */
+  var wt = $('#work-track'), cat = 'all';
+  function renderWorks() { wt.innerHTML = S.products.filter(function (p) { return p.cat !== 'football' && (cat === 'all' || p.cat === cat); }).map(B.cardHtml).join(''); B.applyLang(wt); wt.scrollLeft = 0; }
+  $$('#work-tabs [role=tab]').forEach(function (t) { t.addEventListener('click', function () { cat = t.getAttribute('data-tab'); $$('#work-tabs [role=tab]').forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); }); renderWorks(); }); });
+  renderWorks();
+  $('#fb-track').innerHTML = S.products.filter(function (p) { return p.cat === 'football'; }).map(B.cardHtml).join(''); B.applyLang($('#fb-track'));
+  $$('.arrows button').forEach(function (b) { b.addEventListener('click', function () { var tr = $('#' + b.getAttribute('data-for')), c = $('.card', tr); tr.scrollBy({ left: (c ? c.getBoundingClientRect().width + 3 : 300) * Number(b.getAttribute('data-dir')), behavior: 'smooth' }); }); });
 
-  /* 신발 종류 카드(사진) */
-  var basePhoto = { low: 'assets/06.jpg', court: 'assets/10.jpg', high: 'assets/16.jpg', velcro: 'assets/fb/f01.jpg', slip: 'assets/14.jpg', boot: 'assets/15.jpg' };
-  $('#base-cards').innerHTML = S.bases.map(function (b) {
-    var n = S.products.filter(function (p) { return p.base === b.id; }).length;
-    return '<a class="catc line" href="#works" data-base="' + b.id + '"><img class="lineart" src="assets/line/' + b.id + '.png" alt="" loading="lazy"><div class="cap"><b>' + (B.lang() === 'en' ? b.en : b.ko) + '</b><span>' + n + ' works</span></div></a>';
+  /* 룩북: 메이슨식 */
+  var track = $('#look-grid'), desk = $('#look-desk'), L = S.lookbook, curL = 0;
+  function pinHtml(l, i) { var pin = l.pin || [50, 80], p = B.byId(l.product); return '<button class="lk-pin" type="button" data-look="' + i + '" style="left:' + pin[0] + '%;top:' + pin[1] + '%" aria-label="' + (p ? p.name : '') + ' 보기"></button>'; }
+  function cardMini(p) { return '<a class="lkd-card" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="lkd-new">NEW</span>' : '') + '<span class="lkd-img"><img src="' + p.photos[0] + '" alt="" loading="lazy"></span><span class="lkd-meta"><span>' + B.nameOf(p) + '</span><span>' + B.won(p.price) + '</span></span></a>'; }
+  track.innerHTML = L.map(function (l, i) { return '<div class="lk"><div class="lk-ph"><img src="' + l.photo + '" alt="' + l.ko + ' 룩" loading="lazy">' + pinHtml(l, i) + '</div></div>'; }).join('');
+  desk.innerHTML = L.map(function (l, i) {
+    var p = B.byId(l.product); if (!p) return '';
+    return '<div class="lkd' + (i ? '' : ' on') + '"><div class="lk-ph"><img src="' + l.photo + '" alt="' + l.ko + ' 룩" loading="lazy">' + pinHtml(l, i) + '</div>' +
+      '<div class="lkd-p">' + cardMini(p) + '<a class="btn lkd-btn" href="product.html?id=' + p.id + '">VIEW PRODUCT</a>' +
+      '<div class="lkd-dots">' + L.map(function (x, k) { return '<button type="button" data-go="' + k + '"' + (k === i ? ' aria-current="true"' : '') + ' aria-label="' + (k + 1) + '번째 룩"></button>'; }).join('') + '</div></div></div>';
   }).join('');
-
-  /* 룩북: 메이슨식 한 장씩 넘기기 */
-  var track = $('#look-grid'), dots = $('#look-dots');
-  track.innerHTML = S.lookbook.map(function (l, i) {
-    var p = B.byId(l.product), pin = l.pin || [50, 80];
-    return '<div class="lk" data-i="' + i + '"><div class="lk-ph"><img src="' + l.photo + '" alt="' + l.ko + ' 룩, ' + p.name + ' 착용" loading="lazy">' +
-      '<button class="lk-pin" type="button" data-look="' + i + '" style="left:' + pin[0] + '%;top:' + pin[1] + '%" aria-label="' + p.name + ' 보기"><span></span></button>' +
-      '<span class="lk-cap">' + (B.lang() === 'en' ? l.en : l.ko) + '</span></div>' +
-      '<button class="btn wide lk-btn" type="button" data-look="' + i + '" data-t="look.btn"></button></div>';
-  }).join('');
-  dots.innerHTML = S.lookbook.map(function (l, i) { return '<button type="button" aria-label="' + (i + 1) + '번째 룩" data-dot="' + i + '"></button>'; }).join('');
-  B.applyLang(track);
-  function lookAt(i) { var c = track.children[i]; if (c) track.scrollTo({ left: c.offsetLeft - track.offsetLeft - (track.clientWidth - c.clientWidth) / 2, behavior: 'smooth' }); }
-  function curLook() { var mid = track.scrollLeft + track.clientWidth / 2, best = 0, d = 1e9; Array.prototype.forEach.call(track.children, function (c, i) { var m = c.offsetLeft - track.offsetLeft + c.clientWidth / 2; if (Math.abs(m - mid) < d) { d = Math.abs(m - mid); best = i; } }); return best; }
-  function syncDots() { var k = curLook(); $$('#look-dots button').forEach(function (b, i) { b.classList.toggle('on', i === k); }); }
-  track.addEventListener('scroll', function () { clearTimeout(track._t); track._t = setTimeout(syncDots, 80); });
-  syncDots();
-  $('.lk-nav.prev').addEventListener('click', function () { lookAt(Math.max(0, curLook() - 1)); });
-  $('.lk-nav.next').addEventListener('click', function () { lookAt(Math.min(S.lookbook.length - 1, curLook() + 1)); });
-  dots.addEventListener('click', function (e) { var b = e.target.closest('[data-dot]'); if (b) lookAt(+b.getAttribute('data-dot')); });
-  track.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-look]'); if (!b) return;
-    var l = S.lookbook[+b.getAttribute('data-look')], p = B.byId(l.product);
-    $('#look-body').innerHTML = '<div class="lk-item"><a class="lk-thumb" href="product.html?id=' + p.id + '"><img src="' + p.photos[0] + '" alt=""></a><div><a class="lk-name" href="product.html?id=' + p.id + '">' + B.nameOf(p) + '</a><p class="lk-price">' + B.won(p.price) + '</p><div class="lk-acts"><button class="btn" type="button" id="lk-add">' + (B.lang() === 'en' ? 'Add to bag' : '담기') + '</button><a class="btn line" href="product.html?id=' + p.id + '">' + B.t('look.view') + '</a></div></div></div>' +
-      '<div class="lk-wear"><span class="lbl">' + B.t('look.wear') + '</span>' + l.items.map(function (it) { return '<p>' + it + '</p>'; }).join('') + '</div>';
+  function showDesk(i) { curL = (i + L.length) % L.length; $$('.lkd', desk).forEach(function (d, k) { d.classList.toggle('on', k === curL); }); }
+  $('.lk-nav.prev').addEventListener('click', function () { showDesk(curL - 1); });
+  $('.lk-nav.next').addEventListener('click', function () { showDesk(curL + 1); });
+  desk.addEventListener('click', function (e) { var g = e.target.closest('[data-go]'); if (g) showDesk(+g.getAttribute('data-go')); });
+  function curLook() { var best = 0, d = 1e9; Array.prototype.forEach.call(track.children, function (c, i) { var m = Math.abs(c.offsetLeft - track.offsetLeft - track.scrollLeft - 20); if (m < d) { d = m; best = i; } }); return best; }
+  function sheet(i) {
+    var l = L[i], p = B.byId(l.product); if (!p) return;
+    $('#look-body').innerHTML = cardMini(p).replace('lkd-card', 'lkd-card sheet-card') +
+      '<div class="lk-acts"><button class="btn" type="button" id="lk-add">' + (B.lang() === 'en' ? 'Add to bag' : '담기') + '</button><a class="btn line" href="product.html?id=' + p.id + '">' + B.t('look.view') + '</a></div>' +
+      (l.items && l.items.length ? '<div class="lk-wear"><span class="lbl">' + B.t('look.wear') + '</span>' + l.items.map(function (it) { return '<p>' + it + '</p>'; }).join('') + '</div>' : '');
     $('#lk-add').addEventListener('click', function () { B.close('look-sheet'); B.quickAdd(p.id); });
+    $$('.lk-pin').forEach(function (b) { b.setAttribute('aria-current', b.getAttribute('data-look') === String(i) ? 'true' : 'false'); });
     B.open('look-sheet');
-  });
+  }
+  track.addEventListener('click', function (e) { var b = e.target.closest('[data-look]'); if (b) sheet(+b.getAttribute('data-look')); });
+  $('#lk-view').addEventListener('click', function () { sheet(curLook()); });
 
-  /* 색 고르기 */
-  $$('.sw button').forEach(function (b) { b.addEventListener('click', function () {
-    var c = b.getAttribute('data-color');
-    $$('.sw button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-    $$('.color .ph img').forEach(function (im) { im.classList.toggle('on', im.getAttribute('data-color') === c); });
-    $('#color-link').href = 'product.html?id=' + b.getAttribute('data-pid');
-  }); });
+  /* 커스텀 스튜디오: 비포·애프터 */
+  var SD = S.STUDIO || {};
+  $('#ba .ba-after').src = SD.after || ''; $('#ba .ba-before img').src = SD.before || '';
+  if (SD.product) $('#ba-prod').href = 'product.html?id=' + SD.product;
+  (function () {
+    var ba = $('#ba'), rng = $('input', ba), dragging = false;
+    function set(v) { v = Math.max(0, Math.min(100, v)); ba.style.setProperty('--x', v + '%'); rng.value = v; }
+    rng.addEventListener('input', function () { set(+rng.value); });
+    function at(e) { var r = ba.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); }
+    ba.addEventListener('pointerdown', function (e) { dragging = true; ba.setPointerCapture(e.pointerId); at(e); });
+    ba.addEventListener('pointermove', function (e) { if (dragging) at(e); });
+    ba.addEventListener('pointerup', function () { dragging = false; });
+    set(50);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); var t0 = null; requestAnimationFrame(function step(t) { if (!t0) t0 = t; var k = (t - t0) / 1600; if (k < 1 && !dragging) { set(50 + 30 * Math.sin(k * Math.PI * 2)); requestAnimationFrame(step); } else if (!dragging) set(50); }); } }, { threshold: 0.5 });
+      io.observe(ba);
+    }
+  })();
 
   /* 영상 */
   var v = $('#hero-video'), tp = $('#toggle-play');
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); v.removeAttribute('autoplay'); }
   tp.addEventListener('click', function () { if (v.paused) { v.play().catch(function () {}); tp.setAttribute('aria-label', '영상 멈춤'); } else { v.pause(); tp.setAttribute('aria-label', '영상 재생'); } });
 
-  /* 뉴스레터 */
-  $('#news-form').addEventListener('submit', function (e) { e.preventDefault(); window.location.href = 'account.html?email=' + encodeURIComponent($('#email').value.trim()); });
-
   $('#about-p').textContent = S.CONTENT.about;
-  /* 자주 묻는 질문: 회사가 채운 글(content) */
   var C = S.CONTENT, FAQ = [['그림 실력이 없어도 내 이야기로 주문할 수 있나요?', '네. 이야기와 사진만 주시면 시안은 저희가 그려요. ' + C.revisions], ['제작은 얼마나 걸리나요?', C.lead_time], ['배송비는요?', C.shipping], ['내 신발을 보내도 되나요?', C.own_shoes], ['교환·환불은요?', C.returns], ['어떻게 관리하나요?', C.care], ['사이즈는 어떻게 골라요?', C.size_guide]];
   $('#faq-list').innerHTML = FAQ.map(function (q) { return '<details><summary>' + q[0] + '</summary><p>' + q[1] + '</p></details>'; }).join('');
-  /* 해시로 들어온 탭 */
   if (location.hash === '#works') $('#works').scrollIntoView();
 })();
 </script>

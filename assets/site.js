@@ -20,7 +20,8 @@
     $$('[data-tp]', root).forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-tp'))); });
     document.documentElement.lang = LANG;
   }
-  function setLang(l) { LANG = l; store.set('bium_lang', l); applyLang(document); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN · English' : 'KO · 한국어'; }); $('#lang-btn').textContent = LANG === 'ko' ? 'EN' : 'KO'; }
+  function setLang(l) { LANG = l; store.set('bium_lang', l); applyLang(document); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN' : 'KO'; });
+  $('#foot-news').addEventListener('submit', function (e) { e.preventDefault(); location.href = 'account.html?email=' + encodeURIComponent($('#foot-email').value.trim()); }); }
   function nameOf(p) { return LANG === 'en' && p.en ? p.en : p.name; }
 
   /* 신발 종류 선 그림 */
@@ -37,86 +38,91 @@
     if (n === 'user') return '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>';
     if (n === 'search') return '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>';
     if (n === 'bag') return '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
+    if (n === 'menu') return '<svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg>';
+    if (n === 'x') return '<svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg>';
+    if (n === 'right') return '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>';
+    if (n === 'left') return '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>';
+    if (n === 'yt') return '<svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg>';
+    if (n === 'n') return '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8.5 16V8l7 8V8"/></svg>';
+    if (n === 'i') return '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 10.5V16M12 7.6v.4"/></svg>';
+    if (n === 'chat') return '<svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.9L6.3 20l3.9-2.2c.6.1 1.2.2 1.8.2 5 0 9-3.1 9-7s-4-7-9-7z"/></svg>';
     if (n === 'kakao') return '<svg viewBox="0 0 24 24" fill="#191919"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.2 4.6 6.6L5.5 21l4.4-2.8c.7.1 1.4.2 2.1.2 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>';
     return '';
   }
 
-  /* 헤더 */
-    var CATIMG = { flower: 'assets/line/flower.png', football: 'assets/line/football.png', story: 'assets/line/story.png', all: 'assets/line/low.png' };
+  /* 헤더 — 메이슨 구조: 흰 바탕, 데스크톱 로고|메뉴|아이콘, 모바일 메뉴|로고|검색·가방 */
   var LINE = function (k) { return '<img class="lineart" src="assets/line/' + k + '.png" alt="">'; };
-  var catLink = function (c) { return '<a href="index.html#works" data-tab="' + c.id + '" class="crow">' + LINE(c.id) + '<span>' + (LANG === 'en' ? c.en : c.ko) + '</span></a>'; };
-  var baseLink = function (b, cls) { return '<a href="index.html#works" data-base="' + b.id + '" class="' + cls + '">' + LINE(b.id) + '<span>' + (LANG === 'en' ? b.en : b.ko) + '</span></a>'; };
+  var nm = function (x) { return LANG === 'en' ? x.en : x.ko; };
+  var shoeCell = function (href, k, name) { return '<a class="mcell" href="' + href + '">' + LINE(k) + '<span>' + name + '</span></a>'; };
   var headerHtml =
     '<a class="skip" href="#main">본문으로 건너뛰기</a>' +
-    '<header class="top"><div class="wrap bar">' +
-      '<div class="left"><button class="burger" type="button" aria-label="메뉴 열기" id="open-menu"><i></i><i></i><i></i></button><button type="button" class="ico" id="search-btn-m" aria-label="검색">' + svgIcon('search') + '</button></div>' +
-      '<a class="brand" href="index.html" aria-label="BIUM 처음으로"><img src="assets/brand/logo-white-160.png" alt=""><span class="wordmark">BIUM</span></a>' +
+    '<header class="top"><div class="bar">' +
+      '<div class="left"><button class="ico" type="button" aria-label="메뉴 열기" id="open-menu">' + svgIcon('menu') + '</button></div>' +
+      '<a class="brand" href="index.html" aria-label="BIUM 처음으로"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a>' +
       '<ul class="menu">' +
-        '<li><a href="index.html#works">Custom<span class="kr" data-t="nav.custom"></span></a><div class="mega wide">' +
-          '<div class="col"><span class="lbl">Custom</span><ul>' +
-            '<li><a href="index.html#works" data-tab="all" data-t="nav.all"></a></li><li><a href="index.html#looks" data-t="nav.lookbook"></a></li></ul>' +
-            '<div class="cats-mini">' + S.categories.map(catLink).join('') + '</div></div>' +
-          '<div class="col"><span class="lbl" data-t="nav.base"></span><div class="bases">' + S.bases.map(function (b) { return baseLink(b, 'brow'); }).join('') + '</div></div></div></li>' +
-        '<li><a href="class.html">Class<span class="kr" data-t="nav.class"></span></a><div class="mega"><div class="col"><span class="lbl">Class</span><ul>' +
-          '<li><a href="class.html#workshop" data-t="nav.c1"></a></li><li><a href="class.html#kit" data-t="nav.c2"></a></li><li><a href="class.html#online" data-t="nav.c3"></a></li><li><a href="book.html?type=class" data-t="nav.c4"></a></li></ul></div></div></li>' +
-        '<li><a href="index.html#story">Story<span class="kr" data-t="nav.story"></span></a><div class="mega"><div class="col"><span class="lbl">Story</span><ul>' +
-          '<li><a href="index.html#story" data-t="nav.s1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="nav.s2"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="nav.s3"></a></li><li><a href="index.html#faq" data-t="nav.s4"></a></li></ul></div></div></li>' +
+        '<li><a href="shop.html">Custom</a><div class="mega"><div class="mega-in">' +
+          '<div class="mlinks"><a href="shop.html"><b data-t="nav.all"></b></a><a href="shop.html?new=1" data-t="nav.new"></a><a href="index.html#looks" data-t="nav.lookbook"></a><hr>' +
+            S.categories.map(function (c) { return '<a href="shop.html?cat=' + c.id + '">' + nm(c) + '</a>'; }).join('') + '<hr>' +
+            '<a href="studio.html" data-t="studio.btn"></a><a href="book.html?type=order" data-t="foot.5"></a></div>' +
+          '<div class="mgrp"><span class="mlbl" data-t="nav.base"></span><div class="mgrid c4">' + S.bases.map(function (b) { return shoeCell('shop.html?base=' + b.id, b.id, nm(b)); }).join('') + '</div></div>' +
+          '<div class="mgrp"><span class="mlbl" data-t="nav.bystory"></span><div class="mgrid c3">' + S.categories.map(function (c) { return shoeCell('shop.html?cat=' + c.id, c.id, nm(c)); }).join('') + '</div></div>' +
+        '</div></div></li>' +
+        '<li><a href="studio.html">Studio</a></li>' +
+        '<li><a href="class.html">Class</a><div class="mega"><div class="mega-in"><div class="mlinks"><a href="class.html#workshop" data-t="nav.c1"></a><a href="class.html#kit" data-t="nav.c2"></a><a href="class.html#online" data-t="nav.c3"></a><hr><a href="book.html?type=class" data-t="nav.c4"></a></div>' +
+          '<a class="mpic" href="class.html#workshop"><img src="assets/p01.jpg" alt="" loading="lazy"><span data-t="nav.c1"></span></a><a class="mpic" href="class.html#kit"><img src="assets/09.jpg" alt="" loading="lazy"><span data-t="nav.c2"></span></a></div></div></li>' +
+        '<li><a href="index.html#story">Story</a><div class="mega"><div class="mega-in"><div class="mlinks"><a href="index.html#story" data-t="nav.s1"></a><a href="https://www.youtube.com/@bium4581" data-t="nav.s2"></a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="nav.s3"></a><hr><a href="index.html#faq" data-t="nav.s4"></a></div>' +
+          '<a class="mpic" href="https://www.youtube.com/@bium4581"><img src="assets/video/poster.jpg" alt="" loading="lazy"><span>YouTube</span></a><a class="mpic" href="index.html#story"><img src="assets/05.jpg" alt="" loading="lazy"><span data-t="nav.s1"></span></a></div></div></li>' +
       '</ul>' +
       '<div class="util">' +
+        '<a class="tlink dt" href="book.html?type=order" data-t="util.consult"></a>' +
         '<button type="button" class="langbtn dt" id="lang-btn" aria-label="language">EN</button>' +
-        '<button type="button" class="ico" id="login-btn" aria-label="로그인">' + svgIcon('user') + '<span class="txt" id="login-txt" data-t="util.login"></span></button>' +
-        '<button type="button" class="ico dt" id="search-btn" aria-label="검색">' + svgIcon('search') + '<span class="txt" data-t="util.search"></span></button>' +
-        '<button type="button" class="ico" id="cart-btn" aria-label="장바구니">' + svgIcon('bag') + '<span class="txt" data-t="util.cart"></span><span class="count" id="cart-count"></span></button>' +
-      '</div></div>' +
-      '<div class="ticker"><span data-t="ticker"></span><a href="book.html?type=class" data-t="ticker.link"></a></div></header>' +
-    /* 모바일 메뉴: 메이슨처럼 한 단계씩 들어가고 '<'로 나온다 */
-    '<div class="sheet" id="menu-sheet"><div class="panel left drawer"><div class="head"><a class="brand dark" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><button class="close" type="button" data-close="menu-sheet">CLOSE</button></div>' +
+        '<button type="button" class="ico dt" id="login-btn" aria-label="로그인">' + svgIcon('user') + '</button>' +
+        '<button type="button" class="ico" id="search-btn" aria-label="검색">' + svgIcon('search') + '</button>' +
+        '<button type="button" class="ico" id="cart-btn" aria-label="장바구니">' + svgIcon('bag') + '<span class="count" id="cart-count"></span></button>' +
+      '</div></div></header>' +
+    /* 모바일 메뉴: 전면, 대문자 항목 + 아래 계정·검색·가방 (메이슨) */
+    '<div class="sheet full" id="menu-sheet"><div class="panel left drawer"><div class="dhead"><button class="ico" type="button" data-close="menu-sheet" aria-label="닫기">' + svgIcon('x') + '</button><a class="brand" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><span></span></div>' +
       '<div class="body">' +
         '<div class="dpanel" id="dp-root">' +
-          '<button type="button" class="drow nav" data-go="dp-custom"><span>Custom</span><span class="kr" data-t="nav.custom"></span><i>›</i></button>' +
-          '<button type="button" class="drow nav" data-go="dp-class"><span>Class</span><span class="kr" data-t="nav.class"></span><i>›</i></button>' +
-          '<button type="button" class="drow nav" data-go="dp-story"><span>Story</span><span class="kr" data-t="nav.story"></span><i>›</i></button>' +
-          '<a class="drow nav" href="index.html#looks"><span>Lookbook</span><span class="kr" data-t="nav.lookbook"></span></a>' +
-          '<a class="drow nav" href="book.html?type=order"><span>Consult</span><span class="kr" data-t="foot.5"></span></a>' +
-          '<button type="button" class="drow nav langbtn" id="lang-btn-m">EN</button>' +
+          '<button type="button" class="drow nav" data-go="dp-custom"><span>Custom</span><i>' + svgIcon('right') + '</i></button>' +
+          '<a class="drow nav" href="studio.html"><span>Studio</span></a>' +
+          '<button type="button" class="drow nav" data-go="dp-class"><span>Class</span><i>' + svgIcon('right') + '</i></button>' +
+          '<button type="button" class="drow nav" data-go="dp-story"><span>Story</span><i>' + svgIcon('right') + '</i></button>' +
+          '<a class="drow nav" href="index.html#looks"><span>Lookbook</span></a>' +
         '</div>' +
-        '<div class="dpanel" id="dp-custom" hidden><button type="button" class="dback" data-go="dp-root">‹ <span>Custom</span></button>' +
-          '<a class="drow" href="index.html#works" data-tab="all"><span class="dimg line">' + LINE('low') + '</span><span data-t="nav.all"></span></a>' +
-          S.categories.map(function (c) { return '<a class="drow" href="index.html#works" data-tab="' + c.id + '"><span class="dimg line">' + LINE(c.id) + '</span><span>' + (LANG === 'en' ? c.en : c.ko) + '</span></a>'; }).join('') +
-          '<span class="lbl dsub" data-t="nav.base"></span>' +
-          S.bases.map(function (b) { return '<a class="drow" href="index.html#works" data-base="' + b.id + '"><span class="dimg line">' + LINE(b.id) + '</span><span>' + (LANG === 'en' ? b.en : b.ko) + '</span></a>'; }).join('') +
+        '<div class="dpanel" id="dp-custom" hidden><button type="button" class="dback" data-go="dp-root">' + svgIcon('left') + '<span>Custom</span></button>' +
+          '<a class="dlink" href="shop.html" data-t="nav.all"></a><a class="dlink" href="shop.html?new=1" data-t="nav.new"></a>' +
+          '<span class="mlbl" data-t="nav.bystory"></span><div class="mgrid c3">' + S.categories.map(function (c) { return shoeCell('shop.html?cat=' + c.id, c.id, nm(c)); }).join('') + '</div>' +
+          '<span class="mlbl" data-t="nav.base"></span><div class="mgrid c3">' + S.bases.map(function (b) { return shoeCell('shop.html?base=' + b.id, b.id, nm(b)); }).join('') + '</div>' +
         '</div>' +
-        '<div class="dpanel" id="dp-class" hidden><button type="button" class="dback" data-go="dp-root">‹ <span>Class</span></button>' +
-          '<a class="drow" href="class.html#workshop"><span class="dimg all">·</span><span data-t="nav.c1"></span></a>' +
-          '<a class="drow" href="class.html#kit"><span class="dimg all">·</span><span data-t="nav.c2"></span></a>' +
-          '<a class="drow" href="class.html#online"><span class="dimg all">·</span><span data-t="nav.c3"></span></a>' +
-          '<a class="drow" href="book.html?type=class"><span class="dimg all">→</span><span data-t="nav.c4"></span></a>' +
+        '<div class="dpanel" id="dp-class" hidden><button type="button" class="dback" data-go="dp-root">' + svgIcon('left') + '<span>Class</span></button>' +
+          '<a class="dlink" href="class.html#workshop" data-t="nav.c1"></a><a class="dlink" href="class.html#kit" data-t="nav.c2"></a><a class="dlink" href="class.html#online" data-t="nav.c3"></a><a class="dlink" href="book.html?type=class" data-t="nav.c4"></a>' +
         '</div>' +
-        '<div class="dpanel" id="dp-story" hidden><button type="button" class="dback" data-go="dp-root">‹ <span>Story</span></button>' +
-          '<a class="drow" href="index.html#story"><span class="dimg all">·</span><span data-t="nav.s1"></span></a>' +
-          '<a class="drow" href="https://www.youtube.com/@bium4581"><span class="dimg all">·</span><span data-t="nav.s2"></span></a>' +
-          '<a class="drow" href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product"><span class="dimg all">4.98</span><span data-t="nav.s3"></span></a>' +
-          '<a class="drow" href="index.html#faq"><span class="dimg all">?</span><span data-t="nav.s4"></span></a>' +
+        '<div class="dpanel" id="dp-story" hidden><button type="button" class="dback" data-go="dp-root">' + svgIcon('left') + '<span>Story</span></button>' +
+          '<a class="dlink" href="index.html#story" data-t="nav.s1"></a><a class="dlink" href="https://www.youtube.com/@bium4581" data-t="nav.s2"></a><a class="dlink" href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="nav.s3"></a><a class="dlink" href="index.html#faq" data-t="nav.s4"></a>' +
         '</div>' +
-      '</div><div class="foot"><a class="btn" href="' + S.KAKAO + '" data-t="foot.8"></a></div></div></div>' +
+      '</div>' +
+      '<div class="dfoot"><a class="dutil" href="account.html">' + svgIcon('user') + '<span>Account</span></a><button type="button" class="dutil" id="search-btn-m">' + svgIcon('search') + '<span>Search</span></button><button type="button" class="dutil" id="cart-btn-m">' + svgIcon('bag') + '<span>Cart</span></button>' +
+        '<div class="dlang"><button type="button" class="langbtn" id="lang-btn-m">EN</button><a href="' + S.KAKAO + '" target="_blank" rel="noopener" data-t="foot.8"></a></div></div></div></div>' +
     /* 장바구니 */
-    '<div class="sheet" id="cart-sheet"><div class="panel"><div class="head"><b data-t="cart.h"></b><button class="close" type="button" data-close="cart-sheet">CLOSE</button></div><div class="body" id="cart-body"></div><div class="foot"><div class="cart-sum"><span data-t="cart.total"></span><span class="price" id="cart-total">0원</span></div><a class="btn" href="checkout.html" id="cart-go" data-t="cart.go"></a><button class="btn line" type="button" data-close="cart-sheet" data-t="cart.cont"></button></div></div></div>' +
-    /* 빠른 담기(메이슨 'Choose options') */
-    '<div class="sheet" id="look-sheet"><div class="qa"><div class="head"><b>SHOP THE LOOK</b><button class="close" type="button" data-close="look-sheet" aria-label="닫기">✕</button></div><div class="qa-body" id="look-body"></div></div></div>' +
-    '<div class="sheet" id="qa-sheet"><div class="qa"><div class="head"><b>옵션 선택</b><button class="close" type="button" data-close="qa-sheet" aria-label="닫기">✕</button></div><div class="qa-body" id="qa-body"></div></div></div>' +
+    '<div class="sheet" id="cart-sheet"><div class="panel cartp"><div class="head"><b data-t="cart.h"></b><button class="ico" type="button" data-close="cart-sheet" aria-label="닫기">' + svgIcon('x') + '</button></div><div class="body" id="cart-body"></div><div class="foot"><a class="btn wide" href="checkout.html" id="cart-go"><span data-t="cart.go"></span> · <span class="price" id="cart-total">0원</span></a><button class="ulink" type="button" data-close="cart-sheet" data-t="cart.cont"></button></div></div></div>' +
+    /* 빠른 담기·룩 */
+    '<div class="sheet" id="look-sheet"><div class="qa"><div class="head"><b>Shop the look</b><button class="close" type="button" data-close="look-sheet" aria-label="닫기">✕</button></div><div class="qa-body" id="look-body"></div></div></div>' +
+    '<div class="sheet" id="qa-sheet"><div class="qa"><div class="head"><b data-t="qa.h"></b><button class="close" type="button" data-close="qa-sheet" aria-label="닫기">✕</button></div><div class="qa-body" id="qa-body"></div></div></div>' +
     /* 검색 */
-    '<div class="sheet" id="search-sheet"><div class="search-box"><form id="search-form" role="search"><input id="search-input" type="search" data-tp="search.ph" autocomplete="off"><button class="btn" type="button" data-close="search-sheet">CLOSE</button></form><div class="hits" id="search-hits"></div><p class="none" id="search-none" hidden data-t="search.none"></p></div></div>' +
-    /* 로그인 */
+    '<div class="sheet" id="search-sheet"><div class="search-box"><form id="search-form" role="search"><input id="search-input" type="search" data-tp="search.ph" autocomplete="off"><button class="ico" type="button" data-close="search-sheet" aria-label="닫기">' + svgIcon('x') + '</button></form><div class="hits" id="search-hits"></div><p class="none" id="search-none" hidden data-t="search.none"></p></div></div>' +
     '<div class="modal" id="login-modal"><form class="box" id="login-form"><b class="lbl" data-t="login.h"></b><p class="note" data-t="login.p"></p><label><span data-t="login.name"></span><input id="login-name" required autocomplete="name"></label><label><span data-t="login.email"></span><input id="login-email" type="email" required autocomplete="email"></label><button class="btn" type="submit" data-t="login.btn"></button><button class="btn line" type="button" data-close="login-modal">CLOSE</button></form></div>' +
     '<div class="toast" id="toast"></div>' +
-    '<a class="kakao" href="' + S.KAKAO + '" target="_blank" rel="noopener" aria-label="카카오톡 문의">' + svgIcon('kakao') + '<span class="t" data-t="kakao"></span></a>';
+    '<a class="kakao" href="' + S.KAKAO + '" target="_blank" rel="noopener" aria-label="카카오톡 문의">' + svgIcon('kakao') + '</a>';
+  /* 꼬리말 — 메이슨: 소식 받기 | 회사 | 고객 | 약관, 아이콘, 로고·저작권·결제 */
   var footerHtml =
-    '<footer><div class="wrap"><div class="cols">' +
-      '<div class="brandcol"><img src="assets/brand/logo-white-160.png" alt="비움 로고"><p data-t="foot.p"></p><div class="social"><a href="https://www.youtube.com/@bium4581">YouTube</a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product">idus</a><a href="https://smartstore.naver.com/bium4581">Smart Store</a><a href="' + S.KAKAO + '">KakaoTalk</a></div></div>' +
-      '<div><span class="lbl" data-t="foot.company"></span><ul><li><a href="index.html#story" data-t="foot.1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="foot.2"></a></li><li><a href="class.html" data-t="foot.3"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="foot.4"></a></li></ul></div>' +
-      '<div><span class="lbl" data-t="foot.cs"></span><ul><li><a href="book.html?type=order" data-t="foot.5"></a></li><li><a href="book.html?type=class" data-t="foot.6"></a></li><li><a href="index.html#faq" data-t="foot.7"></a></li><li><a href="' + S.KAKAO + '" data-t="foot.8"></a></li></ul></div>' +
-      '<div><span class="lbl" data-t="foot.terms"></span><ul><li><a href="privacy.html" data-t="foot.9"></a></li><li><a href="terms.html" data-t="foot.10"></a></li></ul></div>' +
-    '</div><div class="bottom"><span>© 2026 Custom BIUM · Shoesteller</span><span>Hand-painted in Seoul</span></div></div></footer>';
+    '<footer><div class="fwrap"><div class="cols">' +
+      '<div class="fnews"><span class="flbl" data-t="news.h"></span><p data-t="news.p"></p><form id="foot-news"><label class="sr" for="foot-email">이메일</label><input id="foot-email" type="email" data-tp="news.ph" required autocomplete="email"><button class="btn" type="submit" data-t="news.btn"></button></form>' +
+        '<div class="social"><a href="https://www.youtube.com/@bium4581" aria-label="YouTube">' + svgIcon('yt') + '</a><a href="https://smartstore.naver.com/bium4581" aria-label="스마트스토어">' + svgIcon('n') + '</a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" aria-label="아이디어스">' + svgIcon('i') + '</a><a href="' + S.KAKAO + '" aria-label="카카오톡">' + svgIcon('chat') + '</a></div></div>' +
+      '<div><span class="flbl" data-t="foot.company"></span><ul><li><a href="index.html#story" data-t="foot.1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="foot.2"></a></li><li><a href="class.html" data-t="foot.3"></a></li><li><a href="studio.html" data-t="nav.studio"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="foot.4"></a></li></ul></div>' +
+      '<div><span class="flbl" data-t="foot.cs"></span><ul><li><a href="book.html?type=order" data-t="foot.5"></a></li><li><a href="book.html?type=class" data-t="foot.6"></a></li><li><a href="index.html#faq" data-t="foot.7"></a></li><li><a href="' + S.KAKAO + '" data-t="foot.8"></a></li></ul></div>' +
+      '<div><span class="flbl" data-t="foot.terms"></span><ul><li><a href="privacy.html" data-t="foot.9"></a></li><li><a href="terms.html" data-t="foot.10"></a></li></ul></div>' +
+    '</div><div class="bottom"><a class="brand" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><span class="copy">© 2026 Custom BIUM · Shoesteller — Hand-painted in Seoul</span><span class="pays"><i>N Pay</i><i>계좌이체</i></span></div></div></footer>';
   document.body.insertAdjacentHTML('afterbegin', headerHtml);
   document.body.insertAdjacentHTML('beforeend', footerHtml);
 
@@ -131,7 +137,8 @@
   function dgo(id) { $$('.dpanel').forEach(function (p) { p.hidden = p.id !== id; }); }
   $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { dgo(b.getAttribute('data-go')); }); });
   $('#lang-btn-m').addEventListener('click', function () { setLang(LANG === 'ko' ? 'en' : 'ko'); });
-  $('#search-btn-m').addEventListener('click', function () { $('#search-btn').click(); });
+  $('#search-btn-m').addEventListener('click', function () { close('menu-sheet'); $('#search-btn').click(); });
+  $('#cart-btn-m').addEventListener('click', function () { close('menu-sheet'); $('#cart-btn').click(); });
   $$('#menu-sheet a').forEach(function (a) { a.addEventListener('click', function () { close('menu-sheet'); }); });
   $('#lang-btn').addEventListener('click', function () { setLang(LANG === 'ko' ? 'en' : 'ko'); });
 
@@ -153,8 +160,9 @@
     if (!cart.length) { body.innerHTML = '<p class="empty">' + t('cart.empty') + '</p>'; return; }
     body.innerHTML = cart.map(function (c, i) {
       var p = byId(c.id); if (!p) return '';
-      return '<div class="cart-item"><img src="' + p.photos[0] + '" alt=""><div><b>' + nameOf(p) + '</b><span class="meta">' + t('cart.size') + ' ' + c.size + ' · ' + p.sub + '</span><div class="qty"><button type="button" data-q="-1" data-i="' + i + '">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '">+</button></div></div><div style="text-align:right"><span class="price">' + won(p.price * c.qty) + '</span><br><button class="rm" type="button" data-rm="' + i + '">삭제</button></div></div>';
+      return '<div class="cart-item"><a href="product.html?id=' + p.id + '"><img src="' + p.photos[0] + '" alt=""></a><div><b>' + nameOf(p) + '</b><span class="price">' + won(p.price * c.qty) + '</span><span class="meta">' + t('cart.size') + ': ' + c.size + '</span><div class="qrow"><div class="qty"><button type="button" data-q="-1" data-i="' + i + '" aria-label="빼기">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '" aria-label="더하기">+</button></div><button class="rm" type="button" data-rm="' + i + '" data-t="cart.rm"></button></div></div></div>';
     }).join('');
+    applyLang(body);
     $$('[data-q]', body).forEach(function (b) { b.addEventListener('click', function () { var i = +b.getAttribute('data-i'); cart[i].qty = Math.max(1, cart[i].qty + (+b.getAttribute('data-q'))); saveCart(); }); });
     $$('[data-rm]', body).forEach(function (b) { b.addEventListener('click', function () { cart.splice(+b.getAttribute('data-rm'), 1); saveCart(); }); });
   }
@@ -164,13 +172,13 @@
 
   /* 상품 카드 */
   function cardHtml(p) {
-    var alt = p.photos[1] ? '<img class="alt ' + (p.fit === 'contain' ? 'contain' : '') + '" src="' + p.photos[1] + '" alt="" loading="lazy">' : '';
-    var sizes = S.SIZES.map(function (s) { return '<button type="button" data-add="' + p.id + '" data-size="' + s + '">' + s + '</button>'; }).join('');
+    var cls = p.fit === 'contain' ? 'contain' : '';
+    var alt = p.photos[1] ? '<img class="alt ' + cls + '" src="' + p.photos[1] + '" alt="" loading="lazy">' : '';
     return '<article class="card" data-id="' + p.id + '" data-cat="' + p.cat + '" data-base="' + p.base + '">' +
       '<a class="ph" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="badge">New</span>' : '') +
-        '<img class="' + (p.fit === 'contain' ? 'contain' : '') + '" src="' + p.photos[0] + '" alt="' + p.name + '" loading="lazy">' + alt +
-        '<div class="sizes" aria-label="사이즈"><span class="lbl">' + t('works.size') + '</span>' + sizes + '</div></a>' +
-      '<h3><a href="product.html?id=' + p.id + '">' + nameOf(p) + '</a></h3><span class="sub">' + p.sub + (p.reviews ? ' · 후기 ' + p.reviews : '') + '</span><span class="price">' + won(p.price) + '</span><button type="button" class="qadd" data-qa="' + p.id + '" aria-label="' + p.name + ' 사이즈 골라 담기">+</button></article>';
+        '<img class="' + cls + '" src="' + p.photos[0] + '" alt="' + p.name + '" loading="lazy">' + alt + '</a>' +
+      '<button type="button" class="qadd" data-qa="' + p.id + '" aria-label="' + p.name + ' 사이즈 골라 담기"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>' +
+      '<a class="meta" href="product.html?id=' + p.id + '"><span class="nm">' + nameOf(p) + '</span><span class="price">' + won(p.price) + '</span></a></article>';
   }
   function quickAdd(id) {
     var p = byId(id); if (!p) return;
@@ -201,14 +209,15 @@
 
   /* 로그인 */
   var user = store.get('bium_user', null);
-  function renderUser() { $('#login-txt').textContent = user ? user.name : t('util.login'); }
+  function renderUser() { $('#login-btn').setAttribute('aria-label', user ? user.name : t('util.login')); $('#login-btn').classList.toggle('on', !!user); }
   $('#login-btn').addEventListener('click', function () { location.href = 'account.html'; });
   $('#login-form').addEventListener('submit', function (e) {
     e.preventDefault(); user = { name: $('#login-name').value.trim(), email: $('#login-email').value.trim(), at: Date.now() };
     store.set('bium_user', user); renderUser(); close('login-modal'); toast(t('login.hi') + ', ' + user.name);
   });
 
-  applyLang(document); renderUser(); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN · English' : 'KO · 한국어'; }); $('#lang-btn').textContent = LANG === 'ko' ? 'EN' : 'KO';
+  applyLang(document); renderUser(); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN' : 'KO'; });
+  $('#foot-news').addEventListener('submit', function (e) { e.preventDefault(); location.href = 'account.html?email=' + encodeURIComponent($('#foot-email').value.trim()); });
 
   /* 수업 예약: 네이버 플레이스가 연결되면 그쪽으로 */
   $$('a[href="book.html?type=class"]').forEach(function (a) { if (S.NAVER_BOOKING) { a.href = S.NAVER_BOOKING; a.target = '_blank'; a.rel = 'noopener'; } else { a.href = 'class.html#workshop'; } });
