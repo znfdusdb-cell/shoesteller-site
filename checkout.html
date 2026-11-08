@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주문서 — 슈즈텔러</title>
+<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/products.js"></script>
+</head>
+<body>
+<main id="main">
+  <div class="wrap">
+    <nav class="crumb" aria-label="위치"><a href="index.html" data-t="pd.home"></a><span>/</span><span data-t="co.h"></span></nav>
+    <div class="co">
+      <form id="co-form">
+        <h1 class="h2" data-t="co.h"></h1>
+        <label><span data-t="co.name"></span><input id="f-name" required autocomplete="name"></label>
+        <label><span data-t="co.phone"></span><input id="f-phone" type="tel" required autocomplete="tel" inputmode="tel"></label>
+        <label><span data-t="co.email"></span><input id="f-email" type="email" autocomplete="email"></label>
+        <label><span data-t="co.addr"></span><input id="f-addr" required autocomplete="street-address"></label>
+        <label><span data-t="co.note"></span><textarea id="f-note" placeholder="예: 왼쪽은 벚꽃, 오른쪽은 강아지 얼굴. 사진은 카톡으로 보낼게요."></textarea></label>
+        <div><span class="lbl" data-t="co.pay"></span>
+          <div class="pay" style="margin-top:8px">
+            <label><input type="radio" name="pay" value="npay" id="pay-npay"><span><b class="npay"><span class="mark">N pay</span>네이버페이</b><small id="npay-note">네이버 아이디로 카드·포인트 결제</small></span></label>
+            <label><input type="radio" name="pay" value="bank" checked><span><b>계좌이체</b><small>주문서를 보내 주시면 확인 후 계좌를 알려 드려요. 수수료 없음.</small></span></label>
+          </div></div>
+        <button class="btn wide" type="submit" id="send">주문하기</button>
+        <p class="msg" id="co-msg" style="font-size:13px;color:var(--grey-3)"></p>
+      </form>
+      <aside class="sum"><span class="lbl" data-t="co.items"></span><div id="co-items"></div><div class="line tot"><span data-t="cart.total"></span><span class="price" id="co-total"></span></div></aside>
+    </div>
+  </div>
+</main>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var S = window.SHOES, B = window.BIUM;
+  var $ = function (s) { return document.querySelector(s); };
+  var cart = B.cart(), u = B.user();
+  if (u) { $('#f-name').value = u.name || ''; $('#f-email').value = u.email || ''; }
+  var total = 0;
+  $('#co-items').innerHTML = cart.length ? cart.map(function (c) { var p = B.byId(c.id); total += p.price * c.qty; return '<div class="line"><span>' + B.nameOf(p) + ' · ' + c.size + ' × ' + c.qty + '</span><span class="price">' + B.won(p.price * c.qty) + '</span></div>'; }).join('') : '<p class="empty">' + B.t('co.empty') + '</p>';
+  $('#co-total').textContent = B.won(total);
+  $('#send').toggleAttribute('disabled', !cart.length);
+  var NP = !!S.NAVERPAY_CLIENT_ID;
+  if (!NP) { $('#pay-npay').disabled = true; $('#npay-note').textContent = '가맹 연결 중이에요. 열리면 바로 쓸 수 있어요. 지금은 계좌이체로 주문해 주세요.'; }
+  else { var sc = document.createElement('script'); sc.src = 'https://nsp.pay.naver.com/sdk/js/naverpay.min.js'; document.head.appendChild(sc); }
+  function payNaver(orderId, name) {
+    /* 네이버페이 결제형: 결제창을 띄우고, 승인은 서버(두뇌)가 paymentId로 처리한다 */
+    var np = window.Naver.Pay.create({ mode: 'production', clientId: S.NAVERPAY_CLIENT_ID, chainId: S.NAVERPAY_CHAIN_ID || undefined });
+    np.open({ merchantPayKey: orderId, productName: name, productCount: cart.reduce(function (n, c) { return n + c.qty; }, 0), totalPayAmount: total, taxScopeAmount: total, taxExScopeAmount: 0, returnUrl: (S.API_BASE || '') + '/s-api/shoesteller/npay-return?order=' + encodeURIComponent(orderId) });
+  }
+  $('#co-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (document.querySelector('input[name=pay]:checked').value === 'npay' && NP && window.Naver) {
+      var p0 = B.byId(cart[0].id); payNaver('ST' + Date.now(), p0.name + (cart.length > 1 ? ' 외 ' + (cart.length - 1) + '건' : '')); return;
+    }
+    var lines = ['[슈즈텔러 주문서]', '이름: ' + $('#f-name').value, '연락처: ' + $('#f-phone').value, '이메일: ' + $('#f-email').value, '주소: ' + $('#f-addr').value, ''];
+    cart.forEach(function (c) { var p = B.byId(c.id); lines.push('- ' + p.name + ' / ' + c.size + ' / ' + c.qty + '켤레 / ' + B.won(p.price * c.qty)); });
+    lines.push('합계: ' + B.won(total), '결제: 계좌이체(확인 후 안내)', '요청: ' + ($('#f-note').value || '없음'));
+    var text = lines.join('\n');
+    var orders = JSON.parse(localStorage.getItem('bium_orders') || '[]'); orders.push({ at: new Date().toISOString(), text: text }); localStorage.setItem('bium_orders', JSON.stringify(orders));
+    function show() { var ta = document.createElement('textarea'); ta.value = text; ta.readOnly = true; ta.style.minHeight = '180px'; $('#co-form').appendChild(ta); }
+    function go(copied) { $('#co-msg').innerHTML = (copied ? B.t('co.done') : '아래 주문서를 복사해서 카카오톡에 붙여 넣어 주세요.') + ' <a href="' + S.KAKAO + '" target="_blank" rel="noopener">' + B.t('foot.8') + ' →</a>'; if (!copied) show(); $('#send').disabled = true; B.clearCart(); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { go(true); }, function () { go(false); });
+    else go(false);
+  });
+})();
+</script>
+</body>
+</html>

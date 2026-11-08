@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>슈즈텔러 작품</title>
+<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/products.js"></script>
+</head>
+<body>
+<main id="main">
+  <div class="wrap">
+    <nav class="crumb" aria-label="위치"><a href="index.html" data-t="pd.home"></a><span>/</span><a href="index.html#works" id="crumb-cat"></a><span>/</span><span id="crumb-name"></span></nav>
+    <div class="pd" id="pd"></div>
+    <section class="sec" style="padding-top:0" aria-labelledby="more-h">
+      <div class="sec-head"><h2 class="h2" id="more-h" data-t="pd.more"></h2></div>
+      <div class="grid" id="more"></div>
+    </section>
+  </div>
+</main>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var S = window.SHOES, B = window.BIUM;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var id = new URLSearchParams(location.search).get('id');
+  var p = B.byId(id) || S.products[0];
+  var cat = S.categories.filter(function (c) { return c.id === p.cat; })[0];
+  document.title = p.name + ' — 슈즈텔러';
+  $('#crumb-cat').textContent = B.lang() === 'en' ? cat.en : cat.ko; $('#crumb-cat').href = 'index.html#works';
+  $('#crumb-name').textContent = B.nameOf(p);
+  var fit = p.fit === 'contain' ? 'contain' : '';
+  var size = null, qty = 1;
+  $('#pd').innerHTML =
+    '<div class="gal"><div class="main"><img id="main-img" class="' + fit + '" src="' + p.photos[0] + '" alt="' + p.name + '"></div>' +
+      (p.photos.length > 1 ? '<div class="thumbs">' + p.photos.map(function (ph, i) { return '<button type="button" data-ph="' + ph + '" aria-current="' + (i === 0) + '"><img src="' + ph + '" alt=""></button>'; }).join('') + '</div>' : '') + '</div>' +
+    '<div class="buy">' +
+      '<div><span class="lbl">' + (B.lang() === 'en' ? cat.en : cat.ko) + (p.isNew ? ' · New' : '') + '</span><h1 style="margin-top:8px">' + B.nameOf(p) + '</h1><p class="sub">' + p.sub + (p.reviews ? ' · 아이디어스 후기 ' + p.reviews + '개' : '') + '</p></div>' +
+      '<p class="price">' + B.won(p.price) + '</p>' +
+      '<div><span class="lbl" data-t="pd.size"></span><div class="sizes" id="sizes" style="margin-top:8px">' + S.SIZES.map(function (s) { return '<button type="button" data-size="' + s + '" aria-pressed="false">' + s + '</button>'; }).join('') + '</div></div>' +
+      '<div class="row"><div class="qty"><button type="button" id="qminus" aria-label="빼기">−</button><span id="qty">1</span><button type="button" id="qplus" aria-label="더하기">+</button></div><button class="btn" type="button" id="add" data-t="pd.add"></button></div>' +
+      '<button class="btn line wide" type="button" id="buy" data-t="pd.buy"></button>' +
+      '<p class="msg" id="msg"></p>' +
+      '<a class="link" href="book.html?type=order&design=' + (p.cat === 'story' ? 'personal' : 'existing') + '&id=' + p.id + '" data-t="pd.consult"></a>' +
+      '<div class="acc"><details open><summary data-t="pd.d1"></summary><p>' + p.desc + '</p></details><details><summary data-t="pd.d2"></summary><p><span data-t="pd.p2"></span> ' + S.CONTENT.revisions + '</p></details><details><summary data-t="pd.d3"></summary><p>' + S.CONTENT.materials + ' ' + S.CONTENT.care + '</p></details><details><summary data-t="pd.d4"></summary><p>' + S.CONTENT.lead_time + ' ' + S.CONTENT.shipping + ' <a href="terms.html">교환·환불 안내</a></p></details><details><summary>사이즈</summary><p>' + S.CONTENT.size_guide + '</p></details></div>' +
+    '</div>';
+  B.applyLang($('#pd'));
+  $$('.thumbs button').forEach(function (b) { b.addEventListener('click', function () { $('#main-img').src = b.getAttribute('data-ph'); $$('.thumbs button').forEach(function (x) { x.setAttribute('aria-current', x === b); }); }); });
+  $$('#sizes button').forEach(function (b) { b.addEventListener('click', function () { size = +b.getAttribute('data-size'); $$('#sizes button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); $('#msg').textContent = ''; }); });
+  $("#qminus").addEventListener('click', function () { qty = Math.max(1, qty - 1); $('#qty').textContent = qty; });
+  $("#qplus").addEventListener('click', function () { qty = Math.min(9, qty + 1); $('#qty').textContent = qty; });
+  function need() { if (!size) { $('#msg').textContent = B.t('pd.pick'); return false; } return true; }
+  $('#add').addEventListener('click', function () { if (!need()) return; B.addToCart(p.id, size, qty); B.openCart(); });
+  $('#buy').addEventListener('click', function () { if (!need()) return; B.addToCart(p.id, size, qty); location.href = 'checkout.html'; });
+  var more = S.products.filter(function (x) { return x.id !== p.id && (x.cat === p.cat || x.base === p.base); }).slice(0, 4);
+  $('#more').innerHTML = more.map(B.cardHtml).join(''); B.applyLang($('#more'));
+})();
+</script>
+</body>
+</html>

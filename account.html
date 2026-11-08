@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>로그인·가입 — 슈즈텔러</title>
+<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/products.js"></script>
+</head>
+<body>
+<main id="main">
+  <div class="acct" id="acct"></div>
+</main>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var S = window.SHOES, B = window.BIUM;
+  var $ = function (s) { return document.querySelector(s); };
+  var box = $('#acct'), q = new URLSearchParams(location.search);
+  var G = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+
+  function signedIn(u) {
+    box.innerHTML = '<span class="lbl">Account</span><h1>' + u.name + ' 님</h1><p class="sub">' + (u.email || '') + '</p>' +
+      (u.marketing ? '<div class="coupon"><span class="lbl">Welcome coupon</span><b>웰컴 쿠폰 발급</b><span style="font-size:13px;color:var(--grey-3)">' + S.CONTENT.coupon + ' 쿠폰은 가입하신 이메일·연락처로 보내 드려요.</span></div>' : '<p class="fine" style="text-align:left">소식 받기에 동의하시면 웰컴 쿠폰을 드려요. <button class="link" type="button" id="opt-in">동의하고 쿠폰 받기</button></p>') +
+      '<a class="btn" href="index.html">작품 보러 가기</a><button class="btn line" type="button" id="logout">로그아웃</button>';
+    $('#logout').addEventListener('click', function () { B.setUser(null); start(); });
+    var o = $('#opt-in'); if (o) o.addEventListener('click', function () { u.marketing = true; B.setUser(u); send(u); signedIn(u); });
+  }
+  function send(u) {
+    B.send('signup', { name: u.name, phone: u.phone || '', email: u.email, interest: [], source: u.via, agree_required: true, marketing_opt_in: !!u.marketing, website: '' },
+      ['[슈즈텔러 가입]', '이름: ' + u.name, '이메일: ' + u.email, '연락처: ' + (u.phone || '-'), '소식·쿠폰 동의: ' + (u.marketing ? '예' : '아니오')].join('\n'), function () {});
+  }
+  function profile(email, via) {
+    box.innerHTML = '<span class="lbl">Create account</span><h1>거의 다 됐어요</h1><p class="sub">' + email + '</p>' +
+      '<form class="fm" id="pf" novalidate><fieldset><label class="label" for="pf-name">이름 <span class="req">(필수)</span></label><input type="text" id="pf-name" autocomplete="name"><p class="err" id="err-name"></p></fieldset>' +
+      '<fieldset><label class="label" for="pf-phone">휴대폰 <span class="req">(선택 · 주문 안내용)</span></label><input type="tel" id="pf-phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"></fieldset>' +
+      '<fieldset><label class="check"><input type="checkbox" id="pf-agree"><span><b>[필수]</b> <a href="terms.html">이용약관</a>과 <a href="privacy.html">개인정보 처리방침</a>에 동의해요.</span></label><p class="err" id="err-agree"></p>' +
+      '<label class="check"><input type="checkbox" id="pf-mkt"><span><b>[선택] 소식·혜택 받기 — 동의하면 웰컴 쿠폰을 드려요.</b> 새 작품·수업·키트 소식을 이메일·문자·카카오로 받아요. 밤 9시~아침 8시에는 보내지 않고, 언제든 끊을 수 있어요.</span></label></fieldset>' +
+      '<button class="btn wide" type="submit">가입 완료</button></form>';
+    $('#pf').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var n = $('#pf-name').value.trim(), ok = true;
+      $('#err-name').textContent = n ? '' : '이름을 적어 주세요.'; if (!n) ok = false;
+      $('#err-agree').textContent = $('#pf-agree').checked ? '' : '필수 동의에 체크해 주세요.'; if (!$('#pf-agree').checked) ok = false;
+      if (!ok) return;
+      var u = { name: n, email: email, phone: $('#pf-phone').value.trim(), marketing: $('#pf-mkt').checked, via: via, at: Date.now() };
+      B.setUser(u); send(u); signedIn(u);
+    });
+  }
+  function start() {
+    box.innerHTML = '<a class="brand dark" href="index.html" style="justify-self:center"><img src="assets/brand/logo-black-160.png" alt="" style="width:40px;height:44px"><span class="wordmark">BIUM</span></a>' +
+      '<h1 style="margin-top:28px">로그인</h1><p class="sub">로그인하거나 새로 가입해요.</p>' +
+      '<button class="gbtn" type="button" id="g-btn">' + G + '<span>Google로 계속하기</span></button><p class="fine" id="g-note" hidden>구글 로그인은 연결 준비 중이에요. 이메일로 먼저 가입해 주세요.</p>' +
+      '<div class="or">또는</div>' +
+      '<form id="ef" novalidate><label class="sr" for="ef-email">이메일</label><div class="emailrow"><input type="email" id="ef-email" placeholder="이메일" autocomplete="email"><button type="submit" aria-label="이메일로 계속">→</button></div><p class="err" id="err-email" style="color:#B3261E;font-size:12px;margin-top:6px"></p></form>' +
+      '<p class="fine">계속하면 <a href="terms.html">이용약관</a>과 <a href="privacy.html">개인정보 처리방침</a>에 동의하게 돼요.</p>';
+    $('#ef').addEventListener('submit', function (e) {
+      e.preventDefault(); var v = $('#ef-email').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { $('#err-email').textContent = '이메일 주소를 확인해 주세요.'; return; }
+      var u = B.user(); if (u && u.email === v) return signedIn(u);
+      profile(v, 'email');
+    });
+    var gb = $('#g-btn');
+    if (!S.GOOGLE_CLIENT_ID) { gb.addEventListener('click', function () { $('#g-note').hidden = false; }); }
+    else {
+      var sc = document.createElement('script'); sc.src = 'https://accounts.google.com/gsi/client'; sc.async = true;
+      sc.onload = function () {
+        google.accounts.id.initialize({ client_id: S.GOOGLE_CLIENT_ID, callback: function (r) {
+          try { var p = JSON.parse(decodeURIComponent(escape(atob(r.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))))); profile(p.email, 'google'); setTimeout(function () { var n = $('#pf-name'); if (n && p.name) n.value = p.name; }, 0); } catch (err) { $('#g-note').hidden = false; }
+        } });
+        gb.addEventListener('click', function () { google.accounts.id.prompt(); });
+      };
+      document.head.appendChild(sc);
+    }
+    if (q.get('email')) $('#ef-email').value = q.get('email');
+  }
+  var u = B.user(); if (u && u.email) signedIn(u); else start();
+})();
+</script>
+</body>
+</html>

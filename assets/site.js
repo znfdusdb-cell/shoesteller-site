@@ -1,0 +1,270 @@
+/* 슈즈텔러 공통: 헤더·푸터·장바구니·검색·로그인·언어·카카오 버튼. 모든 페이지가 이 파일 하나를 쓴다. */
+(function () {
+  'use strict';
+  var S = window.SHOES;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  var won = function (n) { return Number(n).toLocaleString('ko-KR') + '원'; };
+  var byId = function (id) { return S.products.filter(function (p) { return p.id === id; })[0]; };
+
+  /* 언어 */
+  var LANG = store.get('bium_lang', 'ko');
+  var T = {
+    'nav.custom': ['커스텀', 'Custom'], 'nav.class': ['수업', 'Class'], 'nav.story': ['이야기', 'Story'],
+    'nav.all': ['전체 작품', 'All works'], 'nav.flower': ['사계절 꽃신', 'Seasonal flowers'], 'nav.football': ['축구 커스텀', 'Football custom'], 'nav.story2': ['이야기 커스텀', 'Story custom'], 'nav.lookbook': ['룩북', 'Lookbook'], 'nav.base': ['신발 종류로 보기', 'By base shoe'],
+    'nav.c1': ['홍대 공방 수업 · 2026.11', 'Hongdae workshop · Nov 2026'], 'nav.c2': ['커스텀 키트 · 2027.1', 'Custom kit · Jan 2027'], 'nav.c3': ['온라인 수업 · 2027.3', 'Online class · Mar 2027'], 'nav.c4': ['수업 예약 남기기', 'Reserve a seat'],
+    'nav.s1': ['작가 비움', 'About BIUM'], 'nav.s2': ['유튜브 · 만드는 과정', 'YouTube · Process'], 'nav.s3': ['후기 188개 · 아이디어스', '188 reviews · idus'], 'nav.s4': ['자주 묻는 질문', 'FAQ'],
+    'util.login': ['로그인', 'Login'], 'util.search': ['검색', 'Search'], 'util.cart': ['장바구니', 'Bag'],
+    'ticker': ['11월 홍대 공방 커스텀 수업 첫 개강 · 소수 정원 · ', 'Hongdae custom workshop opens in November · small class · '], 'ticker.link': ['예약 남기기', 'Reserve'],
+    'hero.lbl': ['New works · Hand-painted in Seoul', 'New works · Hand-painted in Seoul'], 'hero.h1': ['내 이야기를 신다. 손으로 그리는 커스텀 신발.', 'Wear your story. Hand-painted custom sneakers.'], 'hero.btn': ['작품 보기', 'See works'],
+    'works.h': ['New works', 'New works'], 'works.all': ['전체 보기', 'View all'], 'works.consult': ['상담하기', 'Consult'], 'works.size': ['사이즈 선택 → 담기', 'Pick a size → add'],
+    'fb.lbl': ['Football custom', 'Football custom'], 'fb.h': ['응원하는 팀을 신는다.', 'Wear the team you love.'], 'fb.p': ['아스날, 첼시, 리버풀, 토트넘, 국가대표. 엠블럼과 등번호, 좋아하는 선수의 모습까지 흰 운동화 위에 그려요. 경기장에 신고 가는 날을 위해.', 'Arsenal, Chelsea, Liverpool, Spurs, Korea. Emblems, numbers and your favourite player, hand-painted on white sneakers. For matchday.'], 'fb.btn': ['축구 커스텀 상담', 'Football custom'],
+    'cat.h': ['Shop by base', 'Shop by base'], 'cat.p': ['어떤 신발에 그릴지부터 골라요. 가지고 있는 신발을 보내 주셔도 돼요.', 'Start from the base shoe. You can also send us your own pair.'],
+    'class.h': ['Explore class', 'Explore class'], 'class.btn': ['수업 예약 남기기', 'Reserve a seat'],
+    'class.1': ['홍대 공방 수업', 'Hongdae workshop'], 'class.1p': ['소수 정원으로 처음 열어요. 도안과 물감 순서를 따라 내 손으로 한 켤레.', 'First small-class workshop. Paint your own pair following our templates.'],
+    'class.2': ['커스텀 키트', 'Custom kit'], 'class.2p': ['집에서 혼자 그릴 수 있게 도안과 물감을 한 상자에. 출시 알림을 받아 두세요.', 'Templates and paints in one box, for home. Get notified at launch.'],
+    'class.3': ['온라인 수업', 'Online class'], 'class.3p': ['키트와 함께 따라 그리는 영상 수업. 벚꽃 그리는 법부터.', 'Video lessons to paint along with the kit. Cherry blossoms first.'],
+    'look.h': ['Shop our looks', 'Shop our looks'], 'look.p': ['우리 신발을 신은 모델 컷. 사진 속 신발은 바로 담을 수 있어요.', 'Models wearing our shoes. The pair in each photo can be added to your bag.'], 'look.shop': ['Shop the look', 'Shop the look'], 'look.view': ['자세히', 'View'], 'look.btn': ['VIEW PRODUCTS', 'VIEW PRODUCTS'], 'look.wear': ['함께 입은 옷', 'Also in the look'],
+    'color.lbl': ['Choose your color', 'Choose your color'], 'color.h': ['꽃신, 스우시 색부터 골라요', 'Pick the swoosh colour first'], 'color.p': ['꽃은 계절에 맞춰, 스우시는 취향에 맞춰. 분홍이면 벚꽃, 연보라면 코스모스가 어울려요. 다른 색도 상담 때 같이 정해요.', 'Flowers follow the season, the swoosh follows you. Pink suits cherry blossom, lilac suits cosmos. Other colours on request.'], 'color.1': ['분홍 · 벚꽃', 'Pink · Cherry'], 'color.2': ['연보라 · 코스모스', 'Lilac · Cosmos'], 'color.btn': ['이 꽃신 보기', 'View this pair'],
+    'disc.h': ['Discover', 'Discover'], 'disc.kr': ['· 작가 비움', '· About BIUM'], 'disc.p': ['6년 넘게 신발에 그림을 그려 왔어요. tvN 방송, 서울패션위크 송가인 콜라보, 국립발레단 토슈즈, 그리고 아이디어스 후기 188개(평점 4.98). 그림을 그리는 사람에서 가르치고 쓰는 사람으로, 이제는 누구나 자기 이야기를 신발에 담을 수 있게 수업과 키트를 준비하고 있어요.', 'Six years of painting on shoes. tvN, Seoul Fashion Week collaboration, National Ballet pointe shoes, and 188 reviews on idus (4.98). From painter to teacher: classes and kits so anyone can put their story on a pair.'], 'disc.p2': ['슈즈텔러는 커스텀 비움의 신발 라인이에요. 가방과 옷으로도 이어질 예정이에요.', 'Shoesteller is the footwear line of Custom BIUM. Bags and clothing to follow.'],
+    'faq.h': ['FAQ', 'FAQ'],
+    'news.h': ['Newsletter', 'Newsletter'], 'news.p': ['가입하면 첫 주문·첫 수업 쿠폰과 첫 커스텀 체크리스트(흰 신발 망치지 않는 7단계)를 드려요. 새 작품과 키트 소식도 가장 먼저.', 'Sign up for a first-order and first-class coupon plus our 7-step checklist for keeping white shoes clean. New works and kit news first.'], 'news.btn': ['쿠폰 받기', 'Get coupon'], 'news.ph': ['이메일 주소', 'Email address'],
+    'foot.p': ['슈즈텔러는 커스텀 비움의 신발 라인이에요. 흰 신발 위에 손으로 그리는 이야기, 서울.', 'Shoesteller is the footwear line of Custom BIUM. Stories hand-painted on white shoes, Seoul.'],
+    'foot.company': ['Company', 'Company'], 'foot.cs': ['Customer service', 'Customer service'], 'foot.terms': ['Terms and privacy', 'Terms and privacy'],
+    'foot.1': ['작가 비움', 'About BIUM'], 'foot.2': ['만드는 과정', 'Process'], 'foot.3': ['홍대 공방', 'Hongdae workshop'], 'foot.4': ['후기', 'Reviews'],
+    'foot.5': ['상담·주문', 'Consult / Order'], 'foot.6': ['수업 예약', 'Class reservation'], 'foot.7': ['자주 묻는 질문', 'FAQ'], 'foot.8': ['카카오톡 문의', 'KakaoTalk'], 'foot.9': ['개인정보 처리방침', 'Privacy policy'], 'foot.10': ['이용약관·배송·교환', 'Terms · Shipping · Returns'],
+    'kakao': ['카톡 문의', 'Chat'],
+    'cart.h': ['Bag', 'Bag'], 'cart.empty': ['장바구니가 비어 있어요.', 'Your bag is empty.'], 'cart.total': ['합계', 'Total'], 'cart.go': ['주문서 작성', 'Checkout'], 'cart.cont': ['계속 보기', 'Continue'], 'cart.added': ['담았어요', 'Added to bag'], 'cart.size': ['사이즈', 'Size'],
+    'search.h': ['Search', 'Search'], 'search.ph': ['작품 이름, 팀, 꽃 이름으로 찾기', 'Search by name, team or flower'], 'search.none': ['찾는 작품이 없어요. 상담으로 새로 그려 드려요.', 'Nothing found. We can paint it for you.'],
+    'login.h': ['로그인', 'Login'], 'login.p': ['이메일만 있으면 돼요. 주문 내역과 쿠폰을 이 기기에서 바로 볼 수 있어요.', 'Just your email. Orders and coupons are kept on this device.'], 'login.name': ['이름', 'Name'], 'login.email': ['이메일', 'Email'], 'login.btn': ['로그인', 'Login'], 'login.out': ['로그아웃', 'Logout'], 'login.hi': ['안녕하세요', 'Hello'],
+    'pd.size': ['사이즈 (mm)', 'Size (mm)'], 'pd.qty': ['수량', 'Qty'], 'pd.add': ['장바구니 담기', 'Add to bag'], 'pd.buy': ['바로 주문', 'Buy now'], 'pd.pick': ['사이즈를 먼저 골라 주세요', 'Please pick a size first'], 'pd.consult': ['내 신발로 상담', 'Consult with my own pair'],
+    'pd.d1': ['작품 설명', 'About this pair'], 'pd.d2': ['주문 진행', 'How it works'], 'pd.d3': ['물감과 관리', 'Paint and care'], 'pd.d4': ['배송·제작 기간', 'Shipping and lead time'],
+    'pd.p2': ['①주문 후 이야기와 사진을 보내 주세요 ②시안을 보내 드리고 마음에 들 때까지 고쳐요 ③확정 후 그려서 보내 드려요.', '① Send us your story and photos after ordering ② We send a sketch and revise until you love it ③ We paint and ship.'],
+    'pd.p3': ['가죽·캔버스 전용 물감을 쓰고 마감제로 보호해요. 세탁기는 피하고 젖은 천으로 닦아 주세요. 내구성을 보장한다고 약속하진 않아요. 테스트 영상은 유튜브에 공개해요.', 'Leather/canvas paints sealed with a finisher. No washing machine; wipe with a damp cloth. We do not guarantee durability; test videos are on YouTube.'],
+    'pd.p4': ['제작 기간은 디자인에 따라 달라 주문 확인 때 안내해 드려요. 결제는 주문서 확인 후 안내해요.', 'Lead time depends on the design and is confirmed with your order. Payment is arranged after order confirmation.'],
+    'pd.more': ['같이 보는 작품', 'You may also like'], 'pd.home': ['홈', 'Home'],
+    'co.h': ['주문서', 'Checkout'], 'co.name': ['이름', 'Name'], 'co.phone': ['연락처', 'Phone'], 'co.email': ['이메일', 'Email'], 'co.addr': ['배송 주소', 'Address'], 'co.note': ['그리고 싶은 이야기 · 요청 사항', 'Your story · requests'], 'co.pay': ['결제 방법', 'Payment'],
+    'co.pay1': ['계좌이체', 'Bank transfer'], 'co.pay1s': ['주문 확인 후 계좌를 알려 드려요. 수수료 없음.', 'We send bank details after confirming. No fee.'],
+    'co.pay2': ['카드·간편결제', 'Card / Pay'], 'co.pay2s': ['준비 중이에요. 열리면 가장 먼저 알려 드려요.', 'Coming soon.'],
+    'co.send': ['주문서 보내기', 'Send order'], 'co.sendk': ['카카오톡으로 주문서 보내기', 'Send via KakaoTalk'], 'co.done': ['주문서를 복사했어요. 카카오톡 채팅창에 붙여 넣어 주세요.', 'Order copied. Paste it into the KakaoTalk chat.'], 'co.items': ['주문 내역', 'Items'], 'co.empty': ['장바구니가 비어 있어요.', 'Your bag is empty.']
+  };
+  function t(k) { var v = T[k]; return v ? (LANG === 'en' ? v[1] : v[0]) : k; }
+  function applyLang(root) {
+    $$('[data-t]', root).forEach(function (el) { el.textContent = t(el.getAttribute('data-t')); });
+    $$('[data-tp]', root).forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-tp'))); });
+    document.documentElement.lang = LANG;
+  }
+  function setLang(l) { LANG = l; store.set('bium_lang', l); applyLang(document); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN · English' : 'KO · 한국어'; }); $('#lang-btn').textContent = LANG === 'ko' ? 'EN' : 'KO'; }
+  function nameOf(p) { return LANG === 'en' && p.en ? p.en : p.name; }
+
+  /* 신발 종류 선 그림 */
+  var ICON = {
+    low:    '<path d="M4 40H116"/><path d="M4 34V40M116 32V40"/><path d="M4 34C40 35.5 80 35 116 32"/><path d="M5 34C5 28 9 26 16 25L34 23C42 22 48 18 54 13L60 8C63 6 67 6 70 7L74 9C80 14 92 19 104 22C111 24 115 28 116 32"/><path d="M5 31C12 31 18 29 22 25"/><path d="M50 17C56 14 62 10 68 8"/><path d="M53 18L57 12M57 17L61 10.5M61 15.5L65 9"/><path d="M70 7C75 12 83 13 90 12"/><path d="M38 31C58 31 80 27 101 21"/><path d="M104 22C108 19 108 15 105 12"/>',
+    court:  '<path d="M4 40H116"/><path d="M4 35V40M116 33V40"/><path d="M4 35C40 36 80 35.5 116 33"/><path d="M5 35C5 30 9 28 17 27L36 25C44 24 50 20 56 15L62 10C65 8 69 8 72 9L76 11C82 16 94 20 106 23C112 25 115 29 116 33"/><path d="M5 32C13 32 19 30 24 27"/><path d="M52 19C58 16 64 12 70 10"/><path d="M55 20L59 14M59 19L63 12.5M63 17.5L67 11"/><path d="M42 30C54 32 66 30 76 22"/>',
+    high:   '<path d="M4 40H116"/><path d="M4 34V40M116 32V40"/><path d="M4 34C40 35.5 80 35 116 32"/><path d="M5 34C5 28 9 26 16 25L32 23C40 21 46 17 50 12L54 3L78 2C79 10 83 16 92 19C104 23 114 26 116 32"/><path d="M5 31C12 31 18 29 22 25"/><path d="M47 16L54 3"/><path d="M50 17L56 15M51 13L57 11M53 9L59 7M54 5L60 4"/><circle cx="82" cy="12" r="3.2"/><path d="M100 24C104 20 104 16 100 14"/>',
+    velcro: '<path d="M4 40H116"/><path d="M4 34V40M116 32V40"/><path d="M4 34C40 35.5 80 35 116 32"/><path d="M5 34C5 28 9 26 16 25L34 23C42 22 48 18 54 13L60 8C63 6 67 6 70 7L74 9C80 14 92 19 104 22C111 24 115 28 116 32"/><path d="M5 31C12 31 18 29 22 25"/><path d="M42 21L70 13L72 18L45 26Z"/><path d="M46 28L76 19L78 24L49 33Z"/><path d="M70 7C75 12 83 13 90 12"/>',
+    slip:   '<path d="M4 40H116"/><path d="M4 34V40M116 32V40"/><path d="M4 34C40 35.5 80 35 116 32"/><path d="M5 34C5 28 9 26 16 25L40 22C50 20 58 16 64 14C70 13 76 14 82 16C92 19 108 22 116 32"/><path d="M5 31C12 31 18 29 22 25"/><path d="M60 15L64 22L68 14"/><path d="M64 14C72 17 82 18 92 19"/>',
+    boot:   '<path d="M8 40H112"/><path d="M8 34V40M112 32V40"/><path d="M8 34C40 35.5 80 35 112 32"/><path d="M9 34C9 28 13 26 20 25L36 23C44 22 50 18 52 12L52 2H80V18C90 22 108 24 112 32"/><path d="M9 31C16 31 22 29 26 25"/><path d="M52 8H80"/><path d="M80 2C86 6 86 14 80 18"/>'
+  };
+  function icon(k) { return '<svg class="shoeicon" viewBox="0 0 120 44" aria-hidden="true">' + (ICON[k] || ICON.low) + '</svg>'; }
+  function svgIcon(n) {
+    if (n === 'user') return '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>';
+    if (n === 'search') return '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>';
+    if (n === 'bag') return '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
+    if (n === 'kakao') return '<svg viewBox="0 0 24 24" fill="#191919"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.2 4.6 6.6L5.5 21l4.4-2.8c.7.1 1.4.2 2.1.2 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>';
+    return '';
+  }
+
+  /* 헤더 */
+    var CATIMG = { flower: 'assets/line/flower.png', football: 'assets/line/football.png', story: 'assets/line/story.png', all: 'assets/line/low.png' };
+  var LINE = function (k) { return '<img class="lineart" src="assets/line/' + k + '.png" alt="">'; };
+  var catLink = function (c) { return '<a href="index.html#works" data-tab="' + c.id + '" class="crow">' + LINE(c.id) + '<span>' + (LANG === 'en' ? c.en : c.ko) + '</span></a>'; };
+  var baseLink = function (b, cls) { return '<a href="index.html#works" data-base="' + b.id + '" class="' + cls + '">' + LINE(b.id) + '<span>' + (LANG === 'en' ? b.en : b.ko) + '</span></a>'; };
+  var headerHtml =
+    '<a class="skip" href="#main">본문으로 건너뛰기</a>' +
+    '<header class="top"><div class="wrap bar">' +
+      '<div class="left"><button class="burger" type="button" aria-label="메뉴 열기" id="open-menu"><i></i><i></i><i></i></button><button type="button" class="ico" id="search-btn-m" aria-label="검색">' + svgIcon('search') + '</button></div>' +
+      '<a class="brand" href="index.html" aria-label="BIUM 처음으로"><img src="assets/brand/logo-white-160.png" alt=""><span class="wordmark">BIUM</span></a>' +
+      '<ul class="menu">' +
+        '<li><a href="index.html#works">Custom<span class="kr" data-t="nav.custom"></span></a><div class="mega wide">' +
+          '<div class="col"><span class="lbl">Custom</span><ul>' +
+            '<li><a href="index.html#works" data-tab="all" data-t="nav.all"></a></li><li><a href="index.html#looks" data-t="nav.lookbook"></a></li></ul>' +
+            '<div class="cats-mini">' + S.categories.map(catLink).join('') + '</div></div>' +
+          '<div class="col"><span class="lbl" data-t="nav.base"></span><div class="bases">' + S.bases.map(function (b) { return baseLink(b, 'brow'); }).join('') + '</div></div></div></li>' +
+        '<li><a href="class.html">Class<span class="kr" data-t="nav.class"></span></a><div class="mega"><div class="col"><span class="lbl">Class</span><ul>' +
+          '<li><a href="class.html#workshop" data-t="nav.c1"></a></li><li><a href="class.html#kit" data-t="nav.c2"></a></li><li><a href="class.html#online" data-t="nav.c3"></a></li><li><a href="book.html?type=class" data-t="nav.c4"></a></li></ul></div></div></li>' +
+        '<li><a href="index.html#story">Story<span class="kr" data-t="nav.story"></span></a><div class="mega"><div class="col"><span class="lbl">Story</span><ul>' +
+          '<li><a href="index.html#story" data-t="nav.s1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="nav.s2"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="nav.s3"></a></li><li><a href="index.html#faq" data-t="nav.s4"></a></li></ul></div></div></li>' +
+      '</ul>' +
+      '<div class="util">' +
+        '<button type="button" class="langbtn dt" id="lang-btn" aria-label="language">EN</button>' +
+        '<button type="button" class="ico" id="login-btn" aria-label="로그인">' + svgIcon('user') + '<span class="txt" id="login-txt" data-t="util.login"></span></button>' +
+        '<button type="button" class="ico dt" id="search-btn" aria-label="검색">' + svgIcon('search') + '<span class="txt" data-t="util.search"></span></button>' +
+        '<button type="button" class="ico" id="cart-btn" aria-label="장바구니">' + svgIcon('bag') + '<span class="txt" data-t="util.cart"></span><span class="count" id="cart-count"></span></button>' +
+      '</div></div>' +
+      '<div class="ticker"><span data-t="ticker"></span><a href="book.html?type=class" data-t="ticker.link"></a></div></header>' +
+    /* 모바일 메뉴: 메이슨처럼 한 단계씩 들어가고 '<'로 나온다 */
+    '<div class="sheet" id="menu-sheet"><div class="panel left drawer"><div class="head"><a class="brand dark" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><button class="close" type="button" data-close="menu-sheet">CLOSE</button></div>' +
+      '<div class="body">' +
+        '<div class="dpanel" id="dp-root">' +
+          '<button type="button" class="drow nav" data-go="dp-custom"><span>Custom</span><span class="kr" data-t="nav.custom"></span><i>›</i></button>' +
+          '<button type="button" class="drow nav" data-go="dp-class"><span>Class</span><span class="kr" data-t="nav.class"></span><i>›</i></button>' +
+          '<button type="button" class="drow nav" data-go="dp-story"><span>Story</span><span class="kr" data-t="nav.story"></span><i>›</i></button>' +
+          '<a class="drow nav" href="index.html#looks"><span>Lookbook</span><span class="kr" data-t="nav.lookbook"></span></a>' +
+          '<a class="drow nav" href="book.html?type=order"><span>Consult</span><span class="kr" data-t="foot.5"></span></a>' +
+          '<button type="button" class="drow nav langbtn" id="lang-btn-m">EN</button>' +
+        '</div>' +
+        '<div class="dpanel" id="dp-custom" hidden><button type="button" class="dback" data-go="dp-root">‹ <span>Custom</span></button>' +
+          '<a class="drow" href="index.html#works" data-tab="all"><span class="dimg line">' + LINE('low') + '</span><span data-t="nav.all"></span></a>' +
+          S.categories.map(function (c) { return '<a class="drow" href="index.html#works" data-tab="' + c.id + '"><span class="dimg line">' + LINE(c.id) + '</span><span>' + (LANG === 'en' ? c.en : c.ko) + '</span></a>'; }).join('') +
+          '<span class="lbl dsub" data-t="nav.base"></span>' +
+          S.bases.map(function (b) { return '<a class="drow" href="index.html#works" data-base="' + b.id + '"><span class="dimg line">' + LINE(b.id) + '</span><span>' + (LANG === 'en' ? b.en : b.ko) + '</span></a>'; }).join('') +
+        '</div>' +
+        '<div class="dpanel" id="dp-class" hidden><button type="button" class="dback" data-go="dp-root">‹ <span>Class</span></button>' +
+          '<a class="drow" href="class.html#workshop"><span class="dimg all">·</span><span data-t="nav.c1"></span></a>' +
+          '<a class="drow" href="class.html#kit"><span class="dimg all">·</span><span data-t="nav.c2"></span></a>' +
+          '<a class="drow" href="class.html#online"><span class="dimg all">·</span><span data-t="nav.c3"></span></a>' +
+          '<a class="drow" href="book.html?type=class"><span class="dimg all">→</span><span data-t="nav.c4"></span></a>' +
+        '</div>' +
+        '<div class="dpanel" id="dp-story" hidden><button type="button" class="dback" data-go="dp-root">‹ <span>Story</span></button>' +
+          '<a class="drow" href="index.html#story"><span class="dimg all">·</span><span data-t="nav.s1"></span></a>' +
+          '<a class="drow" href="https://www.youtube.com/@bium4581"><span class="dimg all">·</span><span data-t="nav.s2"></span></a>' +
+          '<a class="drow" href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product"><span class="dimg all">4.98</span><span data-t="nav.s3"></span></a>' +
+          '<a class="drow" href="index.html#faq"><span class="dimg all">?</span><span data-t="nav.s4"></span></a>' +
+        '</div>' +
+      '</div><div class="foot"><a class="btn" href="' + S.KAKAO + '" data-t="foot.8"></a></div></div></div>' +
+    /* 장바구니 */
+    '<div class="sheet" id="cart-sheet"><div class="panel"><div class="head"><b data-t="cart.h"></b><button class="close" type="button" data-close="cart-sheet">CLOSE</button></div><div class="body" id="cart-body"></div><div class="foot"><div class="cart-sum"><span data-t="cart.total"></span><span class="price" id="cart-total">0원</span></div><a class="btn" href="checkout.html" id="cart-go" data-t="cart.go"></a><button class="btn line" type="button" data-close="cart-sheet" data-t="cart.cont"></button></div></div></div>' +
+    /* 빠른 담기(메이슨 'Choose options') */
+    '<div class="sheet" id="look-sheet"><div class="qa"><div class="head"><b>SHOP THE LOOK</b><button class="close" type="button" data-close="look-sheet" aria-label="닫기">✕</button></div><div class="qa-body" id="look-body"></div></div></div>' +
+    '<div class="sheet" id="qa-sheet"><div class="qa"><div class="head"><b>옵션 선택</b><button class="close" type="button" data-close="qa-sheet" aria-label="닫기">✕</button></div><div class="qa-body" id="qa-body"></div></div></div>' +
+    /* 검색 */
+    '<div class="sheet" id="search-sheet"><div class="search-box"><form id="search-form" role="search"><input id="search-input" type="search" data-tp="search.ph" autocomplete="off"><button class="btn" type="button" data-close="search-sheet">CLOSE</button></form><div class="hits" id="search-hits"></div><p class="none" id="search-none" hidden data-t="search.none"></p></div></div>' +
+    /* 로그인 */
+    '<div class="modal" id="login-modal"><form class="box" id="login-form"><b class="lbl" data-t="login.h"></b><p class="note" data-t="login.p"></p><label><span data-t="login.name"></span><input id="login-name" required autocomplete="name"></label><label><span data-t="login.email"></span><input id="login-email" type="email" required autocomplete="email"></label><button class="btn" type="submit" data-t="login.btn"></button><button class="btn line" type="button" data-close="login-modal">CLOSE</button></form></div>' +
+    '<div class="toast" id="toast"></div>' +
+    '<a class="kakao" href="' + S.KAKAO + '" target="_blank" rel="noopener" aria-label="카카오톡 문의">' + svgIcon('kakao') + '<span class="t" data-t="kakao"></span></a>';
+  var footerHtml =
+    '<footer><div class="wrap"><div class="cols">' +
+      '<div class="brandcol"><img src="assets/brand/logo-white-160.png" alt="비움 로고"><p data-t="foot.p"></p><div class="social"><a href="https://www.youtube.com/@bium4581">YouTube</a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product">idus</a><a href="https://smartstore.naver.com/bium4581">Smart Store</a><a href="' + S.KAKAO + '">KakaoTalk</a></div></div>' +
+      '<div><span class="lbl" data-t="foot.company"></span><ul><li><a href="index.html#story" data-t="foot.1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="foot.2"></a></li><li><a href="class.html" data-t="foot.3"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="foot.4"></a></li></ul></div>' +
+      '<div><span class="lbl" data-t="foot.cs"></span><ul><li><a href="book.html?type=order" data-t="foot.5"></a></li><li><a href="book.html?type=class" data-t="foot.6"></a></li><li><a href="index.html#faq" data-t="foot.7"></a></li><li><a href="' + S.KAKAO + '" data-t="foot.8"></a></li></ul></div>' +
+      '<div><span class="lbl" data-t="foot.terms"></span><ul><li><a href="privacy.html" data-t="foot.9"></a></li><li><a href="terms.html" data-t="foot.10"></a></li></ul></div>' +
+    '</div><div class="bottom"><span>© 2026 Custom BIUM · Shoesteller</span><span>Hand-painted in Seoul</span></div></div></footer>';
+  document.body.insertAdjacentHTML('afterbegin', headerHtml);
+  document.body.insertAdjacentHTML('beforeend', footerHtml);
+
+  /* 시트 열고 닫기 */
+  function open(id) { $('#' + id).classList.add('open'); document.body.classList.add('lock'); }
+  function close(id) { $('#' + id).classList.remove('open'); document.body.classList.remove('lock'); }
+  $$('[data-close]').forEach(function (b) { b.addEventListener('click', function () { close(b.getAttribute('data-close')); }); });
+  $$('.sheet').forEach(function (s) { s.addEventListener('click', function (e) { if (e.target === s) close(s.id); }); });
+  $('#login-modal').addEventListener('click', function (e) { if (e.target.id === 'login-modal') close('login-modal'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { $$('.sheet.open, .modal.open').forEach(function (s) { close(s.id); }); } });
+  $('#open-menu').addEventListener('click', function () { dgo('dp-root'); open('menu-sheet'); });
+  function dgo(id) { $$('.dpanel').forEach(function (p) { p.hidden = p.id !== id; }); }
+  $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { dgo(b.getAttribute('data-go')); }); });
+  $('#lang-btn-m').addEventListener('click', function () { setLang(LANG === 'ko' ? 'en' : 'ko'); });
+  $('#search-btn-m').addEventListener('click', function () { $('#search-btn').click(); });
+  $$('#menu-sheet a').forEach(function (a) { a.addEventListener('click', function () { close('menu-sheet'); }); });
+  $('#lang-btn').addEventListener('click', function () { setLang(LANG === 'ko' ? 'en' : 'ko'); });
+
+  /* 장바구니 */
+  var cart = store.get('bium_cart', []);
+  function saveCart() { store.set('bium_cart', cart); renderCart(); }
+  function addToCart(id, size, qty) {
+    var p = byId(id); if (!p || !size) return;
+    var hit = cart.filter(function (c) { return c.id === id && c.size === size; })[0];
+    if (hit) hit.qty += (qty || 1); else cart.push({ id: id, size: size, qty: qty || 1 });
+    saveCart(); toast(t('cart.added') + ' · ' + nameOf(p) + ' ' + size);
+  }
+  function cartTotal() { return cart.reduce(function (s, c) { var p = byId(c.id); return s + (p ? p.price * c.qty : 0); }, 0); }
+  function renderCart() {
+    var body = $('#cart-body'), n = cart.reduce(function (s, c) { return s + c.qty; }, 0);
+    $('#cart-count').textContent = n ? String(n) : '';
+    $('#cart-total').textContent = won(cartTotal());
+    $('#cart-go').toggleAttribute('disabled', !cart.length);
+    if (!cart.length) { body.innerHTML = '<p class="empty">' + t('cart.empty') + '</p>'; return; }
+    body.innerHTML = cart.map(function (c, i) {
+      var p = byId(c.id); if (!p) return '';
+      return '<div class="cart-item"><img src="' + p.photos[0] + '" alt=""><div><b>' + nameOf(p) + '</b><span class="meta">' + t('cart.size') + ' ' + c.size + ' · ' + p.sub + '</span><div class="qty"><button type="button" data-q="-1" data-i="' + i + '">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '">+</button></div></div><div style="text-align:right"><span class="price">' + won(p.price * c.qty) + '</span><br><button class="rm" type="button" data-rm="' + i + '">삭제</button></div></div>';
+    }).join('');
+    $$('[data-q]', body).forEach(function (b) { b.addEventListener('click', function () { var i = +b.getAttribute('data-i'); cart[i].qty = Math.max(1, cart[i].qty + (+b.getAttribute('data-q'))); saveCart(); }); });
+    $$('[data-rm]', body).forEach(function (b) { b.addEventListener('click', function () { cart.splice(+b.getAttribute('data-rm'), 1); saveCart(); }); });
+  }
+  $('#cart-btn').addEventListener('click', function () { renderCart(); open('cart-sheet'); });
+  var toastTimer;
+  function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove('on'); }, 1800); }
+
+  /* 상품 카드 */
+  function cardHtml(p) {
+    var alt = p.photos[1] ? '<img class="alt ' + (p.fit === 'contain' ? 'contain' : '') + '" src="' + p.photos[1] + '" alt="" loading="lazy">' : '';
+    var sizes = S.SIZES.map(function (s) { return '<button type="button" data-add="' + p.id + '" data-size="' + s + '">' + s + '</button>'; }).join('');
+    return '<article class="card" data-id="' + p.id + '" data-cat="' + p.cat + '" data-base="' + p.base + '">' +
+      '<a class="ph" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="badge">New</span>' : '') +
+        '<img class="' + (p.fit === 'contain' ? 'contain' : '') + '" src="' + p.photos[0] + '" alt="' + p.name + '" loading="lazy">' + alt +
+        '<div class="sizes" aria-label="사이즈"><span class="lbl">' + t('works.size') + '</span>' + sizes + '</div></a>' +
+      '<h3><a href="product.html?id=' + p.id + '">' + nameOf(p) + '</a></h3><span class="sub">' + p.sub + (p.reviews ? ' · 후기 ' + p.reviews : '') + '</span><span class="price">' + won(p.price) + '</span><button type="button" class="qadd" data-qa="' + p.id + '" aria-label="' + p.name + ' 사이즈 골라 담기">+</button></article>';
+  }
+  function quickAdd(id) {
+    var p = byId(id); if (!p) return;
+    $('#qa-body').innerHTML = '<div class="qa-ph"><img src="' + p.photos[0] + '" alt="" class="' + (p.fit === 'contain' ? 'contain' : '') + '"></div><p class="qa-name">' + nameOf(p) + '</p><p class="qa-price price">' + won(p.price) + '</p>' +
+      '<div class="qa-opt"><label for="qa-size">사이즈 (mm)</label><select id="qa-size"><option value="">사이즈를 골라 주세요</option>' + S.SIZES.map(function (z) { return '<option>' + z + '</option>'; }).join('') + '</select>' +
+      '<button class="btn wide" type="button" id="qa-go" disabled>사이즈를 골라 주세요</button><a class="link" href="product.html?id=' + p.id + '">자세히 보기</a></div>';
+    var sel = $('#qa-size'), go = $('#qa-go');
+    sel.addEventListener('change', function () { go.disabled = !sel.value; go.textContent = sel.value ? t('pd.add') : '사이즈를 골라 주세요'; });
+    go.addEventListener('click', function () { addToCart(p.id, +sel.value, 1); close('qa-sheet'); });
+    open('qa-sheet');
+  }
+  document.addEventListener('click', function (e) {
+    var q = e.target.closest('[data-qa]'); if (q) { e.preventDefault(); quickAdd(q.getAttribute('data-qa')); return; }
+    var b = e.target.closest('[data-add]'); if (!b) return;
+    e.preventDefault(); addToCart(b.getAttribute('data-add'), +b.getAttribute('data-size'), 1);
+  });
+
+  /* 검색 */
+  function doSearch(q) {
+    q = (q || '').trim().toLowerCase();
+    var hits = q ? S.products.filter(function (p) { return (p.name + ' ' + (p.en || '') + ' ' + p.sub + ' ' + p.desc).toLowerCase().indexOf(q) >= 0; }) : S.products.slice(0, 5);
+    $('#search-hits').innerHTML = hits.map(cardHtml).join('');
+    $('#search-none').hidden = !!hits.length;
+  }
+  $('#search-btn').addEventListener('click', function () { open('search-sheet'); doSearch(''); setTimeout(function () { $('#search-input').focus(); }, 50); });
+  $('#search-input').addEventListener('input', function (e) { doSearch(e.target.value); });
+  $('#search-form').addEventListener('submit', function (e) { e.preventDefault(); });
+
+  /* 로그인 */
+  var user = store.get('bium_user', null);
+  function renderUser() { $('#login-txt').textContent = user ? user.name : t('util.login'); }
+  $('#login-btn').addEventListener('click', function () { location.href = 'account.html'; });
+  $('#login-form').addEventListener('submit', function (e) {
+    e.preventDefault(); user = { name: $('#login-name').value.trim(), email: $('#login-email').value.trim(), at: Date.now() };
+    store.set('bium_user', user); renderUser(); close('login-modal'); toast(t('login.hi') + ', ' + user.name);
+  });
+
+  applyLang(document); renderUser(); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN · English' : 'KO · 한국어'; }); $('#lang-btn').textContent = LANG === 'ko' ? 'EN' : 'KO';
+
+  /* 수업 예약: 네이버 플레이스가 연결되면 그쪽으로 */
+  $$('a[href="book.html?type=class"]').forEach(function (a) { if (S.NAVER_BOOKING) { a.href = S.NAVER_BOOKING; a.target = '_blank'; a.rel = 'noopener'; } else { a.href = 'class.html#workshop'; } });
+
+  /* 신청서 보내기: 서버(두뇌)가 받으면 서버로, 못 받으면(오픈 전·미리보기) 내용을 복사해 카카오톡으로 */
+  function send(kind, payload, text, done) {
+    var api = (S.API_BASE || '').replace(/\/$/, '') + '/s-api/shoesteller/' + kind;
+    function viaKakao() {
+      var copied = false;
+      function fin() { done({ via: 'kakao', copied: copied, text: text }); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { copied = true; fin(); }, fin); else fin();
+    }
+    if (!S.API_BASE) return viaKakao();
+    var ctl = window.AbortController ? new AbortController() : null; var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
+    fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { clearTimeout(timer); if (j && j.ok && j.collecting !== false) done({ via: 'server', data: j }); else viaKakao(); })
+      .catch(function () { clearTimeout(timer); viaKakao(); });
+  }
+  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, addToCart: addToCart, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
+})();
