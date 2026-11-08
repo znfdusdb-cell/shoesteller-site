@@ -1,0 +1,2805 @@
+{
+ "desktop": {
+  "home": {
+   "vars": {
+    "--container-max-width": "100%",
+    "--container-xxs-max-width": "27.5rem",
+    "--container-xs-max-width": "42.5rem",
+    "--container-sm-max-width": "61.25rem",
+    "--container-md-max-width": "71.875rem",
+    "--container-lg-max-width": "78.75rem",
+    "--container-xl-max-width": "85rem",
+    "--container-gutter": "1.25rem",
+    "--section-vertical-spacing": "3rem",
+    "--section-vertical-spacing-tight": "2.5rem",
+    "--section-stack-gap": "2.5rem",
+    "--section-stack-gap-tight": "2.25rem",
+    "--form-gap": "1.25rem",
+    "--fieldset-gap": "1rem",
+    "--form-control-gap": "0.625rem",
+    "--checkbox-control-gap": "0.75rem",
+    "--input-padding-block": "0.65rem",
+    "--input-padding-inline": "0.8rem",
+    "--checkbox-size": "0.875rem",
+    "--sticky-area-height": "calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px) + var(--header-is-sticky, 0) * var(--header-height, 0px))",
+    "--transform-logical-flip": "1",
+    "--transform-origin-start": "left",
+    "--transform-origin-end": "right",
+    "--heading-font-family": "\"Instrument Sans\", sans-serif",
+    "--heading-font-weight": "400",
+    "--heading-font-style": "normal",
+    "--heading-text-transform": "normal",
+    "--heading-letter-spacing": "0.18em",
+    "--text-font-family": "\"Instrument Sans\", sans-serif",
+    "--text-font-weight": "400",
+    "--text-font-style": "normal",
+    "--text-letter-spacing": "0.0em",
+    "--button-font": "var(--text-font-style) var(--text-font-weight) var(--text-sm) / 1.65 var(--text-font-family)",
+    "--button-text-transform": "uppercase",
+    "--button-letter-spacing": "0.18em",
+    "--text-heading-size-factor": "1",
+    "--text-h1": "max(0.6875rem, clamp(1.375rem, 1.146341463414634rem + 0.975609756097561vw, 2rem) * var(--text-heading-size-factor))",
+    "--text-h2": "max(0.6875rem, clamp(1.25rem, 1.0670731707317074rem + 0.7804878048780488vw, 1.75rem) * var(--text-heading-size-factor))",
+    "--text-h3": "max(0.6875rem, clamp(1.125rem, 1.0335365853658536rem + 0.3902439024390244vw, 1.375rem) * var(--text-heading-size-factor))",
+    "--text-h4": "max(0.6875rem, clamp(1rem, 0.9542682926829268rem + 0.1951219512195122vw, 1.125rem) * var(--text-heading-size-factor))",
+    "--text-h5": "calc(0.875rem * var(--text-heading-size-factor))",
+    "--text-h6": "calc(0.75rem * var(--text-heading-size-factor))",
+    "--text-xs": "0.75rem",
+    "--text-sm": "0.8125rem",
+    "--text-base": "0.875rem",
+    "--text-lg": "1.0rem",
+    "--text-xl": "1.125rem",
+    "--rounded-full": "9999px",
+    "--button-border-radius": "0.25rem",
+    "--input-border-radius": "0.0rem",
+    "--shadow-sm": "0 2px 8px rgb(0 0 0 / 0.05)",
+    "--shadow": "0 5px 15px rgb(0 0 0 / 0.05)",
+    "--shadow-md": "0 5px 30px rgb(0 0 0 / 0.05)",
+    "--shadow-block": "px px px rgb(var(--text-primary) / 0.0)",
+    "--checkmark-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/checkmark.svg?v=77552481021870063511789450416)",
+    "--cursor-zoom-in-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/cursor-zoom-in.svg?v=163592912701316517611789450416)",
+    "--page-overlay": "0 0 0 / 0.4",
+    "--page-background": "",
+    "--on-sale-text": "128 0 0",
+    "--on-sale-badge-background": "128 0 0",
+    "--on-sale-badge-text": "255 255 255",
+    "--sold-out-badge-background": "31 21 17",
+    "--sold-out-badge-text": "255 255 255",
+    "--custom-badge-background": "31 21 17",
+    "--custom-badge-text": "255 255 255",
+    "--star-color": "28 28 28",
+    "--success-background": "212 227 203",
+    "--success-text": "48 122 7",
+    "--warning-background": "253 241 224",
+    "--warning-text": "237 138 0",
+    "--error-background": "225 194 194",
+    "--error-text": "128 0 0",
+    "--header-is-sticky": "1"
+   },
+   "body": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgb(28, 28, 28)",
+    "backgroundColor": "rgb(250, 247, 241)",
+    "w": 1440,
+    "h": 6359
+   },
+   "h1": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "28px",
+    "fontWeight": "700",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "46.2px",
+    "color": "rgb(28, 28, 28)",
+    "w": 230,
+    "h": 16
+   },
+   "h2": null,
+   "h3": null,
+   "h4": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "16px",
+    "fontWeight": "600",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "24px",
+    "color": "rgb(0, 0, 0)",
+    "w": 0,
+    "h": 0
+   },
+   "p": {
+    "fontFamily": "hankengrotestlight",
+    "fontSize": "15px",
+    "fontWeight": "400",
+    "letterSpacing": "0.1px",
+    "textTransform": "none",
+    "lineHeight": "24px",
+    "color": "rgb(31, 21, 17)",
+    "w": 0,
+    "h": 0
+   },
+   "header": {
+    "position": "sticky",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "paddingLeft": "0px",
+    "paddingRight": "0px",
+    "borderBottomWidth": "0px",
+    "w": 1440,
+    "h": 75
+   },
+   "headerNav": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "2.16px",
+    "textTransform": "uppercase",
+    "lineHeight": "20.4px",
+    "color": "rgb(0, 0, 0)",
+    "w": 135,
+    "h": 15
+   },
+   "label": {
+    "fontFamily": "sans-serif",
+    "fontSize": "15px",
+    "fontWeight": "400",
+    "letterSpacing": "0.1px",
+    "textTransform": "none",
+    "lineHeight": "24px",
+    "color": "rgb(31, 21, 17)",
+    "w": 0,
+    "h": 0
+   },
+   "secs": [
+    {
+     "id": "sections--27926043361665__header",
+     "cls": "shopify-section-group-header-group shopify-section--header",
+     "top": 0,
+     "h": 75,
+     "texts": [
+      "H1:Mason Garments",
+      "A:Mason Garments",
+      "BUTTON:Open navigation menu",
+      "A:Lodge",
+      "BUTTON:EN",
+      "P:Language",
+      "BUTTON:English",
+      "BUTTON:Deutsch"
+     ],
+     "media": 78,
+     "layout": {
+      "cls": "header color-scheme color-scheme--scheme-1",
+      "display": "grid",
+      "cols": "230px 790.219px 243.781px",
+      "gap": "25.6px 40px",
+      "kids": 7
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__slideshow",
+     "cls": "shopify-section--slideshow",
+     "top": 75,
+     "h": 825,
+     "texts": [
+      "P:NEW ARRIVAL",
+      "A:SHOP ATLANTIS"
+     ],
+     "media": 4,
+     "layout": {
+      "cls": "content-over-media content-over-media--fill",
+      "display": "grid",
+      "cols": "[full-start] 0px [content-start] 1344px [content-end] 0px [full-end]",
+      "gap": "48px",
+      "kids": 3
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__featured-collections",
+     "cls": "shopify-section--featured-collections",
+     "top": 900,
+     "h": 745,
+     "texts": [
+      "P:NEW ARRIVALS",
+      "BUTTON:Men",
+      "BUTTON:Women",
+      "A:View all",
+      "BUTTON:Choose options",
+      "A:Atlantis Canovaccio Beige",
+      "A:Sale price\n250 EUR",
+      "BUTTON:Add to cart\n              36"
+     ],
+     "media": 98,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "1440px",
+      "gap": "60px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__slideshow_gUxQbp",
+     "cls": "shopify-section--slideshow",
+     "top": 1645,
+     "h": 825,
+     "texts": [
+      "P:Atlantis sneakers",
+      "A:SHOP NOW"
+     ],
+     "media": 2,
+     "layout": {
+      "cls": "content-over-media content-over-media--fill",
+      "display": "grid",
+      "cols": "[full-start] 0px [content-start] 1344px [content-end] 0px [full-end]",
+      "gap": "48px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__80392c22-df1f-417b-af11-b19859c8718e",
+     "cls": "shopify-section--featured-collections",
+     "top": 2470,
+     "h": 699,
+     "texts": [
+      "P:EXPLORE CLOTHING",
+      "BUTTON:Choose options",
+      "A:Arch Logo Zip-Up Hoodie Blue",
+      "A:Sale price\n220 EUR",
+      "BUTTON:Add to cart\n              S",
+      "BUTTON:Add to cart\n              M",
+      "BUTTON:Add to cart\n              L",
+      "BUTTON:Add to cart\n              XL"
+     ],
+     "media": 32,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "1440px",
+      "gap": "60px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__shop-the-look",
+     "cls": "shopify-section--shop-the-look",
+     "top": 3169,
+     "h": 755,
+     "texts": [
+      "P:SHOP OUR LOOKS",
+      "BUTTON:Go to item 1",
+      "BUTTON:Go to item 2",
+      "P:Shop the look",
+      "BUTTON:Choose options",
+      "A:Atlantis Canovaccio Blue",
+      "A:Sale price250 EUR",
+      "BUTTON:Add to cart\n              36"
+     ],
+     "media": 106,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "1344px",
+      "gap": "60px",
+      "kids": 3
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px 0px 60px"
+    },
+    {
+     "id": "template--27926042116481__before-after",
+     "cls": "shopify-section--before-after-image",
+     "top": 3924,
+     "h": 879,
+     "texts": [
+      "P:CHOOSE YOUR COLOR",
+      "P:Atlantis Canovaccio Beige",
+      "A:View product",
+      "P:Atlantis Canovaccio Blue",
+      "A:View product"
+     ],
+     "media": 2,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "1440px",
+      "gap": "60px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__spacer_qCUXRe",
+     "cls": "shopify-section",
+     "top": 4803,
+     "h": 30,
+     "texts": [],
+     "media": 0,
+     "layout": null,
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__section_pillars_A9bcVn",
+     "cls": "shopify-section",
+     "top": 4833,
+     "h": 985,
+     "texts": [
+      "P:DISCOVER OUR CLOTHING"
+     ],
+     "media": 3,
+     "layout": {
+      "cls": "section-stack pillar-stack",
+      "display": "grid",
+      "cols": "1440px",
+      "gap": "0px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "sections--27926043328897__footer",
+     "cls": "shopify-section-group-footer-group shopify-section--footer",
+     "top": 5818,
+     "h": 540,
+     "texts": [
+      "P:NEWSLETTER",
+      "P:Sign up to our newsletter to receive exclusive off",
+      "BUTTON:SUBSCRIBE",
+      "P:COMPANY",
+      "A:About Us",
+      "A:Craftsmanship",
+      "A:Careers",
+      "A:Rotterdam store"
+     ],
+     "media": 13,
+     "layout": {
+      "cls": "footer__inner",
+      "display": "grid",
+      "cols": "1344px",
+      "gap": "48px normal",
+      "kids": 4
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    }
+   ],
+   "btn": [
+    {
+     "cls": "button",
+     "txt": "SHOP ATLANTIS",
+     "fontFamily": "\"Instrument Sans\", sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(0, 0, 0)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(250, 247, 241)",
+     "padding": "16px 32px",
+     "w": 197,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "SHOP NOW",
+     "fontFamily": "\"Instrument Sans\", sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(0, 0, 0)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(250, 247, 241)",
+     "padding": "16px 32px",
+     "w": 159,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "VIEW PRODUCT",
+     "fontFamily": "\"Instrument Sans\", sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 195,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "",
+     "fontFamily": "\"Instrument Sans\", sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 195,
+     "h": 55
+    }
+   ],
+   "cont": [
+    {
+     "cls": "header_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 1440,
+     "h": 75
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "16px",
+     "marginLeft": "0px",
+     "w": 130,
+     "h": 444
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "16px",
+     "marginLeft": "0px",
+     "w": 130,
+     "h": 286
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "16px",
+     "marginLeft": "0px",
+     "w": 130,
+     "h": 31
+    },
+    {
+     "cls": "container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "calc(48px)",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "empty-cart_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "slideshow",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 1440,
+     "h": 825
+    },
+    {
+     "cls": "",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    }
+   ],
+   "vw": 1440,
+   "fonts": [
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500"
+   ]
+  },
+  "homecard": {
+   "cardCls": "product-card",
+   "card": [
+    351,
+    480
+   ],
+   "img": [
+    351,
+    351,
+    "1.000"
+   ],
+   "kids": [
+    {
+     "tag": "SPAN",
+     "cls": "badge badge--custom",
+     "txt": "NEW",
+     "fs": "10px",
+     "ls": "1.8px",
+     "tt": "uppercase",
+     "ff": "hankengrotestregular",
+     "x": 24,
+     "y": 24
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Choose options",
+     "fs": "14px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "A",
+     "cls": "product-title h6 ",
+     "txt": "Atlantis Canovaccio Beige",
+     "fs": "12px",
+     "ls": "2.16px",
+     "tt": "none",
+     "ff": "\"Instrument Sans\", sans-serif",
+     "x": 24,
+     "y": 436
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Sale price",
+     "fs": "12px",
+     "ls": "2.16px",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 262,
+     "y": 435
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 0,
+     "y": -1105
+    }
+   ],
+   "btns": [
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "product-card__quick-add-button",
+     "label": "Choose options",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              36",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              37",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              38",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              39",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              40",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              41",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              42",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              43",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              44",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              45",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              46",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              47",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1105,
+     "radius": "0px"
+    }
+   ],
+   "imgs": 6
+  },
+  "coll_href": "/collections/atlantis",
+  "collcard": {
+   "cardCls": "product-card",
+   "card": [
+    327,
+    480
+   ],
+   "img": [
+    327,
+    327,
+    "1.000"
+   ],
+   "kids": [
+    {
+     "tag": "SPAN",
+     "cls": "badge badge--custom",
+     "txt": "NEW",
+     "fs": "10px",
+     "ls": "1.8px",
+     "tt": "uppercase",
+     "ff": "hankengrotestregular",
+     "x": 24,
+     "y": 24
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Choose options",
+     "fs": "14px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "A",
+     "cls": "product-title h6 ",
+     "txt": "Atlantis Canovaccio Blue",
+     "fs": "12px",
+     "ls": "2.16px",
+     "tt": "none",
+     "ff": "\"Instrument Sans\", sans-serif",
+     "x": 24,
+     "y": 436
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Sale price",
+     "fs": "12px",
+     "ls": "2.16px",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 238,
+     "y": 435
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Add to cart",
+     "fs": "12px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": -48,
+     "y": -182
+    }
+   ],
+   "btns": [
+    {
+     "cls": "glide__bullet glide__bullet--active",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "product-card__quick-add-button",
+     "label": "Choose options",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              36",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              37",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              38",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              39",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              40",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              41",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              42",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              43",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              44",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              45",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              46",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    },
+    {
+     "cls": "",
+     "label": "Add to cart\n              47",
+     "w": 0,
+     "h": 0,
+     "x": -48,
+     "y": -182,
+     "radius": "0px"
+    }
+   ],
+   "imgs": 10
+  },
+  "prod_href": "/products/atlantis-canovaccio-blue",
+  "product": {
+   "vars": {
+    "--container-max-width": "100%",
+    "--container-xxs-max-width": "27.5rem",
+    "--container-xs-max-width": "42.5rem",
+    "--container-sm-max-width": "61.25rem",
+    "--container-md-max-width": "71.875rem",
+    "--container-lg-max-width": "78.75rem",
+    "--container-xl-max-width": "85rem",
+    "--container-gutter": "1.25rem",
+    "--section-vertical-spacing": "3rem",
+    "--section-vertical-spacing-tight": "2.5rem",
+    "--section-stack-gap": "2.5rem",
+    "--section-stack-gap-tight": "2.25rem",
+    "--form-gap": "1.25rem",
+    "--fieldset-gap": "1rem",
+    "--form-control-gap": "0.625rem",
+    "--checkbox-control-gap": "0.75rem",
+    "--input-padding-block": "0.65rem",
+    "--input-padding-inline": "0.8rem",
+    "--checkbox-size": "0.875rem",
+    "--sticky-area-height": "calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px) + var(--header-is-sticky, 0) * var(--header-height, 0px))",
+    "--transform-logical-flip": "1",
+    "--transform-origin-start": "left",
+    "--transform-origin-end": "right",
+    "--heading-font-family": "\"Instrument Sans\", sans-serif",
+    "--heading-font-weight": "400",
+    "--heading-font-style": "normal",
+    "--heading-text-transform": "normal",
+    "--heading-letter-spacing": "0.18em",
+    "--text-font-family": "\"Instrument Sans\", sans-serif",
+    "--text-font-weight": "400",
+    "--text-font-style": "normal",
+    "--text-letter-spacing": "0.0em",
+    "--button-font": "var(--text-font-style) var(--text-font-weight) var(--text-sm) / 1.65 var(--text-font-family)",
+    "--button-text-transform": "uppercase",
+    "--button-letter-spacing": "0.18em",
+    "--text-heading-size-factor": "1",
+    "--text-h1": "max(0.6875rem, clamp(1.375rem, 1.146341463414634rem + 0.975609756097561vw, 2rem) * var(--text-heading-size-factor))",
+    "--text-h2": "max(0.6875rem, clamp(1.25rem, 1.0670731707317074rem + 0.7804878048780488vw, 1.75rem) * var(--text-heading-size-factor))",
+    "--text-h3": "max(0.6875rem, clamp(1.125rem, 1.0335365853658536rem + 0.3902439024390244vw, 1.375rem) * var(--text-heading-size-factor))",
+    "--text-h4": "max(0.6875rem, clamp(1rem, 0.9542682926829268rem + 0.1951219512195122vw, 1.125rem) * var(--text-heading-size-factor))",
+    "--text-h5": "calc(0.875rem * var(--text-heading-size-factor))",
+    "--text-h6": "calc(0.75rem * var(--text-heading-size-factor))",
+    "--text-xs": "0.75rem",
+    "--text-sm": "0.8125rem",
+    "--text-base": "0.875rem",
+    "--text-lg": "1.0rem",
+    "--text-xl": "1.125rem",
+    "--rounded-full": "9999px",
+    "--button-border-radius": "0.25rem",
+    "--input-border-radius": "0.0rem",
+    "--shadow-sm": "0 2px 8px rgb(0 0 0 / 0.05)",
+    "--shadow": "0 5px 15px rgb(0 0 0 / 0.05)",
+    "--shadow-md": "0 5px 30px rgb(0 0 0 / 0.05)",
+    "--shadow-block": "px px px rgb(var(--text-primary) / 0.0)",
+    "--checkmark-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/checkmark.svg?v=77552481021870063511789450416)",
+    "--cursor-zoom-in-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/cursor-zoom-in.svg?v=163592912701316517611789450416)",
+    "--page-overlay": "0 0 0 / 0.4",
+    "--page-background": "",
+    "--on-sale-text": "128 0 0",
+    "--on-sale-badge-background": "128 0 0",
+    "--on-sale-badge-text": "255 255 255",
+    "--sold-out-badge-background": "31 21 17",
+    "--sold-out-badge-text": "255 255 255",
+    "--custom-badge-background": "31 21 17",
+    "--custom-badge-text": "255 255 255",
+    "--star-color": "28 28 28",
+    "--success-background": "212 227 203",
+    "--success-text": "48 122 7",
+    "--warning-background": "253 241 224",
+    "--warning-text": "237 138 0",
+    "--error-background": "225 194 194",
+    "--error-text": "128 0 0",
+    "--header-is-sticky": "1"
+   },
+   "body": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgb(28, 28, 28)",
+    "backgroundColor": "rgb(250, 247, 241)",
+    "w": 1440,
+    "h": 5320
+   },
+   "h1": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "32px",
+    "fontWeight": "400",
+    "letterSpacing": "5.76px",
+    "textTransform": "none",
+    "lineHeight": "41.6px",
+    "color": "rgb(28, 28, 28)",
+    "w": 525,
+    "h": 42
+   },
+   "h2": null,
+   "h3": null,
+   "h4": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "16px",
+    "fontWeight": "600",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "24px",
+    "color": "rgb(0, 0, 0)",
+    "w": 0,
+    "h": 0
+   },
+   "p": {
+    "fontFamily": "hankengrotestlight",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "2.16px",
+    "textTransform": "uppercase",
+    "lineHeight": "20.4px",
+    "color": "rgb(0, 0, 0)",
+    "w": 81,
+    "h": 30
+   },
+   "header": {
+    "position": "sticky",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "paddingLeft": "0px",
+    "paddingRight": "0px",
+    "borderBottomWidth": "0px",
+    "w": 1440,
+    "h": 75
+   },
+   "headerNav": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "2.16px",
+    "textTransform": "uppercase",
+    "lineHeight": "20.4px",
+    "color": "rgb(0, 0, 0)",
+    "w": 135,
+    "h": 15
+   },
+   "label": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgba(28, 28, 28, 0.5)",
+    "w": 16,
+    "h": 23
+   },
+   "secs": [
+    {
+     "id": "sections--27926043361665__header",
+     "cls": "shopify-section-group-header-group shopify-section--header",
+     "top": 0,
+     "h": 75,
+     "texts": [
+      "A:Mason Garments",
+      "BUTTON:Open navigation menu",
+      "A:Lodge",
+      "BUTTON:EN",
+      "P:Language",
+      "BUTTON:English",
+      "BUTTON:Deutsch",
+      "BUTTON:Nederlands"
+     ],
+     "media": 78,
+     "layout": {
+      "cls": "header color-scheme color-scheme--scheme-1",
+      "display": "grid",
+      "cols": "230px 790.219px 243.781px",
+      "gap": "25.6px 40px",
+      "kids": 7
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926043230593__main",
+     "cls": "shopify-section--main-product",
+     "top": 75,
+     "h": 4004,
+     "texts": [
+      "BUTTON:Zoom picture",
+      "BUTTON:Go to item 1",
+      "BUTTON:Go to item 2",
+      "BUTTON:Go to item 3",
+      "BUTTON:Go to item 4",
+      "BUTTON:Go to item 5",
+      "P:It looks like you've added multiple sizes of the s",
+      "BUTTON:CLOSE"
+     ],
+     "media": 13,
+     "layout": {
+      "cls": "product",
+      "display": "grid",
+      "cols": "787.188px 524.812px",
+      "gap": "80px",
+      "kids": 8
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926043230593__related-products",
+     "cls": "shopify-section--related-products",
+     "top": 4079,
+     "h": 700,
+     "texts": [
+      "P:YOU MAY ALSO LIKE",
+      "BUTTON:Choose options",
+      "A:Atlantis Originale Beige",
+      "A:Sale price\n250 EUR",
+      "BUTTON:Add to cart\n              36",
+      "BUTTON:Add to cart\n              37",
+      "BUTTON:Add to cart\n              38",
+      "BUTTON:Add to cart\n              39"
+     ],
+     "media": 44,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "1344px",
+      "gap": "60px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "sections--27926043328897__footer",
+     "cls": "shopify-section-group-footer-group shopify-section--footer",
+     "top": 4779,
+     "h": 540,
+     "texts": [
+      "P:NEWSLETTER",
+      "P:Sign up to our newsletter to receive exclusive off",
+      "BUTTON:SUBSCRIBE",
+      "P:COMPANY",
+      "A:About Us",
+      "A:Craftsmanship",
+      "A:Careers",
+      "A:Rotterdam store"
+     ],
+     "media": 13,
+     "layout": {
+      "cls": "footer__inner",
+      "display": "grid",
+      "cols": "1344px",
+      "gap": "48px normal",
+      "kids": 4
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    }
+   ],
+   "btn": [
+    {
+     "cls": "cta-btn button w-full",
+     "txt": "CLOSE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "2.16px",
+     "textTransform": "uppercase",
+     "lineHeight": "19.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "10px 20px",
+     "w": 366,
+     "h": 42
+    },
+    {
+     "cls": "button w-full",
+     "txt": "SELECT YOUR SIZE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 525,
+     "h": 55
+    },
+    {
+     "cls": "button disabled",
+     "txt": "",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 226,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "SUBSCRIBE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(28, 28, 28)",
+     "padding": "16px 32px",
+     "w": 162,
+     "h": 55
+    }
+   ],
+   "cont": [
+    {
+     "cls": "header_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 1440,
+     "h": 75
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "16px",
+     "marginLeft": "0px",
+     "w": 130,
+     "h": 444
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "16px",
+     "marginLeft": "0px",
+     "w": 130,
+     "h": 286
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "16px",
+     "marginLeft": "0px",
+     "w": 130,
+     "h": 31
+    },
+    {
+     "cls": "container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "calc(48px)",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "empty-cart_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "section-spacing section-spacing--tight color-scheme color-sc",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 1440,
+     "h": 4004
+    }
+   ],
+   "vw": 1440,
+   "fonts": [
+    "Instrument Sans 400",
+    "Instrument Sans 400",
+    "Instrument Sans 400",
+    "Instrument Sans 400",
+    "Instrument Sans 700",
+    "Instrument Sans 700",
+    "Hankengrotestreg 400",
+    "hankengrotestlight 300",
+    "hankengrotestregular 400"
+   ]
+  },
+  "atc_txt": "SELECT YOUR SIZE",
+  "cart_open": ""
+ },
+ "mobile": {
+  "home": {
+   "vars": {
+    "--container-max-width": "100%",
+    "--container-xxs-max-width": "27.5rem",
+    "--container-xs-max-width": "42.5rem",
+    "--container-sm-max-width": "61.25rem",
+    "--container-md-max-width": "71.875rem",
+    "--container-lg-max-width": "78.75rem",
+    "--container-xl-max-width": "85rem",
+    "--container-gutter": "1.25rem",
+    "--section-vertical-spacing": "3rem",
+    "--section-vertical-spacing-tight": "2.5rem",
+    "--section-stack-gap": "2.5rem",
+    "--section-stack-gap-tight": "2.25rem",
+    "--form-gap": "1.25rem",
+    "--fieldset-gap": "1rem",
+    "--form-control-gap": "0.625rem",
+    "--checkbox-control-gap": "0.75rem",
+    "--input-padding-block": "0.65rem",
+    "--input-padding-inline": "0.8rem",
+    "--checkbox-size": "0.875rem",
+    "--sticky-area-height": "calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px) + var(--header-is-sticky, 0) * var(--header-height, 0px))",
+    "--transform-logical-flip": "1",
+    "--transform-origin-start": "left",
+    "--transform-origin-end": "right",
+    "--heading-font-family": "\"Instrument Sans\", sans-serif",
+    "--heading-font-weight": "400",
+    "--heading-font-style": "normal",
+    "--heading-text-transform": "normal",
+    "--heading-letter-spacing": "0.18em",
+    "--text-font-family": "\"Instrument Sans\", sans-serif",
+    "--text-font-weight": "400",
+    "--text-font-style": "normal",
+    "--text-letter-spacing": "0.0em",
+    "--button-font": "var(--text-font-style) var(--text-font-weight) var(--text-sm) / 1.65 var(--text-font-family)",
+    "--button-text-transform": "uppercase",
+    "--button-letter-spacing": "0.18em",
+    "--text-heading-size-factor": "1",
+    "--text-h1": "max(0.6875rem, clamp(1.375rem, 1.146341463414634rem + 0.975609756097561vw, 2rem) * var(--text-heading-size-factor))",
+    "--text-h2": "max(0.6875rem, clamp(1.25rem, 1.0670731707317074rem + 0.7804878048780488vw, 1.75rem) * var(--text-heading-size-factor))",
+    "--text-h3": "max(0.6875rem, clamp(1.125rem, 1.0335365853658536rem + 0.3902439024390244vw, 1.375rem) * var(--text-heading-size-factor))",
+    "--text-h4": "max(0.6875rem, clamp(1rem, 0.9542682926829268rem + 0.1951219512195122vw, 1.125rem) * var(--text-heading-size-factor))",
+    "--text-h5": "calc(0.875rem * var(--text-heading-size-factor))",
+    "--text-h6": "calc(0.75rem * var(--text-heading-size-factor))",
+    "--text-xs": "0.75rem",
+    "--text-sm": "0.8125rem",
+    "--text-base": "0.875rem",
+    "--text-lg": "1.0rem",
+    "--text-xl": "1.125rem",
+    "--rounded-full": "9999px",
+    "--button-border-radius": "0.25rem",
+    "--input-border-radius": "0.0rem",
+    "--shadow-sm": "0 2px 8px rgb(0 0 0 / 0.05)",
+    "--shadow": "0 5px 15px rgb(0 0 0 / 0.05)",
+    "--shadow-md": "0 5px 30px rgb(0 0 0 / 0.05)",
+    "--shadow-block": "px px px rgb(var(--text-primary) / 0.0)",
+    "--checkmark-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/checkmark.svg?v=77552481021870063511789450416)",
+    "--cursor-zoom-in-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/cursor-zoom-in.svg?v=163592912701316517611789450416)",
+    "--page-overlay": "0 0 0 / 0.4",
+    "--page-background": "",
+    "--on-sale-text": "128 0 0",
+    "--on-sale-badge-background": "128 0 0",
+    "--on-sale-badge-text": "255 255 255",
+    "--sold-out-badge-background": "31 21 17",
+    "--sold-out-badge-text": "255 255 255",
+    "--custom-badge-background": "31 21 17",
+    "--custom-badge-text": "255 255 255",
+    "--star-color": "28 28 28",
+    "--success-background": "212 227 203",
+    "--success-text": "48 122 7",
+    "--warning-background": "253 241 224",
+    "--warning-text": "237 138 0",
+    "--error-background": "225 194 194",
+    "--error-text": "128 0 0",
+    "--header-is-sticky": "1"
+   },
+   "body": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgb(28, 28, 28)",
+    "backgroundColor": "rgb(250, 247, 241)",
+    "w": 390,
+    "h": 7636
+   },
+   "h1": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "28px",
+    "fontWeight": "700",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "46.2px",
+    "color": "rgb(28, 28, 28)",
+    "w": 160,
+    "h": 11
+   },
+   "h2": null,
+   "h3": null,
+   "h4": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "14px",
+    "fontWeight": "700",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgb(28, 28, 28)",
+    "w": 0,
+    "h": 0
+   },
+   "p": {
+    "fontFamily": "hankengrotestlight",
+    "fontSize": "15px",
+    "fontWeight": "400",
+    "letterSpacing": "0.1px",
+    "textTransform": "none",
+    "lineHeight": "24px",
+    "color": "rgb(31, 21, 17)",
+    "w": 0,
+    "h": 0
+   },
+   "header": {
+    "position": "sticky",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "paddingLeft": "0px",
+    "paddingRight": "0px",
+    "borderBottomWidth": "0px",
+    "w": 390,
+    "h": 54
+   },
+   "headerNav": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "2.16px",
+    "textTransform": "uppercase",
+    "lineHeight": "20.4px",
+    "color": "rgb(0, 0, 0)",
+    "w": 0,
+    "h": 0
+   },
+   "label": {
+    "fontFamily": "sans-serif",
+    "fontSize": "15px",
+    "fontWeight": "400",
+    "letterSpacing": "0.1px",
+    "textTransform": "none",
+    "lineHeight": "24px",
+    "color": "rgb(31, 21, 17)",
+    "w": 0,
+    "h": 0
+   },
+   "secs": [
+    {
+     "id": "sections--27926043361665__header",
+     "cls": "shopify-section-group-header-group shopify-section--header",
+     "top": 0,
+     "h": 54,
+     "texts": [
+      "H1:Mason Garments",
+      "A:Mason Garments",
+      "BUTTON:Open navigation menu",
+      "A:SNEAKERS (CITTÁ)",
+      "A:TIA",
+      "A:TIA RUNNER",
+      "A:TIA DRESS",
+      "A:TORINO"
+     ],
+     "media": 78,
+     "layout": {
+      "cls": "header color-scheme color-scheme--scheme-1",
+      "display": "grid",
+      "cols": "75px 160px 75px",
+      "gap": "16px 20px",
+      "kids": 7
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__slideshow",
+     "cls": "shopify-section--slideshow",
+     "top": 54,
+     "h": 790,
+     "texts": [
+      "P:NEW ARRIVAL",
+      "A:SHOP ATLANTIS"
+     ],
+     "media": 4,
+     "layout": {
+      "cls": "content-over-media content-over-media--fill",
+      "display": "grid",
+      "cols": "[full-start] 0px [content-start] 350px [content-end] 0px [full-end]",
+      "gap": "48px 20px",
+      "kids": 3
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__featured-collections",
+     "cls": "shopify-section--featured-collections",
+     "top": 844,
+     "h": 647,
+     "texts": [
+      "P:NEW ARRIVALS",
+      "BUTTON:Men",
+      "BUTTON:Women",
+      "A:View all",
+      "BUTTON:Choose options",
+      "A:Atlantis Canovaccio Beige",
+      "A:Sale price\n250 EUR",
+      "BUTTON:Add to cart\n              36"
+     ],
+     "media": 98,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "390px",
+      "gap": "40px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__slideshow_gUxQbp",
+     "cls": "shopify-section--slideshow",
+     "top": 1491,
+     "h": 790,
+     "texts": [
+      "P:Atlantis sneakers",
+      "A:SHOP NOW"
+     ],
+     "media": 2,
+     "layout": {
+      "cls": "content-over-media content-over-media--fill",
+      "display": "grid",
+      "cols": "[full-start] 0px [content-start] 350px [content-end] 0px [full-end]",
+      "gap": "48px 20px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__80392c22-df1f-417b-af11-b19859c8718e",
+     "cls": "shopify-section--featured-collections",
+     "top": 2281,
+     "h": 605,
+     "texts": [
+      "P:EXPLORE CLOTHING",
+      "BUTTON:Choose options",
+      "A:Arch Logo Zip-Up Hoodie Blue",
+      "A:Sale price\n220 EUR",
+      "BUTTON:Add to cart\n              S",
+      "BUTTON:Add to cart\n              M",
+      "BUTTON:Add to cart\n              L",
+      "BUTTON:Add to cart\n              XL"
+     ],
+     "media": 32,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "390px",
+      "gap": "40px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__shop-the-look",
+     "cls": "shopify-section--shop-the-look",
+     "top": 2886,
+     "h": 560,
+     "texts": [
+      "P:SHOP OUR LOOKS",
+      "BUTTON:Go to item 1",
+      "BUTTON:Go to item 2",
+      "P:Shop the look",
+      "BUTTON:Choose options",
+      "A:Atlantis Canovaccio Blue",
+      "A:Sale price250 EUR",
+      "BUTTON:Add to cart\n              36"
+     ],
+     "media": 106,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "350px",
+      "gap": "40px",
+      "kids": 3
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px 0px 60px"
+    },
+    {
+     "id": "template--27926042116481__before-after",
+     "cls": "shopify-section--before-after-image",
+     "top": 3446,
+     "h": 618,
+     "texts": [
+      "P:CHOOSE YOUR COLOR",
+      "P:Atlantis Canovaccio Beige",
+      "A:View product",
+      "P:Atlantis Canovaccio Blue",
+      "A:View product"
+     ],
+     "media": 2,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "390px",
+      "gap": "40px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__spacer_qCUXRe",
+     "cls": "shopify-section",
+     "top": 4063,
+     "h": 30,
+     "texts": [],
+     "media": 0,
+     "layout": null,
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926042116481__section_pillars_A9bcVn",
+     "cls": "shopify-section",
+     "top": 4093,
+     "h": 2270,
+     "texts": [
+      "P:DISCOVER OUR CLOTHING"
+     ],
+     "media": 3,
+     "layout": {
+      "cls": "section-stack pillar-stack",
+      "display": "grid",
+      "cols": "390px",
+      "gap": "0px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "sections--27926043328897__footer",
+     "cls": "shopify-section-group-footer-group shopify-section--footer",
+     "top": 6364,
+     "h": 1272,
+     "texts": [
+      "P:NEWSLETTER",
+      "P:Sign up to our newsletter to receive exclusive off",
+      "BUTTON:SUBSCRIBE",
+      "P:COMPANY",
+      "A:About Us",
+      "A:Craftsmanship",
+      "A:Careers",
+      "A:Rotterdam store"
+     ],
+     "media": 13,
+     "layout": {
+      "cls": "footer__inner",
+      "display": "grid",
+      "cols": "350px",
+      "gap": "48px normal",
+      "kids": 4
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    }
+   ],
+   "btn": [
+    {
+     "cls": "button",
+     "txt": "SHOP ATLANTIS",
+     "fontFamily": "\"Instrument Sans\", sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(0, 0, 0)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(250, 247, 241)",
+     "padding": "16px 32px",
+     "w": 197,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "SHOP NOW",
+     "fontFamily": "\"Instrument Sans\", sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(0, 0, 0)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(250, 247, 241)",
+     "padding": "16px 32px",
+     "w": 159,
+     "h": 55
+    },
+    {
+     "cls": "button w-full",
+     "txt": "VIEW PRODUCTS",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 350,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "SUBSCRIBE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(28, 28, 28)",
+     "padding": "16px 32px",
+     "w": 162,
+     "h": 55
+    }
+   ],
+   "cont": [
+    {
+     "cls": "header_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 390,
+     "h": 54
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "calc(20px)",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "empty-cart_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "slideshow",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 390,
+     "h": 790
+    },
+    {
+     "cls": "",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    }
+   ],
+   "vw": 390,
+   "fonts": [
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500"
+   ]
+  },
+  "homecard": {
+   "cardCls": "product-card__figure ",
+   "card": [
+    253,
+    415
+   ],
+   "img": [
+    253,
+    253,
+    "1.000"
+   ],
+   "kids": [
+    {
+     "tag": "SPAN",
+     "cls": "badge badge--custom",
+     "txt": "NEW",
+     "fs": "8px",
+     "ls": "1.44px",
+     "tt": "uppercase",
+     "ff": "hankengrotestregular",
+     "x": 10,
+     "y": 10
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Choose options",
+     "fs": "14px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 228,
+     "y": 384
+    }
+   ],
+   "btns": [
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1016,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1016,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1016,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": 0,
+     "y": -1016,
+     "radius": "0px"
+    },
+    {
+     "cls": "product-card__quick-add-button",
+     "label": "Choose options",
+     "w": 32,
+     "h": 32,
+     "x": 213,
+     "y": 375,
+     "radius": "0px"
+    }
+   ],
+   "imgs": 6
+  },
+  "coll_href": "/collections/atlantis",
+  "collcard": {
+   "cardCls": "product-card__figure ",
+   "card": [
+    180,
+    360
+   ],
+   "img": [
+    0,
+    0,
+    "NaN"
+   ],
+   "kids": [
+    {
+     "tag": "SPAN",
+     "cls": "badge badge--custom",
+     "txt": "NEW",
+     "fs": "8px",
+     "ls": "1.44px",
+     "tt": "uppercase",
+     "ff": "hankengrotestregular",
+     "x": 10,
+     "y": 10
+    },
+    {
+     "tag": "SPAN",
+     "cls": "sr-only",
+     "txt": "Choose options",
+     "fs": "14px",
+     "ls": "normal",
+     "tt": "none",
+     "ff": "hankengrotestregular",
+     "x": 155,
+     "y": 329
+    }
+   ],
+   "btns": [
+    {
+     "cls": "glide__bullet glide__bullet--active",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -10,
+     "y": -125,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -10,
+     "y": -125,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -10,
+     "y": -125,
+     "radius": "0px"
+    },
+    {
+     "cls": "glide__bullet",
+     "label": "",
+     "w": 0,
+     "h": 0,
+     "x": -10,
+     "y": -125,
+     "radius": "0px"
+    },
+    {
+     "cls": "product-card__quick-add-button",
+     "label": "Choose options",
+     "w": 32,
+     "h": 32,
+     "x": 140,
+     "y": 320,
+     "radius": "0px"
+    }
+   ],
+   "imgs": 10
+  },
+  "prod_href": "/products/atlantis-canovaccio-blue",
+  "product": {
+   "vars": {
+    "--container-max-width": "100%",
+    "--container-xxs-max-width": "27.5rem",
+    "--container-xs-max-width": "42.5rem",
+    "--container-sm-max-width": "61.25rem",
+    "--container-md-max-width": "71.875rem",
+    "--container-lg-max-width": "78.75rem",
+    "--container-xl-max-width": "85rem",
+    "--container-gutter": "1.25rem",
+    "--section-vertical-spacing": "3rem",
+    "--section-vertical-spacing-tight": "2.5rem",
+    "--section-stack-gap": "2.5rem",
+    "--section-stack-gap-tight": "2.25rem",
+    "--form-gap": "1.25rem",
+    "--fieldset-gap": "1rem",
+    "--form-control-gap": "0.625rem",
+    "--checkbox-control-gap": "0.75rem",
+    "--input-padding-block": "0.65rem",
+    "--input-padding-inline": "0.8rem",
+    "--checkbox-size": "0.875rem",
+    "--sticky-area-height": "calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px) + var(--header-is-sticky, 0) * var(--header-height, 0px))",
+    "--transform-logical-flip": "1",
+    "--transform-origin-start": "left",
+    "--transform-origin-end": "right",
+    "--heading-font-family": "\"Instrument Sans\", sans-serif",
+    "--heading-font-weight": "400",
+    "--heading-font-style": "normal",
+    "--heading-text-transform": "normal",
+    "--heading-letter-spacing": "0.18em",
+    "--text-font-family": "\"Instrument Sans\", sans-serif",
+    "--text-font-weight": "400",
+    "--text-font-style": "normal",
+    "--text-letter-spacing": "0.0em",
+    "--button-font": "var(--text-font-style) var(--text-font-weight) var(--text-sm) / 1.65 var(--text-font-family)",
+    "--button-text-transform": "uppercase",
+    "--button-letter-spacing": "0.18em",
+    "--text-heading-size-factor": "1",
+    "--text-h1": "max(0.6875rem, clamp(1.375rem, 1.146341463414634rem + 0.975609756097561vw, 2rem) * var(--text-heading-size-factor))",
+    "--text-h2": "max(0.6875rem, clamp(1.25rem, 1.0670731707317074rem + 0.7804878048780488vw, 1.75rem) * var(--text-heading-size-factor))",
+    "--text-h3": "max(0.6875rem, clamp(1.125rem, 1.0335365853658536rem + 0.3902439024390244vw, 1.375rem) * var(--text-heading-size-factor))",
+    "--text-h4": "max(0.6875rem, clamp(1rem, 0.9542682926829268rem + 0.1951219512195122vw, 1.125rem) * var(--text-heading-size-factor))",
+    "--text-h5": "calc(0.875rem * var(--text-heading-size-factor))",
+    "--text-h6": "calc(0.75rem * var(--text-heading-size-factor))",
+    "--text-xs": "0.75rem",
+    "--text-sm": "0.8125rem",
+    "--text-base": "0.875rem",
+    "--text-lg": "1.0rem",
+    "--text-xl": "1.125rem",
+    "--rounded-full": "9999px",
+    "--button-border-radius": "0.25rem",
+    "--input-border-radius": "0.0rem",
+    "--shadow-sm": "0 2px 8px rgb(0 0 0 / 0.05)",
+    "--shadow": "0 5px 15px rgb(0 0 0 / 0.05)",
+    "--shadow-md": "0 5px 30px rgb(0 0 0 / 0.05)",
+    "--shadow-block": "px px px rgb(var(--text-primary) / 0.0)",
+    "--checkmark-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/checkmark.svg?v=77552481021870063511789450416)",
+    "--cursor-zoom-in-svg-url": "url(//www.masongarments.com/cdn/shop/t/67/assets/cursor-zoom-in.svg?v=163592912701316517611789450416)",
+    "--page-overlay": "0 0 0 / 0.4",
+    "--page-background": "",
+    "--on-sale-text": "128 0 0",
+    "--on-sale-badge-background": "128 0 0",
+    "--on-sale-badge-text": "255 255 255",
+    "--sold-out-badge-background": "31 21 17",
+    "--sold-out-badge-text": "255 255 255",
+    "--custom-badge-background": "31 21 17",
+    "--custom-badge-text": "255 255 255",
+    "--star-color": "28 28 28",
+    "--success-background": "212 227 203",
+    "--success-text": "48 122 7",
+    "--warning-background": "253 241 224",
+    "--warning-text": "237 138 0",
+    "--error-background": "225 194 194",
+    "--error-text": "128 0 0",
+    "--header-is-sticky": "1"
+   },
+   "body": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgb(28, 28, 28)",
+    "backgroundColor": "rgb(250, 247, 241)",
+    "w": 390,
+    "h": 3597
+   },
+   "h1": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "22.1463px",
+    "fontWeight": "400",
+    "letterSpacing": "3.98634px",
+    "textTransform": "none",
+    "lineHeight": "33.2195px",
+    "color": "rgb(28, 28, 28)",
+    "w": 350,
+    "h": 33
+   },
+   "h2": null,
+   "h3": null,
+   "h4": {
+    "fontFamily": "hankengrotestregular",
+    "fontSize": "14px",
+    "fontWeight": "700",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "23.1px",
+    "color": "rgb(28, 28, 28)",
+    "w": 0,
+    "h": 0
+   },
+   "p": {
+    "fontFamily": "hankengrotestlight",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "2.16px",
+    "textTransform": "uppercase",
+    "lineHeight": "20.4px",
+    "color": "rgb(0, 0, 0)",
+    "w": 0,
+    "h": 0
+   },
+   "header": {
+    "position": "sticky",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "paddingLeft": "0px",
+    "paddingRight": "0px",
+    "borderBottomWidth": "0px",
+    "w": 390,
+    "h": 54
+   },
+   "headerNav": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "2.16px",
+    "textTransform": "uppercase",
+    "lineHeight": "20.4px",
+    "color": "rgb(0, 0, 0)",
+    "w": 0,
+    "h": 0
+   },
+   "label": {
+    "fontFamily": "\"Instrument Sans\", sans-serif",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "letterSpacing": "normal",
+    "textTransform": "none",
+    "lineHeight": "19.8px",
+    "color": "rgba(0, 0, 0, 0.6)",
+    "w": 44,
+    "h": 20
+   },
+   "secs": [
+    {
+     "id": "sections--27926043361665__header",
+     "cls": "shopify-section-group-header-group shopify-section--header",
+     "top": 0,
+     "h": 54,
+     "texts": [
+      "A:Mason Garments",
+      "BUTTON:Open navigation menu",
+      "A:SNEAKERS (CITTÁ)",
+      "A:TIA",
+      "A:TIA RUNNER",
+      "A:TIA DRESS",
+      "A:TORINO",
+      "A:ATLANTIS"
+     ],
+     "media": 78,
+     "layout": {
+      "cls": "header color-scheme color-scheme--scheme-1",
+      "display": "grid",
+      "cols": "75px 160px 75px",
+      "gap": "16px 20px",
+      "kids": 7
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926043230593__main",
+     "cls": "shopify-section--main-product",
+     "top": 54,
+     "h": 1665,
+     "texts": [
+      "BUTTON:Zoom picture",
+      "BUTTON:Go to item 1",
+      "BUTTON:Go to item 2",
+      "BUTTON:Go to item 3",
+      "BUTTON:Go to item 4",
+      "BUTTON:Go to item 5",
+      "P:It looks like you've added multiple sizes of the s",
+      "BUTTON:CLOSE"
+     ],
+     "media": 13,
+     "layout": {
+      "cls": "product",
+      "display": "grid",
+      "cols": "350px",
+      "gap": "30px",
+      "kids": 8
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "template--27926043230593__related-products",
+     "cls": "shopify-section--related-products",
+     "top": 1719,
+     "h": 606,
+     "texts": [
+      "P:YOU MAY ALSO LIKE",
+      "BUTTON:Choose options",
+      "A:Atlantis Originale Beige",
+      "A:Sale price\n250 EUR",
+      "BUTTON:Add to cart\n              36",
+      "BUTTON:Add to cart\n              37",
+      "BUTTON:Add to cart\n              38",
+      "BUTTON:Add to cart\n              39"
+     ],
+     "media": 44,
+     "layout": {
+      "cls": "section-stack",
+      "display": "grid",
+      "cols": "350px",
+      "gap": "40px",
+      "kids": 2
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    },
+    {
+     "id": "sections--27926043328897__footer",
+     "cls": "shopify-section-group-footer-group shopify-section--footer",
+     "top": 2325,
+     "h": 1272,
+     "texts": [
+      "P:NEWSLETTER",
+      "P:Sign up to our newsletter to receive exclusive off",
+      "BUTTON:SUBSCRIBE",
+      "P:COMPANY",
+      "A:About Us",
+      "A:Craftsmanship",
+      "A:Careers",
+      "A:Rotterdam store"
+     ],
+     "media": 13,
+     "layout": {
+      "cls": "footer__inner",
+      "display": "grid",
+      "cols": "350px",
+      "gap": "48px normal",
+      "kids": 4
+     },
+     "bg": "rgba(0, 0, 0, 0)",
+     "pad": "0px"
+    }
+   ],
+   "btn": [
+    {
+     "cls": "cta-btn button w-full",
+     "txt": "CLOSE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "2.16px",
+     "textTransform": "uppercase",
+     "lineHeight": "19.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "10px 20px",
+     "w": 285,
+     "h": 42
+    },
+    {
+     "cls": "button w-full",
+     "txt": "SELECT YOUR SIZE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 350,
+     "h": 55
+    },
+    {
+     "cls": "button disabled",
+     "txt": "SELECT YOUR SIZE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(31, 21, 17)",
+     "padding": "16px 32px",
+     "w": 350,
+     "h": 55
+    },
+    {
+     "cls": "button",
+     "txt": "SUBSCRIBE",
+     "fontFamily": "hankengrotestregulair, sans-serif",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "letterSpacing": "2.34px",
+     "textTransform": "uppercase",
+     "lineHeight": "21.45px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "4px",
+     "borderWidth": "1px",
+     "borderColor": "rgb(28, 28, 28)",
+     "padding": "16px 32px",
+     "w": 162,
+     "h": 55
+    }
+   ],
+   "cont": [
+    {
+     "cls": "header_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 390,
+     "h": 54
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "mega-menu__links-container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "calc(20px)",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "empty-cart_container",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 0,
+     "h": 0
+    },
+    {
+     "cls": "section-spacing section-spacing--tight color-scheme color-sc",
+     "maxWidth": "none",
+     "paddingLeft": "0px",
+     "paddingRight": "0px",
+     "marginLeft": "0px",
+     "w": 390,
+     "h": 1665
+    }
+   ],
+   "vw": 390,
+   "fonts": [
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 400",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500",
+    "EB Garamond 500"
+   ]
+  },
+  "atc_txt": "SELECT YOUR SIZE",
+  "cart_open": ""
+ }
+}
