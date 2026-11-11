@@ -1,0 +1,45 @@
+{
+ "id": "carnation",
+ "name": "카네이션 꽃 구두",
+ "price": 153000,
+ "list_price": 170000,
+ "cat": "flower",
+ "base": "여성 메리제인 펌프스 구두",
+ "sources": [
+  "https://www.idus.com/v2/product/9dfefc87-6886-498b-85c5-7a93e11ded36"
+ ],
+ "photos": [
+  "assets/p/carnation/01.jpg",
+  "assets/p/carnation/02.jpg",
+  "assets/p/carnation/03.jpg",
+  "assets/p/carnation/04.jpg",
+  "assets/p/carnation/05.jpg",
+  "assets/p/carnation/06.jpg",
+  "assets/p/carnation/07.jpg"
+ ],
+ "sizes": [
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255"
+ ],
+ "soldout": [],
+ "sizes_note": "색상 옵션: 핑크/베이지/블랙/그레이(상품 사진은 베이지). 주문 후 제작.",
+ "desc": "베이지 펌프스에 붉은 카네이션(꽃말: 사랑·모정)과 'Thank you always' 글귀를 손으로 그린 꽃 구두로, 어버이날·스승의날 선물로 제안합니다. 문구와 꽃말 부분은 영어·일본어 등 다른 문구로 바꿀 수 있습니다.",
+ "reviews": [
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2021-01-29",
+   "name": "슈*쪼꼬미",
+   "option": "색상: 베이지 / 사이즈: 235 / 포장서비스: 크라프트지 포장",
+   "text": "받자마자 리뷰 습니다!!!\n어무니가 엄청 좋아하시네요\n사이즈 딱 맞고 편하다고 하시네요 ~~\n이쁘게 보내주셔서 감사합니다~",
+   "photos": [
+    "assets/r/carnation/01_1.jpg"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "id": "moran",
+ "name": "모란꽃 포인트 꽃신",
+ "price": 120000,
+ "list_price": 120000,
+ "cat": "flower",
+ "base": "슈페르가 흰 캔버스 운동화",
+ "sources": [
+  "https://www.idus.com/v2/product/99c7cd81-eb12-45fc-bbdb-04a735305c92"
+ ],
+ "photos": [
+  "assets/p/moran/01.jpg",
+  "assets/p/moran/02.jpg",
+  "assets/p/moran/03.jpg",
+  "assets/p/moran/04.jpg",
+  "assets/p/moran/05.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280"
+ ],
+ "soldout": [],
+ "sizes_note": "작품은 모두 주문 후 제작. 옵션: 사이즈 + 크라프트지 포장(선물/필요없음). 꽃 색·신발 색은 요청하면 바꿔요.",
+ "desc": "흰 신발 양쪽에 모란꽃을 새긴 심플한 포인트 꽃신으로, 모란의 꽃말은 부귀입니다. 신발·꽃 색감은 원하는 색으로 바꿀 수 있고, 1년 안에 1회 무상 A/S를 해드립니다.",
+ "reviews": []
+}
