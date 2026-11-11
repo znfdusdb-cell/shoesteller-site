@@ -1,19 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>가입 — 슈즈텔러</title>
-<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/products.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>가입하고 첫 주문·첫 수업 쿠폰 받기 · 슈즈텔러</title>
+<link rel="stylesheet" href="./site.css">
+<script src="./chat.js" defer></script>
 </head>
-<body>
-<main id="main"><div class="acct"><p>가입 페이지로 이동해요…</p><a class="btn" href="account.html">가입하기</a></div></main>
-<script src="assets/site.js"></script>
-<script>location.replace("account.html" + location.search);</script>
+<body data-page="join">
+<!-- 서버 .env SITE_COLLECT_ON=1일 때만 저장(꺼져 있으면 '오픈 준비 중'). 결제는 받지 않는다. -->
+<main class="wrap">
+  <section id="form-wrap">
+    <div class="page-head"><h1>가입하고 첫 주문·첫 수업 쿠폰 받기</h1>
+    <p class="lead">가입하면 첫 주문·첫 수업 쿠폰을 드려요. 새 디자인과 키트 소식도 가장 먼저 알려 드려요.</p></div>
+    <p class="note"><span class="todo">쿠폰 금액·조건·유효기간 확정 후 표시</span></p>
+    <form class="form" id="join-form" data-form="join" novalidate>
+      <fieldset>
+        <label class="label" for="name">이름 <span class="req">(필수)</span></label>
+        <input type="text" id="name" name="name" autocomplete="name">
+        <p class="err" id="err-name" aria-live="polite"></p>
+      </fieldset>
+      <fieldset>
+        <label class="label" for="phone">휴대폰 번호 <span class="req">(필수)</span></label>
+        <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel">
+        <p class="err" id="err-phone" aria-live="polite"></p>
+      </fieldset>
+      <fieldset>
+        <legend>관심 있는 것 (여러 개 골라도 돼요)</legend>
+        <div class="chips">
+          <label><input type="checkbox" name="interest" value="premium"> 프리미엄 주문</label>
+          <label><input type="checkbox" name="interest" value="class"> 공방 수업</label>
+          <label><input type="checkbox" name="interest" value="kit"> 키트</label>
+          <label><input type="checkbox" name="interest" value="online"> 온라인 수업</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>어디서 알게 되셨나요 (선택)</legend>
+        <select id="source" name="source">
+          <option value="">골라 주세요</option>
+          <option>인스타그램</option><option>유튜브</option><option>아이디어스</option>
+          <option>스마트스토어</option><option>지인 소개</option><option>기타</option>
+        </select>
+        <div id="source-etc-wrap" hidden>
+          <input type="text" id="source_etc" name="source_etc" maxlength="40" placeholder="어디서 보셨는지 적어 주세요" aria-label="기타 유입 경로">
+        </div>
+      </fieldset>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+        <label for="website">비워 두세요</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <fieldset class="consent">
+        <label class="choice"><input type="checkbox" name="agree_required" id="agree_required">
+          <span><span class="req">[필수]</span> 개인정보 수집·이용 동의: 쿠폰 발급과 예약·문의 안내를 위해 이름·휴대폰 번호를 수집·이용합니다. 동의하지 않으면 신청할 수 없어요. <a href="./privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
+        <p class="err" id="err-agree_required" aria-live="polite"></p>
+        <label class="choice"><input type="checkbox" name="marketing_opt_in" id="marketing_opt_in">
+          <span>[선택] 마케팅 수신 동의: 슈즈텔러 수업·키트 소식과 혜택(광고성 정보)을 문자·카카오로 받겠습니다. 동의하지 않아도 쿠폰과 예약은 그대로예요.</span></label>
+      </fieldset>
+      <p class="err" id="err-form" aria-live="polite"></p>
+      <button class="btn" type="submit">쿠폰 받기</button>
+    </form>
+  </section>
+  <section id="done" class="done" hidden tabindex="-1">
+    <h1 id="done-title"></h1>
+    <p id="done-msg"></p>
+    <div id="coupon" hidden>
+      <p class="coupon" id="coupon-code"></p>
+      <p class="note">스튜디오나 숍에서 주문할 때 쿠폰 코드 칸에 넣으세요. <span class="todo">쿠폰 금액·조건 확정 후 표시</span></p>
+      <a class="btn" href="./studio.html">내 디자인 만들러 가기</a>
+    </div>
+    <p class="gift"><a class="btn yellow" href="./checklist.html">가입 선물: 7단계 체크리스트 보기</a></p>
+    <a class="btn ghost" href="./index.html">처음으로 돌아가기</a>
+  </section>
+</main>
+<script src="./site.js"></script>
+<script src="./track.js"></script>
+<script src="./config.js"></script>
+<script src="./forms.js"></script>
 </body>
 </html>
