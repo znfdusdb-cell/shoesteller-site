@@ -1155,8 +1155,9 @@ window.SHOES = {
  "VIDEO": {
   "desktop": "assets/video/hero.mp4?v=3",
   "webm": "assets/video/hero.webm?v=3",
-  "mobile": "assets/video/hero-mobile.mp4?v=3",
-  "poster": "assets/video/poster.jpg?v=3"
+  "mobile": "assets/video/hero-mobile.mp4?v=4",
+  "poster": "assets/video/poster.jpg?v=3",
+  "poster_mobile": "assets/video/poster-mobile.jpg?v=4"
  },
  "UPDATED": "2026-11-11T02:25:18.760Z",
  "STUDIO": {

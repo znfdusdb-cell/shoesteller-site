@@ -894,3 +894,6 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .aside .stakes p { font-size: 13px; color: var(--grey-3); line-height: 1.7; background: var(--grey-1); padding: 14px 16px; }
 .aside .stakes b { display: block; color: var(--black); font-size: 13px; margin-bottom: 4px; }
 .fm .ask { font-size: 14px; text-align: center; margin: 6px 0 2px; }
+
+/* 폰 첫 화면 영상: 영상(3:5)과 같은 틀 — 화면 높이에 맞춰 양옆을 또 자르지 않게(11/11 회장: 붓끝이 잘림) */
+@media (max-width: 759px) { .hero #hero-video { height: auto; max-height: none; aspect-ratio: 3 / 5; object-fit: cover; } }

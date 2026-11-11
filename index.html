@@ -17,7 +17,7 @@
   <section class="hero" id="top" aria-label="작업 영상">
     <video id="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="흰 신발에 붓으로 그림을 그리는 작업 장면"></video>
     <script>(function () { var V = (window.SHOES && window.SHOES.VIDEO) || {}, v = document.getElementById('hero-video'), h = '';
-      if (V.poster) v.setAttribute('poster', V.poster);
+      var mob = window.matchMedia('(max-width: 759px)').matches; if (mob && V.poster_mobile) v.setAttribute('poster', V.poster_mobile); else if (V.poster) v.setAttribute('poster', V.poster);
       if (V.mobile) h += '<source src="' + V.mobile + '" type="video/mp4" media="(max-width: 759px)">';
       if (V.webm) h += '<source src="' + V.webm + '" type="video/webm">';
       if (V.desktop) h += '<source src="' + V.desktop + '" type="video/mp4">';
