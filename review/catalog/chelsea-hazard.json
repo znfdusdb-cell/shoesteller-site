@@ -1,0 +1,76 @@
+{
+ "id": "chelsea-hazard",
+ "name": "나이키 첼시 아자르 10 신발굿즈",
+ "price": 198000,
+ "list_price": 220000,
+ "cat": "football",
+ "base": "나이키 코트 로얄 2",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9522814949"
+ ],
+ "photos": [
+  "assets/p/chelsea-hazard/01.jpg",
+  "assets/p/chelsea-hazard/02.jpg",
+  "assets/p/chelsea-hazard/03.jpg",
+  "assets/p/chelsea-hazard/04.jpg",
+  "assets/p/chelsea-hazard/05.jpg"
+ ],
+ "sizes": [
+  "245",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈 + 디자인 선택. 주문 후 제작(3~7일). 판매 옵션에 없는 사이즈: 220, 225, 230, 235, 240, 250, 300.",
+ "desc": "나이키 코트 로얄 2 정품에 첼시 아자르(10번)를 1:1 핸드페인팅으로 그린 신발이고, 첼시 팬과 함께 디자인한 작품입니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 실제 신발의 나이키 라인은 라이트 블루입니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-03-17",
+   "name": "ye*******",
+   "option": "사이즈: 255 / 선수: 2.아자르",
+   "text": "친구들도 멋지다고 했어요",
+   "photos": [
+    "assets/r/chelsea-hazard/01_1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-02-14",
+   "name": "sy******",
+   "option": "사이즈: 260 / 선수: 2.아자르",
+   "text": "실제로 신지는 않고 방에 전시하고 있는데 볼 수록 너무 마음에 듭니다.",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-12-30",
+   "name": "jg****",
+   "option": "사이즈: 275 / 선수: 2.아자르",
+   "text": "마음에들고 신기 편합니다.",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-12-24",
+   "name": "sy******",
+   "option": "사이즈: 260 / 선수: 2.아자르",
+   "text": "아자르 팬이라 구매했는데 너무 마음에 드네요. \n사진에서처럼 비닐로 꼼꼼히 래핑해주셔서 보내드립니다. 인스타 dm으로도 바로바로 답변 주시고 구매부터 배송까지 너무 마음에 듭니다! 감사합니다~",
+   "photos": [
+    "assets/r/chelsea-hazard/04_1.jpg",
+    "assets/r/chelsea-hazard/04_2.jpg"
+   ]
+  }
+ ]
+}

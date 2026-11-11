@@ -1,0 +1,76 @@
+{
+ "id": "realmadrid-chuck",
+ "name": "컨버스 척테일러 레알마드리드 신발굿즈",
+ "price": 135000,
+ "list_price": 150000,
+ "cat": "football",
+ "base": "컨버스 척테일러 올스타 로우 올블랙",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9627780666"
+ ],
+ "photos": [
+  "assets/p/realmadrid-chuck/01.jpg",
+  "assets/p/realmadrid-chuck/02.jpg",
+  "assets/p/realmadrid-chuck/03.jpg",
+  "assets/p/realmadrid-chuck/04.jpg",
+  "assets/p/realmadrid-chuck/05.jpg",
+  "assets/p/realmadrid-chuck/06.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295",
+  "300"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈. 주문 후 제작(3~7일).",
+ "desc": "컨버스 척테일러 정품에 한쪽 옆면은 레알마드리드 엠블럼, 반대쪽은 Realmadrid 글씨를 1:1 핸드페인팅으로 그린 신발입니다. 특수물감이라 세탁해도 되고, 하루 3켤레만 주문받아 3~7일 걸려 만듭니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-03-09",
+   "name": "tp*******",
+   "option": "사이즈: 275",
+   "text": "생각보다 로고가 작긴 한데 예쁘고 좋습니다!!",
+   "photos": [
+    "assets/r/realmadrid-chuck/01_1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-02-20",
+   "name": "ky****",
+   "option": "사이즈: 285",
+   "text": "축구에 진심인 아들이 아주 좋아합니다^^",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-12-16",
+   "name": "as*****",
+   "option": "사이즈: 280",
+   "text": "생각 보다 배송이 빨랐고 무엇보다 고등학생인 아이가 만족해서 좋습니다",
+   "photos": [
+    "assets/r/realmadrid-chuck/03_1.jpg",
+    "assets/r/realmadrid-chuck/03_2.jpg",
+    "assets/r/realmadrid-chuck/03_3.jpg"
+   ]
+  }
+ ]
+}

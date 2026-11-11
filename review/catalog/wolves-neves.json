@@ -1,0 +1,41 @@
+{
+ "id": "wolves-neves",
+ "name": "나이키 울버햄튼 네베스 신발굿즈",
+ "price": 198000,
+ "list_price": 220000,
+ "cat": "football",
+ "base": "나이키 코트 로얄 2",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9678450994"
+ ],
+ "photos": [
+  "assets/p/wolves-neves/01.jpg",
+  "assets/p/wolves-neves/02.jpg",
+  "assets/p/wolves-neves/03.jpg",
+  "assets/p/wolves-neves/04.jpg",
+  "assets/p/wolves-neves/05.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295",
+  "300"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈. 나이키 노란색 도색 추가 시 +40,000원. 주문 후 제작(3~7일).",
+ "desc": "울버햄튼 서포터즈가 의뢰했던 신발로, 나이키 코트 로얄 2 정품에 네베스(8번)를 1:1 핸드페인팅으로 그렸습니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 나이키 노란색 도색은 옵션입니다(안 하면 로고는 흰색).",
+ "reviews": []
+}

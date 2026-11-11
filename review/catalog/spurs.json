@@ -1,0 +1,73 @@
+{
+ "id": "spurs",
+ "name": "반스 스타일36 손흥민 토트넘 신발굿즈",
+ "price": 162000,
+ "list_price": 180000,
+ "cat": "football",
+ "base": "반스 올드스쿨 스타일 36",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9238359131"
+ ],
+ "photos": [
+  "assets/p/spurs/01.jpg",
+  "assets/p/spurs/02.jpg",
+  "assets/p/spurs/03.jpg",
+  "assets/p/spurs/04.jpg",
+  "assets/p/spurs/05.jpg",
+  "assets/p/spurs/06.jpg",
+  "assets/p/spurs/07.jpg",
+  "assets/p/spurs/08.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈. 앞면 COYS 추가 추가 시 +20,000원. 주문 후 제작(3~7일). 판매 옵션에 없는 사이즈: 260, 290, 295, 300.",
+ "desc": "반스 스타일 36 정품에 옆면은 토트넘 엠블럼, 뒷면은 토트넘 핫스퍼와 손흥민 등번호 7을 1:1 핸드페인팅으로 그렸습니다. 앞면 혀 부분 COYS는 옵션이고, 하루 3켤레만 주문받아 3~7일 걸려 만듭니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-02-14",
+   "name": "us*******",
+   "option": "사이즈: 270 / 앞면 COYS 추가: 선택안함",
+   "text": "사진 리뷰를 남기고 싶었지만, 선물용으로 구매한거라 따로 사진이 없어 죄송합니다. 배송도 생각보다 빨랐고 마감도 좋은지 선물을 받은 당사자가 좋아하네요. 감사합니다.",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-01-23",
+   "name": "jo********",
+   "option": "사이즈: 270 / 앞면 COYS 추가: 선택함",
+   "text": "아들 선물로 사줘썽요 너무 좋아해요 \n예뻐요",
+   "photos": [
+    "assets/r/spurs/02_1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-10-07",
+   "name": "wo*******",
+   "option": "사이즈: 265 / 앞면 COYS 추가: 선택함",
+   "text": "배송도 빠르고 신발도 이뻐서 아주아주 마음에 듭니다!\n다만 신발 안에 신문지같은걸 넣어주시면 받았을때 더 이뻐 보일 것 같아요! 처음에 받았을때 조금 구겨져있었던게 좀 걸리네오!",
+   "photos": [
+    "assets/r/spurs/03_1.jpg",
+    "assets/r/spurs/03_2.jpg"
+   ]
+  }
+ ]
+}

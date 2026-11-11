@@ -1,0 +1,70 @@
+{
+ "id": "manutd-rooney",
+ "name": "나이키 맨유 루니 10 신발굿즈",
+ "price": 198000,
+ "list_price": 220000,
+ "cat": "football",
+ "base": "나이키 코트 로얄 2",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9701862551",
+  "https://smartstore.naver.com/bium4581/products/9650249643"
+ ],
+ "photos": [
+  "assets/p/manutd-rooney/01.jpg",
+  "assets/p/manutd-rooney/02.jpg",
+  "assets/p/manutd-rooney/03.jpg",
+  "assets/p/manutd-rooney/04.jpg",
+  "assets/p/manutd-rooney/05.jpg",
+  "assets/p/manutd-rooney/06.jpg",
+  "assets/p/manutd-rooney/07.jpg",
+  "assets/p/manutd-rooney/08.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295",
+  "300"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈 + 디자인 선택. 나이키 빨간색 도색 추가 시 +40,000원. 주문 후 제작(3~7일).",
+ "desc": "나이키 코트 로얄 2 정품에 맨유 루니(10번)를 1:1 핸드페인팅으로 그린 신발이고, 물감이 지워지지 않습니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 나이키 빨간색 도색은 옵션입니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-01-14",
+   "name": "ss*****",
+   "option": "사이즈: 270 / 선수: 1.루니 / 나이키 빨간색 도색: 1. 추가함",
+   "text": "이쁘고 좋네요. 루니가 생각보다 나이키 로고에 걸쳐져있어서  늘어난것처럼 보이지만 만족합니다. 다음에는 다른 선수로 사야겠네요.",
+   "photos": [
+    "assets/r/manutd-rooney/01_1.jpg",
+    "assets/r/manutd-rooney/01_2.jpg",
+    "assets/r/manutd-rooney/01_3.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-01-01",
+   "name": "pe**********",
+   "option": "사이즈: 275 / 선수: 1.루니 / 나이키 빨간색 도색: 1. 추가함",
+   "text": "아들 선물로 구매했습니다 마음에 들어하네요",
+   "photos": [
+    "assets/r/manutd-rooney/02_1.jpg"
+   ]
+  }
+ ]
+}

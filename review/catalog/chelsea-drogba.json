@@ -1,0 +1,70 @@
+{
+ "id": "chelsea-drogba",
+ "name": "나이키 첼시 드록바 11 신발굿즈",
+ "price": 198000,
+ "list_price": 220000,
+ "cat": "football",
+ "base": "나이키 코트 로얄 2",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9522814949"
+ ],
+ "photos": [
+  "assets/p/chelsea-drogba/01.jpg",
+  "assets/p/chelsea-drogba/02.jpg",
+  "assets/p/chelsea-drogba/03.jpg",
+  "assets/p/chelsea-drogba/04.jpg",
+  "assets/p/chelsea-drogba/05.jpg",
+  "assets/p/chelsea-drogba/06.jpg",
+  "assets/p/chelsea-drogba/07.jpg"
+ ],
+ "sizes": [
+  "245",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈 + 디자인 선택. 주문 후 제작(3~7일). 판매 옵션에 없는 사이즈: 220, 225, 230, 235, 240, 250, 300.",
+ "desc": "나이키 코트 로얄 2 정품에 첼시 드록바(11번)를 1:1 핸드페인팅으로 그린 신발이고, 첼시 팬과 함께 디자인한 작품입니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 실제 신발의 나이키 라인은 라이트 블루입니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-03-09",
+   "name": "zz******",
+   "option": "사이즈: 265 / 선수: 1.드록바",
+   "text": "제품소개 이미지와 동일합다",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-02-21",
+   "name": "ml****",
+   "option": "사이즈: 275 / 선수: 1.드록바",
+   "text": "신발이 기대 이상으로 너무 예쁘고 신어보니 발도 편하고 잘 어울리네요. 드록바 그림도 좋아서 신고 나가면 시선좀 끌것 같아서 기분이 좋아요. 이신발 사시는 분은 후회없으실 겁니다. 기쁜 마음으로 잘 신겠습니다...",
+   "photos": [
+    "assets/r/chelsea-drogba/02_1.jpg",
+    "assets/r/chelsea-drogba/02_2.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-11-23",
+   "name": "rl**********",
+   "option": "사이즈: 265",
+   "text": "평소에 첼시 굿즈를 사고 싶었는데\n이렇게 좋은 굿즈를 얻게되어 기분이 좋네요 bb",
+   "photos": [
+    "assets/r/chelsea-drogba/03_1.jpg"
+   ],
+   "uncertain": true
+  }
+ ]
+}
