@@ -61,7 +61,7 @@
   $('#size-sel').onchange = function () { pick(this.value ? +this.value : null); };
   function need() { if (!size) { $('#msg').textContent = B.t('pd.pick'); return false; } return true; }
   var opts = (p.options || []).map(function (g, gi) { return [gi, 0]; });
-  $$('.pdm-opts').forEach(function (box) { var gi = +box.getAttribute('data-g'); $$('button', box).forEach(function (b) { b.onclick = function () { opts[gi] = [gi, +b.getAttribute('data-c')]; $$('button', box).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); $('#price').textContent = B.won(p.price + B.optAdd(p, opts)); }; }); });
+  $$('.pdm-opts').forEach(function (box) { var gi = +box.getAttribute('data-g'); $$('button', box).forEach(function (b) { b.onclick = function () { opts[gi] = [gi, +b.getAttribute('data-c')]; var ch = p.options[gi].choices[opts[gi][1]]; if (ch.photo != null) { var im = $('#gal img'); im.src = p.photos[ch.photo]; im.removeAttribute('style'); $('#gal').scrollLeft = 0; if (innerWidth >= 760 && $('#gal').getBoundingClientRect().top < 0) scrollTo({ top: 0, behavior: 'smooth' }); } $$('button', box).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); $('#price').textContent = B.won(p.price + B.optAdd(p, opts)); }; }); });
   $('#add').onclick = function () { if (!need()) return; B.addToCart(p.id, size, 1, opts.slice()); B.openCart(); };
   $('#buy').onclick = function () { if (!need()) return; B.addToCart(p.id, size, 1, opts.slice()); location.href = 'checkout.html'; };
   var g = $('#gal');

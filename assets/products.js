@@ -149,7 +149,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "autumn"
   },
   {
    "id": "cherry",
@@ -199,7 +200,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "freesia",
@@ -239,7 +241,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/62c7eebf-7256-4d47-9082-b57ddaec7350"
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "af1cherry",
@@ -301,7 +304,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "mum",
@@ -336,7 +340,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/6af5b9c6-8eb8-42c5-8094-dfa414a82d11"
-   ]
+   ],
+   "season": "autumn"
   },
   {
    "id": "lilac",
@@ -369,7 +374,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/948c6db9-e7c3-40a6-b0d3-38f09586d600"
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "cherryline",
@@ -425,7 +431,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "edelweiss",
@@ -474,7 +481,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "winter"
   },
   {
    "id": "gerrard",
@@ -759,7 +767,7 @@ window.SHOES = {
    "en": "",
    "sub": "반스 올드스쿨",
    "price": 169200,
-   "reviews": 11,
+   "reviews": 9,
    "photos": [
     "assets/p/manutd-vans/01.jpg",
     "assets/p/manutd-vans/02.jpg",
@@ -840,7 +848,7 @@ window.SHOES = {
    "cat": "story",
    "base": "low",
    "isNew": false,
-   "name": "대한독립 에디션 · 안중근 퍼플",
+   "name": "나이키 에어포스1 대한독립 에디션",
    "en": "Independence Edition",
    "sub": "나이키 에어포스1",
    "price": 295000,
@@ -851,10 +859,12 @@ window.SHOES = {
     "assets/p/korea/03.jpg",
     "assets/p/korea/04.jpg",
     "assets/p/korea/05.jpg",
+    "assets/p/korea-kimgu/01.jpg",
+    "assets/p/korea-yugwansun/01.jpg",
     "assets/p/korea/06.jpg"
    ],
    "fit": "cover",
-   "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
+   "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 세 가지 색으로 만들었어요 — 안중근 퍼플, 김구 옐로우, 유관순 그레이 중에서 골라 주세요.",
    "sizes": [
     220,
     225,
@@ -876,6 +886,28 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/da3b45d7-6e58-44b1-a7da-ffd1adedb09b"
+   ],
+   "options": [
+    {
+     "name": "디자인",
+     "choices": [
+      {
+       "label": "안중근 퍼플",
+       "add": 0,
+       "photo": 0
+      },
+      {
+       "label": "김구 옐로우",
+       "add": 0,
+       "photo": 5
+      },
+      {
+       "label": "유관순 그레이",
+       "add": 0,
+       "photo": 6
+      }
+     ]
+    }
    ]
   },
   {
@@ -910,7 +942,7 @@ window.SHOES = {
    "price": 225000,
    "reviews": 0,
    "photos": [
-    "assets/fb/o07.jpg"
+    "assets/p/spaceaf1/01.jpg"
    ],
    "fit": "cover",
    "desc": "스우시 안에만 우주를 넣었어요. 나머지는 흰색 그대로."
@@ -970,7 +1002,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "forgetmenot",
@@ -1023,7 +1056,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "summer"
   },
   {
    "id": "moran",
@@ -1060,7 +1094,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/99c7cd81-eb12-45fc-bbdb-04a735305c92"
-   ]
+   ],
+   "season": "spring"
   },
   {
    "id": "rose",
@@ -1098,7 +1133,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/b9e8df2b-b5d7-40d5-94b4-fcb53108fde3"
-   ]
+   ],
+   "season": "summer"
   },
   {
    "id": "vansrose",
@@ -1152,7 +1188,8 @@ window.SHOES = {
       }
      ]
     }
-   ]
+   ],
+   "season": "summer"
   },
   {
    "id": "chelsea",
@@ -2091,94 +2128,6 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/7893e42e-4c07-45e9-a510-7648d8f310ee"
-   ]
-  },
-  {
-   "id": "korea-kimgu",
-   "cat": "story",
-   "base": "low",
-   "isNew": false,
-   "name": "대한독립 에디션 · 김구 옐로우",
-   "en": "",
-   "sub": "나이키 에어포스1",
-   "price": 295000,
-   "reviews": 0,
-   "photos": [
-    "assets/p/korea-kimgu/01.jpg"
-   ],
-   "fit": "cover",
-   "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
-   "pos": [
-    [
-     50,
-     88
-    ]
-   ],
-   "sizes": [
-    220,
-    225,
-    230,
-    235,
-    240,
-    245,
-    250,
-    255,
-    260,
-    265,
-    270,
-    275,
-    280,
-    285,
-    290,
-    295,
-    300
-   ],
-   "sources": [
-    "https://www.idus.com/v2/product/da3b45d7-6e58-44b1-a7da-ffd1adedb09b"
-   ]
-  },
-  {
-   "id": "korea-yugwansun",
-   "cat": "story",
-   "base": "low",
-   "isNew": false,
-   "name": "대한독립 에디션 · 유관순 그레이",
-   "en": "",
-   "sub": "나이키 에어포스1",
-   "price": 295000,
-   "reviews": 0,
-   "photos": [
-    "assets/p/korea-yugwansun/01.jpg"
-   ],
-   "fit": "cover",
-   "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
-   "pos": [
-    [
-     50,
-     88
-    ]
-   ],
-   "sizes": [
-    220,
-    225,
-    230,
-    235,
-    240,
-    245,
-    250,
-    255,
-    260,
-    265,
-    270,
-    275,
-    280,
-    285,
-    290,
-    295,
-    300
-   ],
-   "sources": [
-    "https://www.idus.com/v2/product/da3b45d7-6e58-44b1-a7da-ffd1adedb09b"
    ]
   },
   {
@@ -3138,6 +3087,28 @@ window.SHOES = {
    "id": "korea",
    "ko": "대한민국",
    "en": "Korea"
+  }
+ ],
+ "SEASONS": [
+  {
+   "id": "spring",
+   "ko": "봄",
+   "en": "Spring"
+  },
+  {
+   "id": "summer",
+   "ko": "여름",
+   "en": "Summer"
+  },
+  {
+   "id": "autumn",
+   "ko": "가을",
+   "en": "Autumn"
+  },
+  {
+   "id": "winter",
+   "ko": "겨울",
+   "en": "Winter"
   }
  ]
 };

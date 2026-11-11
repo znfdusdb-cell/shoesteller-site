@@ -28,7 +28,8 @@
   'use strict';
   var S = window.SHOES, B = window.BIUM;
   var $ = function (s) { return document.querySelector(s); };
-  var q = new URLSearchParams(location.search), cat = q.get('cat') || 'all', base = q.get('base') || '', onlyNew = q.get('new') === '1', team = q.get('team') || '', sort = '';
+  var q = new URLSearchParams(location.search), cat = q.get('cat') || 'all', base = q.get('base') || '', onlyNew = q.get('new') === '1', team = q.get('team') || q.get('season') || '', sort = '';
+  var SUB = { football: { key: 'team', list: 'TEAMS', all: ['전체 팀', 'All teams'], tail: [' 커스텀', ' custom'] }, flower: { key: 'season', list: 'SEASONS', all: ['사계절 전체', 'All seasons'], tail: [' 꽃신', ' flowers'] } };
   var nm = function (x) { return B.lang() === 'en' ? x.en : x.ko; };
   function tabs() {
     var list = [{ id: 'all', ko: '전체 작품', en: 'All' }].concat(S.categories);
@@ -36,9 +37,9 @@
     [].forEach.call(document.querySelectorAll('#sh-tabs button'), function (b) { b.onclick = function () { cat = b.getAttribute('data-c'); team = ''; sync(); }; });
   }
   function sync() {
-    var u = new URLSearchParams(); if (cat !== 'all') u.set('cat', cat); if (base) u.set('base', base); if (onlyNew) u.set('new', '1'); if (cat === 'football' && team) u.set('team', team);
+    var u = new URLSearchParams(); if (cat !== 'all') u.set('cat', cat); if (base) u.set('base', base); if (onlyNew) u.set('new', '1'); if (SUB[cat] && team) u.set(SUB[cat].key, team);
     history.replaceState(null, '', 'shop.html' + (u.toString() ? '?' + u : ''));
-    var list = S.products.filter(function (p) { return (cat === 'all' || p.cat === cat) && (!base || p.base === base) && (!onlyNew || p.isNew) && (cat !== 'football' || !team || p.team === team); });
+    var list = S.products.filter(function (p) { return (cat === 'all' || p.cat === cat) && (!base || p.base === base) && (!onlyNew || p.isNew) && (!SUB[cat] || !team || p[SUB[cat].key] === team); });
     if (sort === 'low') list.sort(function (a, b) { return a.price - b.price; });
     if (sort === 'high') list.sort(function (a, b) { return b.price - a.price; });
     if (sort === 'rev') list.sort(function (a, b) { return (b.reviews || 0) - (a.reviews || 0); });
@@ -55,12 +56,12 @@
     tabs();
   }
   function teams() {
-    var box = $('#sh-teams'); box.hidden = cat !== 'football'; if (box.hidden) return;
-    var n = function (id) { return S.products.filter(function (p) { return p.cat === 'football' && (!id || p.team === id); }).length; };
-    var list = [{ id: '', ko: '전체 팀', en: 'All teams' }].concat((S.TEAMS || []).filter(function (t) { return n(t.id); }));
+    var box = $('#sh-teams'), sb = SUB[cat]; box.hidden = !sb; if (!sb) return;
+    var n = function (id) { return S.products.filter(function (p) { return p.cat === cat && (!id || p[sb.key] === id); }).length; };
+    var list = [{ id: '', ko: sb.all[0], en: sb.all[1] }].concat((S[sb.list] || []).filter(function (t) { return n(t.id); }));
     box.innerHTML = list.map(function (t) { return '<button type="button" data-team="' + t.id + '" aria-pressed="' + (t.id === team) + '">' + nm(t) + '<span>' + n(t.id) + '</span></button>'; }).join('');
     [].forEach.call(box.querySelectorAll('button'), function (b) { b.onclick = function () { team = b.getAttribute('data-team'); sync(); }; });
-    var tm = (S.TEAMS || []).filter(function (t) { return t.id === team; })[0]; if (tm) $('#sh-title').textContent = nm(tm) + (B.lang() === 'en' ? ' custom' : ' 커스텀');
+    var tm = (S[sb.list] || []).filter(function (t) { return t.id === team; })[0]; if (tm) $('#sh-title').textContent = nm(tm) + sb.tail[B.lang() === 'en' ? 1 : 0];
   }
   $('#sh-sort').onchange = function () { sort = this.value; sync(); };
   sync();
