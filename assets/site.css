@@ -851,3 +851,17 @@ footer .bottom .wordmark { font-size: 15px; }
 @media (max-width: 999px) { footer .cols { grid-template-columns: 1fr !important; } }
 .page-head h1, .acct h1, .co h1, h1.co-h { font-family: var(--font-head); font-weight: 300; letter-spacing: .1em; }
 .page-head h1 .kr { font-weight: 300; }
+
+/* 품절 사이즈 */
+.pdm-sizes button.out, .pdm-sizes button[disabled] { color: #b5b5b5; text-decoration: line-through; cursor: not-allowed; background: #fafafa; }
+.pdm-soldout { font-size: 13px; color: var(--grey-3); margin: 8px 0 4px; }
+
+/* 사업자 정보 */
+footer .biz { margin-top: 18px; font-size: 11px; line-height: 1.8; color: var(--grey-3); display: flex; flex-wrap: wrap; gap: 0 14px; }
+footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
+
+/* 상담 페이지: 안내자·안심 문구 */
+.aside .guide { border-top: 1px solid var(--grey-2); padding-top: 18px; margin-top: 8px; }
+.aside .guide b { display: block; font-size: 14px; margin-bottom: 6px; }
+.aside .guide p, .aside .risk { font-size: 13px; color: var(--grey-3); line-height: 1.7; }
+.aside .risk { margin: 14px 0 18px; }

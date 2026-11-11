@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>상담·주문·수업 예약 — 슈즈텔러</title>
+<title>나만의 신발을 가져 보세요 — BIUM</title>
 <link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,21 +13,23 @@
 </head>
 <body>
 <main id="main">
-  <div class="page-head"><div class="wrap"><span class="lbl">Contact</span><h1 id="bk-h1"><span class="kr">상담·주문·수업 예약</span></h1><p>남겨 주시면 비움 작가가 직접 연락드려요. 보내는 것만으로는 비용이 생기지 않아요.</p></div></div>
+  <div class="page-head"><div class="wrap"><span class="lbl">Your own pair</span><h1 id="bk-h1"><span class="kr">나만의 신발을 가져 보세요</span></h1><p id="bk-lead0">매장에 걸린 신발은 누구나 신어요. 응원하는 팀, 처음 만난 날, 좋아하는 꽃처럼 내 이야기가 담긴 신발은 세상에 한 켤레뿐이에요. 그림 실력은 필요 없어요. 이야기만 들려주시면 비움이 손으로 그려 드려요.</p></div></div>
   <div class="wrap">
     <div class="split" id="form-wrap">
       <div class="aside">
         <ol class="steps">
-          <li><span class="n">01</span><b>필요한 것을 골라 적어 주세요</b><p>기존 디자인, 내 이야기로 새로 그리기, 공방 수업, 그 밖의 궁금한 것.</p></li>
-          <li><span class="n">02</span><b>확인 후 직접 연락드려요</b><p id="bk-resp"></p></li>
-          <li><span class="n">03</span><b>확정과 결제는 그때 안내해요</b><p id="bk-lead"></p></li>
+          <li><span class="n">01</span><b>이야기를 들려주세요</b><p>좋아하는 팀과 선수, 기념일, 간직하고 싶은 장면. 한 줄과 사진 한 장이면 충분해요.</p></li>
+          <li><span class="n">02</span><b>시안을 먼저 받아 보세요</b><p id="bk-rev"></p></li>
+          <li><span class="n">03</span><b>내 이야기를 신으세요</b><p id="bk-lead"></p></li>
         </ol>
+        <div class="guide"><b>6년 동안 신발에 이야기를 그려 왔어요</b><p>아이디어스 후기 188개, 평점 4.98. tvN 방송, 서울패션위크 송가인 협업, 국립발레단 토슈즈까지 손으로 작업했어요.</p></div>
+        <p class="risk">남겨 주시는 것만으로는 비용이 생기지 않아요. <span id="bk-resp"></span></p>
         <div class="info"><span>카카오톡으로 바로 물어봐도 돼요.</span><a class="link" id="bk-kakao" href="#">카카오톡 채널 열기</a></div>
       </div>
       <form class="fm" id="bk-form" novalidate>
-        <fieldset><legend>무엇을 도와드릴까요 <span class="req">(필수)</span></legend>
+        <fieldset><legend>어떤 걸 원하세요 <span class="req">(필수)</span></legend>
           <div class="seg">
-            <label><input type="radio" name="type" value="premium"><span>상담·주문</span></label>
+            <label><input type="radio" name="type" value="premium"><span>나만의 신발</span></label>
             <label><input type="radio" name="type" value="class"><span>공방 수업 문의</span></label>
             <label><input type="radio" name="type" value="etc"><span>기타 문의</span></label>
           </div><p class="err" id="err-type"></p></fieldset>
@@ -58,7 +60,7 @@
           <p class="err" id="err-agree"></p>
           <label class="check"><input type="checkbox" id="mkt"><span>[선택] 새 작품·수업·키트 소식과 혜택을 문자·카카오로 받을게요.</span></label>
         </fieldset>
-        <button class="btn wide" type="submit" id="bk-send">보내기</button>
+        <button class="btn wide" type="submit" id="bk-send">내 이야기 보내기</button>
       </form>
     </div>
     <div class="done" id="done" hidden tabindex="-1"></div>
@@ -72,11 +74,11 @@
   var $ = function (s) { return document.querySelector(s); };
   var $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
   var q = new URLSearchParams(location.search), f = $('#bk-form');
-  $('#bk-resp').textContent = C.response_time; $('#bk-lead').textContent = C.lead_time; $('#bk-kakao').href = S.KAKAO;
+  $('#bk-resp').textContent = C.response_time; $('#bk-lead').textContent = C.lead_time; $('#bk-rev').textContent = '비움이 직접 그린 시안을 보고 고칠 곳을 말씀해 주세요. ' + C.revisions; $('#bk-kakao').href = S.KAKAO;
   S.SIZES.forEach(function (s) { var o = document.createElement('option'); o.value = o.textContent = s; $('#size').appendChild(o); });
   function show(t) { $$('[data-for]').forEach(function (b) { b.hidden = b.getAttribute('data-for') !== t; }); }
   var t = q.get('type'); if (t === 'order') t = 'premium';
-  if (t === 'class') { $('#bk-h1').innerHTML = '<span class="kr">공방 수업 예약</span>'; document.title = '공방 수업 예약 — 슈즈텔러'; }
+  if (t === 'class') { $('#bk-h1').innerHTML = '<span class="kr">공방 수업 예약</span>'; document.title = '공방 수업 예약 — BIUM'; $('#bk-lead0').textContent = '홍대 공방에서 내 신발을 같이 그려요. 희망 날짜와 인원을 남겨 주시면 일정이 정해지는 대로 먼저 연락드려요.'; $('#bk-send').textContent = '수업 문의 보내기'; }
   if (t === 'premium' || t === 'class') { f.querySelector('input[name=type][value=' + t + ']').checked = true; show(t); }
   var d = q.get('design'); if (d === 'existing' || d === 'personal') f.querySelector('input[name=design][value=' + d + ']').checked = true;
   var p = B.byId(q.get('id') || ''); if (p) { $('#picked-wrap').hidden = false; $('#picked').innerHTML = '<img src="' + p.photos[0] + '" alt=""' + B.posAttr(p, 0) + '><div><b>' + p.name + '</b><span>' + p.sub + ' · ' + B.won(p.price) + '</span></div>'; f.querySelector('input[name=type][value=premium]').checked = true; f.querySelector('input[name=design][value=existing]').checked = true; show('premium'); }

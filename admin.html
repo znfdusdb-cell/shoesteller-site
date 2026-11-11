@@ -390,6 +390,8 @@
       '<div class="row2"><label class="f"><span><b>분류</b></span><select data-k="cat">' + S.categories.map(function (c) { return '<option value="' + c.id + '"' + (c.id === p.cat ? ' selected' : '') + '>' + esc(c.ko) + '</option>'; }).join('') + '</select></label>' +
       '<label class="f"><span><b>신발 종류</b></span><select data-k="base">' + S.bases.map(function (c) { return '<option value="' + c.id + '"' + (c.id === p.base ? ' selected' : '') + '>' + esc(c.ko) + '</option>'; }).join('') + '</select></label></div>' +
       '<label class="f"><span><b>설명</b></span><textarea data-k="desc" rows="5">' + esc(p.desc) + '</textarea></label>' +
+      '<label class="f"><span><b>만들 수 있는 사이즈</b> (비우면 공통 사이즈, 쉼표로: 225, 230, 235)</span><input type="text" data-sz="sizes" value="' + esc((p.sizes || []).join(', ')) + '"></label>' +
+      '<label class="f"><span><b>품절 사이즈</b> (쉼표로: 240, 245)</span><input type="text" data-sz="soldout" value="' + esc((p.soldout || []).join(', ')) + '"></label>' +
       '<label class="check"><input type="checkbox" data-k="isNew"' + (p.isNew ? ' checked' : '') + '> NEW 표시</label>' +
       '<div class="toolbar"><button class="btn line small" type="button" id="p-up"' + (i ? '' : ' disabled') + '>목록에서 위로</button><button class="btn danger small" type="button" id="p-del">이 작품 삭제</button></div>';
     $('#back').onclick = function () { editing = null; render(); };
@@ -404,6 +406,7 @@
     });
     function posArr() { if (!Array.isArray(p.pos)) p.pos = []; while (p.pos.length < p.photos.length) p.pos.push(50); return p.pos; }
     $$('[data-pos]', v).forEach(function (r) { r.oninput = function () { var k = +r.getAttribute('data-pos'); posArr()[k] = Number(r.value); r.parentNode.querySelector('img').style.objectPosition = r.value + '% 50%'; dirty(); }; });
+    $$('[data-sz]', v).forEach(function (el) { el.oninput = function () { var k = el.getAttribute('data-sz'), arr = el.value.split(/[,\s]+/).map(Number).filter(function (n) { return n > 100; }); if (arr.length) p[k] = arr; else delete p[k]; dirty(); }; });
     $$('[data-rm]', v).forEach(function (b) { b.onclick = function () { var k = +b.getAttribute('data-rm'); if (Array.isArray(p.pos)) p.pos.splice(k, 1); p.photos.splice(k, 1); render(); dirty(); }; });
     $$('[data-left]', v).forEach(function (b) { b.onclick = function () { var k = +b.getAttribute('data-left'); p.photos.splice(k - 1, 0, p.photos.splice(k, 1)[0]); if (Array.isArray(p.pos)) { posArr(); p.pos.splice(k - 1, 0, p.pos.splice(k, 1)[0]); } render(); dirty(); }; });
     $('#ph-add').onchange = function () {

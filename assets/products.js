@@ -652,8 +652,8 @@ window.SHOES = {
    "Arsenal, Chelsea, Liverpool, Spurs, Korea. Emblems, numbers and your favourite player, hand-painted on white sneakers. For matchday."
   ],
   "fb.btn": [
-   "축구 커스텀 상담",
-   "Football custom"
+   "원하는 팀 신발이 없다면?",
+   "Don't see your team?"
   ],
   "cat.h": [
    "Shop by base",
@@ -1165,5 +1165,14 @@ window.SHOES = {
   "title_ko": "흰 신발이 내 이야기가 되기까지",
   "title_en": "From a white pair to your story",
   "product": "af1cherry"
+ },
+ "BIZ": {
+  "name": "비움(BIUM)",
+  "owner": "연유정",
+  "reg_no": "835-11-01172",
+  "address": "경기도 고양시 덕양구 화신로272번길 29, 6층 617호(화정동, 현대프라자)",
+  "tel": "",
+  "email": "",
+  "mail_order_no": ""
  }
 };

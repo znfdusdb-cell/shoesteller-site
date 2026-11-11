@@ -21,7 +21,7 @@
     document.documentElement.lang = LANG;
   }
   function setLang(l) { LANG = l; store.set('bium_lang', l); applyLang(document); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN' : 'KO'; });
-  $('#foot-news').addEventListener('submit', function (e) { e.preventDefault(); location.href = 'account.html?email=' + encodeURIComponent($('#foot-email').value.trim()); }); }
+  }
   function nameOf(p) { return LANG === 'en' && p.en ? p.en : p.name; }
 
   /* 신발 종류 선 그림 */
@@ -61,7 +61,7 @@
       '<a class="brand" href="index.html" aria-label="BIUM 처음으로"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a>' +
       '<ul class="menu">' +
         '<li><a href="shop.html">Custom</a><div class="mega"><div class="mega-in">' +
-          '<div class="mlinks"><a href="shop.html"><b data-t="nav.all"></b></a><a href="shop.html?new=1" data-t="nav.new"></a><a href="index.html#looks" data-t="nav.lookbook"></a><hr>' +
+          '<div class="mlinks"><a href="shop.html"><b data-t="nav.all"></b></a><a href="shop.html" data-t="nav.new"></a><a href="index.html#looks" data-t="nav.lookbook"></a><hr>' +
             S.categories.map(function (c) { return '<a href="shop.html?cat=' + c.id + '">' + nm(c) + '</a>'; }).join('') + '<hr>' +
             '<a href="studio.html" data-t="studio.btn"></a><a href="book.html?type=order" data-t="foot.5"></a></div>' +
           '<div class="mgrp"><span class="mlbl" data-t="nav.base"></span><div class="mgrid c4">' + S.bases.map(function (b) { return shoeCell('shop.html?base=' + b.id, b.id, nm(b)); }).join('') + '</div></div>' +
@@ -91,7 +91,7 @@
           '<a class="drow nav" href="index.html#looks"><span>Lookbook</span></a>' +
         '</div>' +
         '<div class="dpanel" id="dp-custom" hidden><button type="button" class="dback" data-go="dp-root">' + svgIcon('left') + '<span>Custom</span></button>' +
-          '<a class="dlink" href="shop.html" data-t="nav.all"></a><a class="dlink" href="shop.html?new=1" data-t="nav.new"></a>' +
+          '<a class="dlink" href="shop.html" data-t="nav.all"></a><a class="dlink" href="shop.html" data-t="nav.new"></a>' +
           '<span class="mlbl" data-t="nav.bystory"></span><div class="mgrid c3">' + S.categories.map(function (c) { return shoeCell('shop.html?cat=' + c.id, c.id, nm(c)); }).join('') + '</div>' +
           '<span class="mlbl" data-t="nav.base"></span><div class="mgrid c3">' + S.bases.map(function (b) { return shoeCell('shop.html?base=' + b.id, b.id, nm(b)); }).join('') + '</div>' +
         '</div>' +
@@ -115,14 +115,20 @@
     '<div class="toast" id="toast"></div>' +
     '<a class="kakao" href="' + S.KAKAO + '" target="_blank" rel="noopener" aria-label="카카오톡 문의">' + svgIcon('kakao') + '</a>';
   /* 꼬리말 — 메이슨: 소식 받기 | 회사 | 고객 | 약관, 아이콘, 로고·저작권·결제 */
+  /* 사업자 정보(전자상거래법 표시 사항): products.js의 BIZ. 빈 칸은 안 보인다 */
+  function bizHtml() {
+    var Z = S.BIZ || {}, row = [['상호', Z.name], ['대표', Z.owner], ['사업자등록번호', Z.reg_no], ['통신판매업신고', Z.mail_order_no], ['주소', Z.address], ['전화', Z.tel], ['이메일', Z.email]]
+      .filter(function (r) { return r[1]; }).map(function (r) { return '<span>' + r[0] + ' ' + r[1] + '</span>'; });
+    return row.length ? '<p class="biz">' + row.join('') + (Z.reg_no ? '<a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=' + Z.reg_no.replace(/\D/g, '') + '" target="_blank" rel="noopener">사업자정보확인</a>' : '') + '</p>' : '';
+  }
   var footerHtml =
     '<footer><div class="fwrap"><div class="cols">' +
-      '<div class="fnews"><span class="flbl" data-t="news.h"></span><p data-t="news.p"></p><form id="foot-news"><label class="sr" for="foot-email">이메일</label><input id="foot-email" type="email" data-tp="news.ph" required autocomplete="email"><button class="btn" type="submit" data-t="news.btn"></button></form>' +
+      '<div class="fnews"><span class="flbl">BIUM</span><p>손으로 그리는 커스텀 신발, 슈즈텔러 비움.</p>' +
         '<div class="social"><a href="https://www.youtube.com/@bium4581" aria-label="YouTube">' + svgIcon('yt') + '</a><a href="https://smartstore.naver.com/bium4581" aria-label="스마트스토어">' + svgIcon('n') + '</a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" aria-label="아이디어스">' + svgIcon('i') + '</a><a href="' + S.KAKAO + '" aria-label="카카오톡">' + svgIcon('chat') + '</a></div></div>' +
       '<div><span class="flbl" data-t="foot.company"></span><ul><li><a href="index.html#story" data-t="foot.1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="foot.2"></a></li><li><a href="class.html" data-t="foot.3"></a></li><li><a href="studio.html" data-t="nav.studio"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="foot.4"></a></li></ul></div>' +
       '<div><span class="flbl" data-t="foot.cs"></span><ul><li><a href="book.html?type=order" data-t="foot.5"></a></li><li><a href="book.html?type=class" data-t="foot.6"></a></li><li><a href="index.html#faq" data-t="foot.7"></a></li><li><a href="' + S.KAKAO + '" data-t="foot.8"></a></li></ul></div>' +
       '<div><span class="flbl" data-t="foot.terms"></span><ul><li><a href="privacy.html" data-t="foot.9"></a></li><li><a href="terms.html" data-t="foot.10"></a></li></ul></div>' +
-    '</div><div class="bottom"><a class="brand" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><span class="copy">© 2026 Custom BIUM · Shoesteller — Hand-painted in Seoul</span><span class="pays"><i>N Pay</i><i>계좌이체</i></span></div></div></footer>';
+    '</div><div class="bottom"><a class="brand" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><span class="copy">© 2026 Custom BIUM · Shoesteller — Hand-painted in Seoul</span><span class="pays"><i>N Pay</i><i>계좌이체</i></span></div>' + bizHtml() + '</div></footer>';
   document.body.insertAdjacentHTML('afterbegin', headerHtml);
   document.body.insertAdjacentHTML('beforeend', footerHtml);
 
@@ -173,6 +179,10 @@
   /* 상품 카드 */
   /* 사진 중심 위치: products.js의 pos[사진 순서] = 가로 0(왼쪽)~100(오른쪽). 꽉 채우기일 때 그림이 잘리지 않게 */
   function posAttr(p, i) { var v = p.pos && p.pos[i]; return (p.fit !== 'contain' && typeof v === 'number') ? ' style="object-position:' + v + '% 50%"' : ''; }
+  /* 작품별 사이즈: products.js의 sizes(만들 수 있는 사이즈), soldout(품절 사이즈). 없으면 공통 SIZES */
+  function sizesOf(p) { var list = (p && p.sizes && p.sizes.length) ? p.sizes : S.SIZES, out = (p && p.soldout) || []; return list.map(function (z) { return { z: z, out: out.indexOf(z) > -1 || out.indexOf(String(z)) > -1 }; }); }
+  function allOut(p) { return sizesOf(p).every(function (x) { return x.out; }); }
+  function sizeOpts(p) { return sizesOf(p).map(function (x) { return '<option' + (x.out ? ' disabled' : '') + ' value="' + x.z + '">' + x.z + (x.out ? ' (품절)' : '') + '</option>'; }).join(''); }
   function cardHtml(p) {
     var cls = p.fit === 'contain' ? 'contain' : '';
     var alt = p.photos[1] ? '<img class="alt ' + cls + '" src="' + p.photos[1] + '" alt="" loading="lazy"' + posAttr(p, 1) + '>' : '';
@@ -185,7 +195,7 @@
   function quickAdd(id) {
     var p = byId(id); if (!p) return;
     $('#qa-body').innerHTML = '<div class="qa-ph"><img src="' + p.photos[0] + '" alt="" class="' + (p.fit === 'contain' ? 'contain' : '') + '"' + posAttr(p, 0) + '></div><p class="qa-name">' + nameOf(p) + '</p><p class="qa-price price">' + won(p.price) + '</p>' +
-      '<div class="qa-opt"><label for="qa-size">사이즈 (mm)</label><select id="qa-size"><option value="">사이즈를 골라 주세요</option>' + S.SIZES.map(function (z) { return '<option>' + z + '</option>'; }).join('') + '</select>' +
+      '<div class="qa-opt"><label for="qa-size">사이즈 (mm)</label><select id="qa-size"><option value="">사이즈를 골라 주세요</option>' + sizeOpts(p) + '</select>' +
       '<button class="btn wide" type="button" id="qa-go" disabled>사이즈를 골라 주세요</button><a class="link" href="product.html?id=' + p.id + '">자세히 보기</a></div>';
     var sel = $('#qa-size'), go = $('#qa-go');
     sel.addEventListener('change', function () { go.disabled = !sel.value; go.textContent = sel.value ? t('pd.add') : '사이즈를 골라 주세요'; });
@@ -219,7 +229,6 @@
   });
 
   applyLang(document); renderUser(); renderCart(); $$('.langbtn').forEach(function (b) { b.textContent = LANG === 'ko' ? 'EN' : 'KO'; });
-  $('#foot-news').addEventListener('submit', function (e) { e.preventDefault(); location.href = 'account.html?email=' + encodeURIComponent($('#foot-email').value.trim()); });
 
   /* 수업 예약: 네이버 플레이스가 연결되면 그쪽으로 */
   $$('a[href="book.html?type=class"]').forEach(function (a) { if (S.NAVER_BOOKING) { a.href = S.NAVER_BOOKING; a.target = '_blank'; a.rel = 'noopener'; } else { a.href = 'class.html#workshop'; } });
@@ -239,5 +248,5 @@
       .then(function (j) { clearTimeout(timer); if (j && j.ok && j.collecting !== false) done({ via: 'server', data: j }); else viaKakao(); })
       .catch(function () { clearTimeout(timer); viaKakao(); });
   }
-  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, addToCart: addToCart, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
+  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, addToCart: addToCart, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
 })();

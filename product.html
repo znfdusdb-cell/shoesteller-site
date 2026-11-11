@@ -39,8 +39,9 @@
       '<p class="pdm-price">' + B.won(p.price) + '</p>' +
       '<p class="pdm-sub">' + p.sub + (p.reviews ? ' · 아이디어스 후기 ' + p.reviews + '개' : '') + '</p>' +
       '<p class="pdm-lbl"><span data-t="pd.size"></span>:</p>' +
-      '<div class="pdm-sizes" id="sizes">' + S.SIZES.map(function (z) { return '<button type="button" data-size="' + z + '" aria-pressed="false">' + z + '</button>'; }).join('') + '</div>' +
-      '<select class="pdm-select" id="size-sel" aria-label="사이즈"><option value="" data-t="pd.select"></option>' + S.SIZES.map(function (z) { return '<option>' + z + '</option>'; }).join('') + '</select>' +
+      '<div class="pdm-sizes" id="sizes">' + B.sizesOf(p).map(function (x) { return '<button type="button" data-size="' + x.z + '" aria-pressed="false"' + (x.out ? ' disabled class="out" title="품절"' : '') + '>' + x.z + '</button>'; }).join('') + '</div>' +
+      (B.allOut(p) ? '<p class="pdm-soldout">지금은 모든 사이즈가 품절이에요. 같은 디자인으로 주문 제작을 원하시면 상담을 남겨 주세요.</p>' : '') +
+      '<select class="pdm-select" id="size-sel" aria-label="사이즈"><option value="" data-t="pd.select"></option>' + B.sizeOpts(p) + '</select>' +
       '<button class="btn wide" type="button" id="add"><span data-t="pd.select"></span></button>' +
       '<div class="pdm-alt"><button class="ulink" type="button" id="buy" data-t="pd.buy"></button><a class="ulink" href="book.html?type=order&design=' + (p.cat === 'story' ? 'personal' : 'existing') + '&id=' + p.id + '" data-t="pd.consult"></a><a class="ulink" href="studio.html?base=' + p.base + '" data-t="studio.btn"></a></div>' +
       '<p class="msg" id="msg"></p>' +
