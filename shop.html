@@ -1,60 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>작품 — BIUM</title>
-<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/products.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>숍 — 완성 디자인 · 슈즈텔러</title>
+<meta name="description" content="지금까지 그려온 디자인 중에서 고르세요. 사이즈만 정하면 비움 작가가 한 켤레씩 그려드려요.">
+<link rel="stylesheet" href="./site.css">
+<script src="./config.js"></script>
+<script src="./shoe.js"></script>
 </head>
-<body>
-<main id="main">
-  <div class="shop-head"><h1 id="sh-title"></h1><p id="sh-sub"></p></div>
-  <div class="shop-bar">
-    <div class="mtabs" role="tablist" id="sh-tabs"></div>
-    <div class="mright"><span id="sh-chip"></span><label class="sr" for="sh-sort">정렬</label><select id="sh-sort"><option value="">추천순</option><option value="new">새 작품순</option><option value="low">가격 낮은순</option><option value="high">가격 높은순</option><option value="rev">후기 많은순</option></select></div>
-  </div>
-  <div class="grid" id="sh-grid"></div>
-  <p class="empty" id="sh-empty" hidden>이 조건의 작품이 아직 없어요. <a class="ulink" href="studio.html">스튜디오에서 직접 디자인하기</a></p>
+<body data-page="shop">
+<main>
+  <section class="page-head"><div class="wrap">
+    <h1>완성 디자인</h1>
+    <p class="lead">지금까지 그려온 디자인이에요. 하나를 고르고 사이즈를 정하면, 비움 작가가 그 디자인 그대로 한 켤레를 그려요. 손으로 그리기 때문에 한 켤레마다 붓 자국이 조금씩 달라요.</p>
+  </div></section>
+  <section class="wrap" aria-label="상품">
+    <div class="gallery-head"><span class="k" id="grid-count"></span><span>누르면 사이즈를 고를 수 있어요</span></div>
+    <div class="shop-grid" id="grid"></div>
+    <p class="note" style="margin-top:16px">사진이 들어오기 전까지는 디자인을 그림으로 보여드려요. 마음에 드는 게 없으면 <a href="./studio.html">스튜디오</a>에서 직접 만들 수 있어요.</p>
+  </section>
+  <section class="sec" aria-labelledby="k-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="k-h">곧 나와요</h2>
+        <p class="lead">커스텀 키트는 2027년 1~2월, 온라인 수업은 3~4월에 열 예정이에요. 가입해 두시면 가장 먼저 알려드려요.</p>
+        <p style="margin-top:22px"><a class="btn ghost" href="./join.html?interest=kit">출시 알림 받기</a></p>
+      </div>
+      <div>
+        <dl class="facts">
+          <dt>커스텀 키트</dt><dd>도안, 물감, 순서가 적힌 교재, 수업 영상 링크를 한 상자에.</dd>
+          <dt>온라인 수업</dt><dd>공방에 오지 않아도 집에서 같은 순서로.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
 </main>
-<script src="assets/site.js"></script>
+<script src="./site.js"></script>
+<script src="./track.js"></script>
+<script src="./order.js"></script>
 <script>
 (function () {
-  'use strict';
-  var S = window.SHOES, B = window.BIUM;
-  var $ = function (s) { return document.querySelector(s); };
-  var q = new URLSearchParams(location.search), cat = q.get('cat') || 'all', base = q.get('base') || '', onlyNew = q.get('new') === '1', sort = '';
-  var nm = function (x) { return B.lang() === 'en' ? x.en : x.ko; };
-  function tabs() {
-    var list = [{ id: 'all', ko: '전체 작품', en: 'All' }].concat(S.categories);
-    $('#sh-tabs').innerHTML = list.map(function (c) { return '<button role="tab" type="button" data-c="' + c.id + '" aria-selected="' + (c.id === cat) + '">' + nm(c) + '</button>'; }).join('');
-    [].forEach.call(document.querySelectorAll('#sh-tabs button'), function (b) { b.onclick = function () { cat = b.getAttribute('data-c'); sync(); }; });
-  }
-  function sync() {
-    var u = new URLSearchParams(); if (cat !== 'all') u.set('cat', cat); if (base) u.set('base', base); if (onlyNew) u.set('new', '1');
-    history.replaceState(null, '', 'shop.html' + (u.toString() ? '?' + u : ''));
-    var list = S.products.filter(function (p) { return (cat === 'all' || p.cat === cat) && (!base || p.base === base) && (!onlyNew || p.isNew); });
-    if (sort === 'low') list.sort(function (a, b) { return a.price - b.price; });
-    if (sort === 'high') list.sort(function (a, b) { return b.price - a.price; });
-    if (sort === 'rev') list.sort(function (a, b) { return (b.reviews || 0) - (a.reviews || 0); });
-    if (sort === 'new') list.sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); });
-    var c = S.categories.filter(function (x) { return x.id === cat; })[0], bs = S.bases.filter(function (x) { return x.id === base; })[0];
-    $('#sh-title').textContent = onlyNew ? (B.lang() === 'en' ? 'New arrivals' : '새 작품') : c ? nm(c) : B.t('shop.h');
-    $('#sh-sub').textContent = list.length + (B.lang() === 'en' ? ' works' : '개 작품');
-    $('#sh-chip').innerHTML = (bs ? '<button class="chip" type="button" id="x-base">' + nm(bs) + ' ✕</button>' : '') + (onlyNew ? '<button class="chip" type="button" id="x-new">NEW ✕</button>' : '');
-    if ($('#x-base')) $('#x-base').onclick = function () { base = ''; sync(); };
-    if ($('#x-new')) $('#x-new').onclick = function () { onlyNew = false; sync(); };
-    $('#sh-grid').innerHTML = list.map(B.cardHtml).join(''); B.applyLang($('#sh-grid'));
-    $('#sh-empty').hidden = !!list.length;
-    tabs();
-  }
-  $('#sh-sort').onchange = function () { sort = this.value; sync(); };
-  sync();
+  var S = window.ShoeArt, CFG = window.SHOESTELLER || {}, grid = document.getElementById('grid');
+  (CFG.PRODUCTS || []).forEach(function (p, i) {
+    var st = S.applyColorway(S.defaultState(), typeof p.colorway === 'string' ? (S.COLORWAYS[p.colorway] || {}) : (p.colorway || {}));
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'item';
+    if (p.photo) { var im = document.createElement('img'); im.src = p.photo; im.alt = p.name; im.loading = 'lazy'; b.appendChild(im); }
+    else { var sv = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); S.render(sv, st, 'sh' + i); b.appendChild(sv); }
+    var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = p.name; b.appendChild(nm);
+    // 갤러리에는 이름 + 한 줄 설명만. 가격은 확정(config.js PRICES) 뒤에만 표시, 그 전엔 주문 시트에서 '가격 확인 중'
+    var pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = p.price ? window.OrderSheet.won(p.price) : (p.desc || ''); b.appendChild(pr);
+    var tg = document.createElement('span'); tg.className = 'tag'; tg.textContent = 'No. ' + (i < 9 ? '0' : '') + (i + 1); b.appendChild(tg);
+    b.addEventListener('click', function () { window.OrderSheet.open({ sku: p.sku, name: p.name + ' 1켤레', price: p.price, state: p.photo ? null : st, design: { product: p.sku, colorway: p.colorway }, title: p.name, sub: p.desc || '' }); });
+    grid.appendChild(b);
+  });
+  var n = (CFG.PRODUCTS || []).length; document.getElementById('grid-count').textContent = '컬렉션 · ' + (n < 10 ? '0' : '') + n;
 })();
 </script>
+<script src="./chat.js" defer></script>
 </body>
 </html>
