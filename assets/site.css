@@ -884,3 +884,13 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .rv-more { margin: 24px auto 0; display: block; }
 .rv-zoom { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; z-index: 999; cursor: zoom-out; }
 .rv-zoom img { max-width: 92vw; max-height: 90vh; }
+
+/* 상담 페이지 영업 순서: 질문 → 해결책 → 계획 → 안 하면/하면 → 확인 질문 */
+#bk-pitch { max-width: 40em; }
+#bk-pitch p { font-size: 14px; color: var(--grey-3); line-height: 1.8; margin-top: 10px; }
+#bk-pitch .pq { font-size: 17px; color: var(--black); line-height: 1.6; margin-top: 14px; }
+#bk-pitch .ps { color: var(--black); }
+.aside .stakes { display: grid; gap: 12px; margin: 8px 0 18px; }
+.aside .stakes p { font-size: 13px; color: var(--grey-3); line-height: 1.7; background: var(--grey-1); padding: 14px 16px; }
+.aside .stakes b { display: block; color: var(--black); font-size: 13px; margin-bottom: 4px; }
+.fm .ask { font-size: 14px; text-align: center; margin: 6px 0 2px; }

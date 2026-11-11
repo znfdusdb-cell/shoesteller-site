@@ -13,7 +13,7 @@
 </head>
 <body>
 <main id="main">
-  <div class="page-head"><div class="wrap"><span class="lbl">Your own pair</span><h1 id="bk-h1"><span class="kr">나만의 신발을 가져 보세요</span></h1><p id="bk-lead0">매장에 걸린 신발은 누구나 신어요. 응원하는 팀, 처음 만난 날, 좋아하는 꽃처럼 내 이야기가 담긴 신발은 세상에 한 켤레뿐이에요. 그림 실력은 필요 없어요. 이야기만 들려주시면 비움이 손으로 그려 드려요.</p></div></div>
+  <div class="page-head"><div class="wrap"><span class="lbl">Your own pair</span><h1 id="bk-h1"><span class="kr">나만의 신발을 가져 보세요</span></h1><div id="bk-pitch"><p class="pq">요즘 제일 좋아하는 게 뭐예요?<br>응원하는 팀이든, 반려동물이든, 처음 만난 날이든요.</p><p>그걸 담은 물건을 찾아본 적 있나요? 다들 비슷한 굿즈뿐이라, 좋아하는 마음을 제대로 담기 어렵죠.</p><p class="ps">그 마음을 신발 한 켤레에 손으로 그려 드려요. 기성품엔 없는, 세상에 하나뿐인 내 것으로요. 그림 실력은 필요 없어요.</p></div><p id="bk-lead0" hidden></p></div></div>
   <div class="wrap">
     <div class="split" id="form-wrap">
       <div class="aside">
@@ -22,6 +22,7 @@
           <li><span class="n">02</span><b>시안을 먼저 받아 보세요</b><p id="bk-rev"></p></li>
           <li><span class="n">03</span><b>내 이야기를 신으세요</b><p id="bk-lead"></p></li>
         </ol>
+        <div class="stakes"><p><b>그냥 두면</b>또 비슷한 굿즈로 타협하게 돼요. 좋아하는 마음은 있는데 보여 줄 방법 없이 두기엔 아깝잖아요.</p><p><b>신발에 담으면</b>좋아하는 걸 매일 신고 다니게 돼요. 신을 때마다 "그거 어디서 샀어?"를 듣는 한 켤레예요.</p></div>
         <div class="guide"><b>6년 동안 신발에 이야기를 그려 왔어요</b><p>아이디어스 후기 188개, 평점 4.98. tvN 방송, 서울패션위크 송가인 협업, 국립발레단 토슈즈까지 손으로 작업했어요.</p></div>
         <p class="risk">남겨 주시는 것만으로는 비용이 생기지 않아요. <span id="bk-resp"></span></p>
         <div class="info"><span>카카오톡으로 바로 물어봐도 돼요.</span><a class="link" id="bk-kakao" href="#">카카오톡 채널 열기</a></div>
@@ -60,6 +61,7 @@
           <p class="err" id="err-agree"></p>
           <label class="check"><input type="checkbox" id="mkt"><span>[선택] 새 작품·수업·키트 소식과 혜택을 문자·카카오로 받을게요.</span></label>
         </fieldset>
+        <p class="ask" id="bk-ask">지금 내 이야기를 들려주실래요? 남겨 주시면 비움이 직접 연락드려요.</p>
         <button class="btn wide" type="submit" id="bk-send">내 이야기 보내기</button>
       </form>
     </div>
@@ -78,7 +80,7 @@
   S.SIZES.forEach(function (s) { var o = document.createElement('option'); o.value = o.textContent = s; $('#size').appendChild(o); });
   function show(t) { $$('[data-for]').forEach(function (b) { b.hidden = b.getAttribute('data-for') !== t; }); }
   var t = q.get('type'); if (t === 'order') t = 'premium';
-  if (t === 'class') { $('#bk-h1').innerHTML = '<span class="kr">공방 수업 예약</span>'; document.title = '공방 수업 예약 — BIUM'; $('#bk-lead0').textContent = '홍대 공방에서 내 신발을 같이 그려요. 희망 날짜와 인원을 남겨 주시면 일정이 정해지는 대로 먼저 연락드려요.'; $('#bk-send').textContent = '수업 문의 보내기'; }
+  if (t === 'class') { $('#bk-h1').innerHTML = '<span class="kr">공방 수업 예약</span>'; document.title = '공방 수업 예약 — BIUM'; $('#bk-pitch').hidden = true; $('#bk-lead0').hidden = false; $('#bk-lead0').textContent = '홍대 공방에서 내 신발을 같이 그려요. 희망 날짜와 인원을 남겨 주시면 일정이 정해지는 대로 먼저 연락드려요.'; $('.stakes').hidden = true; $('#bk-ask').textContent = '희망 날짜와 인원을 남겨 주시면 먼저 연락드려요.'; $('#bk-send').textContent = '수업 문의 보내기'; }
   if (t === 'premium' || t === 'class') { f.querySelector('input[name=type][value=' + t + ']').checked = true; show(t); }
   var d = q.get('design'); if (d === 'existing' || d === 'personal') f.querySelector('input[name=design][value=' + d + ']').checked = true;
   var p = B.byId(q.get('id') || ''); if (p) { $('#picked-wrap').hidden = false; $('#picked').innerHTML = '<img src="' + p.photos[0] + '" alt=""' + B.posAttr(p, 0) + '><div><b>' + p.name + '</b><span>' + p.sub + ' · ' + B.won(p.price) + '</span></div>'; f.querySelector('input[name=type][value=premium]').checked = true; f.querySelector('input[name=design][value=existing]').checked = true; show('premium'); }
