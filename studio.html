@@ -1,98 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>커스텀 스튜디오 — BIUM</title>
-<meta name="description" content="신발 모델을 고르고 색을 칠하고 내 그림과 글자를 올려 보세요. 만든 디자인 그대로 비움 작가가 손으로 그려 드려요.">
-<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/products.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>스튜디오 — 내 디자인 만들기 · 슈즈텔러</title>
+<meta name="description" content="부위마다 색을 고르고 패턴·글자·그림을 올려 세상에 하나뿐인 신발을 디자인하세요. 완성한 디자인 그대로 비움 작가가 그려드려요.">
+<link rel="stylesheet" href="./site.css">
+<script src="./config.js"></script>
+<script src="./shoe.js"></script>
 </head>
-<body>
-<main id="main" class="st-page">
-  <div class="st-head"><h1 class="st-title">CUSTOM STUDIO</h1><p>신발을 고르고, 칠하고, 내 그림을 올려 보세요. 만든 그대로 손으로 그려 드려요.</p></div>
-
-  <div class="st">
-    <div class="st-stage">
-      <div class="st-canvas-wrap" id="wrap">
-        <canvas id="cv" width="1600" height="800" aria-label="내 신발 디자인"></canvas>
-        <div class="st-empty" id="empty" hidden>신발을 먼저 골라 주세요</div>
-      </div>
-      <div class="st-bar">
-        <button type="button" id="undo" aria-label="되돌리기">↶ 되돌리기</button>
-        <button type="button" id="redo" aria-label="다시">↷ 다시</button>
-        <button type="button" id="clear">처음부터</button>
-        <button type="button" id="dl">그림 저장</button>
-      </div>
-      <p class="st-hint" id="hint">신발 안쪽을 누르면 그 칸이 칠해져요</p>
+<body data-page="studio">
+<main class="studio" aria-label="디자인 스튜디오">
+  <section class="studio-canvas">
+    <div class="studio-top">
+      <button class="btn small" type="button" id="undo" aria-label="되돌리기">되돌리기</button>
+      <button class="btn small" type="button" id="redo" aria-label="다시 실행">다시</button>
+      <button class="btn small" type="button" id="reset">흰 신발로</button>
+      <button class="btn small" type="button" id="save">그림 저장</button>
     </div>
+    <svg id="shoe" role="img" aria-label="내 신발 디자인. 부위를 누르면 고를 수 있어요"></svg>
+    <div class="studio-hint" id="hint">부위를 누르고 색을 고르세요</div>
+  </section>
 
-    <aside class="st-panel">
-      <section class="st-step">
-        <h2><span>1</span> 신발 고르기</h2>
-        <label class="st-lbl" for="model">신발 모델명</label>
-        <div class="st-model"><input id="model" type="text" placeholder="예: 에어포스1, 척70 하이, 반스 올드스쿨" autocomplete="off"><button type="button" id="model-go">찾기</button></div>
-        <p class="st-note" id="model-note">모델명을 넣으면 가장 비슷한 모양을 골라 드려요. 정확한 모델은 주문서에 그대로 적혀요.</p>
-        <div class="st-bases" id="bases"></div>
-        <label class="st-photo"><input type="file" accept="image/*" id="photo"> 내 신발 사진으로 하기 <small>옆에서 찍은 사진이 가장 좋아요</small></label>
-      </section>
-
-      <section class="st-step">
-        <h2><span>2</span> 꾸미기</h2>
-        <div class="st-tabs" role="tablist">
-          <button type="button" role="tab" data-tool="fill" class="on">칠하기</button>
-          <button type="button" role="tab" data-tool="brush">붓</button>
-          <button type="button" role="tab" data-tool="image">그림 올리기</button>
-          <button type="button" role="tab" data-tool="text">글자</button>
+  <aside class="tools" aria-label="디자인 도구">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="color">색</button>
+      <button role="tab" aria-selected="false" data-tab="pattern">패턴</button>
+      <button role="tab" aria-selected="false" data-tab="text">글자</button>
+      <button role="tab" aria-selected="false" data-tab="sticker">그림</button>
+      <button role="tab" aria-selected="false" data-tab="preset">조합</button>
+    </div>
+    <div class="tool-body">
+      <div data-pane="color">
+        <h4>부위</h4>
+        <div class="parts" id="parts"></div>
+        <h4>물감</h4>
+        <div class="swatches" id="swatches"></div>
+      </div>
+      <div data-pane="pattern" hidden>
+        <h4>부위</h4>
+        <div class="parts" id="parts2"></div>
+        <h4>패턴</h4>
+        <div class="pats" id="pats"></div>
+        <h4 style="margin-top:16px">패턴 색</h4>
+        <div class="swatches" id="pswatches"></div>
+      </div>
+      <div data-pane="text" hidden>
+        <div class="row"><label for="txt">글자</label><input class="field" id="txt" maxlength="16" placeholder="이름, 날짜, 한마디"></div>
+        <div class="row"><label for="tfont">서체</label>
+          <select class="field" id="tfont">
+            <option value="Black Han Sans, Noto Sans KR, sans-serif">굵게</option>
+            <option value="Noto Sans KR, sans-serif">보통</option>
+            <option value="Georgia, 'Noto Serif KR', serif">세리프</option>
+            <option value="'Courier New', monospace">타자기</option>
+          </select></div>
+        <div class="row"><label>글자 색</label><div class="swatches" id="tswatches"></div></div>
+        <button class="btn small ghost" type="button" id="addtext">신발에 올리기</button>
+        <h4 style="margin-top:18px">올린 것</h4>
+        <div class="layer-list" id="tlayers"></div>
+        <div id="tedit" hidden>
+          <div class="row"><label for="tsize">크기</label><input class="range" type="range" id="tsize" min="12" max="72" value="30"></div>
+          <div class="row"><label for="trot">기울기</label><input class="range" type="range" id="trot" min="-45" max="45" value="0"></div>
+          <button class="btn small ghost" type="button" id="tdel">지우기</button>
         </div>
-        <div class="st-pane" data-pane="color">
-          <div class="st-sw" id="sw"></div>
-          <label class="st-custom">다른 색 <input type="color" id="pick" value="#c8102e"></label>
+      </div>
+      <div data-pane="sticker" hidden>
+        <h4>그림 고르기</h4>
+        <div class="stickers" id="stickers"></div>
+        <div class="row" style="margin-top:14px"><label>그림 색</label><div class="swatches" id="sswatches"></div></div>
+        <div class="row"><label for="upload">내 사진·그림 올리기</label><input class="field" type="file" id="upload" accept="image/*"></div>
+        <p class="note">올린 그림은 이 기기에만 있고, 주문할 때 디자인과 함께 전달돼요.</p>
+        <h4 style="margin-top:18px">올린 것</h4>
+        <div class="layer-list" id="slayers"></div>
+        <div id="sedit" hidden>
+          <div class="row"><label for="ssize">크기</label><input class="range" type="range" id="ssize" min="0.3" max="2.5" step="0.05" value="1"></div>
+          <div class="row"><label for="srot">기울기</label><input class="range" type="range" id="srot" min="-180" max="180" value="0"></div>
+          <button class="btn small ghost" type="button" id="sdel">지우기</button>
         </div>
-        <div class="st-pane" data-pane="brush" hidden>
-          <label class="st-lbl">붓 굵기 <input type="range" id="bsize" min="4" max="60" value="16"></label>
-        </div>
-        <div class="st-pane" data-pane="image" hidden>
-          <label class="btn line wide st-file"><input type="file" accept="image/*" id="img"> 사진·그림 고르기</label>
-          <p class="st-note">좋아하는 캐릭터, 반려동물, 선수, 손글씨 무엇이든요. 올린 뒤 손가락으로 옮기고, 두 손가락으로 크기와 각도를 바꿔요.</p>
-        </div>
-        <div class="st-pane" data-pane="text" hidden>
-          <div class="st-model"><input id="txt" type="text" maxlength="20" placeholder="이름, 날짜, 한마디"><button type="button" id="txt-add">올리기</button></div>
-          <label class="st-lbl" for="font">글씨체</label>
-          <select id="font"><option value="700 1px Archivo, sans-serif">ARCHIVO 굵게</option><option value="700 1px 'Noto Sans KR', sans-serif">한글 굵게</option><option value="400 1px Georgia, serif">세리프</option><option value="italic 400 1px 'Brush Script MT', cursive">손글씨</option></select>
-        </div>
-        <div class="st-sel" id="sel" hidden>
-          <b>고른 것</b>
-          <label class="st-lbl">크기 <input type="range" id="scale" min="10" max="300" value="100"></label>
-          <label class="st-lbl">회전 <input type="range" id="rot" min="-180" max="180" value="0"></label>
-          <div class="st-row"><button type="button" class="btn line small" id="front">맨 앞으로</button><button type="button" class="btn line small" id="del">지우기</button></div>
-        </div>
-      </section>
-
-      <section class="st-step" id="order">
-        <h2><span>3</span> 이대로 주문하기</h2>
-        <form class="fm" id="of" novalidate>
-          <fieldset><label class="label" for="o-model">신발 모델 <span class="req">(필수)</span></label><input type="text" id="o-model" placeholder="예: 나이키 에어포스1 로우 화이트"><p class="err" id="e-model"></p></fieldset>
-          <fieldset><label class="label">신발</label>
-            <div class="seg" id="o-src"><button type="button" class="on" data-v="new">새 신발로 (작가가 준비)</button><button type="button" data-v="mine">내 신발 보내기</button></div></fieldset>
-          <fieldset><label class="label" for="o-size">사이즈 <span class="req">(필수)</span></label><select id="o-size"></select><p class="err" id="e-size"></p></fieldset>
-          <fieldset><label class="label" for="o-memo">작가에게 한마디</label><textarea id="o-memo" rows="3" placeholder="이 그림은 오른쪽 신발에만, 글자는 뒤꿈치에… 처럼 적어 주세요"></textarea></fieldset>
-          <fieldset><label class="label" for="o-name">이름 <span class="req">(필수)</span></label><input type="text" id="o-name" autocomplete="name"><p class="err" id="e-name"></p></fieldset>
-          <fieldset><label class="label" for="o-phone">휴대폰 <span class="req">(필수)</span></label><input type="tel" id="o-phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"><p class="err" id="e-phone"></p></fieldset>
-          <fieldset><label class="check"><input type="checkbox" id="o-agree"><span><b>[필수]</b> 상담·주문 연락을 위해 이름과 연락처를 쓰는 데 동의해요. <a href="privacy.html">자세히</a></span></label><p class="err" id="e-agree"></p></fieldset>
-          <p class="st-note">가격은 디자인을 보고 작가가 확인해 연락드려요. 시안 확인 뒤 결제하고, 그 뒤에 그리기 시작해요.</p>
-          <button class="btn wide" type="submit" id="o-send">이 디자인으로 주문 요청</button>
-        </form>
-        <div class="done" id="o-done" hidden></div>
-      </section>
-    </aside>
-  </div>
+      </div>
+      <div data-pane="preset" hidden>
+        <h4>미리 만든 조합에서 시작하기</h4>
+        <div class="shop-grid" id="presets" style="border-left:0"></div>
+      </div>
+    </div>
+    <div class="tool-foot">
+      <div class="sum"><span>커스텀 제작 1켤레</span><span id="price"></span></div>
+      <button class="btn" type="button" id="order">이 디자인으로 주문하기</button>
+      <p class="note">완성한 디자인 그대로 비움 작가가 그려요. 결제는 주문 확인 연락 때 안내해 드려요.</p>
+    </div>
+  </aside>
 </main>
-<script src="assets/site.js"></script>
-<script src="assets/studio.js"></script>
+
+<script src="./site.js"></script>
+<script src="./track.js"></script>
+<script src="./order.js"></script>
+<script src="./studio.js"></script>
+<script src="./chat.js" defer></script>
 </body>
 </html>
