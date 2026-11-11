@@ -1,0 +1,150 @@
+{
+ "id": "manutd-vans",
+ "name": "맨유 반스 올드스쿨 신발",
+ "price": 169200,
+ "list_price": 188000,
+ "cat": "football",
+ "base": "반스 올드스쿨 (앞코 문구 옵션)",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/10165463501",
+  "https://smartstore.naver.com/bium4581/products/9294953688"
+ ],
+ "photos": [
+  "assets/p/manutd-vans/01.jpg",
+  "assets/p/manutd-vans/02.jpg",
+  "assets/p/manutd-vans/03.jpg",
+  "assets/p/manutd-vans/04.jpg",
+  "assets/p/manutd-vans/05.jpg",
+  "assets/p/manutd-vans/06.jpg",
+  "assets/p/manutd-vans/07.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290"
+ ],
+ "soldout": [],
+ "sizes_note": "스마트스토어 옵션 목록에 있는 사이즈만 적었다. 목록에 없는 사이즈(없음)는 재고 수량을 볼 수 없어 품절인지 원래 없는 사이즈인지 확인하지 못했다. 주문 제작이라 재고 수량 표시는 없다.",
+ "desc": "맨체스터 유나이티드를 1:1 핸드페인팅으로 그린 반스 올드스쿨 신발입니다. 앞코에 문구를 넣는 옵션을 고를 수 있습니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2026-07-03",
+   "name": "pret******",
+   "option": "사이즈 280 / 앞코문구: 선택안함",
+   "text": "맨유팬이 아들이 원해서 구매해봤어요~~ 이쁘네여",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2025-03-17",
+   "name": "tldn******",
+   "option": "사이즈 270 / 앞코문구: 선택안함",
+   "text": "친구 생일선물로 주문했습니다 엄청 좋아하네요~",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-06-09",
+   "name": "khj9*****",
+   "option": "사이즈 280 / 앞코문구: 선택안함",
+   "text": "친구한테 선물했는데 너무 만족해해요!!이쁜신발감사합니다!",
+   "photos": [
+    "assets/r/manutd-vans/03-1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 1,
+   "date": "2024-04-04",
+   "name": "imym***",
+   "option": "사이즈 280 / 앞코문구: 선택함",
+   "text": "이쁘고 신기도 편했으나 세탁 한 번에 신발 못신게됨. 물빠짐 너무너무 심해서 흰색 신발 전체에 물들고 벌건색 무늬들은 색이 바래서 10년을 신어도 못보았을 신발꼴이 됨. 반스신발 정품인지도 의심스러움. 여태 신발 신으면서 이런 경우는 보다보다 처음임.",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-02-16",
+   "name": "imym***",
+   "option": "사이즈 280 / 앞코문구: 선택함",
+   "text": "별은 다섯개 드렸지만 아쉬운 점이 많습니다. 마무리가 안좋아서 빈자리도 보이고 빨간 라인따라 보풀이 너무 많습니다. 흰신발에 빨강이라 티가 많이 나더군요. 쪽가위로 작업 오래했고 보풀이 어느 정도 정리되고보니 이쁘기는 하네요. 마무리작업 해서 보내주셨으면 첫 눈에 좋았을텐데 아쉽습니다. 아들 선물인데 다른 식구들은 반품하라 난리고..아들 본인이 맘에 들어해서 그냥 신습니다. 반스 신발 자체는 정사이즈에 볼사이즈도 적당한것 같습니다.",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-01-05",
+   "name": "rksg********",
+   "option": "사이즈 265 / 앞코문구: 선택함",
+   "text": "남자친구가 맨유 팬이라 눈여겨 보다가 이번에 깜짝 선물로 줬는데 너무 좋아하더라구요 ㅎㅎ퀄리티도 너무 좋구 ㅎㅎ다음에는 제가 좋아하는 구단이 생기면 그때 제꺼 사러 한번 와야겟어요 ㅎㅎ",
+   "photos": [
+    "assets/r/manutd-vans/06-1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-12-19",
+   "name": "maem****",
+   "option": "사이즈 270 / 앞코문구: 선택안함",
+   "text": "잘신고있어요 착화감도 좋고",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-12-11",
+   "name": "luck******",
+   "option": "사이즈 250 / 앞코문구: 선택함",
+   "text": "깜박하고 늦은 후기입니다. 고등생 아들이 선택한 신발. 실사 그대로 주문했어요. 아들이 좋아하고 정말 깨끗하게 신고 다녀서 좋네요. 손편지도 감사해요. ^^",
+   "photos": [
+    "assets/r/manutd-vans/08-1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-11-26",
+   "name": "rlfg******",
+   "option": "사이즈 280 / 앞코문구: 선택함",
+   "text": "신발 자체도 편한데 우선 디자인이 너무 맘에 듭니다! 색감이 너무 이뻐요!! 다음에 레알마드리드 버전도 나온다면 기다리고 있겠습니다..!!",
+   "photos": [
+    "assets/r/manutd-vans/09-1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-11-06",
+   "name": "whwh****",
+   "option": "사이즈 275 / 앞코문구: 선택함",
+   "text": "너무 이뻐요 !!!",
+   "photos": []
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-11-05",
+   "name": "maem****",
+   "option": "사이즈 270 / 앞코문구: 선택안함",
+   "text": "간지나게미쁘댜고하네요",
+   "photos": []
+  }
+ ]
+}
