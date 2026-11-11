@@ -865,3 +865,22 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .aside .guide b { display: block; font-size: 14px; margin-bottom: 6px; }
 .aside .guide p, .aside .risk { font-size: 13px; color: var(--grey-3); line-height: 1.7; }
 .aside .risk { margin: 14px 0 18px; }
+
+/* 후기 */
+.rv { max-width: 860px; }
+.rv-sum { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--black); }
+.rv-sum b { font-family: var(--font-latin); font-size: 32px; font-weight: 400; }
+.rv-sum span:last-child { font-size: 13px; color: var(--grey-3); }
+.rv-star { color: var(--black); letter-spacing: 2px; font-size: 13px; }
+.rv-star i { font-style: normal; color: var(--grey-2); }
+.rv-strip { display: grid; grid-auto-flow: column; grid-auto-columns: 96px; gap: 6px; overflow-x: auto; padding: 16px 0; border-bottom: 1px solid var(--grey-2); }
+.rv-strip img, .rv-ph img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: var(--grey-1); }
+.rv-strip button, .rv-ph button { padding: 0; border: 0; background: none; cursor: zoom-in; }
+.rv-item { padding: 20px 0; border-bottom: 1px solid var(--grey-2); }
+.rv-top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 12px; color: var(--grey-3); }
+.rv-opt { font-size: 12px; color: var(--grey-3); margin-top: 6px; }
+.rv-txt { font-size: 14px; line-height: 1.75; margin-top: 10px; white-space: normal; }
+.rv-ph { display: grid; grid-template-columns: repeat(4, 80px); gap: 6px; margin-top: 12px; }
+.rv-more { margin: 24px auto 0; display: block; }
+.rv-zoom { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: grid; place-items: center; z-index: 999; cursor: zoom-out; }
+.rv-zoom img { max-width: 92vw; max-height: 90vh; }

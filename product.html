@@ -10,10 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/products.js"></script>
+<script src="assets/reviews.js"></script>
 </head>
 <body>
 <main id="main">
   <div class="pdm" id="pd"></div>
+  <section class="msec rvsec" id="reviews" aria-labelledby="rv-h" hidden><p class="mtitle" id="rv-h">REVIEWS</p><div class="wrap rv" id="rv"></div></section>
   <section class="msec" aria-labelledby="more-h"><p class="mtitle" id="more-h" data-t="pd.more2"></p><div class="track" id="more"></div></section>
 </main>
 <script src="assets/site.js"></script>
@@ -27,6 +29,8 @@
   var p = B.byId(id) || S.products[0];
   document.title = p.name + ' — BIUM';
   var fit = p.fit === 'contain' ? 'contain' : '', size = null;
+  var RV = ((window.REVIEWS || {})[p.id] || []).slice().sort(function (a, b) { return (b.date || '') < (a.date || '') ? -1 : 1; });
+  var avg = RV.length ? (RV.reduce(function (s, r) { return s + (+r.rating || 0); }, 0) / RV.length).toFixed(1) : '';
   var ico = function (d) { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>'; };
   var acc = function (k, body) { return '<details><summary>' + k + '</summary><div>' + body + '</div></details>'; };
   $('#pd').innerHTML =
@@ -37,7 +41,7 @@
       '<h1>' + B.nameOf(p) + '</h1>' +
       '<p class="pdm-desc" id="desc">' + p.desc + '</p><button class="ulink" type="button" id="more-desc" data-t="pd.readmore"></button>' +
       '<p class="pdm-price">' + B.won(p.price) + '</p>' +
-      '<p class="pdm-sub">' + p.sub + (p.reviews ? ' · 아이디어스 후기 ' + p.reviews + '개' : '') + '</p>' +
+      '<p class="pdm-sub">' + p.sub + (RV.length ? ' · <a class="ulink" href="#reviews">후기 ' + RV.length + '개 · ★ ' + avg + '</a>' : p.reviews ? ' · 아이디어스 후기 ' + p.reviews + '개' : '') + '</p>' +
       '<p class="pdm-lbl"><span data-t="pd.size"></span>:</p>' +
       '<div class="pdm-sizes" id="sizes">' + B.sizesOf(p).map(function (x) { return '<button type="button" data-size="' + x.z + '" aria-pressed="false"' + (x.out ? ' disabled class="out" title="품절"' : '') + '>' + x.z + '</button>'; }).join('') + '</div>' +
       (B.allOut(p) ? '<p class="pdm-soldout">지금은 모든 사이즈가 품절이에요. 같은 디자인으로 주문 제작을 원하시면 상담을 남겨 주세요.</p>' : '') +
@@ -61,6 +65,24 @@
   if ($('#gdots')) g.addEventListener('scroll', function () { var k = Math.round(g.scrollLeft / g.clientWidth); $$('#gdots i').forEach(function (d, i) { d.classList.toggle('on', i === k); }); });
   var more = S.products.filter(function (x) { return x.id !== p.id && (x.cat === p.cat || x.base === p.base); }).slice(0, 8);
   $('#more').innerHTML = more.map(B.cardHtml).join(''); B.applyLang($('#more'));
+
+  /* 후기 */
+  if (RV.length) {
+    var esc = function (t) { return String(t || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var star = function (n) { n = Math.round(+n || 0); return '<span class="rv-star" aria-label="별점 ' + n + '">' + '★★★★★'.slice(0, n) + '<i>' + '★★★★★'.slice(0, 5 - n) + '</i></span>'; };
+    var src = { idus: '아이디어스', smartstore: '스마트스토어' };
+    var photos = RV.reduce(function (a, r) { return a.concat(r.photos || []); }, []);
+    var one = function (r) { return '<article class="rv-item"><div class="rv-top">' + star(r.rating) + '<span>' + esc(r.name) + '</span><span>' + esc(r.date) + '</span><span>' + (src[r.src] || '') + '</span></div>' + (r.option ? '<p class="rv-opt">' + esc(r.option) + '</p>' : '') + '<p class="rv-txt">' + esc(r.text).replace(/\n/g, '<br>') + '</p>' + ((r.photos || []).length ? '<div class="rv-ph">' + r.photos.map(function (ph) { return '<button type="button" data-zoom="' + esc(ph) + '"><img src="' + esc(ph) + '" alt="후기 사진" loading="lazy"></button>'; }).join('') + '</div>' : '') + '</article>'; };
+    var shown = 5;
+    function draw() {
+      $('#rv').innerHTML = '<div class="rv-sum"><b>' + avg + '</b>' + star(avg) + '<span>후기 ' + RV.length + '개</span></div>' +
+        (photos.length ? '<div class="rv-strip">' + photos.slice(0, 12).map(function (ph) { return '<button type="button" data-zoom="' + esc(ph) + '"><img src="' + esc(ph) + '" alt="후기 사진" loading="lazy"></button>'; }).join('') + '</div>' : '') +
+        RV.slice(0, shown).map(one).join('') + (RV.length > shown ? '<button class="btn line rv-more" type="button" id="rv-more">후기 더 보기 (' + (RV.length - shown) + ')</button>' : '');
+      var m = $('#rv-more'); if (m) m.onclick = function () { shown += 10; draw(); };
+    }
+    draw(); $('#reviews').hidden = false;
+    $('#rv').addEventListener('click', function (e) { var z = e.target.closest('[data-zoom]'); if (!z) return; var d = document.createElement('div'); d.className = 'rv-zoom'; d.innerHTML = '<img src="' + z.getAttribute('data-zoom') + '" alt="">'; d.onclick = function () { d.remove(); }; document.body.appendChild(d); });
+  }
 })();
 </script>
 </body>
