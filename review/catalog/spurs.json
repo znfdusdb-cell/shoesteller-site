@@ -6,7 +6,8 @@
  "cat": "football",
  "base": "반스 올드스쿨 스타일 36",
  "sources": [
-  "https://smartstore.naver.com/bium4581/products/9238359131"
+  "https://smartstore.naver.com/bium4581/products/9238359131",
+  "https://smartstore.naver.com/bium4581/products/9744046284"
  ],
  "photos": [
   "assets/p/spurs/01.jpg",
@@ -68,6 +69,15 @@
     "assets/r/spurs/03_1.jpg",
     "assets/r/spurs/03_2.jpg"
    ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-03-15",
+   "name": "gidr*********",
+   "option": "사이즈 250",
+   "text": "흥민 선수를 너무 좋아해요",
+   "photos": []
   }
  ]
 }

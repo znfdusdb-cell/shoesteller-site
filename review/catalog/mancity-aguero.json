@@ -1,0 +1,64 @@
+{
+ "id": "mancity-aguero",
+ "name": "맨시티 아구에로 캐릭터 나이키 신발",
+ "price": 189000,
+ "list_price": 210000,
+ "cat": "football",
+ "base": "나이키 코트 레거시 넥스트 네이처",
+ "sources": [
+  "https://smartstore.naver.com/bium4581/products/9793115497"
+ ],
+ "photos": [
+  "assets/p/mancity-aguero/01.jpg",
+  "assets/p/mancity-aguero/02.jpg",
+  "assets/p/mancity-aguero/03.jpg",
+  "assets/p/mancity-aguero/04.jpg",
+  "assets/p/mancity-aguero/05.jpg",
+  "assets/p/mancity-aguero/06.jpg",
+  "assets/p/mancity-aguero/07.jpg"
+ ],
+ "sizes": [
+  "260",
+  "265",
+  "270"
+ ],
+ "soldout": [],
+ "sizes_note": "스마트스토어 옵션 목록에 있는 사이즈만 적었다. 주문 제작이라 재고는 항상 약 100개로 잡혀 있고(옵션 재고 97~100, 0인 옵션 없음) 품절 표시는 없다. 목록에 없는 사이즈는 원래 없는 사이즈인지 확인하지 못했다.",
+ "desc": "나이키 코트 레거시 넥스트 네이처에 맨시티 아구에로 선수를 캐릭터로 1:1 핸드페인팅한 신발입니다. 주문 제작입니다.",
+ "reviews": [
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2026-07-10",
+   "name": "rudr*******",
+   "option": "사이즈 260",
+   "text": "처음 주문했는데 퀄리티보고 만족도 최상입니다 시티력 풀상승!!! 너무 좋은작품 감사합니다🩵🫡",
+   "photos": [
+    "assets/r/mancity-aguero/01-1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-07-27",
+   "name": "ma****",
+   "option": "사이즈 260",
+   "text": "배송이 생각보다 빨리서 감사했어요 감사합니다",
+   "photos": [
+    "assets/r/mancity-aguero/02-1.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-01-23",
+   "name": "pjh9*****",
+   "option": "사이즈 270",
+   "text": "언제쯤 시티 신발이 나올려나 기다렸는데 이주 전에 딱 올라와서 바로 구매했습니다. 핸드페인팅이 유니크하고 저밖에 없는 신발이라는 점에서 너무 만족스럽습니다. 저는 다른 도안으로 문의를 했는데 판매자분께서 친절히 답변해주셨습니다! 신고 다니기 너무 아깝지만 또 티를 안 낼수 없기에 잘 신고 다니겠습니다! Which city is The Best?",
+   "photos": [
+    "assets/r/mancity-aguero/03-1.jpg",
+    "assets/r/mancity-aguero/03-2.jpg"
+   ]
+  }
+ ]
+}
