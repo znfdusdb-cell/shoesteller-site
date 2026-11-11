@@ -26,7 +26,7 @@
         <button type="button" id="undo" aria-label="되돌리기">↶ 되돌리기</button>
         <button type="button" id="redo" aria-label="다시">↷ 다시</button>
         <button type="button" id="clear">처음부터</button>
-        <button type="button" id="dl">그림 저장</button>
+        <button type="button" id="dl">내 스튜디오에 저장</button>
       </div>
       <p class="st-hint" id="hint">신발 안쪽을 누르면 그 칸이 칠해져요</p>
     </div>
@@ -34,10 +34,9 @@
     <aside class="st-panel">
       <section class="st-step">
         <h2><span>1</span> 신발 고르기</h2>
-        <label class="st-lbl" for="model">신발 모델명</label>
-        <div class="st-model"><input id="model" type="text" placeholder="예: 에어포스1, 척70 하이, 반스 올드스쿨" autocomplete="off"><button type="button" id="model-go">찾기</button></div>
-        <p class="st-note" id="model-note">모델명을 넣으면 가장 비슷한 모양을 골라 드려요. 정확한 모델은 주문서에 그대로 적혀요.</p>
-        <div class="st-bases" id="bases"></div>
+        <div class="st-models" id="models"></div>
+        <div class="st-colors" id="colors" hidden></div>
+        <p class="st-note" id="model-note"></p>
         <label class="st-photo"><input type="file" accept="image/*" id="photo"> 내 신발 사진으로 하기 <small>옆에서 찍은 사진이 가장 좋아요</small></label>
       </section>
 
@@ -73,21 +72,22 @@
         </div>
       </section>
 
-      <section class="st-step" id="order">
-        <h2><span>3</span> 이대로 주문하기</h2>
-        <form class="fm" id="of" novalidate>
-          <fieldset><label class="label" for="o-model">신발 모델 <span class="req">(필수)</span></label><input type="text" id="o-model" placeholder="예: 나이키 에어포스1 로우 화이트"><p class="err" id="e-model"></p></fieldset>
-          <fieldset><label class="label">신발</label>
-            <div class="seg" id="o-src"><button type="button" class="on" data-v="new">새 신발로 (작가가 준비)</button><button type="button" data-v="mine">내 신발 보내기</button></div></fieldset>
-          <fieldset><label class="label" for="o-size">사이즈 <span class="req">(필수)</span></label><select id="o-size"></select><p class="err" id="e-size"></p></fieldset>
-          <fieldset><label class="label" for="o-memo">작가에게 한마디</label><textarea id="o-memo" rows="3" placeholder="이 그림은 오른쪽 신발에만, 글자는 뒤꿈치에… 처럼 적어 주세요"></textarea></fieldset>
-          <fieldset><label class="label" for="o-name">이름 <span class="req">(필수)</span></label><input type="text" id="o-name" autocomplete="name"><p class="err" id="e-name"></p></fieldset>
-          <fieldset><label class="label" for="o-phone">휴대폰 <span class="req">(필수)</span></label><input type="tel" id="o-phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"><p class="err" id="e-phone"></p></fieldset>
-          <fieldset><label class="check"><input type="checkbox" id="o-agree"><span><b>[필수]</b> 상담·주문 연락을 위해 이름과 연락처를 쓰는 데 동의해요. <a href="privacy.html">자세히</a></span></label><p class="err" id="e-agree"></p></fieldset>
-          <p class="st-note">가격은 디자인을 보고 작가가 확인해 연락드려요. 시안 확인 뒤 결제하고, 그 뒤에 그리기 시작해요.</p>
-          <button class="btn wide" type="submit" id="o-send">이 디자인으로 주문 요청</button>
-        </form>
-        <div class="done" id="o-done" hidden></div>
+      <section class="st-step" id="quote">
+        <h2><span>3</span> 저장하고 견적 보기</h2>
+        <div class="seg" id="q-src"><button type="button" class="on" data-v="new">새 신발로 (작가가 준비)</button><button type="button" data-v="mine">내 신발 보내기</button></div>
+        <div class="st-quote" id="q-box"></div>
+        <div class="st-row2"><button class="btn wide" type="button" id="q-save">내 스튜디오에 저장</button></div>
+        <details class="st-ask" id="q-ask"><summary>작가에게 견적 확인 받기</summary>
+          <form class="fm" id="of" novalidate>
+            <fieldset><label class="label" for="o-size">사이즈 <span class="req">(필수)</span></label><select id="o-size"></select><p class="err" id="e-size"></p></fieldset>
+            <fieldset><label class="label" for="o-memo">작가에게 한마디</label><textarea id="o-memo" rows="3" placeholder="이 그림은 오른쪽 신발에만, 글자는 뒤꿈치에… 처럼 적어 주세요"></textarea></fieldset>
+            <div class="two"><fieldset><label class="label" for="o-name">이름 <span class="req">(필수)</span></label><input type="text" id="o-name" autocomplete="name"><p class="err" id="e-name"></p></fieldset>
+            <fieldset><label class="label" for="o-phone">휴대폰 <span class="req">(필수)</span></label><input type="tel" id="o-phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"><p class="err" id="e-phone"></p></fieldset></div>
+            <fieldset><label class="check"><input type="checkbox" id="o-agree"><span><b>[필수]</b> 견적·주문 연락을 위해 이름과 연락처를 쓰는 데 동의해요. <a href="privacy.html">자세히</a></span></label><p class="err" id="e-agree"></p></fieldset>
+            <button class="btn line wide" type="submit" id="o-send">이 디자인으로 견적 받기</button>
+          </form>
+          <div class="done" id="o-done" hidden></div>
+        </details>
       </section>
     </aside>
   </div>

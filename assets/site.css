@@ -897,3 +897,29 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 
 /* 폰 첫 화면 영상: 영상(3:5)과 같은 틀 — 화면 높이에 맞춰 양옆을 또 자르지 않게(11/11 회장: 붓끝이 잘림) */
 @media (max-width: 759px) { .hero #hero-video { height: auto; max-height: none; aspect-ratio: 3 / 5; object-fit: cover; } }
+
+/* 스튜디오 11/11: 그림판이 헤더 바로 아래 붙게(틈으로 글씨 비침 없앰), 모델·색 고르기, 견적 */
+@media (max-width: 999px) { .st-stage { top: var(--hdr, 55px); padding-top: 8px; box-shadow: 0 -12px 0 var(--white); } }
+.st-models { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 10px; }
+.st-models button { border: 1px solid var(--grey-2); border-radius: 4px; background: var(--white); padding: 8px 6px 10px; display: grid; gap: 4px; justify-items: center; font-size: 12px; text-align: center; }
+.st-models button img { width: 100%; aspect-ratio: 2 / 1; object-fit: contain; }
+.st-models button b { font-weight: 600; font-size: 12.5px; }
+.st-models button small { color: var(--grey-3); font-size: 11px; }
+.st-models button.on { border-color: var(--black); box-shadow: inset 0 0 0 1px var(--black); }
+.st-colors { display: flex; gap: 8px; margin: 2px 0 10px; }
+.st-colors button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--grey-2); border-radius: 20px; padding: 6px 14px 6px 8px; background: var(--white); font-size: 13px; }
+.st-colors button i { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--grey-2); display: block; }
+.st-colors button.on { border-color: var(--black); box-shadow: inset 0 0 0 1px var(--black); }
+.st-quote { border: 1px solid var(--black); padding: 16px; margin: 12px 0; display: grid; gap: 8px; font-size: 13.5px; }
+.st-quote .qr { display: flex; justify-content: space-between; gap: 12px; }
+.st-quote .qr span:first-child { color: var(--grey-3); }
+.st-quote .qt { border-top: 1px solid var(--grey-2); padding-top: 10px; font-weight: 700; font-size: 15px; }
+.st-quote .qn { font-size: 12px; color: var(--grey-3); line-height: 1.6; }
+.st-ask { margin-top: 12px; border-top: 1px solid var(--grey-2); padding-top: 12px; }
+.st-ask summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.st-ask .fm { margin-top: 12px; }
+.acc-studio { margin-top: 28px; }
+.acc-studio .grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.acc-studio .dz { border: 1px solid var(--grey-2); padding: 8px; display: grid; gap: 6px; font-size: 12.5px; }
+.acc-studio .dz img { width: 100%; aspect-ratio: 2 / 1; object-fit: contain; background: var(--grey-1); }
+.acc-studio .dz .row { display: flex; gap: 10px; }

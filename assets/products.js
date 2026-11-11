@@ -1175,5 +1175,131 @@ window.SHOES = {
   "tel": "",
   "email": "",
   "mail_order_no": ""
+ },
+ "STUDIO_MODELS": [
+  {
+   "id": "af1",
+   "ko": "나이키 에어포스1",
+   "line": "low",
+   "colors": {
+    "white": {
+     "ko": "흰색",
+     "price": 149000,
+     "url": "https://www.nike.com/kr/t/%EB%82%98%EC%9D%B4%ED%82%A4-%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-oC22E7Fz/DD8959-100"
+    },
+    "black": {
+     "ko": "올블랙",
+     "price": 149000,
+     "url": "https://www.nike.com/kr/t/%EB%82%98%EC%9D%B4%ED%82%A4-%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-oC22E7Fz/DD8959-001"
+    }
+   }
+  },
+  {
+   "id": "tennis",
+   "ko": "나이키 테니스 클래식",
+   "line": "low",
+   "colors": {
+    "white": {
+     "ko": "흰색",
+     "price": 129000,
+     "url": "https://www.nike.com/kr/t/%EB%82%98%EC%9D%B4%ED%82%A4-%ED%85%8C%EB%8B%88%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-aNxtyxvx/IQ7387-107"
+    }
+   }
+  },
+  {
+   "id": "oldskool",
+   "ko": "반스 올드스쿨",
+   "line": "low",
+   "colors": {
+    "white": {
+     "ko": "올흰",
+     "price": 85000,
+     "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010038483"
+    },
+    "black": {
+     "ko": "블랙",
+     "price": 85000,
+     "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010034906"
+    }
+   }
+  },
+  {
+   "id": "authentic",
+   "ko": "반스 어센틱",
+   "line": "slip",
+   "colors": {
+    "white": {
+     "ko": "트루화이트",
+     "price": 69000,
+     "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010008642"
+    },
+    "black": {
+     "ko": "블랙",
+     "price": 69000,
+     "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010008525"
+    }
+   }
+  },
+  {
+   "id": "chuck",
+   "ko": "컨버스 척테일러 올스타",
+   "line": "court",
+   "colors": {
+    "white": {
+     "ko": "화이트",
+     "price": 69000,
+     "url": "https://www.converse.co.kr/product/%EC%B2%99%ED%85%8C%EC%9D%BC%EB%9F%AC-%EC%98%AC%EC%8A%A4%ED%83%80-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%99%94%EC%9D%B4%ED%8A%B8/6528/category/23/display/1/"
+    },
+    "black": {
+     "ko": "블랙",
+     "price": 69000,
+     "url": ""
+    }
+   }
+  },
+  {
+   "id": "chuckhi",
+   "ko": "컨버스 척테일러 올스타 하이",
+   "line": "high",
+   "colors": {
+    "white": {
+     "ko": "화이트",
+     "price": 75000,
+     "url": "https://www.converse.co.kr/product/%EC%B2%99%ED%85%8C%EC%9D%BC%EB%9F%AC-%EC%98%AC%EC%8A%A4%ED%83%80-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%99%94%EC%9D%B4%ED%8A%B8/6518/category/991/display/1/"
+    },
+    "black": {
+     "ko": "블랙",
+     "price": 75000,
+     "url": ""
+    }
+   }
+  }
+ ],
+ "STUDIO_PRICE_CHECKED": "2026-11-11",
+ "QUOTE": {
+  "approved": false,
+  "note": "대략적인 견적이에요. 작가가 디자인을 확인한 뒤 실제 견적은 조금 달라질 수 있어요.",
+  "fill_tiers": [
+   [
+    3,
+    30000
+   ],
+   [
+    7,
+    50000
+   ],
+   [
+    999,
+    70000
+   ]
+  ],
+  "image_each": 80000,
+  "text_each": 10000,
+  "brush": 20000,
+  "range": [
+   0.9,
+   1.2
+  ],
+  "mine_note": "내 신발을 보내시면 신발값은 빠지고, 보내는 택배비만 부담해 주세요."
  }
 };

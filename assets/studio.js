@@ -9,51 +9,45 @@
   function mk() { var c = document.createElement('canvas'); c.width = W; c.height = H; return c; }
   var lineCv = mk(), insideCv = mk(), paintCv = mk(), itemCv = mk();
 
-  var BASES = (S.bases || []).map(function (b) { return { id: b.id, ko: b.ko }; });
-  var MODELS = [
-    [/에어\s*포스|air\s*force|af\s*1|에포/i, 'low', '나이키 에어포스1 로우'],
-    [/조던\s*1?\s*(하이|high)|jordan\s*1?\s*high|aj1\s*high/i, 'high', '나이키 에어조던1 하이'],
-    [/조던|jordan|aj1/i, 'low', '나이키 에어조던1 로우'],
-    [/덩크\s*(하이|high)|dunk\s*high/i, 'high', '나이키 덩크 하이'],
-    [/덩크|dunk/i, 'low', '나이키 덩크 로우'],
-    [/코트|court|블레이저\s*로우|blazer\s*low/i, 'low', '나이키 코트'],
-    [/블레이저|blazer/i, 'high', '나이키 블레이저 미드'],
-    [/스탠\s*스미스|stan\s*smith|슈퍼스타|superstar|삼바|samba|가젤|gazelle/i, 'low', '아디다스'],
-    [/(척|척테일러|chuck|컨버스|converse|all\s*star|올스타).*(하이|high|hi)|(하이|high|hi).*(척|chuck|컨버스|converse)/i, 'high', '컨버스 척70 하이'],
-    [/척|chuck|컨버스|converse|올스타|all\s*star|런스타|run\s*star/i, 'court', '컨버스 척70 로우'],
-    [/(반스|vans).*(하이|sk8|스케이트)|sk8\s*-?\s*hi/i, 'high', '반스 SK8-하이'],
-    [/(반스|vans).*(슬립|slip)|슬립\s*온|slip\s*-?\s*on/i, 'slip', '반스 슬립온'],
-    [/어센틱|authentic|에라|era|케즈|keds|캔버스|canvas/i, 'court', '캔버스 로우'],
-    [/반스|vans|올드\s*스쿨|old\s*skool/i, 'low', '반스 올드스쿨'],
-    [/벨크로|찍찍이|velcro|스트랩/i, 'velcro', '벨크로 운동화'],
-    [/부츠|boot|닥터\s*마틴|dr\.?\s*martens|첼시|워커/i, 'boot', '부츠'],
-    [/하이|high|hi\b/i, 'high', '하이탑'],
-    [/로우|low|운동화|스니커/i, 'low', '로우탑 운동화']
+  /* 11/11 회장: 고를 신발은 6개 모델(흰색·검정), 가격은 공식 판매가(회사가 한 달에 한 번 확인) */
+  var MODELS = S.STUDIO_MODELS || [];
+  var MATCH = [
+    [/에어\s*포스|air\s*force|af\s*1|에포/i, 'af1'], [/테니스|tennis/i, 'tennis'],
+    [/올드\s*스쿨|old\s*skool/i, 'oldskool'], [/어센틱|authentic/i, 'authentic'],
+    [/(척|chuck|컨버스|converse|올스타|all\s*star).*(하이|high|hi)|(하이|high).*(척|chuck|컨버스|converse)/i, 'chuckhi'],
+    [/척|chuck|컨버스|converse|올스타|all\s*star/i, 'chuck'], [/반스|vans/i, 'oldskool'], [/나이키|nike/i, 'af1']
   ];
+  function modelById(id) { return MODELS.filter(function (m) { return m.id === id; })[0]; }
   var PAINTS = ['#ffffff', '#111111', '#c8102e', '#e94e1b', '#f5c400', '#2f8f3a', '#0a4ea2', '#5a3fb8', '#f4a6c0', '#8fd3f4', '#b8e08a', '#8a5a3b', '#c9c1b6', '#6b6b6b', '#0b1f3a', '#7a0019'];
 
   var st = { base: null, photo: null, ops: [], items: [], sel: -1, tool: 'fill', color: '#c8102e', bsize: 16 };
   var boundary = null, outside = null, hist = [], redo = [], dirtyFlag = false;
 
   /* ---------- 신발 고르기 ---------- */
-  $('#bases').innerHTML = BASES.map(function (b) {
-    return '<button type="button" data-base="' + b.id + '"><img src="assets/line/' + b.id + '.png" alt=""><span>' + b.ko + '</span></button>';
+  function won(n) { return B.won ? B.won(n) : n.toLocaleString() + '원'; }
+  $('#models').innerHTML = MODELS.map(function (m) {
+    var p = (m.colors.white || m.colors[Object.keys(m.colors)[0]]).price;
+    return '<button type="button" data-model="' + m.id + '"><img src="assets/line/' + m.line + '.png" alt=""><b>' + m.ko + '</b><small>' + Object.keys(m.colors).map(function (c) { return m.colors[c].ko; }).join(' · ') + ' · ' + won(p) + '</small></button>';
   }).join('');
-  $$('#bases button').forEach(function (b) { b.onclick = function () { pickBase(b.getAttribute('data-base')); }; });
-
-  function findModel() {
-    var q = $('#model').value.trim(); if (!q) return;
-    var hit = MODELS.filter(function (m) { return m[0].test(q); })[0];
-    $('#o-model').value = q;
-    if (hit) { pickBase(hit[1]); $('#model-note').textContent = '"' + q + '" → ' + label(hit[1]) + ' 모양으로 열었어요. 다르면 아래에서 바꿔 주세요.'; }
-    else $('#model-note').textContent = '"' + q + '"과 가장 비슷한 모양을 아래에서 골라 주세요. 모델명은 주문서에 그대로 적혀요.';
+  $$('#models button').forEach(function (b) { b.onclick = function () { pickModel(b.getAttribute('data-model')); }; });
+  function pickModel(id, color) {
+    var m = modelById(id); if (!m) return;
+    var c = color && m.colors[color] ? color : (st.model === id && m.colors[st.color0] ? st.color0 : Object.keys(m.colors)[0]);
+    if (st.base === m.line && st.model !== id && !st.photo) { st.model = id; st.color0 = c; afterModel(); return; }
+    st.model = id; st.color0 = c; pickBase(m.line);
   }
-  function label(id) { return (BASES.filter(function (b) { return b.id === id; })[0] || {}).ko || id; }
-  $('#model-go').onclick = findModel;
-  $('#model').onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); findModel(); } };
+  function afterModel() {
+    var m = modelById(st.model), keys = m ? Object.keys(m.colors) : [];
+    $('#colors').hidden = keys.length < 2;
+    $('#colors').innerHTML = keys.map(function (k) { return '<button type="button" data-color="' + k + '"' + (k === st.color0 ? ' class="on"' : '') + '><i style="background:' + (k === 'black' ? '#111' : '#fff') + '"></i>' + m.colors[k].ko + '</button>'; }).join('');
+    $$('#colors button').forEach(function (b) { b.onclick = function () { st.color0 = b.getAttribute('data-color'); afterModel(); }; });
+    $('#model-note').textContent = m ? m.ko + ' ' + m.colors[st.color0].ko + ' · 새 신발 ' + won(m.colors[st.color0].price) + (S.STUDIO_PRICE_CHECKED ? ' (' + S.STUDIO_PRICE_CHECKED.slice(5).replace('-', '/') + ' 공식 판매가)' : '') : '';
+    markBases(); quote();
+  }
+  function label(id) { var m = modelById(st.model); return m ? m.ko + ' ' + m.colors[st.color0].ko : id; }
 
   function pickBase(id) {
-    if (st.base === id && !st.photo) return;
+    if (st.base === id && !st.photo) { afterModel(); return; }
     if (dirtyFlag && !confirm('신발을 바꾸면 칠한 것은 지워져요(올린 그림·글자는 남아요). 바꿀까요?')) return;
     var img = new Image();
     img.onload = function () {
@@ -61,11 +55,12 @@
       var lc = lineCv.getContext('2d'); lc.clearRect(0, 0, W, H);
       var s = Math.min(W / img.width, H / img.height) * 0.94, w = img.width * s, h = img.height * s;
       lc.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
-      buildMasks(); rebuildPaint(); draw(); markBases(); setHint();
+      buildMasks(); rebuildPaint(); draw(); afterModel(); setHint();
+      if (pendingLoad) { var d = pendingLoad; pendingLoad = null; applySaved(d); }
     };
     img.src = 'assets/line/' + id + '.png';
   }
-  function markBases() { $$('#bases button').forEach(function (b) { b.classList.toggle('on', !st.photo && b.getAttribute('data-base') === st.base); }); $('.st-photo').classList.toggle('on', !!st.photo); }
+  function markBases() { $$('#models button').forEach(function (b) { b.classList.toggle('on', !st.photo && b.getAttribute('data-model') === st.model); }); $('.st-photo').classList.toggle('on', !!st.photo); }
 
   $('#photo').onchange = function () {
     var f = this.files[0]; if (!f) return;
@@ -164,7 +159,9 @@
     }
     ctx.restore();
     $('#empty').hidden = !!st.base;
+    if (!qPend) { qPend = true; requestAnimationFrame(function () { qPend = false; quote(); }); }
   }
+  var qPend = false;
 
   /* ---------- 되돌리기 ---------- */
   function snap() { return { ops: st.ops.slice(), items: st.items.map(function (i) { return Object.assign({}, i); }) }; }
@@ -174,7 +171,7 @@
   $('#undo').onclick = function () { if (!hist.length) return; redo.push(snap()); restore(hist.pop()); syncUndo(); };
   $('#redo').onclick = function () { if (!redo.length) return; hist.push(snap()); restore(redo.pop()); syncUndo(); };
   $('#clear').onclick = function () { if (!st.ops.length && !st.items.length) return; if (!confirm('칠한 것과 올린 것을 모두 지울까요?')) return; push(); st.ops = []; st.items = []; st.sel = -1; rebuildPaint(); draw(); syncSel(); };
-  $('#dl').onclick = function () { var a = document.createElement('a'); a.download = 'BIUM-내디자인.jpg'; a.href = exportUrl(1600, 0.92); a.click(); };
+  $('#dl').onclick = function () { saveDesign(); };
   function exportUrl(w, q) { draw(true); var c = document.createElement('canvas'); c.width = w; c.height = w / 2; c.getContext('2d').drawImage(cv, 0, 0, c.width, c.height); draw(); return c.toDataURL('image/jpeg', q); }
 
   /* ---------- 도구 ---------- */
@@ -288,40 +285,110 @@
   cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
   window.addEventListener('beforeunload', function (e) { if (dirtyFlag && !sent) { e.preventDefault(); e.returnValue = ''; } });
 
-  /* ---------- 주문 ---------- */
-  var sent = false;
+  /* ---------- 견적·저장·견적 받기 (11/11 회장) ---------- */
+  var sent = false, pendingLoad = null;
+  function src() { var b = $('#q-src .on'); return b ? b.getAttribute('data-v') : 'new'; }
+  $$('#q-src button').forEach(function (b) { b.onclick = function () { $$('#q-src button').forEach(function (x) { x.classList.toggle('on', x === b); }); quote(); }; });
+  function counts() {
+    var regions = {}, fills = 0, strokes = 0;
+    st.ops.forEach(function (op) { if (op.type === 'fill') { fills++; regions[op.x + ',' + op.y] = 1; } else strokes++; });
+    return { fills: fills, strokes: strokes, imgs: st.items.filter(function (i) { return i.type === 'img'; }).length, texts: st.items.filter(function (i) { return i.type === 'text'; }).length };
+  }
+  function paintEstimate() {
+    var Q = S.QUOTE || {}, c = counts(), sum = 0, rows = [];
+    if (c.fills) { var t = (Q.fill_tiers || []).filter(function (x) { return c.fills <= x[0]; })[0]; if (t) { sum += t[1]; rows.push(['색 칠하기 ' + c.fills + '칸', t[1]]); } }
+    if (c.strokes && Q.brush) { sum += Q.brush; rows.push(['붓으로 그리기', Q.brush]); }
+    if (c.imgs && Q.image_each) { sum += c.imgs * Q.image_each; rows.push(['그림 ' + c.imgs + '개', c.imgs * Q.image_each]); }
+    if (c.texts && Q.text_each) { sum += c.texts * Q.text_each; rows.push(['글자 ' + c.texts + '개', c.texts * Q.text_each]); }
+    return { sum: sum, rows: rows };
+  }
+  function r1000(n) { return Math.round(n / 1000) * 1000; }
+  function quote() {
+    var box = $('#q-box'); if (!box) return;
+    var Q = S.QUOTE || {}, m = modelById(st.model), shoe = (src() === 'new' && m && !st.photo) ? m.colors[st.color0].price : 0, pe = paintEstimate();
+    var h = '';
+    if (src() === 'new') h += '<div class="qr"><span>' + (m && !st.photo ? label() : '새 신발') + '</span><span>' + (shoe ? won(shoe) : '작가가 확인') + '</span></div>';
+    else h += '<div class="qr"><span>내 신발</span><span>신발값 없음</span></div>';
+    if (Q.approved) {
+      pe.rows.forEach(function (r) { h += '<div class="qr"><span>' + r[0] + '</span><span>' + won(r[1]) + '</span></div>'; });
+      if (!pe.rows.length) h += '<div class="qr"><span>그림 비용</span><span>꾸미면 계산돼요</span></div>';
+      var lo = r1000((shoe + pe.sum * (Q.range || [1, 1])[0])), hi = r1000(shoe + pe.sum * (Q.range || [1, 1])[1]);
+      h += '<div class="qr qt"><span>대략적인 견적</span><span>' + (pe.sum ? won(lo) + ' ~ ' + won(hi) : won(shoe)) + '</span></div>';
+    } else {
+      h += '<div class="qr"><span>그림 비용</span><span>작가가 확인 후 안내</span></div>';
+    }
+    h += '<p class="qn">' + (Q.note || '대략적인 견적이에요. 작가가 확인한 뒤 실제 견적은 조금 다를 수 있어요.') + (src() === 'mine' && Q.mine_note ? ' ' + Q.mine_note : '') + '</p>';
+    box.innerHTML = h;
+  }
+  function stateOf() {
+    return { model: st.model, color0: st.color0, base: st.base,
+      ops: st.ops.map(function (o) { var c = Object.assign({}, o); delete c._m; return c; }),
+      items: st.items.map(function (it) { var c = Object.assign({}, it); if (it.type === 'img') { c.src = it.img.toDataURL('image/jpeg', 0.8); delete c.img; } return c; }) };
+  }
+  function applySaved(d) {
+    var s0 = d.state || {}; st.ops = s0.ops || []; st.items = [];
+    var waits = (s0.items || []).map(function (it) {
+      return new Promise(function (res) {
+        if (it.type !== 'img') { st.items.push(it); return res(); }
+        var im = new Image(); im.onload = function () { var c = document.createElement('canvas'); c.width = it.w; c.height = it.h; c.getContext('2d').drawImage(im, 0, 0, it.w, it.h); var x = Object.assign({}, it); delete x.src; x.img = c; st.items.push(x); res(); }; im.onerror = res; im.src = it.src;
+      });
+    });
+    Promise.all(waits).then(function () { st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); dirtyFlag = false; editingId = d.id; });
+  }
+  var editingId = null;
+  function designs() { try { return JSON.parse(localStorage.getItem('bium_studio') || '[]'); } catch (e) { return []; } }
+  function saveDesign() {
+    if (!st.base) return B.toast('먼저 신발을 골라 주세요');
+    var u = B.user();
+    var item = { id: editingId || ('d' + Date.now().toString(36)), at: new Date().toISOString(), model: label(), src: src(), thumb: exportUrl(640, 0.78), state: stateOf() };
+    if (!u || !u.email) {
+      try { sessionStorage.setItem('bium_studio_pending', JSON.stringify(item)); } catch (e) {}
+      B.toast('로그인하면 내 스튜디오에 저장돼요');
+      setTimeout(function () { location.href = 'account.html?next=studio'; }, 900); return;
+    }
+    var list = designs().filter(function (x) { return x.id !== item.id; }); list.unshift(item);
+    for (var n = list.length; n > 0; n--) {
+      try { localStorage.setItem('bium_studio', JSON.stringify(list.slice(0, n))); editingId = item.id; dirtyFlag = false; B.toast('내 스튜디오에 저장했어요'); return; }
+      catch (e) { if (n === 1) { item.state.items = item.state.items.filter(function (i) { return i.type !== 'img'; }); try { localStorage.setItem('bium_studio', JSON.stringify([item])); B.toast('저장했어요(올린 사진은 용량 때문에 빠졌어요)'); } catch (e2) { B.toast('저장 공간이 꽉 찼어요. 내 스튜디오에서 안 쓰는 디자인을 지워 주세요'); } return; } }
+    }
+  }
+  $('#q-save').onclick = saveDesign;
+  /* 견적 받기: 작가에게 디자인 그림과 함께 보냄 */
   $('#o-size').innerHTML = '<option value="">사이즈를 골라 주세요</option>' + (S.SIZES || []).map(function (s) { return '<option>' + s + '</option>'; }).join('');
-  $$('#o-src button').forEach(function (b) { b.onclick = function () { $$('#o-src button').forEach(function (x) { x.classList.toggle('on', x === b); }); }; });
+  (function () { var u = B.user(); if (u) { $('#o-name').value = u.name || ''; $('#o-phone').value = u.phone || ''; } })();
   $('#of').addEventListener('submit', function (e) {
     e.preventDefault();
-    var v = { model: $('#o-model').value.trim(), size: $('#o-size').value, name: $('#o-name').value.trim(), phone: $('#o-phone').value.trim(), memo: $('#o-memo').value.trim(), src: $('#o-src .on').getAttribute('data-v') };
+    var v = { size: $('#o-size').value, name: $('#o-name').value.trim(), phone: $('#o-phone').value.trim(), memo: $('#o-memo').value.trim(), src: src() };
     var ok = true;
     function chk(id, bad, msg) { $('#e-' + id).textContent = bad ? msg : ''; if (bad) ok = false; }
-    chk('model', !v.model, '신발 모델을 적어 주세요.');
     chk('size', !v.size, '사이즈를 골라 주세요.');
     chk('name', !v.name, '이름을 적어 주세요.');
     chk('phone', !/^01[0-9]-?\d{3,4}-?\d{4}$/.test(v.phone), '010-0000-0000 형식으로 적어 주세요.');
     chk('agree', !$('#o-agree').checked, '동의에 체크해 주세요.');
     if (!st.base) { B.toast('신발을 먼저 골라 꾸며 주세요'); ok = false; }
     if (!ok) return;
-    var design = exportUrl(1000, 0.82);
-    var shape = st.photo ? '내 신발 사진' : label(st.base);
-    var text = ['[BIUM 스튜디오 주문 요청]', '신발 모델: ' + v.model, '모양: ' + shape, '신발: ' + (v.src === 'mine' ? '내 신발 보내기' : '새 신발로'), '사이즈: ' + v.size, '이름: ' + v.name, '연락처: ' + v.phone, '요청: ' + (v.memo || '-'), '(디자인 그림은 따로 보낼게요)'].join('\n');
+    var design = exportUrl(1000, 0.82), pe = paintEstimate(), m = modelById(st.model);
+    var shape = st.photo ? '내 신발 사진' : label();
+    var text = ['[BIUM 스튜디오 견적 요청]', '신발: ' + shape + ' / ' + (v.src === 'mine' ? '내 신발 보내기' : '새 신발(작가가 준비)'), '사이즈: ' + v.size, '꾸밈: ' + (pe.rows.map(function (r) { return r[0]; }).join(', ') || '없음'), '이름: ' + v.name, '연락처: ' + v.phone, '요청: ' + (v.memo || '-')].join('\n');
     $('#o-send').disabled = true; $('#o-send').textContent = '보내는 중…';
-    B.send('apply', { type: 'studio', product_id: '', shoe_model: v.model, base: st.base, shoe_source: v.src, size: v.size, name: v.name, phone: v.phone, message: v.memo, design_image: design, agree_required: true, website: '' }, text, function (r) {
-      sent = true; dirtyFlag = false;
-      var dlBtn = '<a class="btn line wide" download="BIUM-내디자인.jpg" href="' + design + '">디자인 그림 저장</a>';
+    B.send('apply', { type: 'studio', product_id: '', shoe_model: shape, base: st.model || st.base, shoe_source: v.src, size: v.size, name: v.name, phone: v.phone, message: v.memo, design_image: design, est_paint: pe.sum, est_shoe: (v.src === 'new' && m && !st.photo) ? m.colors[st.color0].price : 0, agree_required: true, website: '' }, text, function (r) {
+      sent = true;
       $('#of').hidden = true; $('#o-done').hidden = false;
       $('#o-done').innerHTML = r.via === 'server'
-        ? '<span class="lbl">Received</span><h3>주문 요청이 접수됐어요</h3><p>디자인 그림까지 받았어요. 작가가 보고 가격과 일정을 연락드릴게요.</p>' + dlBtn
-        : '<span class="lbl">One more step</span><h3>카카오톡으로 보내 주세요</h3><p>' + (r.copied ? '주문서를 복사했어요.' : '아래 주문서를 길게 눌러 복사해 주세요.') + ' ① 디자인 그림을 저장하고 ② 카카오톡 채팅에 주문서와 그림을 같이 보내 주세요.</p>' + (r.copied ? '' : '<pre class="copy">' + text.replace(/</g, '&lt;') + '</pre>') + dlBtn + '<a class="btn wide" href="' + (S.KAKAO || '#') + '" target="_blank" rel="noopener">카카오톡 열기</a>';
+        ? '<span class="lbl">Received</span><h3>견적 요청이 접수됐어요</h3><p>디자인 그림까지 받았어요. 작가가 확인하고 실제 견적과 일정을 연락드릴게요.</p>'
+        : '<span class="lbl">One more step</span><h3>카카오톡으로 보내 주세요</h3><p>' + (r.copied ? '요청서를 복사했어요.' : '아래 요청서를 길게 눌러 복사해 주세요.') + ' 카카오톡 채팅창에 붙여 넣고, 저장한 디자인 그림도 같이 보내 주세요.</p><a class="btn wide" href="' + B.KAKAO + '" target="_blank" rel="noopener">카카오톡 열기</a>';
     });
   });
 
   /* 링크로 들어온 모델·모양 (예: studio.html?model=에어포스1) */
   var q = new URLSearchParams(location.search);
+  (function hdr() { var t = document.querySelector('header.top'); if (t) document.documentElement.style.setProperty('--hdr', Math.round(t.getBoundingClientRect().height) + 'px'); })();
   setTool('fill'); syncUndo(); draw();
-  if (q.get('model')) { $('#model').value = q.get('model'); findModel(); }
-  else pickBase(q.get('base') || 'low');
+  var pend = null; try { pend = JSON.parse(sessionStorage.getItem('bium_studio_pending') || 'null'); } catch (e) {}
+  var openId = q.get('d'), saved = openId ? designs().filter(function (x) { return x.id === openId; })[0] : null;
+  if (!saved && pend && q.get('resume') === '1') { saved = pend; try { sessionStorage.removeItem('bium_studio_pending'); } catch (e) {} }
+  if (saved && saved.state && saved.state.model) { pendingLoad = saved; pickModel(saved.state.model, saved.state.color0); if (q.get('resume') === '1') setTimeout(saveDesign, 1200); }
+  else if (q.get('model')) { var mq = q.get('model'), hit = MATCH.filter(function (m) { return m[0].test(mq); })[0]; pickModel(hit ? hit[1] : 'af1'); if (!hit) $('#model-note').textContent = '"' + mq + '"은 아직 고를 수 없어서 에어포스1로 열었어요. 다른 신발은 위에서 바꾸거나 "내 신발 사진으로 하기"를 써 주세요.'; }
+  else pickModel(q.get('m') || 'af1');
   dirtyFlag = false;
 })();
