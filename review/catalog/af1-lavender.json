@@ -6,7 +6,8 @@
  "cat": "etc",
  "base": "나이키 에어포스1",
  "sources": [
-  "https://www.idus.com/v2/product/71dea85f-c174-4287-97e4-ce62e62921e9"
+  "https://www.idus.com/v2/product/71dea85f-c174-4287-97e4-ce62e62921e9",
+  "https://smartstore.naver.com/bium4581/products/9042836742"
  ],
  "photos": [
   "assets/p/af1-lavender/01.jpg",
@@ -40,7 +41,7 @@
   "310"
  ],
  "soldout": [],
- "sizes_note": "옵션: 신발 사이즈 220~310. 품절 표시 없음(주문 후 제작). 작가웹 재고는 로그인 필요라 확인 못 함.",
+ "sizes_note": "옵션: 신발 사이즈 220~310. 품절 표시 없음(주문 후 제작). 작가웹 재고는 로그인 필요라 확인 못 함. 스마트스토어 판매 페이지(9042836742, 라일락 색상 / 사이즈 220~290, 모두 재고 있음, 판매가 262,200원)도 같은 디자인이라 합침.",
  "desc": "나이키 에어포스1을 파스텔 보라로 칠한 컬러링 신발로, 코팅을 벗기고 칠한 뒤 다시 코팅하는 순서에 내구성이 높은 우레탄 물감을 씁니다. 평생 무상 A/S를 해 드리며, 색은 모니터와 작업 환경에 따라 조금 다를 수 있습니다.",
  "reviews": [
   {
@@ -75,6 +76,17 @@
    "photos": [
     "assets/r/af1-lavender/03-1.jpg",
     "assets/r/af1-lavender/03-2.jpg"
+   ]
+  },
+  {
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2024-02-29",
+   "name": "dltl*****",
+   "option": "사이즈: 260",
+   "text": "영롱해요. 마침 휴가 낸 날 와서 기분이 더 좋아요. 요청 사항도 잘 들어주시고 마감도 좋아요. 아주 마음에 들어요.",
+   "photos": [
+    "assets/r/af1-lavender/04-1.jpg"
    ]
   }
  ]
