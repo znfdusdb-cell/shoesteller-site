@@ -1,0 +1,38 @@
+{
+ "id": "korea-yugwansun",
+ "name": "대한독립 에디션 · 유관순 그레이",
+ "price": 295000,
+ "list_price": 320000,
+ "cat": "story",
+ "base": "나이키 에어포스1",
+ "sources": [
+  "https://www.idus.com/v2/product/da3b45d7-6e58-44b1-a7da-ffd1adedb09b"
+ ],
+ "photos": [
+  "assets/p/korea-yugwansun/01.jpg",
+  "assets/p/korea-yugwansun/02.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295",
+  "300"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션 색상선택 2번. 주문 시 제작이라 남은 수량 표시 없음.",
+ "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
+ "reviews": []
+}

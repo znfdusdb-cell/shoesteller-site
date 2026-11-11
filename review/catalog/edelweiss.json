@@ -1,0 +1,78 @@
+{
+ "id": "edelweiss",
+ "name": "에델바이스 꽃 부츠",
+ "price": 117000,
+ "list_price": 130000,
+ "cat": "flower",
+ "base": "검정 앵클부츠",
+ "sources": [
+  "https://www.idus.com/v2/product/a79b8ae4-a52d-4465-a9ea-e4afbd8bca2c"
+ ],
+ "photos": [
+  "assets/p/edelweiss/01.jpg",
+  "assets/p/edelweiss/02.jpg",
+  "assets/p/edelweiss/03.jpg",
+  "assets/p/edelweiss/04.jpg",
+  "assets/p/edelweiss/05.jpg",
+  "assets/p/edelweiss/06.jpg",
+  "assets/p/edelweiss/07.jpg",
+  "assets/p/edelweiss/08.jpg"
+ ],
+ "sizes": [
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션 재질: 스웨이드 / 가죽(+10,000원). 주문 시 제작이라 남은 수량 표시 없음.",
+ "desc": "고귀한 사랑, 소중한 추억이라는 꽃말의 에델바이스를 검정 부츠 뒤꿈치에 손으로 그려 넣은 작품입니다. 재질은 스웨이드와 가죽(+10,000원) 중에서 고를 수 있습니다.",
+ "reviews": [
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2020-03-06",
+   "name": "중*",
+   "option": "재질: 가죽 / 사이즈: 250 / 포장서비스: 크라프트지 포장",
+   "text": "전역 선물 꽃신으로 줬는데 발도 너무 편하고 엄청 이쁘다고 맘에든다네요 :)",
+   "photos": []
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2020-02-04",
+   "name": "시*",
+   "option": "재질: 스웨이드 / 사이즈: 240 / 포장서비스: 선택안함",
+   "text": "수제화라 이쁠것같아샀는데 정말이쁘고요 작가님친절하시고 발목쪽이 꽉끼니 얇은바지나 스키니 입으시는게편합니다 다들이쁘데요 ㅎㅎ\n자기만의 부츠  가져보세요~^^",
+   "photos": [
+    "assets/r/edelweiss/01.jpg",
+    "assets/r/edelweiss/02.jpg",
+    "assets/r/edelweiss/03.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2020-02-02",
+   "name": "김*진",
+   "option": "재질: 스웨이드 / 사이즈: 230 / 포장서비스: 선택안함",
+   "text": "예뻐용 처음엔 약간 작은 감이 있었는데 신다 보니 처음만 그렇고 괜찮네용 사길 잘한 듯!! 번창하세요~~",
+   "photos": []
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2019-02-03",
+   "name": "m*ry",
+   "option": "재질: 가죽 / 사이즈: 225",
+   "text": "커스텀이 뭔가하고 궁금해서 주문해봤는데 넘 예뻐요 나만의 신발이 생긴거같아 기분이 좋네요~~작가님 고마와요~~^^",
+   "photos": [
+    "assets/r/edelweiss/01.jpg",
+    "assets/r/edelweiss/02.jpg",
+    "assets/r/edelweiss/03.jpg"
+   ]
+  }
+ ]
+}
