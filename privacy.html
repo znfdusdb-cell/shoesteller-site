@@ -1,19 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>개인정보 처리방침 — 슈즈텔러</title>
-<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/products.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>개인정보 처리방침(초안) · 슈즈텔러</title>
+<link rel="stylesheet" href="./site.css">
 </head>
-<body>
-<main id="main"><div class="page-head"><div class="wrap"><span class="lbl">Privacy</span><h1><span class="kr">개인정보 처리방침</span></h1></div></div><div class="wrap"><div class="doc" id="doc"><section><h2>무엇을 모으고 어디에 쓰나요</h2><p><span data-c="privacy"></span></p></section><section><h2>필수와 선택</h2><p>필수: 이름, 휴대폰 번호. 주문할 때만: 이메일, 배송 주소. 선택: 어디서 알게 되셨는지, 관심 분야, 문의 내용, 소식 받기 동의 여부. 결제 정보는 이 사이트에서 받지 않아요.</p></section><section><h2>다른 곳에 주나요</h2><p>제3자에게 주지 않아요. 배송할 때만 택배사에 이름·연락처·주소를 넘겨요.</p></section><section><h2>확인·수정·삭제</h2><p>카카오톡 채널로 요청하시면 열람·정정·삭제·처리 정지와 소식 받기 철회를 바로 처리해 드려요.</p></section><section><h2>개인정보 보호책임자</h2><p><span class="pending">정식 오픈 전에 표시돼요.</span></p></section></div></div></main>
-<script src="assets/site.js"></script>
-<script>(function(){var C=SHOES.CONTENT;[].forEach.call(document.querySelectorAll("[data-c]"),function(el){el.textContent=C[el.getAttribute("data-c")]||"";});})();</script>
+<body data-page="privacy">
+<!-- 초안. [회장 확인] 칸이 채워지기 전엔 서버 SITE_COLLECT_ON을 켜지 않는다. -->
+<main class="wrap">
+  <h1>개인정보 처리방침 <span class="todo">초안</span></h1>
+  <p class="note">시행일: <span class="todo">[회장 확인: 시행일]</span> · 동의 문구 버전 2026-10-31-draft</p>
+
+  <h2>1. 무엇을 모으나요</h2>
+  <p>필수: 이름, 휴대폰 번호. 선택: 어디서 알게 되셨는지, 관심 분야, 예약·문의 내용(희망 날짜·인원·신발 정보 등), 마케팅 수신 동의 여부.
+  자동으로: 들어오신 경로(광고·링크 표시값 utm·ref)와 신청 시각. 방문 통계: 본 페이지와 들어온 곳만 셉니다(쿠키를 쓰지 않고 IP 주소도 저장하지 않으며, 같은 날 같은 기기인지만 하루짜리 익명 값으로 구분합니다). 결제 정보는 이 사이트에서 받지 않습니다(결제는 네이버 스마트스토어).</p>
+
+  <h2>2. 왜 쓰나요</h2>
+  <p>첫 수업 쿠폰 발급과 확인, 수업 예약·프리미엄 주문 문의에 대한 연락, 서비스 개선을 위한 유입 통계(개인을 알아볼 수 없는 숫자로만).
+  마케팅 수신에 따로 동의하신 분께만 수업·키트 소식과 혜택을 문자·카카오로 보냅니다. 동의는 언제든 철회할 수 있습니다.</p>
+
+  <h2>3. 얼마나 보관하나요</h2>
+  <p><span class="todo">[회장 확인: 보관 기간 — 예: 신청일로부터 1년 또는 탈퇴·철회 요청 시까지]</span> 기간이 지나거나 삭제를 요청하시면 지체 없이 파기합니다.</p>
+
+  <h2>4. 다른 곳에 주나요</h2>
+  <p>제3자에게 제공하지 않습니다. 서버 운영(저장 공간)만 외부 호스팅 업체를 이용합니다. <span class="todo">[회장 확인: 위탁 업체명 표기]</span></p>
+
+  <h2>5. 내 정보 확인·수정·삭제</h2>
+  <p>아래 연락처로 열람·정정·삭제·처리 정지와 마케팅 수신 철회를 요청하실 수 있고, 바로 처리해 드립니다.</p>
+
+  <h2>6. 개인정보 보호책임자</h2>
+  <p>이름: <span class="todo">[회장 확인: 이름]</span><br>
+  연락처: <span class="todo">[회장 확인: 전화·이메일]</span></p>
+
+  <p class="note">밤 9시~아침 8시에는 광고성 안내를 보내지 않습니다.</p>
+</main>
+<script src="./site.js"></script>
+<script src="./config.js"></script>
+<script src="./track.js"></script>
 </body>
 </html>
