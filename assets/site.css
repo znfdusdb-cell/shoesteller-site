@@ -945,3 +945,11 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .team-bar button span { color: var(--grey-3); font-size: 11px; margin-left: 4px; }
 .team-bar button[aria-pressed="true"] span { color: inherit; opacity: .7; }
 @media (max-width: 699px) { .team-bar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); } .team-bar::-webkit-scrollbar { display: none; } }
+/* 후기 모아보기 (11/11) */
+.ra { max-width: 960px; margin: 0 auto 80px; }
+.ra .rv-sum { margin-top: 8px; }
+.ra-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; }
+.ra-prod { display: block; font-size: 12px; line-height: 1.5; color: var(--grey-3); text-decoration: none; }
+.ra-prod img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; margin-bottom: 8px; background: var(--grey-1); }
+.ra-chk { font-size: 13px; display: inline-flex; gap: 6px; align-items: center; white-space: nowrap; cursor: pointer; }
+@media (max-width: 699px) { .ra-item { grid-template-columns: 72px 1fr; gap: 14px; } .ra { padding: 0 var(--gutter); } }

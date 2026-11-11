@@ -72,6 +72,7 @@
           '<a class="mpic" href="class.html#workshop"><img src="assets/p01.jpg" alt="" loading="lazy"><span data-t="nav.c1"></span></a><a class="mpic" href="class.html#kit"><img src="assets/09.jpg" alt="" loading="lazy"><span data-t="nav.c2"></span></a></div></div></li>' +
         '<li><a href="index.html#story">Story</a><div class="mega"><div class="mega-in"><div class="mlinks"><a href="index.html#story" data-t="nav.s1"></a><a href="https://www.youtube.com/@bium4581" data-t="nav.s2"></a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="nav.s3"></a><hr><a href="index.html#faq" data-t="nav.s4"></a></div>' +
           '<a class="mpic" href="https://www.youtube.com/@bium4581"><img src="assets/video/poster.jpg" alt="" loading="lazy"><span>YouTube</span></a><a class="mpic" href="index.html#story"><img src="assets/05.jpg" alt="" loading="lazy"><span data-t="nav.s1"></span></a></div></div></li>' +
+        '<li><a href="reviews.html">Review</a></li>' +
       '</ul>' +
       '<div class="util">' +
         '<a class="tlink dt" href="book.html?type=order" data-t="util.consult"></a>' +
@@ -88,6 +89,7 @@
           '<a class="drow nav" href="studio.html"><span>Studio</span></a>' +
           '<button type="button" class="drow nav" data-go="dp-class"><span>Class</span><i>' + svgIcon('right') + '</i></button>' +
           '<button type="button" class="drow nav" data-go="dp-story"><span>Story</span><i>' + svgIcon('right') + '</i></button>' +
+          '<a class="drow nav" href="reviews.html"><span>Review</span></a>' +
           '<a class="drow nav" href="index.html#looks"><span>Lookbook</span></a>' +
         '</div>' +
         '<div class="dpanel" id="dp-custom" hidden><button type="button" class="dback" data-go="dp-root">' + svgIcon('left') + '<span>Custom</span></button>' +
@@ -126,7 +128,7 @@
     '<footer><div class="fwrap"><div class="cols">' +
       '<div class="fnews"><span class="flbl">BIUM</span><p>손으로 그리는 커스텀 신발, 슈즈텔러 비움.</p>' +
         '<div class="social"><a href="https://www.youtube.com/@bium4581" aria-label="YouTube">' + svgIcon('yt') + '</a><a href="https://smartstore.naver.com/bium4581" aria-label="스마트스토어">' + svgIcon('n') + '</a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" aria-label="아이디어스">' + svgIcon('i') + '</a><a href="' + S.KAKAO + '" aria-label="카카오톡">' + svgIcon('chat') + '</a></div></div>' +
-      '<div><span class="flbl" data-t="foot.company"></span><ul><li><a href="index.html#story" data-t="foot.1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="foot.2"></a></li><li><a href="class.html" data-t="foot.3"></a></li><li><a href="studio.html" data-t="nav.studio"></a></li><li><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="foot.4"></a></li></ul></div>' +
+      '<div><span class="flbl" data-t="foot.company"></span><ul><li><a href="index.html#story" data-t="foot.1"></a></li><li><a href="https://www.youtube.com/@bium4581" data-t="foot.2"></a></li><li><a href="class.html" data-t="foot.3"></a></li><li><a href="studio.html" data-t="nav.studio"></a></li><li><a href="reviews.html" data-t="foot.4"></a></li></ul></div>' +
       '<div><span class="flbl" data-t="foot.cs"></span><ul><li><a href="book.html?type=order" data-t="foot.5"></a></li><li><a href="book.html?type=class" data-t="foot.6"></a></li><li><a href="index.html#faq" data-t="foot.7"></a></li><li><a href="' + S.KAKAO + '" data-t="foot.8"></a></li></ul></div>' +
       '<div><span class="flbl" data-t="foot.terms"></span><ul><li><a href="privacy.html" data-t="foot.9"></a></li><li><a href="terms.html" data-t="foot.10"></a></li></ul></div>' +
     '</div><div class="bottom"><a class="brand" href="index.html"><img src="assets/brand/logo-black-160.png" alt=""><span class="wordmark">BIUM</span></a><span class="copy">© 2026 Custom BIUM · Shoesteller — Hand-painted in Seoul</span><span class="pays"><i>N Pay</i><i>계좌이체</i></span></div>' + bizHtml() + '</div></footer>';
