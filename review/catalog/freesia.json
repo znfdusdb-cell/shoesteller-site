@@ -1,0 +1,148 @@
+{
+ "id": "freesia",
+ "name": "프리지아 포인트 꽃신",
+ "price": 153000,
+ "list_price": 180000,
+ "cat": "flower",
+ "base": "나이키 코트 레거시 (품절 시 코트 로얄로 대체 제작)",
+ "sources": [
+  "https://www.idus.com/v2/product/62c7eebf-7256-4d47-9082-b57ddaec7350"
+ ],
+ "photos": [
+  "assets/p/freesia/01.jpg",
+  "assets/p/freesia/02.jpg",
+  "assets/p/freesia/03.jpg",
+  "assets/p/freesia/04.jpg",
+  "assets/p/freesia/05.jpg",
+  "assets/p/freesia/06.jpg",
+  "assets/p/freesia/07.jpg",
+  "assets/p/freesia/08.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 사이즈(220~280, 255 없음) + 크라프트지 포장(필요없음/선물). 주문 시 제작이라 사이즈별 재고 수량은 두지 않고, 판매 옵션에 없는 255는 처음부터 없는 사이즈(품절 표시 없음).",
+ "desc": "노란 프리지아(꽃말: 천진난만·청춘·당신의 앞날을 응원)를 흰 신발 옆면에 손으로 그린 꽃신입니다. 신발 변경·색 변경 문의가 가능하고, 마감처리를 해 1년 안에 1회 무상 A/S를 해줍니다.",
+ "reviews": [
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2026-10-01",
+   "name": "김*녀",
+   "option": "사이즈: 245",
+   "text": "이쁘네요.선물받은분도 좋아하시네요",
+   "photos": []
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2023-08-25",
+   "name": "이*기",
+   "option": "사이즈: 240",
+   "text": "작품은 말할 것 없이 너무 예쁘고요 그림 미쳤구여ㅠㅠ 손편지도 길게 말씀드렸는데 한 자, 한 자 다 적어주시고ㅠㅠㅠ 진짜 너무 죄송하고 너~~무 감사합니다ㅠㅠㅠ😭😭 얼른 선물 주고 싶네요❤️",
+   "photos": [
+    "assets/r/freesia/02_1.jpg",
+    "assets/r/freesia/02_2.jpg",
+    "assets/r/freesia/02_3.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2022-10-20",
+   "name": "엄*재",
+   "option": "사이즈: 240",
+   "text": "너무 예뻐요",
+   "photos": [
+    "assets/r/freesia/03_1.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2022-04-08",
+   "name": "정*홍",
+   "option": "사이즈: 230 / 크라프트지 포장: 괜찮아요!",
+   "text": "정말 예쁘고 여자친구가 좋아할 것 같아요! 작가님 작품은 실물이 빛납니다!",
+   "photos": []
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2022-04-04",
+   "name": "정*",
+   "option": "사이즈: 225 / 크라프트지 포장: 선물할래요!",
+   "text": "여자친구 꽃신 신겨주고싶어서 샀어요 \n좋아했으면 좋겠어요 군대라서 사진을 못찍는게 아쉬워요...",
+   "photos": []
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2022-02-02",
+   "name": "서*린",
+   "option": "사이즈: 235 / 크라프트지 포장: 선물할래요!",
+   "text": "꽃길만걸으라고 선물했어요ㅎㅅㅎ\n넘예쁘고 맘에들어해서 선물용으로 좋은 것 같아요~~!!",
+   "photos": [
+    "assets/r/freesia/06_1.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2022-01-29",
+   "name": "이*현",
+   "option": "사이즈: 240 / 크라프트지 포장: 괜찮아요!",
+   "text": "너무 예뻐요!! 봄에 신기 딱 좋을 것 같아요😍😍",
+   "photos": [
+    "assets/r/freesia/07_1.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2021-12-29",
+   "name": "현*",
+   "option": "사이즈: 230 / 크라프트지 포장: 선물할래요!",
+   "text": "여자친구가 너무 좋아합니다. 감사합니다. 잘신겠습니다.",
+   "photos": [
+    "assets/r/freesia/08_1.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2021-10-08",
+   "name": "봉*",
+   "option": "사이즈: 220 / 크라프트지 포장: 괜찮아요!",
+   "text": "제가 좋아하는 프리지아가 들어간 꽃신이라 더 이쁘네요^^",
+   "photos": [
+    "assets/r/freesia/09_1.jpg",
+    "assets/r/freesia/09_2.jpg",
+    "assets/r/freesia/09_3.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2021-08-25",
+   "name": "a*t.kim",
+   "option": "사이즈: 230 / 크라프트지 포장: 선물할래요!",
+   "text": "퇴사선물로줬는데 완전예뻐요,,,ㅠㅜㅜ감동탱구리ㅜㅜㅜㅠㅜㅜㅜㅜㅜㅜ",
+   "photos": [
+    "assets/r/freesia/10_1.jpg"
+   ]
+  }
+ ]
+}
