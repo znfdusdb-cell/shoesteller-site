@@ -152,13 +152,19 @@
   /* 장바구니 */
   var cart = store.get('bium_cart', []);
   function saveCart() { store.set('bium_cart', cart); renderCart(); }
-  function addToCart(id, size, qty) {
+  /* 옵션: products.js의 options = [{name, choices:[{label, add}]}]. 장바구니 한 줄 = {id, size, qty, opts:[[그룹 번호, 선택 번호]]} */
+  function optLines(p, opts) { return (opts || []).map(function (o) { var g = p && p.options && p.options[o[0]], c = g && g.choices[o[1]]; return c ? g.name + ': ' + c.label : ''; }).filter(Boolean); }
+  function optAdd(p, opts) { return (opts || []).reduce(function (s, o) { var g = p && p.options && p.options[o[0]], c = g && g.choices[o[1]]; return s + (c ? +c.add || 0 : 0); }, 0); }
+  function unitPrice(c) { var p = byId(c.id); return p ? p.price + optAdd(p, c.opts) : 0; }
+  function addToCart(id, size, qty, opts) {
     var p = byId(id); if (!p || !size) return;
-    var hit = cart.filter(function (c) { return c.id === id && c.size === size; })[0];
-    if (hit) hit.qty += (qty || 1); else cart.push({ id: id, size: size, qty: qty || 1 });
+    if (!opts && p.options) opts = p.options.map(function (g, gi) { return [gi, 0]; });
+    var key = JSON.stringify(opts || []);
+    var hit = cart.filter(function (c) { return c.id === id && c.size === size && JSON.stringify(c.opts || []) === key; })[0];
+    if (hit) hit.qty += (qty || 1); else cart.push({ id: id, size: size, qty: qty || 1, opts: opts || [] });
     saveCart(); toast(t('cart.added') + ' · ' + nameOf(p) + ' ' + size);
   }
-  function cartTotal() { return cart.reduce(function (s, c) { var p = byId(c.id); return s + (p ? p.price * c.qty : 0); }, 0); }
+  function cartTotal() { return cart.reduce(function (s, c) { return s + unitPrice(c) * c.qty; }, 0); }
   function renderCart() {
     var body = $('#cart-body'), n = cart.reduce(function (s, c) { return s + c.qty; }, 0);
     $('#cart-count').textContent = n ? String(n) : '';
@@ -168,7 +174,7 @@
     if (!cart.length) { body.innerHTML = '<p class="empty">' + t('cart.empty') + '</p>'; return; }
     body.innerHTML = cart.map(function (c, i) {
       var p = byId(c.id); if (!p) return '';
-      return '<div class="cart-item"><a href="product.html?id=' + p.id + '"><img src="' + p.photos[0] + '" alt=""' + posAttr(p, 0) + '></a><div><b>' + nameOf(p) + '</b><span class="price">' + won(p.price * c.qty) + '</span><span class="meta">' + t('cart.size') + ': ' + c.size + '</span><div class="qrow"><div class="qty"><button type="button" data-q="-1" data-i="' + i + '" aria-label="빼기">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '" aria-label="더하기">+</button></div><button class="rm" type="button" data-rm="' + i + '" data-t="cart.rm"></button></div></div></div>';
+      return '<div class="cart-item"><a href="product.html?id=' + p.id + '"><img src="' + p.photos[0] + '" alt=""' + posAttr(p, 0) + '></a><div><b>' + nameOf(p) + '</b><span class="price">' + won(unitPrice(c) * c.qty) + '</span><span class="meta">' + t('cart.size') + ': ' + c.size + optLines(p, c.opts).map(function (x) { return '<br>' + x; }).join('') + '</span><div class="qrow"><div class="qty"><button type="button" data-q="-1" data-i="' + i + '" aria-label="빼기">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '" aria-label="더하기">+</button></div><button class="rm" type="button" data-rm="' + i + '" data-t="cart.rm"></button></div></div></div>';
     }).join('');
     applyLang(body);
     $$('[data-q]', body).forEach(function (b) { b.addEventListener('click', function () { var i = +b.getAttribute('data-i'); cart[i].qty = Math.max(1, cart[i].qty + (+b.getAttribute('data-q'))); saveCart(); }); });
@@ -251,5 +257,5 @@
       .then(function (j) { clearTimeout(timer); if (j && j.ok && j.collecting !== false) done({ via: 'server', data: j }); else viaKakao(); })
       .catch(function () { clearTimeout(timer); viaKakao(); });
   }
-  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, addToCart: addToCart, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
+  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, addToCart: addToCart, optLines: optLines, optAdd: optAdd, unitPrice: unitPrice, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
 })();

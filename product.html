@@ -40,8 +40,9 @@
       (p.isNew ? '<span class="pdm-new">NEW</span>' : '') +
       '<h1>' + B.nameOf(p) + '</h1>' +
       '<p class="pdm-desc" id="desc">' + p.desc + '</p><button class="ulink" type="button" id="more-desc" data-t="pd.readmore"></button>' +
-      '<p class="pdm-price">' + B.won(p.price) + '</p>' +
+      '<p class="pdm-price" id="price">' + B.won(p.price) + '</p>' +
       '<p class="pdm-sub">' + p.sub + (RV.length ? ' · <a class="ulink" href="#reviews">후기 ' + RV.length + '개 · ★ ' + avg + '</a>' : p.reviews ? ' · 아이디어스 후기 ' + p.reviews + '개' : '') + '</p>' +
+      (p.options || []).map(function (g, gi) { return '<p class="pdm-lbl">' + g.name + '</p><div class="pdm-opts" data-g="' + gi + '">' + g.choices.map(function (c, ci) { return '<button type="button" data-c="' + ci + '" aria-pressed="' + (ci ? 'false' : 'true') + '">' + c.label + (c.add ? ' <small>+' + B.won(c.add) + '</small>' : '') + '</button>'; }).join('') + '</div>'; }).join('') +
       '<p class="pdm-lbl"><span data-t="pd.size"></span>:</p>' +
       '<div class="pdm-sizes" id="sizes">' + B.sizesOf(p).map(function (x) { return '<button type="button" data-size="' + x.z + '" aria-pressed="false"' + (x.out ? ' disabled class="out" title="품절"' : '') + '>' + x.z + '</button>'; }).join('') + '</div>' +
       (B.allOut(p) ? '<p class="pdm-soldout">지금은 모든 사이즈가 품절이에요. 같은 디자인으로 주문 제작을 원하시면 상담을 남겨 주세요.</p>' : '') +
@@ -59,8 +60,10 @@
   $$('#sizes button').forEach(function (b) { b.onclick = function () { pick(+b.getAttribute('data-size')); }; });
   $('#size-sel').onchange = function () { pick(this.value ? +this.value : null); };
   function need() { if (!size) { $('#msg').textContent = B.t('pd.pick'); return false; } return true; }
-  $('#add').onclick = function () { if (!need()) return; B.addToCart(p.id, size, 1); B.openCart(); };
-  $('#buy').onclick = function () { if (!need()) return; B.addToCart(p.id, size, 1); location.href = 'checkout.html'; };
+  var opts = (p.options || []).map(function (g, gi) { return [gi, 0]; });
+  $$('.pdm-opts').forEach(function (box) { var gi = +box.getAttribute('data-g'); $$('button', box).forEach(function (b) { b.onclick = function () { opts[gi] = [gi, +b.getAttribute('data-c')]; $$('button', box).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); $('#price').textContent = B.won(p.price + B.optAdd(p, opts)); }; }); });
+  $('#add').onclick = function () { if (!need()) return; B.addToCart(p.id, size, 1, opts.slice()); B.openCart(); };
+  $('#buy').onclick = function () { if (!need()) return; B.addToCart(p.id, size, 1, opts.slice()); location.href = 'checkout.html'; };
   var g = $('#gal');
   if ($('#gdots')) g.addEventListener('scroll', function () { var k = Math.round(g.scrollLeft / g.clientWidth); $$('#gdots i').forEach(function (d, i) { d.classList.toggle('on', i === k); }); });
   var more = S.products.filter(function (x) { return x.id !== p.id && (x.cat === p.cat || x.base === p.base); }).slice(0, 8);

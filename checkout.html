@@ -44,7 +44,7 @@
   var cart = B.cart(), u = B.user();
   if (u) { $('#f-name').value = u.name || ''; $('#f-email').value = u.email || ''; }
   var total = 0;
-  $('#co-items').innerHTML = cart.length ? cart.map(function (c) { var p = B.byId(c.id); total += p.price * c.qty; return '<div class="line"><span>' + B.nameOf(p) + ' · ' + c.size + ' × ' + c.qty + '</span><span class="price">' + B.won(p.price * c.qty) + '</span></div>'; }).join('') : '<p class="empty">' + B.t('co.empty') + '</p>';
+  $('#co-items').innerHTML = cart.length ? cart.map(function (c) { var p = B.byId(c.id), u = B.unitPrice(c); total += u * c.qty; return '<div class="line"><span>' + B.nameOf(p) + ' · ' + c.size + B.optLines(p, c.opts).map(function (x) { return ' · ' + x; }).join('') + ' × ' + c.qty + '</span><span class="price">' + B.won(u * c.qty) + '</span></div>'; }).join('') : '<p class="empty">' + B.t('co.empty') + '</p>';
   $('#co-total').textContent = B.won(total);
   $('#send').toggleAttribute('disabled', !cart.length);
   var NP = !!S.NAVERPAY_CLIENT_ID;
@@ -61,7 +61,7 @@
       var p0 = B.byId(cart[0].id); payNaver('ST' + Date.now(), p0.name + (cart.length > 1 ? ' 외 ' + (cart.length - 1) + '건' : '')); return;
     }
     var lines = ['[슈즈텔러 주문서]', '이름: ' + $('#f-name').value, '연락처: ' + $('#f-phone').value, '이메일: ' + $('#f-email').value, '주소: ' + $('#f-addr').value, ''];
-    cart.forEach(function (c) { var p = B.byId(c.id); lines.push('- ' + p.name + ' / ' + c.size + ' / ' + c.qty + '켤레 / ' + B.won(p.price * c.qty)); });
+    cart.forEach(function (c) { var p = B.byId(c.id); lines.push('- ' + p.name + ' / ' + c.size + B.optLines(p, c.opts).map(function (x) { return ' / ' + x; }).join('') + ' / ' + c.qty + '켤레 / ' + B.won(B.unitPrice(c) * c.qty)); });
     lines.push('합계: ' + B.won(total), '결제: 계좌이체(확인 후 안내)', '요청: ' + ($('#f-note').value || '없음'));
     var text = lines.join('\n');
     var orders = JSON.parse(localStorage.getItem('bium_orders') || '[]'); orders.push({ at: new Date().toISOString(), text: text }); localStorage.setItem('bium_orders', JSON.stringify(orders));

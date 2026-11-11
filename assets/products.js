@@ -134,6 +134,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/b753c6cd-8657-4d83-85de-ef7111889cc0"
+   ],
+   "options": [
+    {
+     "name": "신발 안쪽 색",
+     "choices": [
+      {
+       "label": "라인만",
+       "add": 0
+      },
+      {
+       "label": "색 채우기",
+       "add": 20000
+      }
+     ]
+    }
    ]
   },
   {
@@ -169,6 +184,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/24d5c9fd-b414-47a6-9f93-df92035eeb50"
+   ],
+   "options": [
+    {
+     "name": "신발 색",
+     "choices": [
+      {
+       "label": "화이트",
+       "add": 0
+      },
+      {
+       "label": "핑크",
+       "add": 20000
+      }
+     ]
+    }
    ]
   },
   {
@@ -256,6 +286,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/79eb54b9-809f-4436-8200-432d3c366067"
+   ],
+   "options": [
+    {
+     "name": "꽃 색",
+     "choices": [
+      {
+       "label": "분홍빛",
+       "add": 0
+      },
+      {
+       "label": "보랏빛",
+       "add": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -365,6 +410,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/f643d6f8-8203-4ced-bb3a-591544b96cf5"
+   ],
+   "options": [
+    {
+     "name": "반대쪽 신발에도 꽃",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 35000
+      }
+     ]
+    }
    ]
   },
   {
@@ -399,6 +459,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/a79b8ae4-a52d-4465-a9ea-e4afbd8bca2c"
+   ],
+   "options": [
+    {
+     "name": "재질",
+     "choices": [
+      {
+       "label": "스웨이드",
+       "add": 0
+      },
+      {
+       "label": "가죽",
+       "add": 10000
+      }
+     ]
+    }
    ]
   },
   {
@@ -440,7 +515,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/10578377721"
-   ]
+   ],
+   "team": "liverpool"
   },
   {
    "id": "mudryk",
@@ -473,7 +549,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9522814949"
-   ]
+   ],
+   "team": "chelsea"
   },
   {
    "id": "spurs",
@@ -515,6 +592,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9238359131",
     "https://smartstore.naver.com/bium4581/products/9744046284"
+   ],
+   "team": "spurs",
+   "options": [
+    {
+     "name": "앞면 COYS 문구",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 20000
+      }
+     ]
+    }
    ]
   },
   {
@@ -555,7 +648,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/4586733719"
-   ]
+   ],
+   "team": "arsenal"
   },
   {
    "id": "kangin",
@@ -596,7 +690,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9828364761"
-   ]
+   ],
+   "team": "psg"
   },
   {
    "id": "minjae",
@@ -614,7 +709,8 @@ window.SHOES = {
    "desc": "빨간 스우시 위에 MJ KIM 4번과 호랑이 엠블럼. 국가대표 경기 날을 위해.",
    "pos": [
     37
-   ]
+   ],
+   "team": "korea"
   },
   {
    "id": "inzaghi",
@@ -651,7 +747,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9984588226"
-   ]
+   ],
+   "team": "acmilan"
   },
   {
    "id": "manutd-vans",
@@ -694,7 +791,8 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/10165463501",
     "https://smartstore.naver.com/bium4581/products/9294953688"
-   ]
+   ],
+   "team": "manutd"
   },
   {
    "id": "space",
@@ -849,6 +947,29 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/9dfefc87-6886-498b-85c5-7a93e11ded36"
+   ],
+   "options": [
+    {
+     "name": "구두 색",
+     "choices": [
+      {
+       "label": "베이지",
+       "add": 0
+      },
+      {
+       "label": "핑크",
+       "add": 0
+      },
+      {
+       "label": "블랙",
+       "add": 0
+      },
+      {
+       "label": "그레이",
+       "add": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -887,6 +1008,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/4b97399a-3d69-4001-b175-794ddc07eb93"
+   ],
+   "options": [
+    {
+     "name": "신발 색",
+     "choices": [
+      {
+       "label": "블랙",
+       "add": 0
+      },
+      {
+       "label": "화이트",
+       "add": 0
+      }
+     ]
+    }
    ]
   },
   {
@@ -1001,6 +1137,21 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/de5ef060-e89e-49f6-a175-bde9dc58b198"
+   ],
+   "options": [
+    {
+     "name": "커스텀 종류",
+     "choices": [
+      {
+       "label": "기본 커스텀",
+       "add": 0
+      },
+      {
+       "label": "전체 커스텀",
+       "add": 70000
+      }
+     ]
+    }
    ]
   },
   {
@@ -1036,7 +1187,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/10079658648"
-   ]
+   ],
+   "team": "chelsea"
   },
   {
    "id": "chelsea-drogba",
@@ -1079,7 +1231,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9522814949"
-   ]
+   ],
+   "team": "chelsea"
   },
   {
    "id": "chelsea-hazard",
@@ -1114,7 +1267,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9522814949"
-   ]
+   ],
+   "team": "chelsea"
   },
   {
    "id": "manutd-beckham",
@@ -1158,6 +1312,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9701862551",
     "https://smartstore.naver.com/bium4581/products/9650249643"
+   ],
+   "team": "manutd",
+   "options": [
+    {
+     "name": "나이키 로고 빨간색 도색",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 40000
+      }
+     ]
+    }
    ]
   },
   {
@@ -1202,6 +1372,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9701862551",
     "https://smartstore.naver.com/bium4581/products/9650249643"
+   ],
+   "team": "manutd",
+   "options": [
+    {
+     "name": "나이키 로고 빨간색 도색",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 40000
+      }
+     ]
+    }
    ]
   },
   {
@@ -1248,6 +1434,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9701862551",
     "https://smartstore.naver.com/bium4581/products/9650249643"
+   ],
+   "team": "manutd",
+   "options": [
+    {
+     "name": "나이키 로고 빨간색 도색",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 40000
+      }
+     ]
+    }
    ]
   },
   {
@@ -1291,7 +1493,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9627780666"
-   ]
+   ],
+   "team": "realmadrid"
   },
   {
    "id": "ronaldo",
@@ -1332,7 +1535,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/10224473445"
-   ]
+   ],
+   "team": "realmadrid"
   },
   {
    "id": "wolves-neves",
@@ -1374,6 +1578,22 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9678450994"
+   ],
+   "team": "wolves",
+   "options": [
+    {
+     "name": "나이키 로고 노란색 도색",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 40000
+      }
+     ]
+    }
    ]
   },
   {
@@ -1416,6 +1636,22 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/4713524701"
+   ],
+   "team": "arsenal",
+   "options": [
+    {
+     "name": "앞면 COYG 문구",
+     "choices": [
+      {
+       "label": "추가 안 함",
+       "add": 0
+      },
+      {
+       "label": "추가",
+       "add": 20000
+      }
+     ]
+    }
    ]
   },
   {
@@ -1457,7 +1693,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/8853886566"
-   ]
+   ],
+   "team": "arsenal"
   },
   {
    "id": "barcelona-gavi",
@@ -1489,7 +1726,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9714595175"
-   ]
+   ],
+   "team": "barcelona"
   },
   {
    "id": "barcelona-messi",
@@ -1521,7 +1759,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9714595175"
-   ]
+   ],
+   "team": "barcelona"
   },
   {
    "id": "barcelona-ronaldinho",
@@ -1553,7 +1792,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9714595175"
-   ]
+   ],
+   "team": "barcelona"
   },
   {
    "id": "henry-black",
@@ -1593,7 +1833,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/8979400897"
-   ]
+   ],
+   "team": "arsenal"
   },
   {
    "id": "henry-highbury",
@@ -1635,7 +1876,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/8979400897"
-   ]
+   ],
+   "team": "arsenal"
   },
   {
    "id": "liverpool-vans",
@@ -1675,7 +1917,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9883236573"
-   ]
+   ],
+   "team": "liverpool"
   },
   {
    "id": "mancity-aguero",
@@ -1705,7 +1948,8 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9793115497"
-   ]
+   ],
+   "team": "mancity"
   },
   {
    "id": "af1-lavender",
@@ -2833,5 +3077,67 @@ window.SHOES = {
    1.2
   ],
   "mine_note": "내 신발을 보내시면 신발값은 빠지고, 보내는 택배비만 부담해 주세요."
- }
+ },
+ "TEAMS": [
+  {
+   "id": "arsenal",
+   "ko": "아스날",
+   "en": "Arsenal"
+  },
+  {
+   "id": "spurs",
+   "ko": "토트넘",
+   "en": "Tottenham"
+  },
+  {
+   "id": "manutd",
+   "ko": "맨유",
+   "en": "Man Utd"
+  },
+  {
+   "id": "chelsea",
+   "ko": "첼시",
+   "en": "Chelsea"
+  },
+  {
+   "id": "liverpool",
+   "ko": "리버풀",
+   "en": "Liverpool"
+  },
+  {
+   "id": "mancity",
+   "ko": "맨시티",
+   "en": "Man City"
+  },
+  {
+   "id": "wolves",
+   "ko": "울버햄튼",
+   "en": "Wolves"
+  },
+  {
+   "id": "realmadrid",
+   "ko": "레알 마드리드",
+   "en": "Real Madrid"
+  },
+  {
+   "id": "barcelona",
+   "ko": "바르셀로나",
+   "en": "Barcelona"
+  },
+  {
+   "id": "psg",
+   "ko": "PSG",
+   "en": "PSG"
+  },
+  {
+   "id": "acmilan",
+   "ko": "AC 밀란",
+   "en": "AC Milan"
+  },
+  {
+   "id": "korea",
+   "ko": "대한민국",
+   "en": "Korea"
+  }
+ ]
 };

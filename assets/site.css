@@ -932,3 +932,16 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .fab-cart .count { position: absolute; top: -2px; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--white); color: var(--black); border: 1px solid var(--black); font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; display: none; }
 .fab-cart.has .count { display: block; }
 @media (max-width: 759px) { .fabs { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); gap: 8px; } .fab-cart, .fabs .kakao { width: 48px; height: 48px; } }
+
+/* 옵션 단추 (11/11) */
+.pdm-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pdm-opts button { border: 1px solid var(--grey-2); padding: 10px 14px; font-size: 13px; background: var(--white); }
+.pdm-opts button small { color: var(--grey-3); font-size: 12px; }
+.pdm-opts button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+/* 축구 팀 고르기 (11/11) */
+.team-bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 22px; padding: 0 var(--gutter); }
+.team-bar button { border: 1px solid var(--grey-2); border-radius: 30px; padding: 6px 14px; font-size: 13px; background: var(--white); white-space: nowrap; }
+.team-bar button[aria-pressed="true"] { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.team-bar button span { color: var(--grey-3); font-size: 11px; margin-left: 4px; }
+.team-bar button[aria-pressed="true"] span { color: inherit; opacity: .7; }
+@media (max-width: 699px) { .team-bar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); } .team-bar::-webkit-scrollbar { display: none; } }
