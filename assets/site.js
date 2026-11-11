@@ -69,7 +69,7 @@
         '</div></div></li>' +
         '<li><a href="studio.html">Studio</a></li>' +
         '<li><a href="class.html">Class</a><div class="mega"><div class="mega-in"><div class="mlinks"><a href="class.html#workshop" data-t="nav.c1"></a><a href="class.html#kit" data-t="nav.c2"></a><a href="class.html#online" data-t="nav.c3"></a><hr><a href="book.html?type=class" data-t="nav.c4"></a></div>' +
-          '<a class="mpic" href="class.html#workshop"><img src="assets/p01.jpg" alt="" loading="lazy"><span data-t="nav.c1"></span></a><a class="mpic" href="class.html#kit"><img src="assets/09.jpg" alt="" loading="lazy"><span data-t="nav.c2"></span></a></div></div></li>' +
+          '<a class="mpic" href="class.html#workshop"><img src="assets/p01.jpg" alt="" loading="lazy"><span data-t="nav.c1"></span></a><a class="mpic" href="class.html#kit"><img src="assets/kit.jpg" alt="" loading="lazy"><span data-t="nav.c2"></span></a></div></div></li>' +
         '<li><a href="index.html#story">Story</a><div class="mega"><div class="mega-in"><div class="mlinks"><a href="index.html#story" data-t="nav.s1"></a><a href="https://www.youtube.com/@bium4581" data-t="nav.s2"></a><a href="https://www.idus.com/v2/artist/d1af8d8a-c43f-4ac4-aa1c-aeb1a04ba6c2/product" data-t="nav.s3"></a><hr><a href="index.html#faq" data-t="nav.s4"></a></div>' +
           '<a class="mpic" href="https://www.youtube.com/@bium4581"><img src="assets/video/poster.jpg" alt="" loading="lazy"><span>YouTube</span></a><a class="mpic" href="index.html#story"><img src="assets/05.jpg" alt="" loading="lazy"><span data-t="nav.s1"></span></a></div></div></li>' +
         '<li><a href="reviews.html">Review</a></li>' +
