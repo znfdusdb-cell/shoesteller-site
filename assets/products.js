@@ -1159,9 +1159,9 @@ window.SHOES = {
   "poster": "assets/video/poster.jpg?v=3",
   "poster_mobile": "assets/video/poster-mobile.jpg?v=4"
  },
- "UPDATED": "2026-11-11T02:25:18.760Z",
+ "UPDATED": "2026-11-11T05:02:59.938Z",
  "STUDIO": {
-  "before": "assets/ba/before.jpg",
+  "before": "assets/up/20261111-nkvw0.jpg",
   "after": "assets/ba/after.jpg",
   "title_ko": "흰 신발이 내 이야기가 되기까지",
   "title_en": "From a white pair to your story",
