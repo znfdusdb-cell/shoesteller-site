@@ -1,0 +1,90 @@
+[
+  {
+    "model": "af1",
+    "color": "white",
+    "price": 149000,
+    "list_price": 149000,
+    "url": "https://www.nike.com/kr/t/%EB%82%98%EC%9D%B4%ED%82%A4-%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-oC22E7Fz/DD8959-100",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "af1",
+    "color": "black",
+    "price": 149000,
+    "list_price": 149000,
+    "url": "https://www.nike.com/kr/t/%EB%82%98%EC%9D%B4%ED%82%A4-%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-oC22E7Fz/DD8959-001",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "tennis",
+    "color": "white",
+    "price": 109600,
+    "list_price": 129000,
+    "url": "https://www.nike.com/kr/t/%EB%82%98%EC%9D%B4%ED%82%A4-%ED%85%8C%EB%8B%88%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8B%9D-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-aNxtyxvx/IQ7387-107",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "oldskool",
+    "color": "white",
+    "price": 85000,
+    "list_price": 85000,
+    "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010038483",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "oldskool",
+    "color": "black",
+    "price": 85000,
+    "list_price": 85000,
+    "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010034906",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "authentic",
+    "color": "white",
+    "price": 69000,
+    "list_price": 69000,
+    "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010008642",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "authentic",
+    "color": "black",
+    "price": 69000,
+    "list_price": 69000,
+    "url": "https://abcmart.a-rt.com/product/new?prdtNo=1010008525",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "chuck",
+    "color": "white",
+    "price": 69000,
+    "list_price": 69000,
+    "url": "https://www.converse.co.kr/product/%EC%B2%99%ED%85%8C%EC%9D%BC%EB%9F%AC-%EC%98%AC%EC%8A%A4%ED%83%80-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%99%94%EC%9D%B4%ED%8A%B8/6528/category/23/display/1/",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "chuck",
+    "color": "black",
+    "price": 69000,
+    "list_price": 69000,
+    "url": "https://www.converse.co.kr/product/%EC%B2%99%ED%85%8C%EC%9D%BC%EB%9F%AC-%EC%98%AC%EC%8A%A4%ED%83%80-%ED%81%B4%EB%9E%98%EC%8B%9D-%EB%B8%94%EB%9E%99/6527/category/23/display/1/",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "chuckhi",
+    "color": "white",
+    "price": 75000,
+    "list_price": 75000,
+    "url": "https://www.converse.co.kr/product/%EC%B2%99%ED%85%8C%EC%9D%BC%EB%9F%AC-%EC%98%AC%EC%8A%A4%ED%83%80-%ED%81%B4%EB%9E%98%EC%8B%9D-%ED%99%94%EC%9D%B4%ED%8A%B8/6518/category/991/display/1/",
+    "checked": "2026-11-11"
+  },
+  {
+    "model": "chuckhi",
+    "color": "black",
+    "price": 75000,
+    "list_price": 75000,
+    "url": "https://www.converse.co.kr/product/%EC%B2%99%ED%85%8C%EC%9D%BC%EB%9F%AC-%EC%98%AC%EC%8A%A4%ED%83%80-%ED%81%B4%EB%9E%98%EC%8B%9D-%EB%B8%94%EB%9E%99/6517/category/23/display/1/",
+    "checked": "2026-11-11"
+  }
+]
