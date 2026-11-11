@@ -1,175 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>슈즈텔러 커스텀 신발</title>
-<meta name="description" content="손으로 그리는 커스텀 신발. 사계절 꽃신, 축구 커스텀, 내 이야기를 담은 한 켤레. 슈즈텔러 비움.">
-<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/products.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>슈즈텔러 — 좋아하는 이야기를 그려 넣은 커스텀 신발 주문</title>
+<meta name="description" content="좋아하는 이야기를 그려 넣은, 세상에 하나뿐인 신발을 만들어 드려요. 기존 디자인에서 고르거나 내 이야기로 새로 그리는 개인 디자인까지, 상담·주문하세요. 6년+ 핸드페인팅.">
+<link rel="stylesheet" href="./site.css">
+<script src="./config.js"></script>
+<script src="./shoe.js"></script>
 </head>
-<body>
-<main id="main">
-  <section class="hero" id="top" aria-label="작업 영상">
-    <video id="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="흰 신발에 붓으로 그림을 그리는 작업 장면"></video>
-    <script>(function () { var V = (window.SHOES && window.SHOES.VIDEO) || {}, v = document.getElementById('hero-video'), h = '';
-      if (V.poster) v.setAttribute('poster', V.poster);
-      if (V.mobile) h += '<source src="' + V.mobile + '" type="video/mp4" media="(max-width: 759px)">';
-      if (V.webm) h += '<source src="' + V.webm + '" type="video/webm">';
-      if (V.desktop) h += '<source src="' + V.desktop + '" type="video/mp4">';
-      v.innerHTML = h; v.load(); })();</script>
-    <button class="mute" type="button" id="toggle-play" aria-label="영상 멈춤"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg></button>
-    <div class="over"><p class="big" data-t="hero.lbl2"></p><a class="btn cream" href="shop.html" data-t="hero.shop"></a></div>
-  </section>
-
-  <section class="msec" id="works" aria-labelledby="works-h">
-    <p class="mtitle" id="works-h" data-t="works.h"></p>
-    <div class="mbar wrap">
-      <div class="mtabs" role="tablist" aria-label="작품 종류" id="work-tabs">
-        <button role="tab" aria-selected="true" data-tab="all" data-t="nav.all"></button>
-        <button role="tab" aria-selected="false" data-tab="flower" data-t="nav.flower"></button>
-        <button role="tab" aria-selected="false" data-tab="story" data-t="nav.story2"></button>
+<body data-page="home">
+<!-- 원고: research shoesteller-site-sb7-copy-v2(1~9절). 첫 화면은 주문 중심, 수업·키트는 부 상품. 가격·사진·제작 기간처럼 두뇌에 없는 사실은 class="todo". 결제는 마지막 단계. -->
+<main>
+  <section class="hero" aria-labelledby="h1">
+    <!-- 대표 사진 자리: 확인 필요(완성 신발 대표 사진 1장 — 오면 사진으로 교체). 그 전까지 SVG 미리보기 -->
+    <div class="hero-art">
+      <div class="hero-chips" id="hero-chips" role="group" aria-label="색 조합 미리보기"></div>
+      <svg id="hero-shoe" role="img" aria-label="흰 캔버스 운동화. 색 조합을 누르면 바뀝니다"></svg>
+    </div>
+    <div class="hero-text">
+      <div>
+        <p class="kicker">내 이야기를 신다</p>
+        <h1 id="h1">좋아하는 이야기를 그려 넣은, 세상에 하나뿐인 신발을 만들어 드려요.</h1>
+        <p class="lead">좋아하는 걸 제대로 담은 굿즈가 없었다면, 이야기를 들려주세요. 6년 동안 신발에 그림을 그려온 손으로, 당신만의 한 켤레를 그려 드려요.</p>
       </div>
-      <div class="mright"><a class="ulink" href="shop.html" data-t="works.view"></a><div class="arrows"><button type="button" data-dir="-1" data-for="work-track" aria-label="이전">&#8249;</button><button type="button" data-dir="1" data-for="work-track" aria-label="다음">&#8250;</button></div></div>
-    </div>
-    <div class="track" id="work-track"></div>
-  </section>
-
-  <section class="hero banner2" aria-labelledby="fb-h">
-    <picture><source media="(max-width: 759px)" srcset="assets/fb/f09.jpg"><img src="assets/fb/f03.jpg" alt="파란 하늘 아래 축구장에서 신은 포그바 커스텀 신발" loading="lazy"></picture>
-    <div class="over"><p class="big" id="fb-h" data-t="fb2.h"></p><a class="btn cream" href="shop.html?cat=football" data-t="fb2.btn"></a></div>
-  </section>
-
-  <section class="msec" aria-labelledby="fbx-h">
-    <p class="mtitle" id="fbx-h" data-t="fb2.ex"></p>
-    <div class="mbar wrap"><div class="mtabs"><a class="ulink" href="book.html?type=order&design=personal" data-t="fb.btn"></a></div>
-      <div class="mright"><a class="ulink" href="shop.html?cat=football" data-t="works.view"></a><div class="arrows"><button type="button" data-dir="-1" data-for="fb-track" aria-label="이전">&#8249;</button><button type="button" data-dir="1" data-for="fb-track" aria-label="다음">&#8250;</button></div></div></div>
-    <div class="track" id="fb-track"></div>
-  </section>
-
-  <section class="msec looksec" id="looks" aria-labelledby="looks-h">
-    <p class="mtitle" id="looks-h">SHOP OUR LOOKS</p>
-    <div class="lk-m">
-      <div class="lk-track" id="look-grid"></div>
-      <button class="btn lk-btn" type="button" id="lk-view" data-t="look.btn"></button>
-    </div>
-    <div class="lk-d wrap">
-      <button class="lk-nav prev" type="button" aria-label="이전 룩">&#8249;</button>
-      <div class="lk-stage" id="look-desk"></div>
-      <button class="lk-nav next" type="button" aria-label="다음 룩">&#8250;</button>
+      <div class="hero-actions">
+        <a class="btn" href="./book.html?type=order">상담·주문하기</a>
+        <a class="btn ghost" href="./taste.html">내 취향 찾기 질문 3개</a>
+      </div>
     </div>
   </section>
 
-  <section class="msec stsec" id="studio" aria-labelledby="studio-h">
-    <p class="mtitle" id="studio-h">CUSTOM STUDIO</p>
-    <div class="ba" id="ba">
-      <img class="ba-after" alt="그림을 그린 뒤의 신발" loading="lazy">
-      <div class="ba-before"><img alt="그리기 전 흰 신발" loading="lazy"></div>
-      <div class="ba-line"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span></div>
-      <input type="range" min="0" max="100" value="50" aria-label="그리기 전과 후 비교">
-    </div>
-    <div class="ba-caps wrap"><div><span data-t="ba.before"></span><a class="ulink" href="studio.html" data-t="studio.btn"></a></div><div><span data-t="ba.after"></span><a class="ulink" id="ba-prod" href="shop.html" data-t="look.view"></a></div></div>
-    <div class="st-cta wrap">
-      <p data-t="studio.p"></p>
-      <form class="st-model" id="st-go" action="studio.html"><input name="model" type="text" data-tp="studio.ph" autocomplete="off" aria-label="신발 모델명"><button type="submit" data-t="studio.go"></button></form>
-    </div>
-  </section>
+  <ul class="proof" aria-label="이력">
+    <li>6년+ 핸드페인팅</li><li>tvN 방송</li><li>서울패션위크 송가인 콜라보</li><li>국립발레단 토슈즈</li>
+  </ul>
 
-  <section class="msec" id="discover" aria-labelledby="disc-h">
-    <p class="mtitle" id="disc-h" data-t="disc2.h"></p>
-    <div class="pillars">
-      <a href="class.html#workshop"><img src="assets/p01.jpg" alt="프리지아를 칠하는 손" loading="lazy"><span><b data-t="class.1"></b><i data-t="class.1p"></i></span></a>
-      <a href="class.html#kit"><img src="assets/09.jpg" alt="나무 벤치 위 프리지아 그림 운동화" loading="lazy"><span><b data-t="class.2"></b><i data-t="class.2p"></i></span></a>
-      <a href="class.html#online"><img src="assets/13-l.jpg" alt="벚꽃을 그린 흰 벨크로 신발" loading="lazy"><span><b data-t="class.3"></b><i data-t="class.3p"></i></span></a>
+  <section class="sec" id="story" aria-labelledby="story-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="story-h">좋아하는 게 있는데, 그걸 제대로 담은 물건은 없었죠.</h2>
+        <p class="lead">좋아하는 캐릭터, 함께 사는 강아지, 잊고 싶지 않은 여행지. 그런데 파는 굿즈는 다 비슷하고, 결국 남이 만든 것에 내 취향을 맞춰 타협하게 돼요.</p>
+      </div>
+      <div>
+        <p class="statement">누구나 자기 이야기를 신고 다닐 자격이 있어요.</p>
+        <div class="paint-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
     </div>
   </section>
 
-  <section class="msec" id="story" aria-labelledby="story-h">
-    <p class="mtitle" id="story-h" data-t="story.h"></p>
-    <div class="wrap story"><p id="about-p"></p><p class="mute2" data-t="disc.p2"></p><a class="ulink" href="https://www.youtube.com/@bium4581">YouTube</a></div>
+  <section class="sec" id="guide" aria-labelledby="guide-h">
+    <div class="wrap">
+      <h2 id="guide-h">좋아하는 걸 담은 물건이 없어 아쉬운 마음, 저도 알아요.</h2>
+      <ul class="proof-cards">
+        <li><b>6년+</b>핸드페인팅</li>
+        <li><b>tvN</b>방송</li>
+        <li><b>서울패션위크</b>송가인 콜라보</li>
+        <li><b>국립발레단</b>토슈즈</li>
+      </ul>
+      <p class="lead"><span class="todo">확인 필요: 누적 작업 켤레 수 · 공개 가능한 후기 2~3개 · 방송·콜라보 사진 사용 가능 여부</span></p>
+    </div>
   </section>
 
-  <section class="msec" id="faq" aria-labelledby="faq-h">
-    <p class="mtitle" id="faq-h" data-t="faq2.h"></p>
-    <div class="wrap faqw"><div class="faq" id="faq-list"></div></div>
+  <section class="sec" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">하나뿐인 신발을 받는 세 단계</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><b>이야기를 들려주세요</b><p>좋아하는 것, 신을 사람, 원하는 분위기를 알려 주세요. 사진 한 장이면 충분해요.</p></li>
+        <li><span class="n">2</span><b>시안을 확인하세요</b><p>그리기 전에 시안을 보여 드려요. 마음에 들 때까지 고쳐요. <span class="todo">확인 필요: 시안 수정 횟수</span></p></li>
+        <li><span class="n">3</span><b>하나뿐인 신발을 받으세요</b><p>손으로 그려 마감한 신발을 보내 드려요. <span class="todo">확인 필요: 제작 기간</span></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="order" aria-labelledby="order-h">
+    <div class="wrap">
+      <h2 id="order-h">주문은 두 가지예요</h2>
+      <div class="ways duo">
+        <div class="way">
+          <span class="k">SHOP</span>
+          <svg data-cw="첫 붓" aria-hidden="true"></svg>
+          <h3>기존 디자인</h3>
+          <p>지금까지 그려온 디자인에서 고르고 사이즈만 정해요.</p>
+          <p class="pr">가격 <b data-price="existing">가격 확인 중</b></p>
+          <p class="acts"><a class="btn small" href="./book.html?type=order&amp;design=existing">상담·주문하기</a> <a class="btn ghost small" href="./shop.html">디자인 보기</a></p>
+        </div>
+        <div class="way">
+          <span class="k">CUSTOM</span>
+          <svg data-cw="물감 튐" aria-hidden="true"></svg>
+          <h3>개인 디자인</h3>
+          <p>내 이야기로 새로 그려요. 스튜디오에서 색을 미리 골라 보거나, 사진과 이야기만 보내도 돼요.</p>
+          <p class="pr">가격 <b data-price="custom">가격 확인 중</b></p>
+          <p class="acts"><a class="btn small" href="./book.html?type=order&amp;design=personal">상담·주문하기</a> <a class="btn ghost small" href="./custom.html">개인 디자인 자세히</a></p>
+          <p class="sub-link"><a href="./studio.html">스튜디오에서 색 미리 골라 보기</a></p>
+        </div>
+      </div>
+      <p class="note">결제는 여기서 받지 않아요. 주문 확정과 결제는 연락드린 뒤 안내해 드려요.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="more" aria-labelledby="more-h">
+    <div class="wrap">
+      <h2 id="more-h">직접 그려보고 싶다면</h2>
+      <div class="ways duo">
+        <div class="way">
+          <span class="k">CLASS</span>
+          <h3>홍대 공방 수업</h3>
+          <p>11월, 소수 정원으로 처음 열어요. 도안과 물감 순서를 따라 내 손으로 한 켤레.</p>
+          <dl class="facts">
+            <dt>날짜</dt><dd><span class="todo">확정 후 표시</span></dd>
+            <dt>정원</dt><dd><span class="todo">확정 후 표시</span></dd>
+            <dt>가격</dt><dd><b data-price="class">가격 확인 중</b></dd>
+            <dt>주소</dt><dd>홍대 공방 <span class="todo">확정 후 표시</span></dd>
+          </dl>
+          <p class="acts"><a class="btn ghost small" href="./book.html?type=class">수업 예약하기</a> <a class="btn ghost small" href="./classes.html">수업 자세히</a></p>
+        </div>
+        <div class="way">
+          <span class="k">KIT · ONLINE</span>
+          <h3>키트·온라인 수업</h3>
+          <p>키트는 2027년 1~2월, 온라인 수업은 3~4월에 열 예정이에요.</p>
+          <p class="pr">키트 가격 <b data-price="kit">가격 확인 중</b></p>
+          <p class="acts"><a class="btn ghost small" href="./join.html?interest=kit">출시 알림 받기</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="change" aria-labelledby="change-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="change-h">내 이야기를 신으면</h2>
+        <ul class="o-list" aria-label="신고 나서 생기는 것">
+          <li>신을 때마다 듣는 "어디서 샀어?"</li>
+          <li>좋아하는 걸 매일 신고 다니는 기쁨</li>
+          <li>작은 것부터 내 취향으로 채운 자존감</li>
+        </ul>
+        <ul class="x-list" aria-label="이제 그만해도 되는 것">
+          <li>계속 남들과 같은 신발 속에 묻히는 것</li>
+          <li>좋아하는 마음을 또 대충 타협하는 것</li>
+        </ul>
+      </div>
+      <div>
+        <p class="statement">남이 만든 걸 고르는 사람에서, 내 취향으로 일상을 채우는 사람으로.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <h2 id="faq-h">자주 묻는 질문</h2>
+      <div class="faq">
+        <details>
+          <summary>주문하면 얼마나 걸리나요?</summary>
+          <p><span class="todo">확인 필요: 기존 디자인·개인 디자인 제작 기간</span></p>
+        </details>
+        <details>
+          <summary>그림 실력이 없어도 개인 디자인 주문이 되나요?</summary>
+          <p>네. 이야기와 사진만 주시면 시안은 저희가 그려요.</p>
+        </details>
+        <details>
+          <summary>어떤 신발에 그리나요?</summary>
+          <p>흰 캔버스 운동화를 기준으로 해요. <span class="todo">확인 필요: 가능한 소재, 내 신발 보내기 가능 여부</span></p>
+        </details>
+        <details>
+          <summary>물감이 벗겨지지 않나요?</summary>
+          <p>수업에서는 자투리 시편에 먼저 칠해 문지르고 긁고 구부려 봐요. 물감 테스트 결과는 영상으로 공개하며, 내구성을 보장한다고 약속하지 않아요. 건조가 끝나기 전 결과는 그렇다고 표기해요.</p>
+        </details>
+        <details>
+          <summary>세탁과 관리는 어떻게 하나요?</summary>
+          <p><span class="todo">확인 필요: 세탁 방법·관리법</span></p>
+        </details>
+      </div>
+    </div>
   </section>
 </main>
-<script src="assets/site.js"></script>
+
+<section class="band" aria-labelledby="band-h">
+  <div class="wrap">
+    <div>
+      <h3 id="band-h">가입하면 첫 주문·첫 수업 쿠폰을 드려요</h3>
+      <p>새 디자인과 키트 소식도 가장 먼저 알려 드려요. <span class="todo">쿠폰 금액·조건·유효기간 확정 후 표시</span></p>
+      <p class="gift-line">가입 선물: 쿠폰 + 첫 커스텀 체크리스트(흰 신발 망치지 않는 7단계)</p>
+    </div>
+    <a class="btn" href="./join.html">쿠폰 받기</a>
+  </div>
+</section>
+
+<script src="./site.js"></script>
+<script src="./track.js"></script>
+<script src="./chat.js" defer></script>
 <script>
 (function () {
-  'use strict';
-  var S = window.SHOES, B = window.BIUM;
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
-
-  /* 새 작품 캐러셀 (탭) + 축구 캐러셀 */
-  var wt = $('#work-track'), cat = 'all';
-  function renderWorks() { wt.innerHTML = S.products.filter(function (p) { return p.cat !== 'football' && (cat === 'all' || p.cat === cat); }).map(B.cardHtml).join(''); B.applyLang(wt); wt.scrollLeft = 0; }
-  $$('#work-tabs [role=tab]').forEach(function (t) { t.addEventListener('click', function () { cat = t.getAttribute('data-tab'); $$('#work-tabs [role=tab]').forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); }); renderWorks(); }); });
-  renderWorks();
-  $('#fb-track').innerHTML = S.products.filter(function (p) { return p.cat === 'football'; }).map(B.cardHtml).join(''); B.applyLang($('#fb-track'));
-  $$('.arrows button').forEach(function (b) { b.addEventListener('click', function () { var tr = $('#' + b.getAttribute('data-for')), c = $('.card', tr); tr.scrollBy({ left: (c ? c.getBoundingClientRect().width + 3 : 300) * Number(b.getAttribute('data-dir')), behavior: 'smooth' }); }); });
-
-  /* 룩북: 메이슨식 */
-  var track = $('#look-grid'), desk = $('#look-desk'), L = S.lookbook, curL = 0;
-  function pinHtml(l, i) { var pin = l.pin || [50, 80], p = B.byId(l.product); return '<button class="lk-pin" type="button" data-look="' + i + '" style="left:' + pin[0] + '%;top:' + pin[1] + '%" aria-label="' + (p ? p.name : '') + ' 보기"></button>'; }
-  function cardMini(p) { return '<a class="lkd-card" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="lkd-new">NEW</span>' : '') + '<span class="lkd-img"><img src="' + p.photos[0] + '" alt="" loading="lazy"' + B.posAttr(p, 0) + '></span><span class="lkd-meta"><span>' + B.nameOf(p) + '</span><span>' + B.won(p.price) + '</span></span></a>'; }
-  track.innerHTML = L.map(function (l, i) { return '<div class="lk"><div class="lk-ph"><img src="' + l.photo + '" alt="' + l.ko + ' 룩" loading="lazy">' + pinHtml(l, i) + '</div></div>'; }).join('');
-  desk.innerHTML = L.map(function (l, i) {
-    var p = B.byId(l.product); if (!p) return '';
-    return '<div class="lkd' + (i ? '' : ' on') + '"><div class="lk-ph"><img src="' + l.photo + '" alt="' + l.ko + ' 룩" loading="lazy">' + pinHtml(l, i) + '</div>' +
-      '<div class="lkd-p">' + cardMini(p) + '<a class="btn lkd-btn" href="product.html?id=' + p.id + '">VIEW PRODUCT</a>' +
-      '<div class="lkd-dots">' + L.map(function (x, k) { return '<button type="button" data-go="' + k + '"' + (k === i ? ' aria-current="true"' : '') + ' aria-label="' + (k + 1) + '번째 룩"></button>'; }).join('') + '</div></div></div>';
-  }).join('');
-  function showDesk(i) { curL = (i + L.length) % L.length; $$('.lkd', desk).forEach(function (d, k) { d.classList.toggle('on', k === curL); }); }
-  $('.lk-nav.prev').addEventListener('click', function () { showDesk(curL - 1); });
-  $('.lk-nav.next').addEventListener('click', function () { showDesk(curL + 1); });
-  desk.addEventListener('click', function (e) { var g = e.target.closest('[data-go]'); if (g) showDesk(+g.getAttribute('data-go')); });
-  function curLook() { var best = 0, d = 1e9; Array.prototype.forEach.call(track.children, function (c, i) { var m = Math.abs(c.offsetLeft - track.offsetLeft - track.scrollLeft - 20); if (m < d) { d = m; best = i; } }); return best; }
-  function sheet(i) {
-    var l = L[i], p = B.byId(l.product); if (!p) return;
-    $('#look-body').innerHTML = cardMini(p).replace('lkd-card', 'lkd-card sheet-card') +
-      '<div class="lk-acts"><button class="btn" type="button" id="lk-add">' + (B.lang() === 'en' ? 'Add to bag' : '담기') + '</button><a class="btn line" href="product.html?id=' + p.id + '">' + B.t('look.view') + '</a></div>' +
-      (l.items && l.items.length ? '<div class="lk-wear"><span class="lbl">' + B.t('look.wear') + '</span>' + l.items.map(function (it) { return '<p>' + it + '</p>'; }).join('') + '</div>' : '');
-    $('#lk-add').addEventListener('click', function () { B.close('look-sheet'); B.quickAdd(p.id); });
-    $$('.lk-pin').forEach(function (b) { b.setAttribute('aria-current', b.getAttribute('data-look') === String(i) ? 'true' : 'false'); });
-    B.open('look-sheet');
+  var S = window.ShoeArt, base = S.defaultState();
+  // 첫 화면: 물감 칩을 누르면 신발이 바로 바뀐다 — 스튜디오 맛보기
+  var hero = document.getElementById('hero-shoe'), chips = document.getElementById('hero-chips');
+  var names = Object.keys(S.COLORWAYS), cur = 0;
+  function paint(i) {
+    cur = i; S.render(hero, i < 0 ? base : S.applyColorway(base, S.COLORWAYS[names[i]]), 'hero');
+    [].forEach.call(chips.children, function (c, j) { c.setAttribute('aria-pressed', j === i + 1 ? 'true' : 'false'); });
   }
-  track.addEventListener('click', function (e) { var b = e.target.closest('[data-look]'); if (b) sheet(+b.getAttribute('data-look')); });
-  $('#lk-view').addEventListener('click', function () { sheet(curLook()); });
-
-  /* 커스텀 스튜디오: 비포·애프터 */
-  var SD = S.STUDIO || {};
-  $('#ba .ba-after').src = SD.after || ''; $('#ba .ba-before img').src = SD.before || '';
-  if (SD.product) $('#ba-prod').href = 'product.html?id=' + SD.product;
-  (function () {
-    var ba = $('#ba'), rng = $('input', ba), dragging = false;
-    function set(v) { v = Math.max(0, Math.min(100, v)); ba.style.setProperty('--x', v + '%'); rng.value = v; }
-    rng.addEventListener('input', function () { set(+rng.value); });
-    function at(e) { var r = ba.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); }
-    ba.addEventListener('pointerdown', function (e) { dragging = true; ba.setPointerCapture(e.pointerId); at(e); });
-    ba.addEventListener('pointermove', function (e) { if (dragging) at(e); });
-    ba.addEventListener('pointerup', function () { dragging = false; });
-    set(50);
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); var t0 = null; requestAnimationFrame(function step(t) { if (!t0) t0 = t; var k = (t - t0) / 1600; if (k < 1 && !dragging) { set(50 + 30 * Math.sin(k * Math.PI * 2)); requestAnimationFrame(step); } else if (!dragging) set(50); }); } }, { threshold: 0.5 });
-      io.observe(ba);
-    }
-  })();
-
-  /* 영상 */
-  var v = $('#hero-video'), tp = $('#toggle-play');
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); v.removeAttribute('autoplay'); }
-  tp.addEventListener('click', function () { if (v.paused) { v.play().catch(function () {}); tp.setAttribute('aria-label', '영상 멈춤'); } else { v.pause(); tp.setAttribute('aria-label', '영상 재생'); } });
-
-  $('#about-p').textContent = S.CONTENT.about;
-  var C = S.CONTENT, FAQ = [['그림 실력이 없어도 내 이야기로 주문할 수 있나요?', '네. 이야기와 사진만 주시면 시안은 저희가 그려요. ' + C.revisions], ['제작은 얼마나 걸리나요?', C.lead_time], ['배송비는요?', C.shipping], ['내 신발을 보내도 되나요?', C.own_shoes], ['교환·환불은요?', C.returns], ['어떻게 관리하나요?', C.care], ['사이즈는 어떻게 골라요?', C.size_guide]];
-  $('#faq-list').innerHTML = FAQ.map(function (q) { return '<details><summary>' + q[0] + '</summary><p>' + q[1] + '</p></details>'; }).join('');
-  if (location.hash === '#works') $('#works').scrollIntoView();
+  function chip(color, label, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'ch'; b.style.background = color; b.setAttribute('aria-label', label);
+    b.addEventListener('click', function () { paint(i); }); chips.appendChild(b);
+  }
+  chip('#ffffff', '흰 신발', -1);
+  // 칩은 흰 신발 + 물감 4색(빨강·파랑·노랑·초록)만 — 나머지 조합은 숍에서
+  var chipColor = { '첫 붓': '#e4322b', '코발트 밤': '#1f4fd8', '레몬': '#f2c400', '체크 그린': '#1f8a4c' };
+  names.forEach(function (n, i) { if (chipColor[n]) chip(chipColor[n], n, i); });
+  paint(-1);
+  // 처음 한 번, 흰 신발에 물감이 들어오는 순간
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function () { if (cur === -1) paint(0); }, 1400);
+  // 주문 두 가지 그림
+  [].forEach.call(document.querySelectorAll('svg[data-cw]'), function (svg, i) { S.render(svg, S.applyColorway(base, S.COLORWAYS[svg.getAttribute('data-cw')]), 'cw' + i); });
+  // 주문·수업·키트 가격: config.js PRICES가 null이면 '가격 확인 중' 그대로
+  var P = (window.SHOESTELLER || {}).PRICES || {};
+  [].forEach.call(document.querySelectorAll('[data-price]'), function (el) { var v = P[el.getAttribute('data-price')]; if (v) el.textContent = Number(v).toLocaleString('ko-KR') + '원'; });
 })();
 </script>
 </body>
