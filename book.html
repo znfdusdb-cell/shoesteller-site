@@ -1,109 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>상담·주문·예약 · 슈즈텔러</title>
-<link rel="stylesheet" href="./site.css">
-<script src="./chat.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>나만의 신발을 가져 보세요 — BIUM</title>
+<link rel="icon" type="image/png" href="assets/brand/logo-black-160.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@300;400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/products.js"></script>
 </head>
-<body data-page="book">
-<!-- 서버 .env SITE_COLLECT_ON=1일 때만 저장(꺼져 있으면 '오픈 준비 중'). 결제는 받지 않는다. -->
-<main class="wrap">
-  <section id="form-wrap" class="split">
-    <div class="split-intro">
-      <p class="eyebrow">문의</p>
-      <h1 id="book-h1">상담·주문·예약</h1>
-      <p class="lead">주문·예약 확정과 결제는 연락드린 뒤 안내해 드려요.</p>
-      <ol class="flow">
-        <li><span class="num">01</span><b>무엇이 필요한지 골라 적어 주세요</b><p>기존 디자인, 개인 디자인, 공방 수업, 그 밖의 궁금한 것.</p></li>
-        <li><span class="num">02</span><b>확인 후 직접 연락드려요</b><p>남겨 주신 번호로 비움 작가가 연락해요.</p></li>
-        <li><span class="num">03</span><b>확정과 결제는 그때 안내해요</b><p>여기서는 결제를 받지 않아요. 보내는 것만으로 비용이 생기지 않아요.</p></li>
-      </ol>
-    </div>
-    <form class="form" id="book-form" data-form="book" novalidate>
-      <fieldset>
-        <legend>무엇을 도와드릴까요 <span class="req">(필수)</span></legend>
-        <label class="choice"><input type="radio" name="type" value="premium"> <span>상담·주문 (기존 디자인·개인 디자인)</span></label>
-        <label class="choice"><input type="radio" name="type" value="class"> <span>공방 수업 예약</span></label>
-        <label class="choice"><input type="radio" name="type" value="etc"> <span>기타 문의</span></label>
-        <p class="err" id="err-type" aria-live="polite"></p>
-      </fieldset>
-      <div data-for="class" hidden>
-        <fieldset>
-          <label class="label" for="date">희망 날짜 <span class="todo">확인 필요: 수업 일정표</span></label>
-          <input type="date" id="date" name="date">
-        </fieldset>
-        <fieldset>
-          <label class="label" for="people">인원</label>
-          <input type="number" id="people" name="people" min="1" inputmode="numeric" placeholder="1">
-        </fieldset>
+<body>
+<main id="main">
+  <div class="page-head"><div class="wrap"><span class="lbl">Your own pair</span><h1 id="bk-h1"><span class="kr">나만의 신발을 가져 보세요</span></h1><p id="bk-lead0">매장에 걸린 신발은 누구나 신어요. 응원하는 팀, 처음 만난 날, 좋아하는 꽃처럼 내 이야기가 담긴 신발은 세상에 한 켤레뿐이에요. 그림 실력은 필요 없어요. 이야기만 들려주시면 비움이 손으로 그려 드려요.</p></div></div>
+  <div class="wrap">
+    <div class="split" id="form-wrap">
+      <div class="aside">
+        <ol class="steps">
+          <li><span class="n">01</span><b>이야기를 들려주세요</b><p>좋아하는 팀과 선수, 기념일, 간직하고 싶은 장면. 한 줄과 사진 한 장이면 충분해요.</p></li>
+          <li><span class="n">02</span><b>시안을 먼저 받아 보세요</b><p id="bk-rev"></p></li>
+          <li><span class="n">03</span><b>내 이야기를 신으세요</b><p id="bk-lead"></p></li>
+        </ol>
+        <div class="guide"><b>6년 동안 신발에 이야기를 그려 왔어요</b><p>아이디어스 후기 188개, 평점 4.98. tvN 방송, 서울패션위크 송가인 협업, 국립발레단 토슈즈까지 손으로 작업했어요.</p></div>
+        <p class="risk">남겨 주시는 것만으로는 비용이 생기지 않아요. <span id="bk-resp"></span></p>
+        <div class="info"><span>카카오톡으로 바로 물어봐도 돼요.</span><a class="link" id="bk-kakao" href="#">카카오톡 채널 열기</a></div>
       </div>
-      <div data-for="premium" hidden>
-        <fieldset>
-          <legend>디자인</legend>
-          <label class="choice"><input type="radio" name="design" value="existing"> <span>기존 디자인</span></label>
-          <label class="choice"><input type="radio" name="design" value="personal"> <span>개인 디자인</span></label>
-        </fieldset>
-        <fieldset>
-          <label class="label" for="shoe">신발 종류·사이즈</label>
-          <input type="text" id="shoe" name="shoe" placeholder="예: 흰 캔버스 스니커즈 250">
-        </fieldset>
-        <fieldset>
-          <label class="label" for="feel">원하는 느낌 한 줄</label>
-          <input type="text" id="feel" name="feel" placeholder="이 신발을 신고 어디에 가고 싶어요?">
-        </fieldset>
-      </div>
-      <fieldset>
-        <label class="label" for="message">문의 내용</label>
-        <textarea id="message" name="message" maxlength="500"></textarea>
-      </fieldset>
-      <fieldset>
-        <label class="label" for="name">이름 <span class="req">(필수)</span></label>
-        <input type="text" id="name" name="name" autocomplete="name">
-        <p class="err" id="err-name" aria-live="polite"></p>
-      </fieldset>
-      <fieldset>
-        <label class="label" for="phone">연락처(휴대폰) <span class="req">(필수)</span></label>
-        <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel">
-        <p class="err" id="err-phone" aria-live="polite"></p>
-      </fieldset>
-      <fieldset>
-        <legend>어디서 알게 되셨나요 (선택)</legend>
-        <select id="source" name="source">
-          <option value="">골라 주세요</option>
-          <option>인스타그램</option><option>유튜브</option><option>아이디어스</option>
-          <option>스마트스토어</option><option>지인 소개</option><option>기타</option>
-        </select>
-        <div id="source-etc-wrap" hidden>
-          <input type="text" id="source_etc" name="source_etc" maxlength="40" placeholder="어디서 보셨는지 적어 주세요" aria-label="기타 유입 경로">
+      <form class="fm" id="bk-form" novalidate>
+        <fieldset><legend>어떤 걸 원하세요 <span class="req">(필수)</span></legend>
+          <div class="seg">
+            <label><input type="radio" name="type" value="premium"><span>나만의 신발</span></label>
+            <label><input type="radio" name="type" value="class"><span>공방 수업 문의</span></label>
+            <label><input type="radio" name="type" value="etc"><span>기타 문의</span></label>
+          </div><p class="err" id="err-type"></p></fieldset>
+        <div id="picked-wrap" hidden><span class="label">고른 작품</span><div class="picked" id="picked"></div></div>
+        <div data-for="premium" hidden class="fm">
+          <fieldset><legend>디자인</legend><div class="seg">
+            <label><input type="radio" name="design" value="existing"><span>있는 디자인 그대로</span></label>
+            <label><input type="radio" name="design" value="personal"><span>내 이야기로 새로</span></label></div></fieldset>
+          <div class="two">
+            <fieldset><label class="label" for="shoe">신발 종류</label><input type="text" id="shoe" name="shoe" placeholder="예: 흰 나이키 코트, 반스 어센틱"></fieldset>
+            <fieldset><label class="label" for="size">사이즈(mm)</label><select id="size" name="size"><option value="">골라 주세요</option></select></fieldset>
+          </div>
+          <fieldset><label class="label" for="feel">그리고 싶은 이야기 한 줄</label><input type="text" id="feel" name="feel" placeholder="예: 둘이 처음 만난 벚꽃길, 응원하는 팀과 등번호"></fieldset>
         </div>
-      </fieldset>
-      <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
-        <label for="website">비워 두세요</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-      </div>
-      <fieldset class="consent">
-        <label class="choice"><input type="checkbox" name="agree_required" id="agree_required">
-          <span><span class="req">[필수]</span> 개인정보 수집·이용 동의: 쿠폰 발급과 예약·문의 안내를 위해 이름·휴대폰 번호를 수집·이용합니다. 동의하지 않으면 신청할 수 없어요. <a href="./privacy.html" target="_blank" rel="noopener">처리방침 보기</a></span></label>
-        <p class="err" id="err-agree_required" aria-live="polite"></p>
-        <label class="choice"><input type="checkbox" name="marketing_opt_in" id="marketing_opt_in">
-          <span>[선택] 마케팅 수신 동의: 슈즈텔러 수업·키트 소식과 혜택(광고성 정보)을 문자·카카오로 받겠습니다. 동의하지 않아도 쿠폰과 예약은 그대로예요.</span></label>
-      </fieldset>
-      <p class="err" id="err-form" aria-live="polite"></p>
-      <button class="btn" type="submit">보내기</button>
-    </form>
-  </section>
-  <section id="done" class="done" hidden tabindex="-1">
-    <h1 id="done-title"></h1>
-    <p id="done-msg"></p>
-    <p class="note"><span class="todo">확인 필요: 응답 시간</span></p>
-    <p><span class="todo">확인 필요: 카카오 채널 링크 / 인스타그램 DM 주소</span></p>
-    <a class="btn ghost" href="./index.html">처음으로 돌아가기</a>
-  </section>
+        <div data-for="class" hidden class="two">
+          <fieldset><label class="label" for="date">희망 날짜</label><input type="date" id="date" name="date"></fieldset>
+          <fieldset><label class="label" for="people">인원</label><input type="number" id="people" name="people" min="1" max="6" inputmode="numeric" placeholder="1"></fieldset>
+        </div>
+        <fieldset><label class="label" for="message">문의 내용</label><textarea id="message" name="message" maxlength="500" placeholder="사진은 연락드릴 때 카카오톡으로 받아요."></textarea></fieldset>
+        <div class="two">
+          <fieldset><label class="label" for="name">이름 <span class="req">(필수)</span></label><input type="text" id="name" name="name" autocomplete="name"><p class="err" id="err-name"></p></fieldset>
+          <fieldset><label class="label" for="phone">휴대폰 <span class="req">(필수)</span></label><input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"><p class="err" id="err-phone"></p></fieldset>
+        </div>
+        <fieldset><label class="label" for="source">어디서 알게 되셨나요 <span class="req">(선택)</span></label>
+          <select id="source" name="source"><option value="">골라 주세요</option><option>인스타그램</option><option>유튜브</option><option>아이디어스</option><option>스마트스토어</option><option>지인 소개</option><option>기타</option></select></fieldset>
+        <fieldset>
+          <label class="check"><input type="checkbox" id="agree"><span><b>[필수]</b> 개인정보 수집·이용 동의: 상담·예약 안내를 위해 이름·휴대폰 번호를 받아요. <a href="privacy.html">처리방침 보기</a></span></label>
+          <p class="err" id="err-agree"></p>
+          <label class="check"><input type="checkbox" id="mkt"><span>[선택] 새 작품·수업·키트 소식과 혜택을 문자·카카오로 받을게요.</span></label>
+        </fieldset>
+        <button class="btn wide" type="submit" id="bk-send">내 이야기 보내기</button>
+      </form>
+    </div>
+    <div class="done" id="done" hidden tabindex="-1"></div>
+  </div>
 </main>
-<script src="./site.js"></script>
-<script src="./track.js"></script>
-<script src="./config.js"></script>
-<script src="./forms.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  'use strict';
+  var S = window.SHOES, B = window.BIUM, C = S.CONTENT;
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  var q = new URLSearchParams(location.search), f = $('#bk-form');
+  $('#bk-resp').textContent = C.response_time; $('#bk-lead').textContent = C.lead_time; $('#bk-rev').textContent = '비움이 직접 그린 시안을 보고 고칠 곳을 말씀해 주세요. ' + C.revisions; $('#bk-kakao').href = S.KAKAO;
+  S.SIZES.forEach(function (s) { var o = document.createElement('option'); o.value = o.textContent = s; $('#size').appendChild(o); });
+  function show(t) { $$('[data-for]').forEach(function (b) { b.hidden = b.getAttribute('data-for') !== t; }); }
+  var t = q.get('type'); if (t === 'order') t = 'premium';
+  if (t === 'class') { $('#bk-h1').innerHTML = '<span class="kr">공방 수업 예약</span>'; document.title = '공방 수업 예약 — BIUM'; $('#bk-lead0').textContent = '홍대 공방에서 내 신발을 같이 그려요. 희망 날짜와 인원을 남겨 주시면 일정이 정해지는 대로 먼저 연락드려요.'; $('#bk-send').textContent = '수업 문의 보내기'; }
+  if (t === 'premium' || t === 'class') { f.querySelector('input[name=type][value=' + t + ']').checked = true; show(t); }
+  var d = q.get('design'); if (d === 'existing' || d === 'personal') f.querySelector('input[name=design][value=' + d + ']').checked = true;
+  var p = B.byId(q.get('id') || ''); if (p) { $('#picked-wrap').hidden = false; $('#picked').innerHTML = '<img src="' + p.photos[0] + '" alt=""' + B.posAttr(p, 0) + '><div><b>' + p.name + '</b><span>' + p.sub + ' · ' + B.won(p.price) + '</span></div>'; f.querySelector('input[name=type][value=premium]').checked = true; f.querySelector('input[name=design][value=existing]').checked = true; show('premium'); }
+  var sz = q.get('size'); if (sz) $('#size').value = sz;
+  f.addEventListener('change', function (e) { if (e.target.name === 'type') { show(e.target.value); $('#err-type').textContent = ''; } });
+  var phone = $('#phone'); phone.addEventListener('blur', function () { var x = phone.value.replace(/\D/g, ''); if (x.length === 11) phone.value = x.slice(0, 3) + '-' + x.slice(3, 7) + '-' + x.slice(7); });
+  var u = B.user(); if (u) $('#name').value = u.name || '';
+  function err(id, m, el) { $('#err-' + id).textContent = m || ''; if (el) el.classList.toggle('invalid', !!m); return !m; }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ty = f.querySelector('input[name=type]:checked'), de = f.querySelector('input[name=design]:checked');
+    var ok = err('type', ty ? '' : '무엇을 도와드릴지 골라 주세요.');
+    ok = err('name', $('#name').value.trim() ? '' : '이름을 적어 주세요.', $('#name')) && ok;
+    ok = err('phone', /^010-\d{4}-\d{4}$/.test(phone.value.trim()) ? '' : '010-0000-0000 형식으로 적어 주세요.', phone) && ok;
+    ok = err('agree', $('#agree').checked ? '' : '필수 동의에 체크해 주셔야 보낼 수 있어요.') && ok;
+    if (!ok) return;
+    var body = { type: ty.value, design: de ? de.value : '', shoe: $('#shoe').value.trim() + (p ? ' / ' + p.name : ''), size: $('#size').value, feel: $('#feel').value.trim(), date: $('#date').value, people: $('#people').value, message: $('#message').value.trim(), name: $('#name').value.trim(), phone: phone.value.trim(), source: $('#source').value, agree_required: true, marketing_opt_in: $('#mkt').checked, website: '' };
+    var label = { premium: '상담·주문', 'class': '공방 수업 예약', etc: '기타 문의' }[ty.value];
+    var lines = ['[슈즈텔러 ' + label + ']', '이름: ' + body.name, '연락처: ' + body.phone];
+    if (p) lines.push('작품: ' + p.name + ' (' + B.won(p.price) + ')');
+    if (ty.value === 'premium') lines.push('디자인: ' + (body.design === 'personal' ? '내 이야기로 새로' : body.design === 'existing' ? '있는 디자인' : '-'), '신발: ' + ($('#shoe').value.trim() || '-') + ' / ' + (body.size || '-'), '이야기: ' + (body.feel || '-'));
+    if (ty.value === 'class') lines.push('희망 날짜: ' + (body.date || '-'), '인원: ' + (body.people || '-'));
+    lines.push('내용: ' + (body.message || '-'));
+    $('#bk-send').disabled = true;
+    B.send('apply', body, lines.join('\n'), function (r) {
+      var box = $('#done'); $('#form-wrap').hidden = true; box.hidden = false;
+      if (r.via === 'server') box.innerHTML = '<span class="lbl">Thank you</span><h2>확인 후 연락드릴게요</h2><p>' + C.response_time + '</p><div><a class="btn" href="index.html">처음으로</a></div>';
+      else { box.innerHTML = '<span class="lbl">Almost done</span><h2>카카오톡으로 보내 주시면 접수돼요</h2><p>' + (r.copied ? '신청 내용을 복사해 두었어요. 카카오톡 채팅창에 붙여 넣어 주세요.' : '아래 내용을 길게 눌러 복사한 뒤 카카오톡 채팅창에 붙여 넣어 주세요.') + '</p><textarea readonly></textarea><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" target="_blank" rel="noopener" href="' + S.KAKAO + '">카카오톡으로 보내기</a><a class="btn line" href="index.html">처음으로</a></div>'; box.querySelector('textarea').value = r.text; }
+      box.focus(); window.scrollTo(0, 0);
+    });
+  });
+})();
+</script>
 </body>
 </html>
