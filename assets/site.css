@@ -923,3 +923,12 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .acc-studio .dz { border: 1px solid var(--grey-2); padding: 8px; display: grid; gap: 6px; font-size: 12.5px; }
 .acc-studio .dz img { width: 100%; aspect-ratio: 2 / 1; object-fit: contain; background: var(--grey-1); }
 .acc-studio .dz .row { display: flex; gap: 10px; }
+
+/* 하단 고정 단추: 장바구니 + 카카오톡 (11/11 회장) */
+.fabs { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50; display: grid; gap: 10px; justify-items: center; }
+.fabs .kakao { position: static; }
+.fab-cart { position: relative; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--black); color: var(--white); display: grid; place-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.18); cursor: pointer; }
+.fab-cart svg { width: 24px; height: 24px; stroke: currentColor; }
+.fab-cart .count { position: absolute; top: -2px; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--white); color: var(--black); border: 1px solid var(--black); font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; display: none; }
+.fab-cart.has .count { display: block; }
+@media (max-width: 759px) { .fabs { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); gap: 8px; } .fab-cart, .fabs .kakao { width: 48px; height: 48px; } }

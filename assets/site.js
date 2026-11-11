@@ -113,7 +113,8 @@
     '<div class="sheet" id="search-sheet"><div class="search-box"><form id="search-form" role="search"><input id="search-input" type="search" data-tp="search.ph" autocomplete="off"><button class="ico" type="button" data-close="search-sheet" aria-label="닫기">' + svgIcon('x') + '</button></form><div class="hits" id="search-hits"></div><p class="none" id="search-none" hidden data-t="search.none"></p></div></div>' +
     '<div class="modal" id="login-modal"><form class="box" id="login-form"><b class="lbl" data-t="login.h"></b><p class="note" data-t="login.p"></p><label><span data-t="login.name"></span><input id="login-name" required autocomplete="name"></label><label><span data-t="login.email"></span><input id="login-email" type="email" required autocomplete="email"></label><button class="btn" type="submit" data-t="login.btn"></button><button class="btn line" type="button" data-close="login-modal">CLOSE</button></form></div>' +
     '<div class="toast" id="toast"></div>' +
-    '<a class="kakao" href="' + S.KAKAO + '" target="_blank" rel="noopener" aria-label="카카오톡 문의">' + svgIcon('kakao') + '</a>';
+    '<div class="fabs"><button type="button" class="fab-cart" id="fab-cart" aria-label="장바구니 열기">' + svgIcon('bag') + '<span class="count" id="fab-count"></span></button>' +
+    '<a class="kakao" href="' + S.KAKAO + '" target="_blank" rel="noopener" aria-label="카카오톡 문의">' + svgIcon('kakao') + '</a></div>';
   /* 꼬리말 — 메이슨: 소식 받기 | 회사 | 고객 | 약관, 아이콘, 로고·저작권·결제 */
   /* 사업자 정보(전자상거래법 표시 사항): products.js의 BIZ. 빈 칸은 안 보인다 */
   function bizHtml() {
@@ -161,6 +162,7 @@
   function renderCart() {
     var body = $('#cart-body'), n = cart.reduce(function (s, c) { return s + c.qty; }, 0);
     $('#cart-count').textContent = n ? String(n) : '';
+    var fc = document.getElementById('fab-count'); if (fc) { fc.textContent = n ? String(n) : ''; fc.parentNode.classList.toggle('has', !!n); }
     $('#cart-total').textContent = won(cartTotal());
     $('#cart-go').toggleAttribute('disabled', !cart.length);
     if (!cart.length) { body.innerHTML = '<p class="empty">' + t('cart.empty') + '</p>'; return; }
@@ -173,6 +175,7 @@
     $$('[data-rm]', body).forEach(function (b) { b.addEventListener('click', function () { cart.splice(+b.getAttribute('data-rm'), 1); saveCart(); }); });
   }
   $('#cart-btn').addEventListener('click', function () { renderCart(); open('cart-sheet'); });
+  var fcb = document.getElementById('fab-cart'); if (fcb) fcb.addEventListener('click', function () { renderCart(); open('cart-sheet'); });
   var toastTimer;
   function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove('on'); }, 1800); }
 
