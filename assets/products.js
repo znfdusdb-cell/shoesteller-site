@@ -1277,7 +1277,7 @@ window.SHOES = {
  ],
  "STUDIO_PRICE_CHECKED": "2026-11-11",
  "QUOTE": {
-  "approved": false,
+  "approved": true,
   "note": "대략적인 견적이에요. 작가가 디자인을 확인한 뒤 실제 견적은 조금 달라질 수 있어요.",
   "fill_tiers": [
    [
