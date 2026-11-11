@@ -181,7 +181,7 @@
 
   /* 상품 카드 */
   /* 사진 중심 위치: products.js의 pos[사진 순서] = 가로 0(왼쪽)~100(오른쪽). 꽉 채우기일 때 그림이 잘리지 않게 */
-  function posAttr(p, i) { var v = p.pos && p.pos[i]; return (p.fit !== 'contain' && typeof v === 'number') ? ' style="object-position:' + v + '% 50%"' : ''; }
+  function posAttr(p, i) { var v = p.pos && p.pos[i]; if (p.fit === 'contain' || v == null) return ''; if (typeof v === 'number') v = [v, 50]; return ' style="object-position:' + v[0] + '% ' + v[1] + '%"'; }
   /* 작품별 사이즈: products.js의 sizes(만들 수 있는 사이즈), soldout(품절 사이즈). 없으면 공통 SIZES */
   function sizesOf(p) { var list = (p && p.sizes && p.sizes.length) ? p.sizes : S.SIZES, out = (p && p.soldout) || []; return list.map(function (z) { return { z: z, out: out.indexOf(z) > -1 || out.indexOf(String(z)) > -1 }; }); }
   function allOut(p) { return sizesOf(p).every(function (x) { return x.out; }); }
