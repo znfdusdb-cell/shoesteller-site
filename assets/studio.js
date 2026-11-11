@@ -397,6 +397,9 @@
       B.toast('로그인하면 내 스튜디오에 저장돼요');
       setTimeout(function () { location.href = 'account.html?next=studio'; }, 900); return;
     }
+    if (u.token) B.api('PUT', '/designs/' + item.id, { model: st.model || 'photo', title: item.model, thumb: exportUrl(480, 0.7), state: item.state }).then(function (j) {
+      if (j && j._status === 401) { delete u.token; B.setUser(u); }
+    });
     var list = designs().filter(function (x) { return x.id !== item.id; }); list.unshift(item);
     for (var n = list.length; n > 0; n--) {
       try { localStorage.setItem('bium_studio', JSON.stringify(list.slice(0, n))); editingId = item.id; dirtyFlag = false; B.toast('내 스튜디오에 저장했어요'); return; }
@@ -422,6 +425,16 @@
     var shape = st.photo ? '내 신발 사진' : label();
     var text = ['[BIUM 스튜디오 견적 요청]', '신발: ' + shape + ' / ' + (v.src === 'mine' ? '내 신발 보내기' : '새 신발(작가가 준비)'), '사이즈: ' + v.size, '꾸밈: ' + (pe.rows.map(function (r) { return r[0]; }).join(', ') || '없음'), '이름: ' + v.name, '연락처: ' + v.phone, '요청: ' + (v.memo || '-')].join('\n');
     $('#o-send').disabled = true; $('#o-send').textContent = '보내는 중…';
+    var payloadQ = { name: v.name, phone: v.phone, agree_required: true, model: shape, shoe_source: v.src, size: v.size, estimate: $('#q-box .qt span:last-child') ? $('#q-box .qt span:last-child').textContent : '', memo: v.memo, design_id: editingId || '', image: design, website: '' };
+    B.api('POST', '/quote', payloadQ).then(function (j) {
+      if (j && j.ok && j.saved !== false && j.collecting !== false) {
+        sent = true; $('#of').hidden = true; $('#o-done').hidden = false;
+        $('#o-done').innerHTML = '<span class="lbl">Received</span><h3>견적 요청이 접수됐어요</h3><p>4면 디자인 그림까지 받았어요. 작가가 확인하고 실제 견적과 일정을 연락드릴게요.</p>';
+        return;
+      }
+      fallbackApply();
+    });
+    function fallbackApply() {
     B.send('apply', { type: 'studio', product_id: '', shoe_model: shape, base: st.model || st.base, shoe_source: v.src, size: v.size, name: v.name, phone: v.phone, message: v.memo, design_image: design, est_paint: pe.sum, est_shoe: (v.src === 'new' && m && !st.photo) ? m.colors[st.color0].price : 0, agree_required: true, website: '' }, text, function (r) {
       sent = true;
       $('#of').hidden = true; $('#o-done').hidden = false;
@@ -429,6 +442,7 @@
         ? '<span class="lbl">Received</span><h3>견적 요청이 접수됐어요</h3><p>디자인 그림까지 받았어요. 작가가 확인하고 실제 견적과 일정을 연락드릴게요.</p>'
         : '<span class="lbl">One more step</span><h3>카카오톡으로 보내 주세요</h3><p>' + (r.copied ? '요청서를 복사했어요.' : '아래 요청서를 길게 눌러 복사해 주세요.') + ' 카카오톡 채팅창에 붙여 넣고, 저장한 디자인 그림도 같이 보내 주세요.</p><a class="btn wide" href="' + B.KAKAO + '" target="_blank" rel="noopener">카카오톡 열기</a>';
     });
+    }
   });
 
   /* 링크로 들어온 모델·모양 (예: studio.html?model=에어포스1) */
@@ -436,7 +450,10 @@
   (function hdr() { var t = document.querySelector('header.top'); if (t) document.documentElement.style.setProperty('--hdr', Math.round(t.getBoundingClientRect().height) + 'px'); })();
   setTool('fill'); syncUndo(); draw();
   var pend = null; try { pend = JSON.parse(sessionStorage.getItem('bium_studio_pending') || 'null'); } catch (e) {}
-  var openId = q.get('d'), saved = openId ? designs().filter(function (x) { return x.id === openId; })[0] : null;
+  var openId = q.get('d'), saved = openId ? designs().filter(function (x) { return x.id === openId && x.state; })[0] : null;
+  if (openId && !saved && (B.user() || {}).token) {
+    B.api('GET', '/designs/' + openId).then(function (j) { var d = j && (j.design || j); if (d && d.state && d.state.model) { pendingLoad = { id: openId, state: d.state }; pickModel(d.state.model, d.state.color0); } });
+  }
   if (!saved && pend && q.get('resume') === '1') { saved = pend; try { sessionStorage.removeItem('bium_studio_pending'); } catch (e) {} }
   if (saved && saved.state && saved.state.model) { pendingLoad = saved; pickModel(saved.state.model, saved.state.color0); if (q.get('resume') === '1') setTimeout(saveDesign, 1200); }
   else if (q.get('model')) { var mq = q.get('model'), hit = MATCH.filter(function (m) { return m[0].test(mq); })[0]; pickModel(hit ? hit[1] : 'af1'); if (!hit) $('#model-note').textContent = '"' + mq + '"은 아직 고를 수 없어서 에어포스1로 열었어요. 다른 신발은 위에서 바꾸거나 "내 신발 사진으로 하기"를 써 주세요.'; }

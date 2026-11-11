@@ -246,6 +246,15 @@
   $$('a[href="book.html?type=class"]').forEach(function (a) { if (S.NAVER_BOOKING) { a.href = S.NAVER_BOOKING; a.target = '_blank'; a.rel = 'noopener'; } else { a.href = 'class.html#workshop'; } });
 
   /* 신청서 보내기: 서버(두뇌)가 받으면 서버로, 못 받으면(오픈 전·미리보기) 내용을 복사해 카카오톡으로 */
+  /* 계정 서버(11/12): 구글 로그인 뒤 받은 token으로 내 디자인을 서버에 보관. token 없으면 null */
+  function api(method, path, body) {
+    var u = user, base = (S.API_BASE || '').replace(/\/$/, '');
+    if (!base) return Promise.resolve(null);
+    var h = { 'Content-Type': 'application/json' }; if (u && u.token) h.Authorization = 'Bearer ' + u.token;
+    return fetch(base + '/s-api/shoesteller' + path, { method: method, headers: h, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().then(function (j) { j = j || {}; j._status = r.status; return j; }, function () { return { _status: r.status }; }); })
+      .catch(function () { return null; });
+  }
   function send(kind, payload, text, done) {
     var api = (S.API_BASE || '').replace(/\/$/, '') + '/s-api/shoesteller/' + kind;
     function viaKakao() {
@@ -260,5 +269,5 @@
       .then(function (j) { clearTimeout(timer); if (j && j.ok && j.collecting !== false) done({ via: 'server', data: j }); else viaKakao(); })
       .catch(function () { clearTimeout(timer); viaKakao(); });
   }
-  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, addToCart: addToCart, optLines: optLines, optAdd: optAdd, unitPrice: unitPrice, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
+  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, api: api, addToCart: addToCart, optLines: optLines, optAdd: optAdd, unitPrice: unitPrice, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
 })();
