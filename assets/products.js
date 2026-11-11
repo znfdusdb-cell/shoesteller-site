@@ -188,7 +188,7 @@ window.SHOES = {
    ],
    "options": [
     {
-     "name": "신발 색",
+     "name": "색상",
      "choices": [
       {
        "label": "화이트",
@@ -341,7 +341,22 @@ window.SHOES = {
    "sources": [
     "https://www.idus.com/v2/product/6af5b9c6-8eb8-42c5-8094-dfa414a82d11"
    ],
-   "season": "autumn"
+   "season": "autumn",
+   "options": [
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
+       "add": 0
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "lilac",
@@ -375,7 +390,22 @@ window.SHOES = {
    "sources": [
     "https://www.idus.com/v2/product/948c6db9-e7c3-40a6-b0d3-38f09586d600"
    ],
-   "season": "spring"
+   "season": "spring",
+   "options": [
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
+       "add": 0
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "cherryline",
@@ -419,10 +449,10 @@ window.SHOES = {
    ],
    "options": [
     {
-     "name": "반대쪽 신발에도 꽃",
+     "name": "반대쪽 꽃 추가",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "추가안함",
        "add": 0
       },
       {
@@ -524,7 +554,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/10578377721"
    ],
-   "team": "liverpool"
+   "team": "liverpool",
+   "options": [
+    {
+     "name": "나이키 빨간색 도색",
+     "choices": [
+      {
+       "label": "추가 안함",
+       "add": 0
+      },
+      {
+       "label": "추가함",
+       "add": 40000
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "mudryk",
@@ -604,14 +649,14 @@ window.SHOES = {
    "team": "spurs",
    "options": [
     {
-     "name": "앞면 COYS 문구",
+     "name": "앞면 COYS 추가",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "선택안함",
        "add": 0
       },
       {
-       "label": "추가",
+       "label": "선택함",
        "add": 20000
       }
      ]
@@ -699,7 +744,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9828364761"
    ],
-   "team": "psg"
+   "team": "psg",
+   "options": [
+    {
+     "name": "색상",
+     "choices": [
+      {
+       "label": "파란색",
+       "add": 0
+      },
+      {
+       "label": "흰색",
+       "add": 0
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "minjae",
@@ -756,7 +816,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9984588226"
    ],
-   "team": "acmilan"
+   "team": "acmilan",
+   "options": [
+    {
+     "name": "나이키 빨간색 도색",
+     "choices": [
+      {
+       "label": "추가 안함",
+       "add": 0
+      },
+      {
+       "label": "추가함",
+       "add": 40000
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "manutd-vans",
@@ -800,7 +875,22 @@ window.SHOES = {
     "https://smartstore.naver.com/bium4581/products/10165463501",
     "https://smartstore.naver.com/bium4581/products/9294953688"
    ],
-   "team": "manutd"
+   "team": "manutd",
+   "options": [
+    {
+     "name": "앞코문구",
+     "choices": [
+      {
+       "label": "선택안함",
+       "add": 0
+      },
+      {
+       "label": "선택함",
+       "add": 20000
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "space",
@@ -930,22 +1020,156 @@ window.SHOES = {
    "desc": "두 사람의 이야기를 신발에 담아 주는 1:1 맞춤 커플 신발입니다. 왼쪽·오른쪽 신발마다 이니셜 패턴, 라인 드로잉, 귀여운 우리, 레터링 중 타입을 고를 수 있습니다.",
    "sources": [
     "https://www.idus.com/v2/product/65ed7a68-6989-4c00-9498-460ad693edca"
+   ],
+   "options": [
+    {
+     "name": "왼쪽 신발",
+     "choices": [
+      {
+       "label": "타입1(이니셜 패턴 커스텀)",
+       "add": 0
+      },
+      {
+       "label": "타입2(라인 드로잉 커스텀)",
+       "add": 10000
+      },
+      {
+       "label": "타입3(귀여운 우리 커스텀)",
+       "add": 0
+      },
+      {
+       "label": "타입4(레터링 커스텀)",
+       "add": 20000
+      }
+     ]
+    },
+    {
+     "name": "오른쪽 신발",
+     "choices": [
+      {
+       "label": "선택안함",
+       "add": 0
+      },
+      {
+       "label": "타입1(이니셜 패턴 커스텀)",
+       "add": 50000
+      },
+      {
+       "label": "타입2(라인 드로잉 커스텀)",
+       "add": 60000
+      },
+      {
+       "label": "타입3(귀여운 우리 커스텀)",
+       "add": 50000
+      },
+      {
+       "label": "타입4(레터링 커스텀)",
+       "add": 70000
+      }
+     ]
+    },
+    {
+     "name": "신발선택",
+     "choices": [
+      {
+       "label": "선택안함(소지하신 신발을 보내주세요)",
+       "add": 0
+      },
+      {
+       "label": "휠라뮬(후기신발 참고)220-280",
+       "add": 35000
+      }
+     ]
+    },
+    {
+     "name": "도안 미리보기",
+     "choices": [
+      {
+       "label": "괜찮아요!",
+       "add": 0
+      },
+      {
+       "label": "미리볼래요!",
+       "add": 2000
+      }
+     ]
+    }
    ]
   },
   {
    "id": "spaceaf1",
    "cat": "story",
    "base": "low",
-   "name": "우주 스우시 에어포스1",
+   "name": "나이키 에어포스1 우주 커스텀",
    "en": "Galaxy Swoosh AF1",
-   "sub": "물감 튀기기",
-   "price": 225000,
-   "reviews": 0,
+   "sub": "나이키 에어포스1",
+   "price": 120000,
+   "reviews": 10,
    "photos": [
-    "assets/p/spaceaf1/01.jpg"
+    "assets/p/spaceaf1/01.jpg",
+    "assets/p/spaceaf1/02.jpg",
+    "assets/p/spaceaf1/03.jpg",
+    "assets/p/spaceaf1/04.jpg",
+    "assets/p/spaceaf1/05.jpg",
+    "assets/p/spaceaf1/06.jpg",
+    "assets/p/spaceaf1/07.jpg",
+    "assets/p/spaceaf1/08.jpg",
+    "assets/p/spaceaf1/09.jpg",
+    "assets/p/spaceaf1/10.jpg",
+    "assets/p/spaceaf1/11.jpg",
+    "assets/p/spaceaf1/12.jpg",
+    "assets/p/spaceaf1/13.jpg",
+    "assets/p/spaceaf1/14.jpg",
+    "assets/p/spaceaf1/15.jpg",
+    "assets/p/spaceaf1/16.jpg",
+    "assets/p/spaceaf1/17.jpg"
    ],
    "fit": "cover",
-   "desc": "스우시 안에만 우주를 넣었어요. 나머지는 흰색 그대로."
+   "desc": "나이키 에어포스1에 별과 유성우가 흩날리는 우주를 손으로 그린 커스텀 신발입니다. 흰 물감을 일부러 튀기고 번지게 해 별을 표현했고, 왼발 스우시 바깥면에 달 모양 은공예 장식(925 실버·문스톤)을 더하는 옵션도 있었습니다. 기본 커스텀은 신발을 보내 주시는 방식이고, 기본 세트부터는 나이키 에어포스1 새 신발이 포함돼요. 290·295는 신발값 1만 원이 더해져요. 제작은 3~7일 걸려요.",
+   "list_price": 140000,
+   "sizes": [
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295
+   ],
+   "options": [
+    {
+     "name": "패키지",
+     "choices": [
+      {
+       "label": "그림만 (신발은 보내 주세요)",
+       "add": 0
+      },
+      {
+       "label": "기본 세트 (새 에어포스1 포함)",
+       "add": 139000
+      },
+      {
+       "label": "은공예 세트 (신발 + 달 모양 은장식)",
+       "add": 319000
+      },
+      {
+       "label": "풀패키지 (은공예 세트 + 평생 A/S)",
+       "add": 378000
+      }
+     ]
+    }
+   ],
+   "sources": [
+    "https://www.idus.com/v2/product/9b98f305-0d0d-41bc-8677-301f842be282"
+   ],
+   "isNew": true
   },
   {
    "id": "carnation",
@@ -1001,6 +1225,19 @@ window.SHOES = {
        "add": 0
       }
      ]
+    },
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
+       "add": 0
+      }
+     ]
     }
    ],
    "season": "spring"
@@ -1044,7 +1281,7 @@ window.SHOES = {
    ],
    "options": [
     {
-     "name": "신발 색",
+     "name": "색상",
      "choices": [
       {
        "label": "블랙",
@@ -1052,6 +1289,19 @@ window.SHOES = {
       },
       {
        "label": "화이트",
+       "add": 0
+      }
+     ]
+    },
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
        "add": 0
       }
      ]
@@ -1095,7 +1345,22 @@ window.SHOES = {
    "sources": [
     "https://www.idus.com/v2/product/99c7cd81-eb12-45fc-bbdb-04a735305c92"
    ],
-   "season": "spring"
+   "season": "spring",
+   "options": [
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
+       "add": 0
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "rose",
@@ -1134,7 +1399,22 @@ window.SHOES = {
    "sources": [
     "https://www.idus.com/v2/product/b9e8df2b-b5d7-40d5-94b4-fcb53108fde3"
    ],
-   "season": "summer"
+   "season": "summer",
+   "options": [
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
+       "add": 0
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "vansrose",
@@ -1176,20 +1456,113 @@ window.SHOES = {
    ],
    "options": [
     {
-     "name": "커스텀 종류",
+     "name": "커스텀 타입",
      "choices": [
       {
-       "label": "기본 커스텀",
+       "label": "기본커스텀",
        "add": 0
       },
       {
-       "label": "전체 커스텀",
+       "label": "전체커스텀",
        "add": 70000
+      }
+     ]
+    },
+    {
+     "name": "선물 포장",
+     "choices": [
+      {
+       "label": "필요 없어요",
+       "add": 0
+      },
+      {
+       "label": "크라프트지 선물 포장",
+       "add": 0
       }
      ]
     }
    ],
    "season": "summer"
+  },
+  {
+   "id": "cherry-beauty",
+   "cat": "flower",
+   "base": "court",
+   "isNew": true,
+   "name": "벚꽃 미인 꽃신발",
+   "en": "",
+   "sub": "나이키 코트 로얄 2",
+   "price": 153000,
+   "reviews": 22,
+   "photos": [
+    "assets/p/cherry-beauty/01.jpg",
+    "assets/p/cherry-beauty/02.jpg",
+    "assets/p/cherry-beauty/03.jpg",
+    "assets/p/cherry-beauty/04.jpg",
+    "assets/p/cherry-beauty/05.jpg",
+    "assets/p/cherry-beauty/06.jpg"
+   ],
+   "fit": "cover",
+   "desc": "내면의 아름다움, 절세 미인이라는 벚꽃의 꽃말을 담아 신발 위에 벚꽃을 손으로 그린 꽃신입니다. 기본 커스텀과 전체 커스텀 두 가지가 있고, 색 변경과 이니셜(5자 이내) 추가가 가능합니다. 원래 신발이 단종돼 지금은 나이키 코트 로얄 2에 같은 디자인으로 다시 그려 드려요.",
+   "season": "spring",
+   "sources": [
+    "https://www.idus.com/v2/product/2f0e7b92-f98a-4c6c-831f-df6ea9d1b554"
+   ],
+   "restock": true
+  },
+  {
+   "id": "camellia",
+   "cat": "flower",
+   "base": "court",
+   "isNew": true,
+   "name": "겨울 동백꽃 포인트 꽃신",
+   "en": "",
+   "sub": "나이키 코트 로얄 2",
+   "price": 162000,
+   "reviews": 10,
+   "photos": [
+    "assets/p/camellia/01.jpg",
+    "assets/p/camellia/02.jpg",
+    "assets/p/camellia/03.jpg",
+    "assets/p/camellia/04.jpg",
+    "assets/p/camellia/05.jpg",
+    "assets/p/camellia/06.jpg",
+    "assets/p/camellia/07.jpg",
+    "assets/p/camellia/08.jpg"
+   ],
+   "fit": "cover",
+   "desc": "'타오르는 사랑'을 뜻하는 동백꽃을 신발 옆면에 붉게 그린 꽃신입니다. 작가 서명은 지우거나 5자 이내 이니셜로 바꿀 수 있고, 흰 로고·검은 로고 버전이 있었습니다. 원래 신발이 단종돼 지금은 나이키 코트 로얄 2에 같은 디자인으로 다시 그려 드려요.",
+   "season": "winter",
+   "sources": [
+    "https://www.idus.com/v2/product/0b5ce7e8-fed4-4093-af9c-5877e371d4d7"
+   ],
+   "restock": true
+  },
+  {
+   "id": "poppy",
+   "cat": "flower",
+   "base": "court",
+   "isNew": true,
+   "name": "여름 위로 양귀비 꽃신",
+   "en": "",
+   "sub": "나이키 코트 로얄 2",
+   "price": 153000,
+   "reviews": 4,
+   "photos": [
+    "assets/p/poppy/01.jpg",
+    "assets/p/poppy/02.jpg",
+    "assets/p/poppy/03.jpg",
+    "assets/p/poppy/04.jpg",
+    "assets/p/poppy/05.jpg",
+    "assets/p/poppy/06.jpg"
+   ],
+   "fit": "cover",
+   "desc": "위로라는 꽃말을 가진 여름의 양귀비를 신발에 손으로 그린 꽃신으로, 기본 커스텀과 전체 커스텀 두 가지가 있습니다. 색 변경과 이니셜(5자 이내) 추가가 가능하고, 원래 신발이 단종돼 지금은 나이키 코트 로얄 2에 같은 디자인으로 다시 그려 드려요.",
+   "season": "summer",
+   "sources": [
+    "https://www.idus.com/v2/product/4ec45809-dbf0-40c1-a31a-dd9c6a40090a"
+   ],
+   "restock": true
   },
   {
    "id": "chelsea",
@@ -1353,14 +1726,14 @@ window.SHOES = {
    "team": "manutd",
    "options": [
     {
-     "name": "나이키 로고 빨간색 도색",
+     "name": "나이키 빨간색 도색",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "추가 안함",
        "add": 0
       },
       {
-       "label": "추가",
+       "label": "추가함",
        "add": 40000
       }
      ]
@@ -1413,14 +1786,14 @@ window.SHOES = {
    "team": "manutd",
    "options": [
     {
-     "name": "나이키 로고 빨간색 도색",
+     "name": "나이키 빨간색 도색",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "추가 안함",
        "add": 0
       },
       {
-       "label": "추가",
+       "label": "추가함",
        "add": 40000
       }
      ]
@@ -1475,14 +1848,14 @@ window.SHOES = {
    "team": "manutd",
    "options": [
     {
-     "name": "나이키 로고 빨간색 도색",
+     "name": "나이키 빨간색 도색",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "추가 안함",
        "add": 0
       },
       {
-       "label": "추가",
+       "label": "추가함",
        "add": 40000
       }
      ]
@@ -1573,7 +1946,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/10224473445"
    ],
-   "team": "realmadrid"
+   "team": "realmadrid",
+   "options": [
+    {
+     "name": "나이키 금색 도색",
+     "choices": [
+      {
+       "label": "추가 안함",
+       "add": 0
+      },
+      {
+       "label": "추가함",
+       "add": 40000
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "wolves-neves",
@@ -1619,14 +2007,14 @@ window.SHOES = {
    "team": "wolves",
    "options": [
     {
-     "name": "나이키 로고 노란색 도색",
+     "name": "나이키 노란색 도색",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "추가 안함",
        "add": 0
       },
       {
-       "label": "추가",
+       "label": "추가함",
        "add": 40000
       }
      ]
@@ -1677,14 +2065,14 @@ window.SHOES = {
    "team": "arsenal",
    "options": [
     {
-     "name": "앞면 COYG 문구",
+     "name": "COYG문구",
      "choices": [
       {
-       "label": "추가 안 함",
+       "label": "선택안함",
        "add": 0
       },
       {
-       "label": "추가",
+       "label": "선택함",
        "add": 20000
       }
      ]
@@ -1731,7 +2119,22 @@ window.SHOES = {
    "sources": [
     "https://smartstore.naver.com/bium4581/products/8853886566"
    ],
-   "team": "arsenal"
+   "team": "arsenal",
+   "options": [
+    {
+     "name": "뒷면 이미지 추가",
+     "choices": [
+      {
+       "label": "선택안함",
+       "add": 0
+      },
+      {
+       "label": "선택함",
+       "add": 30000
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "barcelona-gavi",
@@ -2152,6 +2555,21 @@ window.SHOES = {
    "desc": "조던1 하이 브레드 위에 강백호 뒷모습과 슬램덩크 로고를 한 면에 1:1 핸드페인팅으로 그려 넣는 작품이며, 이 옵션은 신발 없이 그림 작업만 판매해 고객이 신발을 보내야 합니다. 지워지지 않는 우레탄 물감으로 작업해 평생 무상 A/S를 해 주고 제작에는 평균 4~7일이 걸립니다.",
    "sources": [
     "https://smartstore.naver.com/bium4581/products/8984530850"
+   ],
+   "options": [
+    {
+     "name": "검은색 도색 (조던1 하이 헤리티지를 보내실 때)",
+     "choices": [
+      {
+       "label": "안 함",
+       "add": 0
+      },
+      {
+       "label": "함",
+       "add": 100000
+      }
+     ]
+    }
    ]
   }
  ],
