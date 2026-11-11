@@ -42,12 +42,14 @@
   .item small { color: var(--g3); }
   .item .tag { font-size: 11px; border: 1px solid var(--b); padding: 1px 6px; }
   .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-bottom: 10px; }
-  .ph { position: relative; aspect-ratio: 1 / 1; background: var(--g1); border: 1px solid var(--g2); }
+  .phw input[type=range] { width: 100%; margin: 4px 0 0; accent-color: var(--b); }
+  .phw small { display: block; font-size: 11px; color: var(--g3); text-align: center; }
+  .ph { position: relative; aspect-ratio: 4 / 5; background: var(--g1); border: 1px solid var(--g2); }
   .ph img { width: 100%; height: 100%; object-fit: cover; }
   .ph .acts { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; background: rgba(0,0,0,.55); }
   .ph .acts button { border: 0; background: none; color: #fff; padding: 4px 8px; font-size: 13px; }
   .ph .first { position: absolute; left: 4px; top: 4px; background: var(--b); color: #fff; font-size: 10px; padding: 1px 5px; }
-  .upl { display: grid; place-items: center; aspect-ratio: 1 / 1; border: 1px dashed var(--g3); color: var(--g3); font-size: 13px; text-align: center; background: #fff; }
+  .upl { display: grid; place-items: center; aspect-ratio: 4 / 5; border: 1px dashed var(--g3); color: var(--g3); font-size: 13px; text-align: center; background: #fff; }
   .upl input { display: none; }
   .pinbox { position: relative; max-width: 360px; cursor: crosshair; margin-bottom: 8px; }
   .pinbox img { width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover; background: var(--g1); }
@@ -375,9 +377,11 @@
   function productEdit(v, p) {
     var i = S.products.indexOf(p);
     v.innerHTML = '<button class="back" type="button" id="back">← 작품 목록</button><h2>' + esc(p.name) + '</h2>' +
-      '<p class="hint">사진은 맨 앞 장이 목록과 대표 사진이 돼요. 사진은 자동으로 줄여서 올라가요.</p>' +
+      '<p class="hint">사진은 맨 앞 장이 목록과 대표 사진이 돼요. 사진은 자동으로 줄여서 올라가요. 칸은 사이트와 같은 세로 비율이에요 — 그림이 잘리면 사진 아래 막대를 밀어서 중심을 옮기세요.</p>' +
       '<div class="photos" id="photos">' + p.photos.map(function (ph, k) {
-        return '<div class="ph"><img src="' + esc(src(ph)) + '" alt="">' + (k ? '' : '<span class="first">대표</span>') + '<div class="acts"><button type="button" data-left="' + k + '"' + (k ? '' : ' hidden') + '>←</button><button type="button" data-rm="' + k + '">삭제</button></div></div>';
+        var pv = (p.pos && typeof p.pos[k] === 'number') ? p.pos[k] : 50;
+        return '<div class="phw"><div class="ph"><img src="' + esc(src(ph)) + '" alt="" style="' + (p.fit === 'contain' ? 'object-fit:contain' : 'object-position:' + pv + '% 50%') + '">' + (k ? '' : '<span class="first">대표</span>') + '<div class="acts"><button type="button" data-left="' + k + '"' + (k ? '' : ' hidden') + '>←</button><button type="button" data-rm="' + k + '">삭제</button></div></div>' +
+          (p.fit === 'contain' ? '' : '<input type="range" min="0" max="100" step="1" value="' + pv + '" data-pos="' + k + '" aria-label="사진 중심 왼쪽 오른쪽"><small>← 사진 중심 →</small>') + '</div>';
       }).join('') + '<label class="upl">+ 사진 추가<input type="file" accept="image/*" multiple id="ph-add"></label></div>' +
       '<label class="f"><span><b>사진 보이는 방식</b></span><select data-k="fit"><option value="cover"' + (p.fit !== 'contain' ? ' selected' : '') + '>칸에 꽉 채우기(가장자리 잘림)</option><option value="contain"' + (p.fit === 'contain' ? ' selected' : '') + '>사진 전체 보이기(여백 생김)</option></select></label>' +
       '<label class="f"><span><b>이름</b></span><input type="text" data-k="name" value="' + esc(p.name) + '"></label>' +
@@ -394,11 +398,14 @@
         var k = el.getAttribute('data-k');
         p[k] = el.type === 'checkbox' ? el.checked : k === 'price' ? Number(el.value || 0) : el.value;
         if (k === 'name') $('h2', v).textContent = el.value;
+        if (k === 'fit') { render(); dirty(); return; }
         dirty();
       };
     });
-    $$('[data-rm]', v).forEach(function (b) { b.onclick = function () { p.photos.splice(+b.getAttribute('data-rm'), 1); render(); dirty(); }; });
-    $$('[data-left]', v).forEach(function (b) { b.onclick = function () { var k = +b.getAttribute('data-left'); p.photos.splice(k - 1, 0, p.photos.splice(k, 1)[0]); render(); dirty(); }; });
+    function posArr() { if (!Array.isArray(p.pos)) p.pos = []; while (p.pos.length < p.photos.length) p.pos.push(50); return p.pos; }
+    $$('[data-pos]', v).forEach(function (r) { r.oninput = function () { var k = +r.getAttribute('data-pos'); posArr()[k] = Number(r.value); r.parentNode.querySelector('img').style.objectPosition = r.value + '% 50%'; dirty(); }; });
+    $$('[data-rm]', v).forEach(function (b) { b.onclick = function () { var k = +b.getAttribute('data-rm'); if (Array.isArray(p.pos)) p.pos.splice(k, 1); p.photos.splice(k, 1); render(); dirty(); }; });
+    $$('[data-left]', v).forEach(function (b) { b.onclick = function () { var k = +b.getAttribute('data-left'); p.photos.splice(k - 1, 0, p.photos.splice(k, 1)[0]); if (Array.isArray(p.pos)) { posArr(); p.pos.splice(k - 1, 0, p.pos.splice(k, 1)[0]); } render(); dirty(); }; });
     $('#ph-add').onchange = function () {
       var fs = [].slice.call(this.files);
       fs.reduce(function (pr, f) { return pr.then(function () { return photoFrom(f).then(function (path) { p.photos.push(path); }); }); }, Promise.resolve())

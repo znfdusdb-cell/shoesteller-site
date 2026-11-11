@@ -79,7 +79,7 @@
   if (t === 'class') { $('#bk-h1').innerHTML = '<span class="kr">공방 수업 예약</span>'; document.title = '공방 수업 예약 — 슈즈텔러'; }
   if (t === 'premium' || t === 'class') { f.querySelector('input[name=type][value=' + t + ']').checked = true; show(t); }
   var d = q.get('design'); if (d === 'existing' || d === 'personal') f.querySelector('input[name=design][value=' + d + ']').checked = true;
-  var p = B.byId(q.get('id') || ''); if (p) { $('#picked-wrap').hidden = false; $('#picked').innerHTML = '<img src="' + p.photos[0] + '" alt=""><div><b>' + p.name + '</b><span>' + p.sub + ' · ' + B.won(p.price) + '</span></div>'; f.querySelector('input[name=type][value=premium]').checked = true; f.querySelector('input[name=design][value=existing]').checked = true; show('premium'); }
+  var p = B.byId(q.get('id') || ''); if (p) { $('#picked-wrap').hidden = false; $('#picked').innerHTML = '<img src="' + p.photos[0] + '" alt=""' + B.posAttr(p, 0) + '><div><b>' + p.name + '</b><span>' + p.sub + ' · ' + B.won(p.price) + '</span></div>'; f.querySelector('input[name=type][value=premium]').checked = true; f.querySelector('input[name=design][value=existing]').checked = true; show('premium'); }
   var sz = q.get('size'); if (sz) $('#size').value = sz;
   f.addEventListener('change', function (e) { if (e.target.name === 'type') { show(e.target.value); $('#err-type').textContent = ''; } });
   var phone = $('#phone'); phone.addEventListener('blur', function () { var x = phone.value.replace(/\D/g, ''); if (x.length === 11) phone.value = x.slice(0, 3) + '-' + x.slice(3, 7) + '-' + x.slice(7); });

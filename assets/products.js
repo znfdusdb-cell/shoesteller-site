@@ -237,8 +237,12 @@ window.SHOES = {
     "assets/fb/f05.jpg",
     "assets/fb/f03.jpg"
    ],
-   "fit": "contain",
-   "desc": "두 팔을 벌린 제라드를 옆면에, 뒤꿈치엔 엠블럼과 8번. 초상 커스텀은 사진 한 장을 보내 주시면 그 장면으로 그려요."
+   "fit": "cover",
+   "desc": "두 팔을 벌린 제라드를 옆면에, 뒤꿈치엔 엠블럼과 8번. 초상 커스텀은 사진 한 장을 보내 주시면 그 장면으로 그려요.",
+   "pos": [
+    59,
+    17
+   ]
   },
   {
    "id": "mudryk",
@@ -253,8 +257,12 @@ window.SHOES = {
     "assets/fb/f08.jpg",
     "assets/fb/f07.jpg"
    ],
-   "fit": "contain",
-   "desc": "파란 스우시 위에 선수 초상. 스우시 색을 팀 색으로 바꾸고 그 위에 그리는 방식이에요."
+   "fit": "cover",
+   "desc": "파란 스우시 위에 선수 초상. 스우시 색을 팀 색으로 바꾸고 그 위에 그리는 방식이에요.",
+   "pos": [
+    100,
+    54
+   ]
   },
   {
    "id": "spurs",
@@ -284,8 +292,12 @@ window.SHOES = {
     "assets/fb/f01.jpg",
     "assets/fb/f02.jpg"
    ],
-   "fit": "contain",
-   "desc": "아스날 엠블럼과 에미레이트 스타디움 N5 표지판. 구너를 위한 신발."
+   "fit": "cover",
+   "desc": "아스날 엠블럼과 에미레이트 스타디움 N5 표지판. 구너를 위한 신발.",
+   "pos": [
+    60,
+    50
+   ]
   },
   {
    "id": "kangin",
@@ -299,8 +311,11 @@ window.SHOES = {
    "photos": [
     "assets/fb/f12.jpg"
    ],
-   "fit": "contain",
-   "desc": "파란 스우시 옆에 이강인 19번. 등번호와 이름은 원하는 선수로 바꿀 수 있어요."
+   "fit": "cover",
+   "desc": "파란 스우시 옆에 이강인 19번. 등번호와 이름은 원하는 선수로 바꿀 수 있어요.",
+   "pos": [
+    44
+   ]
   },
   {
    "id": "minjae",
@@ -314,8 +329,11 @@ window.SHOES = {
    "photos": [
     "assets/fb/f13.jpg"
    ],
-   "fit": "contain",
-   "desc": "빨간 스우시 위에 MJ KIM 4번과 호랑이 엠블럼. 국가대표 경기 날을 위해."
+   "fit": "cover",
+   "desc": "빨간 스우시 위에 MJ KIM 4번과 호랑이 엠블럼. 국가대표 경기 날을 위해.",
+   "pos": [
+    37
+   ]
   },
   {
    "id": "inzaghi",
@@ -329,8 +347,11 @@ window.SHOES = {
    "photos": [
     "assets/fb/f11.jpg"
    ],
-   "fit": "contain",
-   "desc": "빨간 스우시 위에 AC밀란 9번 인자기. 레전드 시리즈는 어떤 팀이든 가능해요."
+   "fit": "cover",
+   "desc": "빨간 스우시 위에 AC밀란 9번 인자기. 레전드 시리즈는 어떤 팀이든 가능해요.",
+   "pos": [
+    73
+   ]
   },
   {
    "id": "manutd",

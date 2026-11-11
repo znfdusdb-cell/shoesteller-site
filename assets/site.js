@@ -160,7 +160,7 @@
     if (!cart.length) { body.innerHTML = '<p class="empty">' + t('cart.empty') + '</p>'; return; }
     body.innerHTML = cart.map(function (c, i) {
       var p = byId(c.id); if (!p) return '';
-      return '<div class="cart-item"><a href="product.html?id=' + p.id + '"><img src="' + p.photos[0] + '" alt=""></a><div><b>' + nameOf(p) + '</b><span class="price">' + won(p.price * c.qty) + '</span><span class="meta">' + t('cart.size') + ': ' + c.size + '</span><div class="qrow"><div class="qty"><button type="button" data-q="-1" data-i="' + i + '" aria-label="빼기">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '" aria-label="더하기">+</button></div><button class="rm" type="button" data-rm="' + i + '" data-t="cart.rm"></button></div></div></div>';
+      return '<div class="cart-item"><a href="product.html?id=' + p.id + '"><img src="' + p.photos[0] + '" alt=""' + posAttr(p, 0) + '></a><div><b>' + nameOf(p) + '</b><span class="price">' + won(p.price * c.qty) + '</span><span class="meta">' + t('cart.size') + ': ' + c.size + '</span><div class="qrow"><div class="qty"><button type="button" data-q="-1" data-i="' + i + '" aria-label="빼기">−</button><span>' + c.qty + '</span><button type="button" data-q="1" data-i="' + i + '" aria-label="더하기">+</button></div><button class="rm" type="button" data-rm="' + i + '" data-t="cart.rm"></button></div></div></div>';
     }).join('');
     applyLang(body);
     $$('[data-q]', body).forEach(function (b) { b.addEventListener('click', function () { var i = +b.getAttribute('data-i'); cart[i].qty = Math.max(1, cart[i].qty + (+b.getAttribute('data-q'))); saveCart(); }); });
@@ -171,18 +171,20 @@
   function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove('on'); }, 1800); }
 
   /* 상품 카드 */
+  /* 사진 중심 위치: products.js의 pos[사진 순서] = 가로 0(왼쪽)~100(오른쪽). 꽉 채우기일 때 그림이 잘리지 않게 */
+  function posAttr(p, i) { var v = p.pos && p.pos[i]; return (p.fit !== 'contain' && typeof v === 'number') ? ' style="object-position:' + v + '% 50%"' : ''; }
   function cardHtml(p) {
     var cls = p.fit === 'contain' ? 'contain' : '';
-    var alt = p.photos[1] ? '<img class="alt ' + cls + '" src="' + p.photos[1] + '" alt="" loading="lazy">' : '';
+    var alt = p.photos[1] ? '<img class="alt ' + cls + '" src="' + p.photos[1] + '" alt="" loading="lazy"' + posAttr(p, 1) + '>' : '';
     return '<article class="card" data-id="' + p.id + '" data-cat="' + p.cat + '" data-base="' + p.base + '">' +
       '<a class="ph" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="badge">New</span>' : '') +
-        '<img class="' + cls + '" src="' + p.photos[0] + '" alt="' + p.name + '" loading="lazy">' + alt + '</a>' +
+        '<img class="' + cls + '" src="' + p.photos[0] + '" alt="' + p.name + '" loading="lazy"' + posAttr(p, 0) + '>' + alt + '</a>' +
       '<button type="button" class="qadd" data-qa="' + p.id + '" aria-label="' + p.name + ' 사이즈 골라 담기"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>' +
       '<a class="meta" href="product.html?id=' + p.id + '"><span class="nm">' + nameOf(p) + '</span><span class="price">' + won(p.price) + '</span></a></article>';
   }
   function quickAdd(id) {
     var p = byId(id); if (!p) return;
-    $('#qa-body').innerHTML = '<div class="qa-ph"><img src="' + p.photos[0] + '" alt="" class="' + (p.fit === 'contain' ? 'contain' : '') + '"></div><p class="qa-name">' + nameOf(p) + '</p><p class="qa-price price">' + won(p.price) + '</p>' +
+    $('#qa-body').innerHTML = '<div class="qa-ph"><img src="' + p.photos[0] + '" alt="" class="' + (p.fit === 'contain' ? 'contain' : '') + '"' + posAttr(p, 0) + '></div><p class="qa-name">' + nameOf(p) + '</p><p class="qa-price price">' + won(p.price) + '</p>' +
       '<div class="qa-opt"><label for="qa-size">사이즈 (mm)</label><select id="qa-size"><option value="">사이즈를 골라 주세요</option>' + S.SIZES.map(function (z) { return '<option>' + z + '</option>'; }).join('') + '</select>' +
       '<button class="btn wide" type="button" id="qa-go" disabled>사이즈를 골라 주세요</button><a class="link" href="product.html?id=' + p.id + '">자세히 보기</a></div>';
     var sel = $('#qa-size'), go = $('#qa-go');
@@ -237,5 +239,5 @@
       .then(function (j) { clearTimeout(timer); if (j && j.ok && j.collecting !== false) done({ via: 'server', data: j }); else viaKakao(); })
       .catch(function () { clearTimeout(timer); viaKakao(); });
   }
-  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, addToCart: addToCart, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
+  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, addToCart: addToCart, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
 })();

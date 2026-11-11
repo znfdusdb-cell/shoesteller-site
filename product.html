@@ -30,7 +30,7 @@
   var ico = function (d) { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>'; };
   var acc = function (k, body) { return '<details><summary>' + k + '</summary><div>' + body + '</div></details>'; };
   $('#pd').innerHTML =
-    '<div class="pdm-gal" id="gal">' + p.photos.map(function (ph, i) { return '<div class="pdm-ph"><img class="' + fit + '" src="' + ph + '" alt="' + p.name + ' 사진 ' + (i + 1) + '"' + (i ? ' loading="lazy"' : '') + '></div>'; }).join('') + '</div>' +
+    '<div class="pdm-gal" id="gal">' + p.photos.map(function (ph, i) { return '<div class="pdm-ph"><img class="' + fit + '" src="' + ph + '" alt="' + p.name + ' 사진 ' + (i + 1) + '"' + (i ? ' loading="lazy"' : '') + B.posAttr(p, i) + '></div>'; }).join('') + '</div>' +
     (p.photos.length > 1 ? '<div class="pdm-dots" id="gdots">' + p.photos.map(function (x, i) { return '<i' + (i ? '' : ' class="on"') + '></i>'; }).join('') + '</div>' : '') +
     '<div class="pdm-info"><div class="pdm-in">' +
       (p.isNew ? '<span class="pdm-new">NEW</span>' : '') +

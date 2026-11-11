@@ -117,7 +117,7 @@
   /* 룩북: 메이슨식 */
   var track = $('#look-grid'), desk = $('#look-desk'), L = S.lookbook, curL = 0;
   function pinHtml(l, i) { var pin = l.pin || [50, 80], p = B.byId(l.product); return '<button class="lk-pin" type="button" data-look="' + i + '" style="left:' + pin[0] + '%;top:' + pin[1] + '%" aria-label="' + (p ? p.name : '') + ' 보기"></button>'; }
-  function cardMini(p) { return '<a class="lkd-card" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="lkd-new">NEW</span>' : '') + '<span class="lkd-img"><img src="' + p.photos[0] + '" alt="" loading="lazy"></span><span class="lkd-meta"><span>' + B.nameOf(p) + '</span><span>' + B.won(p.price) + '</span></span></a>'; }
+  function cardMini(p) { return '<a class="lkd-card" href="product.html?id=' + p.id + '">' + (p.isNew ? '<span class="lkd-new">NEW</span>' : '') + '<span class="lkd-img"><img src="' + p.photos[0] + '" alt="" loading="lazy"' + B.posAttr(p, 0) + '></span><span class="lkd-meta"><span>' + B.nameOf(p) + '</span><span>' + B.won(p.price) + '</span></span></a>'; }
   track.innerHTML = L.map(function (l, i) { return '<div class="lk"><div class="lk-ph"><img src="' + l.photo + '" alt="' + l.ko + ' 룩" loading="lazy">' + pinHtml(l, i) + '</div></div>'; }).join('');
   desk.innerHTML = L.map(function (l, i) {
     var p = B.byId(l.product); if (!p) return '';
