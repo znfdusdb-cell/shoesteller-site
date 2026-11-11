@@ -124,7 +124,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "2024년 가을 리뉴얼로 나이키 코트 버로우에 코스모스를 그려 넣은 꽃신입니다. 신발 안쪽은 라인만 들어가며, 색으로 채우려면 옵션(+20,000원)에서 고를 수 있습니다.",
-   "list_price": 200000,
    "sizes": [
     225,
     230,
@@ -159,7 +158,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "벚꽃의 꽃말인 정신적 사랑과 절세미인을 담아 나이키 코트에 벚꽃을 손으로 그린 꽃신입니다. 꽃 색과 작가 서명 문구는 변경할 수 있습니다.",
-   "list_price": 170000,
    "sizes": [
     220,
     225,
@@ -195,7 +193,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "노란 프리지아(꽃말: 천진난만·청춘·당신의 앞날을 응원)를 흰 신발 옆면에 손으로 그린 꽃신입니다. 신발 변경·색 변경 문의가 가능하고, 마감처리를 해 1년 안에 1회 무상 A/S를 해줍니다.",
-   "list_price": 180000,
    "sizes": [
     220,
     225,
@@ -236,7 +233,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 에어포스1 양 짝의 바깥면에 벚꽃 가지를 손으로 그린 데일리 커스텀 슈즈로, 색은 분홍빛과 보랏빛 두 가지이고 다른 색으로도 바꿀 수 있습니다. 신발 가격이 포함된 작품이며, 세탁은 신발 전용 세정제나 중성세제로 오염 부위만 살살 해야 합니다.",
-   "list_price": 320000,
    "sizes": [
     220,
     225,
@@ -319,7 +315,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "라벤더 줄기를 하트 모양으로 엮어 손으로 그린 봄 라일락 꽃신으로, 휠라 정품 신발에 작업하며 꽃 색과 작가 서명(삭제 또는 5자 이내 이니셜)은 바꿀 수 있습니다. 세탁은 신발 전용 세정제나 중성세제로 하고, 1년 안에 1회 무상 A/S를 해 드립니다.",
-   "list_price": 180000,
    "sizes": [
     220,
     225,
@@ -353,7 +348,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "벚꽃 가지 한 줄을 신발 옆면에 손으로 그린 꽃신으로, 꽃 그림은 왼쪽 신발에만 들어가고 반대쪽 꽃은 옵션으로 추가합니다. 기존 스페리 벨크로가 품절되어 반스 어센틱에 작업해 드리며, 1년 안에 1회 무상 A/S가 있습니다.",
-   "list_price": 160000,
    "sizes": [
     220,
     225,
@@ -395,7 +389,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "고귀한 사랑, 소중한 추억이라는 꽃말의 에델바이스를 검정 부츠 뒤꿈치에 손으로 그려 넣은 작품입니다. 재질은 스웨이드와 가죽(+10,000원) 중에서 고를 수 있습니다.",
-   "list_price": 130000,
    "sizes": [
     225,
     230,
@@ -426,7 +419,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "리버풀의 영원한 캡틴 제라드 선수를 1:1 핸드페인팅으로 그린 신발입니다. 나이키 정품에 작업하며 선수 변경도 상담할 수 있습니다.",
-   "list_price": 220000,
    "sizes": [
     220,
     225,
@@ -467,7 +459,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 코트 로얄 2 정품에 첼시 무드릭(10번)을 1:1 핸드페인팅으로 그린 신발이고, 첼시 팬과 함께 디자인한 작품입니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 실제 신발의 나이키 라인은 라이트 블루입니다.",
-   "list_price": 220000,
    "sizes": [
     245,
     255,
@@ -493,7 +484,7 @@ window.SHOES = {
    "en": "Tottenham",
    "sub": "반스 올드스쿨 스타일 36",
    "price": 162000,
-   "reviews": 3,
+   "reviews": 4,
    "photos": [
     "assets/p/spurs/01.jpg",
     "assets/p/spurs/02.jpg",
@@ -506,7 +497,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "반스 스타일 36 정품에 옆면은 토트넘 엠블럼, 뒷면은 토트넘 핫스퍼와 손흥민 등번호 7을 1:1 핸드페인팅으로 그렸습니다. 앞면 혀 부분 COYS는 옵션이고, 하루 3켤레만 주문받아 3~7일 걸려 만듭니다.",
-   "list_price": 180000,
    "sizes": [
     220,
     225,
@@ -523,45 +513,89 @@ window.SHOES = {
     285
    ],
    "sources": [
-    "https://smartstore.naver.com/bium4581/products/9238359131"
+    "https://smartstore.naver.com/bium4581/products/9238359131",
+    "https://smartstore.naver.com/bium4581/products/9744046284"
    ]
   },
   {
    "id": "arsenal",
    "cat": "football",
-   "base": "velcro",
-   "name": "아스날 · 에미레이트",
+   "base": "court",
+   "isNew": false,
+   "name": "아스날 거너사우러스 굿즈 신발",
    "en": "Arsenal",
-   "sub": "벨크로 · 반스",
-   "price": 180000,
-   "reviews": 0,
+   "sub": "무신사 스탠다드 끈 운동화",
+   "price": 225000,
+   "reviews": 2,
    "photos": [
-    "assets/fb/f01.jpg",
-    "assets/fb/f02.jpg"
+    "assets/p/arsenal/01.jpg",
+    "assets/p/arsenal/02.jpg",
+    "assets/p/arsenal/03.jpg",
+    "assets/p/arsenal/04.jpg",
+    "assets/p/arsenal/05.jpg",
+    "assets/p/arsenal/06.jpg",
+    "assets/p/arsenal/07.jpg"
    ],
    "fit": "cover",
-   "desc": "아스날 엠블럼과 에미레이트 스타디움 N5 표지판. 구너를 위한 신발.",
-   "pos": [
-    60,
-    50
+   "desc": "오른쪽 옆면에는 아스날 역 이미지, 왼쪽 옆면에는 마스코트 거너사우르스, 뒷면에는 유니폼의 Fly Emirates를 담은 1:1 핸드페인팅 신발입니다. 원래 벨크로 운동화였으나 지금은 기존 신발 품절로 끈 운동화로 대체해 제작합니다.",
+   "sizes": [
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/4586733719"
    ]
   },
   {
    "id": "kangin",
    "cat": "football",
    "base": "court",
-   "name": "PSG · 이강인 19",
+   "isNew": false,
+   "name": "PSG 이강인 나이키 신발",
    "en": "PSG 19",
-   "sub": "선수 초상 커스텀",
-   "price": 225000,
-   "reviews": 0,
+   "sub": "나이키",
+   "price": 198000,
+   "reviews": 1,
    "photos": [
-    "assets/fb/f12.jpg"
+    "assets/p/kangin/01.jpg",
+    "assets/p/kangin/02.jpg",
+    "assets/p/kangin/03.jpg",
+    "assets/p/kangin/04.jpg",
+    "assets/p/kangin/05.jpg"
    ],
    "fit": "cover",
-   "desc": "파란 스우시 옆에 이강인 19번. 등번호와 이름은 원하는 선수로 바꿀 수 있어요.",
-   "pos": [
-    44
+   "desc": "파리생제르맹 이강인 선수의 19번을 나이키 신발에 1:1 핸드페인팅한 신발입니다. 파란색과 흰색 두 가지 색 중에서 고를 수 있습니다.",
+   "sizes": [
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/9828364761"
    ]
   },
   {
@@ -601,7 +635,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "AC밀란의 인자기 선수를 1:1 핸드페인팅으로 그린 나이키 조던1 신발입니다. 빨간색 도색 옵션을 추가할 수 있습니다.",
-   "list_price": 310000,
    "sizes": [
     230,
     235,
@@ -641,7 +674,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "맨체스터 유나이티드를 1:1 핸드페인팅으로 그린 반스 올드스쿨 신발입니다. 앞코에 문구를 넣는 옵션을 고를 수 있습니다.",
-   "list_price": 188000,
    "sizes": [
     220,
     225,
@@ -682,7 +714,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "컨버스 위에 보라빛 우주와 별을 손으로 그린 커스텀 신발로, 한 켤레도 같은 그림이 없습니다. 이 디자인은 딱 100켤레만 한정 판매하고, 하루 3분만 주문을 받습니다.",
-   "list_price": 260000,
    "sizes": [
     220,
     225,
@@ -726,7 +757,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
-   "list_price": 320000,
    "sizes": [
     220,
     225,
@@ -768,7 +798,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "두 사람의 이야기를 신발에 담아 주는 1:1 맞춤 커플 신발입니다. 왼쪽·오른쪽 신발마다 이니셜 패턴, 라인 드로잉, 귀여운 우리, 레터링 중 타입을 고를 수 있습니다.",
-   "list_price": 60000,
    "sources": [
     "https://www.idus.com/v2/product/65ed7a68-6989-4c00-9498-460ad693edca"
    ]
@@ -809,7 +838,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "베이지 펌프스에 붉은 카네이션(꽃말: 사랑·모정)과 'Thank you always' 글귀를 손으로 그린 꽃 구두로, 어버이날·스승의날 선물로 제안합니다. 문구와 꽃말 부분은 영어·일본어 등 다른 문구로 바꿀 수 있습니다.",
-   "list_price": 170000,
    "sizes": [
     225,
     230,
@@ -841,7 +869,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "7~8월에 피는 파란 물망초(꽃말: 진실한 사랑)를 컨버스 올스타 클래식 정품에 손으로 그린 여름 꽃신입니다. 시즌 한정으로 팔다가 요청이 많아 정식 출시했고, 원하면 5자 이내 이니셜을 넣어줍니다.",
-   "list_price": 170000,
    "sizes": [
     220,
     225,
@@ -917,7 +944,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "붉은 장미(꽃말: 열렬한 사랑)를 컨버스 올스타 클래식 정품에 손으로 그린 꽃신입니다. 시즌 한정으로 팔다가 문의가 많아 정식 출시했고, 원하면 5자 이내 이니셜을 넣어줍니다.",
-   "list_price": 185000,
    "sizes": [
     220,
     225,
@@ -999,7 +1025,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "첼시를 1:1 핸드페인팅으로 그린 반스 어센틱 신발입니다. 단화라 가볍게 신기 좋고 사이즈가 조금 크다는 후기가 있습니다.",
-   "list_price": 150000,
    "sizes": [
     220,
     225,
@@ -1034,7 +1059,12 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 코트 로얄 2 정품에 첼시 드록바(11번)를 1:1 핸드페인팅으로 그린 신발이고, 첼시 팬과 함께 디자인한 작품입니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 실제 신발의 나이키 라인은 라이트 블루입니다.",
-   "list_price": 220000,
+   "pos": [
+    [
+     45,
+     60
+    ]
+   ],
    "sizes": [
     245,
     255,
@@ -1049,12 +1079,6 @@ window.SHOES = {
    ],
    "sources": [
     "https://smartstore.naver.com/bium4581/products/9522814949"
-   ],
-   "pos": [
-    [
-     45,
-     60
-    ]
    ]
   },
   {
@@ -1076,7 +1100,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 코트 로얄 2 정품에 첼시 아자르(10번)를 1:1 핸드페인팅으로 그린 신발이고, 첼시 팬과 함께 디자인한 작품입니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 실제 신발의 나이키 라인은 라이트 블루입니다.",
-   "list_price": 220000,
    "sizes": [
     245,
     255,
@@ -1113,7 +1136,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 코트 로얄 2 정품에 맨유 베컴(7번)을 1:1 핸드페인팅으로 그린 신발이고, 물감이 지워지지 않습니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 나이키 빨간색 도색은 옵션입니다.",
-   "list_price": 220000,
    "sizes": [
     220,
     225,
@@ -1158,7 +1180,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 코트 로얄 2 정품에 맨유 박지성(J.S.PARK 13번)을 1:1 핸드페인팅으로 그린 신발이고, 물감이 지워지지 않습니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 나이키 빨간색 도색은 옵션입니다.",
-   "list_price": 220000,
    "sizes": [
     220,
     225,
@@ -1205,7 +1226,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 코트 로얄 2 정품에 맨유 루니(10번)를 1:1 핸드페인팅으로 그린 신발이고, 물감이 지워지지 않습니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 나이키 빨간색 도색은 옵션입니다.",
-   "list_price": 220000,
    "sizes": [
     220,
     225,
@@ -1250,7 +1270,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "컨버스 척테일러 정품에 한쪽 옆면은 레알마드리드 엠블럼, 반대쪽은 Realmadrid 글씨를 1:1 핸드페인팅으로 그린 신발입니다. 특수물감이라 세탁해도 되고, 하루 3켤레만 주문받아 3~7일 걸려 만듭니다.",
-   "list_price": 150000,
    "sizes": [
     220,
     225,
@@ -1292,7 +1311,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "레알마드리드의 레전드 호날두 선수를 1:1 핸드페인팅으로 그린 신발입니다. 나이키 정품에 제작하고 금색 도색 옵션을 추가하면 로고가 금색이 됩니다.",
-   "list_price": 220000,
    "sizes": [
     220,
     225,
@@ -1335,7 +1353,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "울버햄튼 서포터즈가 의뢰했던 신발로, 나이키 코트 로얄 2 정품에 네베스(8번)를 1:1 핸드페인팅으로 그렸습니다. 하루 3켤레만 주문받아 3~7일 걸려 만들며, 나이키 노란색 도색은 옵션입니다(안 하면 로고는 흰색).",
-   "list_price": 220000,
    "sizes": [
     220,
     225,
@@ -1360,6 +1377,337 @@ window.SHOES = {
    ]
   },
   {
+   "id": "arsenal-oldskool",
+   "cat": "football",
+   "base": "low",
+   "isNew": false,
+   "name": "반스 올드스쿨 아스날 신발굿즈",
+   "en": "",
+   "sub": "반스 올드스쿨",
+   "price": 178200,
+   "reviews": 20,
+   "photos": [
+    "assets/p/arsenal-oldskool/01.jpg",
+    "assets/p/arsenal-oldskool/02.jpg",
+    "assets/p/arsenal-oldskool/03.jpg",
+    "assets/p/arsenal-oldskool/04.jpg",
+    "assets/p/arsenal-oldskool/05.jpg",
+    "assets/p/arsenal-oldskool/06.jpg",
+    "assets/p/arsenal-oldskool/07.jpg",
+    "assets/p/arsenal-oldskool/08.jpg"
+   ],
+   "fit": "cover",
+   "desc": "반스 올드스쿨 올흰의 라인을 아스날 빨강으로 도색하고 옆면과 혀에 아스날 대포를, 뒷면에 유니폼을 형상화한 이미지를 넣은 1:1 핸드페인팅 신발입니다. 앞면에 COYG 문구를 넣는 옵션이 있고 제작에는 3~7일이 걸립니다.",
+   "sizes": [
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    290
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/4713524701"
+   ]
+  },
+  {
+   "id": "arsenal-style36",
+   "cat": "football",
+   "base": "low",
+   "isNew": false,
+   "name": "반스 스타일36 아스날 신발굿즈",
+   "en": "",
+   "sub": "반스 올드스쿨 스타일 36",
+   "price": 162000,
+   "reviews": 4,
+   "photos": [
+    "assets/p/arsenal-style36/01.jpg",
+    "assets/p/arsenal-style36/02.jpg",
+    "assets/p/arsenal-style36/03.jpg",
+    "assets/p/arsenal-style36/04.jpg",
+    "assets/p/arsenal-style36/05.jpg",
+    "assets/p/arsenal-style36/06.jpg",
+    "assets/p/arsenal-style36/07.jpg"
+   ],
+   "fit": "cover",
+   "desc": "반스 스타일 36 정품에 아스날 대포와 빨간 라인을 1:1 핸드페인팅한 신발로, 지워지지 않는 물감을 쓰고 정사이즈를 권장합니다. 뒷면 이미지 추가 옵션을 고르면 뒷면에 유니폼 콘셉트 이미지를 넣어 주며 제작에는 3~7일이 걸립니다.",
+   "sizes": [
+    225,
+    230,
+    235,
+    240,
+    245,
+    255,
+    260,
+    280
+   ],
+   "soldout": [
+    250,
+    265,
+    270,
+    275
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/8853886566"
+   ]
+  },
+  {
+   "id": "barcelona-gavi",
+   "cat": "football",
+   "base": "court",
+   "isNew": false,
+   "name": "바르셀로나 가비 나이키 신발",
+   "en": "",
+   "sub": "나이키 코트 레거시",
+   "price": 198000,
+   "reviews": 0,
+   "photos": [
+    "assets/p/barcelona-gavi/01.jpg",
+    "assets/p/barcelona-gavi/02.jpg"
+   ],
+   "fit": "cover",
+   "desc": "바르셀로나 가비 선수를 나이키 신발에 1:1 핸드페인팅한 신발입니다. 주문 제작입니다.",
+   "sizes": [
+    245,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/9714595175"
+   ]
+  },
+  {
+   "id": "barcelona-messi",
+   "cat": "football",
+   "base": "court",
+   "isNew": false,
+   "name": "바르셀로나 메시 나이키 신발",
+   "en": "",
+   "sub": "나이키 코트 레거시",
+   "price": 198000,
+   "reviews": 0,
+   "photos": [
+    "assets/p/barcelona-messi/01.jpg",
+    "assets/p/barcelona-messi/02.jpg"
+   ],
+   "fit": "cover",
+   "desc": "바르셀로나 메시 선수를 나이키 신발에 1:1 핸드페인팅한 신발입니다. 주문 제작입니다.",
+   "sizes": [
+    245,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/9714595175"
+   ]
+  },
+  {
+   "id": "barcelona-ronaldinho",
+   "cat": "football",
+   "base": "court",
+   "isNew": false,
+   "name": "바르셀로나 호나우지뉴 나이키 신발",
+   "en": "",
+   "sub": "나이키 코트 레거시",
+   "price": 198000,
+   "reviews": 0,
+   "photos": [
+    "assets/p/barcelona-ronaldinho/01.jpg",
+    "assets/p/barcelona-ronaldinho/02.jpg"
+   ],
+   "fit": "cover",
+   "desc": "바르셀로나 호나우지뉴 선수를 나이키 신발에 1:1 핸드페인팅한 신발입니다. 주문 제작입니다.",
+   "sizes": [
+    245,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/9714595175"
+   ]
+  },
+  {
+   "id": "henry-black",
+   "cat": "football",
+   "base": "low",
+   "isNew": false,
+   "name": "반스 올드스쿨 아스날 앙리 · 블랙",
+   "en": "",
+   "sub": "반스 올드스쿨",
+   "price": 169200,
+   "reviews": 0,
+   "photos": [
+    "assets/p/henry-black/01.jpg",
+    "assets/p/henry-black/02.jpg",
+    "assets/p/henry-black/03.jpg",
+    "assets/p/henry-black/04.jpg"
+   ],
+   "fit": "cover",
+   "desc": "검정 반스 올드스쿨에 티에리 앙리의 얼굴과 등번호 14를 금색으로 그려 넣은 1:1 핸드페인팅 신발로, 비움이 커스텀을 시작하고 처음 디자인한 작품입니다. 정품 반스에 지워지지 않는 물감으로 작업하며 제작에는 3~7일이 걸립니다.",
+   "sizes": [
+    210,
+    215,
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/8979400897"
+   ]
+  },
+  {
+   "id": "henry-highbury",
+   "cat": "football",
+   "base": "low",
+   "isNew": false,
+   "name": "반스 올드스쿨 아스날 앙리 · 하이버리 와인",
+   "en": "",
+   "sub": "반스 올드스쿨",
+   "price": 169200,
+   "reviews": 2,
+   "photos": [
+    "assets/p/henry-highbury/01.jpg",
+    "assets/p/henry-highbury/02.jpg",
+    "assets/p/henry-highbury/03.jpg",
+    "assets/p/henry-highbury/04.jpg",
+    "assets/p/henry-highbury/05.jpg",
+    "assets/p/henry-highbury/06.jpg"
+   ],
+   "fit": "cover",
+   "desc": "하이버리 구장의 마지막 시즌(05-06) 기념 유니폼 색 배열을 담은 와인색 반스 올드스쿨에, 앙리의 상징 등번호 14와 앙리의 모습을 1:1 핸드페인팅으로 그렸습니다. 정품 반스에 작업하며 제작에는 3~7일이 걸립니다.",
+   "sizes": [
+    210,
+    215,
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/8979400897"
+   ]
+  },
+  {
+   "id": "liverpool-vans",
+   "cat": "football",
+   "base": "low",
+   "isNew": false,
+   "name": "리버풀 반스 올드스쿨 신발",
+   "en": "",
+   "sub": "반스 올드스쿨",
+   "price": 153000,
+   "reviews": 6,
+   "photos": [
+    "assets/p/liverpool-vans/01.jpg",
+    "assets/p/liverpool-vans/02.jpg",
+    "assets/p/liverpool-vans/03.jpg",
+    "assets/p/liverpool-vans/04.jpg",
+    "assets/p/liverpool-vans/05.jpg"
+   ],
+   "fit": "cover",
+   "desc": "반스 올드스쿨에 리버풀 상징 리버버드와 빨간 포인트를 핸드페인팅한 신발입니다. 주문 제작이며 요청한 이니셜을 적어 드립니다.",
+   "sizes": [
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/9883236573"
+   ]
+  },
+  {
+   "id": "mancity-aguero",
+   "cat": "football",
+   "base": "court",
+   "isNew": false,
+   "name": "맨시티 아구에로 캐릭터 나이키 신발",
+   "en": "",
+   "sub": "나이키 코트 레거시 넥스트 네이처",
+   "price": 189000,
+   "reviews": 3,
+   "photos": [
+    "assets/p/mancity-aguero/01.jpg",
+    "assets/p/mancity-aguero/02.jpg",
+    "assets/p/mancity-aguero/03.jpg",
+    "assets/p/mancity-aguero/04.jpg",
+    "assets/p/mancity-aguero/05.jpg",
+    "assets/p/mancity-aguero/06.jpg",
+    "assets/p/mancity-aguero/07.jpg"
+   ],
+   "fit": "cover",
+   "desc": "나이키 코트 레거시 넥스트 네이처에 맨시티 아구에로 선수를 캐릭터로 1:1 핸드페인팅한 신발입니다. 주문 제작입니다.",
+   "sizes": [
+    260,
+    265,
+    270
+   ],
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/9793115497"
+   ]
+  },
+  {
    "id": "af1-lavender",
    "cat": "color",
    "base": "low",
@@ -1368,7 +1716,7 @@ window.SHOES = {
    "en": "",
    "sub": "나이키 에어포스1",
    "price": 260000,
-   "reviews": 3,
+   "reviews": 4,
    "photos": [
     "assets/p/af1-lavender/01.jpg",
     "assets/p/af1-lavender/02.jpg",
@@ -1381,7 +1729,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 에어포스1을 파스텔 보라로 칠한 컬러링 신발로, 코팅을 벗기고 칠한 뒤 다시 코팅하는 순서에 내구성이 높은 우레탄 물감을 씁니다. 평생 무상 A/S를 해 드리며, 색은 모니터와 작업 환경에 따라 조금 다를 수 있습니다.",
-   "list_price": 285000,
    "sizes": [
     220,
     225,
@@ -1404,7 +1751,8 @@ window.SHOES = {
     310
    ],
    "sources": [
-    "https://www.idus.com/v2/product/71dea85f-c174-4287-97e4-ce62e62921e9"
+    "https://www.idus.com/v2/product/71dea85f-c174-4287-97e4-ce62e62921e9",
+    "https://smartstore.naver.com/bium4581/products/9042836742"
    ]
   },
   {
@@ -1429,7 +1777,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 에어포스1을 파스텔 핑크로 칠한 컬러링 신발로, 코팅을 벗기고 칠한 뒤 다시 코팅하는 순서에 내구성이 높은 우레탄 물감을 씁니다. 평생 무상 A/S를 해 드리며, 색은 모니터와 작업 환경에 따라 조금 다를 수 있습니다.",
-   "list_price": 285000,
    "sizes": [
     220,
     225,
@@ -1477,7 +1824,6 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "나이키 에어포스1을 파스텔 블루로 칠한 컬러링 신발로, 코팅을 벗기고 칠한 뒤 다시 코팅하는 순서에 내구성이 높은 우레탄 물감을 씁니다. 평생 무상 A/S를 해 드리며, 색은 모니터와 작업 환경에 따라 조금 다를 수 있습니다.",
-   "list_price": 285000,
    "sizes": [
     220,
     225,
@@ -1518,7 +1864,12 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
-   "list_price": 320000,
+   "pos": [
+    [
+     50,
+     88
+    ]
+   ],
    "sizes": [
     220,
     225,
@@ -1540,12 +1891,6 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/da3b45d7-6e58-44b1-a7da-ffd1adedb09b"
-   ],
-   "pos": [
-    [
-     50,
-     88
-    ]
    ]
   },
   {
@@ -1563,7 +1908,12 @@ window.SHOES = {
    ],
    "fit": "cover",
    "desc": "대한독립 태극기를 담은 에어포스1 에디션입니다. 독립운동가를 기억하며 만든 세 가지 디자인 중 하나입니다.",
-   "list_price": 320000,
+   "pos": [
+    [
+     50,
+     88
+    ]
+   ],
    "sizes": [
     220,
     225,
@@ -1585,12 +1935,30 @@ window.SHOES = {
    ],
    "sources": [
     "https://www.idus.com/v2/product/da3b45d7-6e58-44b1-a7da-ffd1adedb09b"
+   ]
+  },
+  {
+   "id": "slamdunk",
+   "cat": "story",
+   "base": "high",
+   "isNew": false,
+   "name": "강백호 농구화 조던1 브레드 슬램덩크 굿즈 커스텀",
+   "en": "",
+   "sub": "나이키 조던1 레트로 하이 OG 브레드",
+   "price": 108000,
+   "reviews": 0,
+   "photos": [
+    "assets/p/slamdunk/01.jpg",
+    "assets/p/slamdunk/02.jpg",
+    "assets/p/slamdunk/03.jpg",
+    "assets/p/slamdunk/04.jpg",
+    "assets/p/slamdunk/05.jpg",
+    "assets/p/slamdunk/06.jpg"
    ],
-   "pos": [
-    [
-     50,
-     88
-    ]
+   "fit": "cover",
+   "desc": "조던1 하이 브레드 위에 강백호 뒷모습과 슬램덩크 로고를 한 면에 1:1 핸드페인팅으로 그려 넣는 작품이며, 이 옵션은 신발 없이 그림 작업만 판매해 고객이 신발을 보내야 합니다. 지워지지 않는 우레탄 물감으로 작업해 평생 무상 A/S를 해 주고 제작에는 평균 4~7일이 걸립니다.",
+   "sources": [
+    "https://smartstore.naver.com/bium4581/products/8984530850"
    ]
   }
  ],
