@@ -953,3 +953,10 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .ra-prod img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; margin-bottom: 8px; background: var(--grey-1); }
 .ra-chk { font-size: 13px; display: inline-flex; gap: 6px; align-items: center; white-space: nowrap; cursor: pointer; }
 @media (max-width: 699px) { .ra-item { grid-template-columns: 72px 1fr; gap: 14px; } .ra { padding: 0 var(--gutter); } }
+
+/* 스튜디오 4면 (11/12) */
+.st-views { display: flex; gap: 6px; margin: 10px 0 0; flex-wrap: wrap; }
+.st-views button { border: 1px solid var(--grey-2); background: var(--white); padding: 8px 14px; font-size: 13px; }
+.st-views button.on { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.st-views button i { font-style: normal; font-size: 8px; vertical-align: middle; color: #c8102e; }
+.st-baseall { margin-top: 10px; width: 100%; }

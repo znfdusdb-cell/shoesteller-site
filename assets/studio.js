@@ -7,7 +7,10 @@
   var W = 1600, H = 800;
   var cv = $('#cv'), ctx = cv.getContext('2d');
   function mk() { var c = document.createElement('canvas'); c.width = W; c.height = H; return c; }
-  var lineCv = mk(), insideCv = mk(), paintCv = mk(), itemCv = mk();
+  var lineCv = mk(), insideCv = mk(), paintCv = mk(), itemCv = mk(), lightCv = mk();
+  /* 11/12 회장: 바깥 옆면·안쪽 옆면·뒷면·앞쪽 4면. 면마다 따로 꾸미고, 바탕색은 4면이 같이 바뀐다 */
+  var VIEWS = [['lateral', '바깥 옆면'], ['medial', '안쪽 옆면'], ['back', '뒷면'], ['front', '앞쪽']];
+  var LS = {};   // 면별 선화·경계·안쪽 {line, light, inside, boundary, outside}
 
   /* 11/11 회장: 고를 신발은 6개 모델(흰색·검정), 가격은 공식 판매가(회사가 한 달에 한 번 확인) */
   var MODELS = S.STUDIO_MODELS || [];
@@ -20,27 +23,43 @@
   function modelById(id) { return MODELS.filter(function (m) { return m.id === id; })[0]; }
   var PAINTS = ['#ffffff', '#111111', '#c8102e', '#e94e1b', '#f5c400', '#2f8f3a', '#0a4ea2', '#5a3fb8', '#f4a6c0', '#8fd3f4', '#b8e08a', '#8a5a3b', '#c9c1b6', '#6b6b6b', '#0b1f3a', '#7a0019'];
 
-  var st = { base: null, photo: null, ops: [], items: [], sel: -1, tool: 'fill', color: '#c8102e', bsize: 16 };
+  var st = { base: null, photo: null, ops: [], items: [], sel: -1, tool: 'fill', color: '#c8102e', bsize: 16, view: 'lateral', views: {}, baseColor: '#ffffff' };
+  function emptyViews() { var o = {}; VIEWS.forEach(function (v) { o[v[0]] = { ops: [], items: [] }; }); return o; }
+  st.views = emptyViews();
+  function flush() { st.views[st.view] = { ops: st.ops, items: st.items }; }
+  function setView(v) {
+    if (!LS[v] && !st.photo) return;
+    flush(); st.view = v; st.ops = st.views[v].ops; st.items = st.views[v].items; st.sel = -1;
+    useLines(v); rebuildPaint(); draw(); syncSel(); markViews();
+  }
+  function useLines(v) { var L = LS[v]; if (!L) return; lineCv = L.line; lightCv = L.light; insideCv = L.inside; boundary = L.boundary; outside = L.outside; }
+  function markViews() {
+    var box = $('#views'); if (!box) return; box.hidden = !!st.photo || !st.base;
+    flush();
+    box.innerHTML = VIEWS.map(function (v) { var d = st.views[v[0]], n = d.ops.length + d.items.length; return '<button type="button" data-v="' + v[0] + '"' + (v[0] === st.view ? ' class="on"' : '') + '>' + v[1] + (n ? ' <i>●</i>' : '') + '</button>'; }).join('');
+    $$('#views button').forEach(function (b) { b.onclick = function () { setView(b.getAttribute('data-v')); }; });
+  }
+  function dark(h) { var c = hex(h); return (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) < 90; }
   var boundary = null, outside = null, hist = [], redo = [], dirtyFlag = false;
 
   /* ---------- 신발 고르기 ---------- */
   function won(n) { return B.won ? B.won(n) : n.toLocaleString() + '원'; }
   $('#models').innerHTML = MODELS.map(function (m) {
     var p = (m.colors.white || m.colors[Object.keys(m.colors)[0]]).price;
-    return '<button type="button" data-model="' + m.id + '"><img src="assets/line/' + m.line + '.png" alt=""><b>' + m.ko + '</b><small>' + Object.keys(m.colors).map(function (c) { return m.colors[c].ko; }).join(' · ') + ' · ' + won(p) + '</small></button>';
+    return '<button type="button" data-model="' + m.id + '"><img src="assets/studio/' + m.id + '-lateral.png" alt=""><b>' + m.ko + '</b><small>' + Object.keys(m.colors).map(function (c) { return m.colors[c].ko; }).join(' · ') + ' · ' + won(p) + '</small></button>';
   }).join('');
   $$('#models button').forEach(function (b) { b.onclick = function () { pickModel(b.getAttribute('data-model')); }; });
   function pickModel(id, color) {
     var m = modelById(id); if (!m) return;
     var c = color && m.colors[color] ? color : (st.model === id && m.colors[st.color0] ? st.color0 : Object.keys(m.colors)[0]);
-    if (st.base === m.line && st.model !== id && !st.photo) { st.model = id; st.color0 = c; afterModel(); return; }
-    st.model = id; st.color0 = c; pickBase(m.line);
+    if (st.base === id && !st.photo) { st.model = id; if (st.color0 !== c) { st.color0 = c; st.baseColor = c === 'black' ? '#1c1c1c' : '#ffffff'; rebuildPaint(); draw(); } afterModel(); return; }
+    st.model = id; st.color0 = c; pickBase(id);
   }
   function afterModel() {
     var m = modelById(st.model), keys = m ? Object.keys(m.colors) : [];
     $('#colors').hidden = keys.length < 2;
     $('#colors').innerHTML = keys.map(function (k) { return '<button type="button" data-color="' + k + '"' + (k === st.color0 ? ' class="on"' : '') + '><i style="background:' + (k === 'black' ? '#111' : '#fff') + '"></i>' + m.colors[k].ko + '</button>'; }).join('');
-    $$('#colors button').forEach(function (b) { b.onclick = function () { st.color0 = b.getAttribute('data-color'); afterModel(); }; });
+    $$('#colors button').forEach(function (b) { b.onclick = function () { st.color0 = b.getAttribute('data-color'); st.baseColor = st.color0 === 'black' ? '#1c1c1c' : '#ffffff'; rebuildPaint(); draw(); afterModel(); }; });
     $('#model-note').textContent = m ? m.ko + ' ' + m.colors[st.color0].ko + ' · 새 신발 ' + won(m.colors[st.color0].price) + (S.STUDIO_PRICE_CHECKED ? ' (' + S.STUDIO_PRICE_CHECKED.slice(5).replace('-', '/') + ' 공식 판매가)' : '') : '';
     markBases(); quote();
   }
@@ -49,26 +68,37 @@
   function pickBase(id) {
     if (st.base === id && !st.photo) { afterModel(); return; }
     if (dirtyFlag && !confirm('신발을 바꾸면 칠한 것은 지워져요(올린 그림·글자는 남아요). 바꿀까요?')) return;
-    var img = new Image();
-    img.onload = function () {
-      st.base = id; st.photo = null; st.ops = [];
-      var lc = lineCv.getContext('2d'); lc.clearRect(0, 0, W, H);
-      var s = Math.min(W / img.width, H / img.height) * 0.94, w = img.width * s, h = img.height * s;
-      lc.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
-      buildMasks(); rebuildPaint(); draw(); afterModel(); setHint();
-      if (pendingLoad) { var d = pendingLoad; pendingLoad = null; applySaved(d); }
-    };
-    img.src = 'assets/line/' + id + '.png';
+    var left = VIEWS.length, NL = {};
+    $('#empty').hidden = false; $('#empty').textContent = '신발을 불러오는 중…';
+    VIEWS.forEach(function (v) {
+      var img = new Image();
+      img.onload = function () {
+        var L = { line: mk(), light: mk(), inside: mk() };
+        var lc = L.line.getContext('2d'); lc.drawImage(img, 0, 0, W, H);
+        var gl = L.light.getContext('2d'); gl.drawImage(img, 0, 0, W, H); gl.globalCompositeOperation = 'source-in'; gl.fillStyle = '#e8e8e8'; gl.fillRect(0, 0, W, H);
+        buildMasks(L); NL[v[0]] = L;
+        if (--left) return;
+        LS = NL; st.base = id; st.photo = null;
+        var keep = {}; flush(); VIEWS.forEach(function (x) { keep[x[0]] = { ops: [], items: (st.views[x[0]] || { items: [] }).items }; });
+        st.views = keep; st.view = 'lateral'; st.ops = keep.lateral.ops; st.items = keep.lateral.items;
+        st.baseColor = st.color0 === 'black' ? '#1c1c1c' : '#ffffff';
+        useLines('lateral'); $('#empty').textContent = '신발을 먼저 골라 주세요';
+        rebuildPaint(); draw(); afterModel(); setHint(); markViews();
+        if (pendingLoad) { var d = pendingLoad; pendingLoad = null; applySaved(d); }
+      };
+      img.onerror = function () { $('#empty').textContent = '신발 그림을 불러오지 못했어요. 새로고침해 주세요.'; };
+      img.src = 'assets/studio/' + id + '-' + v[0] + '.png';
+    });
   }
   function markBases() { $$('#models button').forEach(function (b) { b.classList.toggle('on', !st.photo && b.getAttribute('data-model') === st.model); }); $('.st-photo').classList.toggle('on', !!st.photo); }
 
   $('#photo').onchange = function () {
     var f = this.files[0]; if (!f) return;
     loadImg(f, 1600, function (img) {
-      st.photo = img; st.base = 'photo'; st.ops = [];
-      lineCv.getContext('2d').clearRect(0, 0, W, H);
+      st.photo = img; st.base = 'photo'; flush(); st.views = emptyViews(); st.view = 'lateral'; st.ops = st.views.lateral.ops; st.items = st.views.lateral.items; LS = {};
+      lineCv = mk(); lightCv = mk(); insideCv = mk();
       boundary = null; outside = null;
-      var ic = insideCv.getContext('2d'); ic.clearRect(0, 0, W, H); ic.fillStyle = '#000'; ic.fillRect(0, 0, W, H);
+      var ic = insideCv.getContext('2d'); ic.fillStyle = '#000'; ic.fillRect(0, 0, W, H); markViews();
       if (st.tool === 'fill') setTool('brush');
       rebuildPaint(); draw(); markBases(); setHint();
     });
@@ -76,16 +106,17 @@
   };
 
   /* 선화의 선(경계)과 바깥 영역 */
-  function buildMasks() {
-    var d = lineCv.getContext('2d').getImageData(0, 0, W, H).data, n = W * H, b = new Uint8Array(n), i;
+  function buildMasks(L) {
+    var d = L.line.getContext('2d').getImageData(0, 0, W, H).data, n = W * H, b = new Uint8Array(n), i;
     for (i = 0; i < n; i++) b[i] = d[i * 4 + 3] > 60 ? 1 : 0;
     var b2 = new Uint8Array(b);
     for (var y = 1; y < H - 1; y++) for (var x = 1; x < W - 1; x++) { i = y * W + x; if (b[i]) { b2[i - 1] = b2[i + 1] = b2[i - W] = b2[i + W] = 1; } }
-    boundary = b2;
-    outside = flood(0, 0, boundary);
-    var o2 = flood(W - 1, H - 1, boundary); for (i = 0; i < n; i++) if (o2[i]) outside[i] = 1;
-    var ic = insideCv.getContext('2d'), id = ic.createImageData(W, H), a = id.data;
-    for (i = 0; i < n; i++) if (!outside[i]) a[i * 4 + 3] = 255;
+    L.boundary = b2;
+    var out = flood(0, 0, b2);
+    var o2 = flood(W - 1, H - 1, b2); for (i = 0; i < n; i++) if (o2[i]) out[i] = 1;
+    L.outside = out;
+    var ic = L.inside.getContext('2d'), id = ic.createImageData(W, H), a = id.data;
+    for (i = 0; i < n; i++) if (!out[i]) a[i * 4 + 3] = 255;
     ic.putImageData(id, 0, 0);
   }
   function flood(sx, sy, wall) {
@@ -121,9 +152,11 @@
   function hex(h) { h = h.replace('#', ''); if (h.length === 3) h = h.replace(/./g, '$&$&'); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; }
 
   /* ---------- 그리기 ---------- */
-  function rebuildPaint() {
-    var g = paintCv.getContext('2d'); g.clearRect(0, 0, W, H);
-    st.ops.forEach(function (op) { if (op.type === 'fill') g.drawImage(fillMask(op), 0, 0); else strokeOn(g, op); });
+  function rebuildPaint() { paintInto(paintCv, st.ops); }
+  function paintInto(c, ops) {
+    var g = c.getContext('2d'); g.clearRect(0, 0, W, H);
+    if (!st.photo && st.base) { g.fillStyle = st.baseColor; g.fillRect(0, 0, W, H); }
+    ops.forEach(function (op) { if (op.type === 'fill') g.drawImage(fillMask(op), 0, 0); else strokeOn(g, op); });
     if (!st.photo && st.base) { g.globalCompositeOperation = 'destination-in'; g.drawImage(insideCv, 0, 0); g.globalCompositeOperation = 'source-over'; }
   }
   function strokeOn(g, op) {
@@ -151,28 +184,41 @@
     st.items.forEach(function (it) { drawItem(g, it); });
     if (!st.photo && st.base) { g.globalCompositeOperation = 'destination-in'; g.drawImage(insideCv, 0, 0); g.globalCompositeOperation = 'source-over'; }
     ctx.drawImage(itemCv, 0, 0);
-    if (!st.photo && st.base) { ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(lineCv, 0, 0); ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(lineCv, 0, 0); }
+    if (!st.photo && st.base) { if (dark(st.baseColor)) ctx.drawImage(lightCv, 0, 0); else { ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(lineCv, 0, 0); ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(lineCv, 0, 0); } }
     if (!forExport && st.items[st.sel]) {
       var it = st.items[st.sel], sz = itemSize(it);
       ctx.translate(it.x, it.y); ctx.rotate(it.r * Math.PI / 180);
       ctx.setLineDash([12, 8]); ctx.lineWidth = 3; ctx.strokeStyle = '#111'; ctx.strokeRect(-sz[0] / 2 - 8, -sz[1] / 2 - 8, sz[0] + 16, sz[1] + 16);
     }
     ctx.restore();
-    $('#empty').hidden = !!st.base;
+    if (st.base) $('#empty').hidden = true;
     if (!qPend) { qPend = true; requestAnimationFrame(function () { qPend = false; quote(); }); }
   }
   var qPend = false;
 
   /* ---------- 되돌리기 ---------- */
-  function snap() { return { ops: st.ops.slice(), items: st.items.map(function (i) { return Object.assign({}, i); }) }; }
+  function snap() { return { view: st.view, base: st.baseColor, ops: st.ops.slice(), items: st.items.map(function (i) { return Object.assign({}, i); }) }; }
   function push() { hist.push(snap()); if (hist.length > 50) hist.shift(); redo = []; dirtyFlag = true; syncUndo(); }
-  function restore(s) { st.ops = s.ops; st.items = s.items; st.sel = -1; rebuildPaint(); draw(); syncSel(); }
+  function restore(s) { if (s.view && s.view !== st.view && LS[s.view]) { flush(); st.view = s.view; useLines(s.view); } st.baseColor = s.base || st.baseColor; st.ops = s.ops; st.items = s.items; flush(); st.sel = -1; rebuildPaint(); draw(); syncSel(); markViews(); }
   function syncUndo() { $('#undo').disabled = !hist.length; $('#redo').disabled = !redo.length; }
   $('#undo').onclick = function () { if (!hist.length) return; redo.push(snap()); restore(hist.pop()); syncUndo(); };
   $('#redo').onclick = function () { if (!redo.length) return; hist.push(snap()); restore(redo.pop()); syncUndo(); };
-  $('#clear').onclick = function () { if (!st.ops.length && !st.items.length) return; if (!confirm('칠한 것과 올린 것을 모두 지울까요?')) return; push(); st.ops = []; st.items = []; st.sel = -1; rebuildPaint(); draw(); syncSel(); };
+  $('#clear').onclick = function () { if (!st.ops.length && !st.items.length) return; if (!confirm('이 면에 칠한 것과 올린 것을 모두 지울까요?')) return; push(); st.ops = []; st.items = []; st.sel = -1; rebuildPaint(); draw(); syncSel(); markViews(); };
+  $('#base-all').onclick = function () { if (!st.base || st.photo) return; push(); st.baseColor = st.color; rebuildPaint(); draw(); B.toast('4면 바탕색을 모두 바꿨어요'); };
   $('#dl').onclick = function () { saveDesign(); };
-  function exportUrl(w, q) { draw(true); var c = document.createElement('canvas'); c.width = w; c.height = w / 2; c.getContext('2d').drawImage(cv, 0, 0, c.width, c.height); draw(); return c.toDataURL('image/jpeg', q); }
+  function exportUrl(w, q) {
+    var c = document.createElement('canvas'); c.width = w; c.height = w / 2; var g = c.getContext('2d');
+    g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height);
+    if (st.photo || !LS.lateral) { draw(true); g.drawImage(cv, 0, 0, c.width, c.height); draw(); return c.toDataURL('image/jpeg', q); }
+    flush(); var cur = st.view, sel = st.sel; st.sel = -1;
+    VIEWS.forEach(function (v, k) {
+      st.view = v[0]; st.ops = st.views[v[0]].ops; st.items = st.views[v[0]].items; useLines(v[0]); rebuildPaint(); draw(true);
+      g.drawImage(cv, (k % 2) * c.width / 2, Math.floor(k / 2) * c.height / 2, c.width / 2, c.height / 2);
+      g.fillStyle = '#888'; g.font = Math.round(c.width / 60) + 'px sans-serif'; g.fillText(v[1], (k % 2) * c.width / 2 + 10, Math.floor(k / 2) * c.height / 2 + c.width / 50);
+    });
+    st.view = cur; st.ops = st.views[cur].ops; st.items = st.views[cur].items; st.sel = sel; useLines(cur); rebuildPaint(); draw();
+    return c.toDataURL('image/jpeg', q);
+  }
 
   /* ---------- 도구 ---------- */
   function setTool(t) {
@@ -218,7 +264,7 @@
     loadImg(f, 1000, function (img) {
       push(); var w = img.width, h = img.height, s = Math.min(420 / w, 300 / h);
       st.items.push({ type: 'img', img: img, w: w, h: h, x: W / 2, y: H / 2 + 40, s: s, r: 0 });
-      st.sel = st.items.length - 1; draw(); syncSel();
+      st.sel = st.items.length - 1; draw(); syncSel(); markViews();
     });
   };
   $('#txt-add').onclick = function () {
@@ -266,7 +312,7 @@
       var x = Math.round(p[0]), y = Math.round(p[1]), i = y * W + x;
       if (outside[i]) return B.toast('신발 안쪽을 눌러 주세요');
       if (boundary[i]) return;
-      push(); st.ops.push({ type: 'fill', x: x, y: y, color: st.color }); rebuildPaint(); draw(); return;
+      push(); st.ops.push({ type: 'fill', x: x, y: y, color: st.color }); rebuildPaint(); draw(); markViews(); return;
     }
     if (st.tool === 'brush') { push(); cur = { type: 'stroke', color: st.color, size: st.bsize, pts: [p] }; st.ops.push(cur); rebuildPaint(); draw(); }
   });
@@ -281,7 +327,7 @@
     if (drag && it && !drag.pinch) { it.x = p[0] - drag.dx; it.y = p[1] - drag.dy; draw(); return; }
     if (cur) { cur.pts.push(p); var g = paintCv.getContext('2d'); strokeOn(g, { color: cur.color, size: cur.size, pts: cur.pts.slice(-2) }); if (!st.photo) { g.globalCompositeOperation = 'destination-in'; g.drawImage(insideCv, 0, 0); g.globalCompositeOperation = 'source-over'; } draw(); }
   });
-  function up(e) { delete ptrs[e.pointerId]; if (!Object.keys(ptrs).length) { drag = null; if (cur) { cur = null; rebuildPaint(); draw(); } syncSel(); } }
+  function up(e) { delete ptrs[e.pointerId]; if (!Object.keys(ptrs).length) { drag = null; if (cur) { cur = null; rebuildPaint(); draw(); } syncSel(); markViews(); } }
   cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
   window.addEventListener('beforeunload', function (e) { if (dirtyFlag && !sent) { e.preventDefault(); e.returnValue = ''; } });
 
@@ -290,9 +336,12 @@
   function src() { var b = $('#q-src .on'); return b ? b.getAttribute('data-v') : 'new'; }
   $$('#q-src button').forEach(function (b) { b.onclick = function () { $$('#q-src button').forEach(function (x) { x.classList.toggle('on', x === b); }); quote(); }; });
   function counts() {
-    var regions = {}, fills = 0, strokes = 0;
-    st.ops.forEach(function (op) { if (op.type === 'fill') { fills++; regions[op.x + ',' + op.y] = 1; } else strokes++; });
-    return { fills: fills, strokes: strokes, imgs: st.items.filter(function (i) { return i.type === 'img'; }).length, texts: st.items.filter(function (i) { return i.type === 'text'; }).length };
+    var fills = 0, strokes = 0, imgs = 0, texts = 0; flush();
+    Object.keys(st.views).forEach(function (k) { var v = st.views[k];
+      v.ops.forEach(function (op) { if (op.type === 'fill') fills++; else strokes++; });
+      v.items.forEach(function (i) { if (i.type === 'img') imgs++; else texts++; }); });
+    if (!st.photo && st.base && st.baseColor !== (st.color0 === 'black' ? '#1c1c1c' : '#ffffff')) fills += 4;
+    return { fills: fills, strokes: strokes, imgs: imgs, texts: texts };
   }
   function paintEstimate() {
     var Q = S.QUOTE || {}, c = counts(), sum = 0, rows = [];
@@ -321,19 +370,21 @@
     box.innerHTML = h;
   }
   function stateOf() {
-    return { model: st.model, color0: st.color0, base: st.base,
-      ops: st.ops.map(function (o) { var c = Object.assign({}, o); delete c._m; return c; }),
-      items: st.items.map(function (it) { var c = Object.assign({}, it); if (it.type === 'img') { c.src = it.img.toDataURL('image/jpeg', 0.8); delete c.img; } return c; }) };
+    flush(); var views = {};
+    Object.keys(st.views).forEach(function (k) { var v = st.views[k];
+      views[k] = { ops: v.ops.map(function (o) { var c = Object.assign({}, o); delete c._m; return c; }),
+        items: v.items.map(function (it) { var c = Object.assign({}, it); if (it.type === 'img') { c.src = it.img.toDataURL('image/jpeg', 0.8); delete c.img; } return c; }) }; });
+    return { v: 2, model: st.model, color0: st.color0, base: st.base, baseColor: st.baseColor, views: views };
   }
   function applySaved(d) {
-    var s0 = d.state || {}; st.ops = s0.ops || []; st.items = [];
-    var waits = (s0.items || []).map(function (it) {
-      return new Promise(function (res) {
-        if (it.type !== 'img') { st.items.push(it); return res(); }
-        var im = new Image(); im.onload = function () { var c = document.createElement('canvas'); c.width = it.w; c.height = it.h; c.getContext('2d').drawImage(im, 0, 0, it.w, it.h); var x = Object.assign({}, it); delete x.src; x.img = c; st.items.push(x); res(); }; im.onerror = res; im.src = it.src;
-      });
-    });
-    Promise.all(waits).then(function () { st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); dirtyFlag = false; editingId = d.id; });
+    var s0 = d.state || {}, src = s0.views || { lateral: { ops: [], items: s0.items || [] } }, waits = [], nv = emptyViews();
+    if (s0.baseColor) st.baseColor = s0.baseColor;
+    Object.keys(src).forEach(function (k) { if (!nv[k]) return; nv[k].ops = (src[k].ops || []).slice();
+      (src[k].items || []).forEach(function (it) { waits.push(new Promise(function (res) {
+        if (it.type !== 'img') { nv[k].items.push(it); return res(); }
+        var im = new Image(); im.onload = function () { var c = document.createElement('canvas'); c.width = it.w; c.height = it.h; c.getContext('2d').drawImage(im, 0, 0, it.w, it.h); var x = Object.assign({}, it); delete x.src; x.img = c; nv[k].items.push(x); res(); }; im.onerror = res; im.src = it.src;
+      })); }); });
+    Promise.all(waits).then(function () { st.views = nv; st.view = 'lateral'; st.ops = nv.lateral.ops; st.items = nv.lateral.items; useLines('lateral'); st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); markViews(); dirtyFlag = false; editingId = d.id; });
   }
   var editingId = null;
   function designs() { try { return JSON.parse(localStorage.getItem('bium_studio') || '[]'); } catch (e) { return []; } }
@@ -349,7 +400,7 @@
     var list = designs().filter(function (x) { return x.id !== item.id; }); list.unshift(item);
     for (var n = list.length; n > 0; n--) {
       try { localStorage.setItem('bium_studio', JSON.stringify(list.slice(0, n))); editingId = item.id; dirtyFlag = false; B.toast('내 스튜디오에 저장했어요'); return; }
-      catch (e) { if (n === 1) { item.state.items = item.state.items.filter(function (i) { return i.type !== 'img'; }); try { localStorage.setItem('bium_studio', JSON.stringify([item])); B.toast('저장했어요(올린 사진은 용량 때문에 빠졌어요)'); } catch (e2) { B.toast('저장 공간이 꽉 찼어요. 내 스튜디오에서 안 쓰는 디자인을 지워 주세요'); } return; } }
+      catch (e) { if (n === 1) { Object.keys(item.state.views || {}).forEach(function (k) { item.state.views[k].items = item.state.views[k].items.filter(function (i) { return i.type !== 'img'; }); }); try { localStorage.setItem('bium_studio', JSON.stringify([item])); B.toast('저장했어요(올린 사진은 용량 때문에 빠졌어요)'); } catch (e2) { B.toast('저장 공간이 꽉 찼어요. 내 스튜디오에서 안 쓰는 디자인을 지워 주세요'); } return; } }
     }
   }
   $('#q-save').onclick = saveDesign;
