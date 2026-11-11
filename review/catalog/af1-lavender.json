@@ -1,0 +1,81 @@
+{
+ "id": "af1-lavender",
+ "name": "나이키 에어포스1 파스텔 보라 컬러링 신발",
+ "price": 260000,
+ "list_price": 285000,
+ "cat": "etc",
+ "base": "나이키 에어포스1",
+ "sources": [
+  "https://www.idus.com/v2/product/71dea85f-c174-4287-97e4-ce62e62921e9"
+ ],
+ "photos": [
+  "assets/p/af1-lavender/01.jpg",
+  "assets/p/af1-lavender/02.jpg",
+  "assets/p/af1-lavender/03.jpg",
+  "assets/p/af1-lavender/04.jpg",
+  "assets/p/af1-lavender/05.jpg",
+  "assets/p/af1-lavender/06.jpg",
+  "assets/p/af1-lavender/07.jpg",
+  "assets/p/af1-lavender/08.jpg"
+ ],
+ "sizes": [
+  "220",
+  "225",
+  "230",
+  "235",
+  "240",
+  "245",
+  "250",
+  "255",
+  "260",
+  "265",
+  "270",
+  "275",
+  "280",
+  "285",
+  "290",
+  "295",
+  "300",
+  "305",
+  "310"
+ ],
+ "soldout": [],
+ "sizes_note": "옵션: 신발 사이즈 220~310. 품절 표시 없음(주문 후 제작). 작가웹 재고는 로그인 필요라 확인 못 함.",
+ "desc": "나이키 에어포스1을 파스텔 보라로 칠한 컬러링 신발로, 코팅을 벗기고 칠한 뒤 다시 코팅하는 순서에 내구성이 높은 우레탄 물감을 씁니다. 평생 무상 A/S를 해 드리며, 색은 모니터와 작업 환경에 따라 조금 다를 수 있습니다.",
+ "reviews": [
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2025-05-09",
+   "name": "정*욱",
+   "option": "신발 사이즈: 255",
+   "text": "색감 미쳤어요 배송도 생각보다 오래 안걸리고 365일 신고 다닐예정입니다 신발 닳으면 또 사러 올께요 ^^",
+   "photos": [
+    "assets/r/af1-lavender/01-1.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2024-11-20",
+   "name": "손*훈",
+   "option": "신발 사이즈: 280",
+   "text": "너무 이뻐요! 이니셜 감사합니당!!",
+   "photos": [
+    "assets/r/af1-lavender/02-1.jpg"
+   ]
+  },
+  {
+   "src": "idus",
+   "rating": 5,
+   "date": "2023-08-21",
+   "name": "시*",
+   "option": "포토 후기 이벤트: 참여함 / 신발 사이즈: 275",
+   "text": "이쁘게 작업된 것 같아요!!👍\n연보라 계열 좋아해서 옆에 로고도 약간 진하게 추가!!\n\n너무 마음에 들고 특히 배송기간이 엄청 짧아서 좋아요!!\n\n공휴일 겹쳐서 언제오나 계속 기다렸지만 그래도 몇일 안 걸려서 선물용으로도 여유있게 받을 수 있을꺼 같아서 좋네요ㅎㅎ\n\n연하늘색도 이뻐서 구매할 생각이에요ㅎㅎ\n\n그리고 다음 커스텀은 베이지계열도 한번 부탁드릴께요!!😆\n\n이쁘게 잘 신을께요~",
+   "photos": [
+    "assets/r/af1-lavender/03-1.jpg",
+    "assets/r/af1-lavender/03-2.jpg"
+   ]
+  }
+ ]
+}
