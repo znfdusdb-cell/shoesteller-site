@@ -29,7 +29,7 @@
     return '<section class="acc-studio"><span class="lbl">My studio</span><h2 style="font-size:18px;margin:6px 0 12px">내 스튜디오</h2>' +
       (L.length ? '<div class="grid2">' + L.map(function (d) { return '<div class="dz"><img src="' + d.thumb + '" alt=""><b>' + (d.model || '') + '</b><span style="color:var(--grey-3)">' + (d.at || '').slice(0, 10) + '</span><div class="row"><a class="ulink" href="studio.html?d=' + d.id + '">다시 열기</a><button class="ulink" type="button" data-rm="' + d.id + '">지우기</button></div></div>'; }).join('') + '</div>'
         : '<p class="fine" style="text-align:left">아직 저장한 디자인이 없어요. <a class="ulink" href="studio.html">스튜디오에서 만들어 보기</a></p>') +
-      '<p class="fine" style="text-align:left;margin-top:10px" id="st-where">' + ((B.user() || {}).token ? '구글 계정에 저장돼요. 다른 기기에서도 로그인하면 열려요.' : '디자인은 지금 쓰는 이 기기(브라우저)에 저장돼요. 구글로 로그인하면 어느 기기에서나 열려요.') + '</p></section>';
+      '<p class="fine" style="text-align:left;margin-top:10px" id="st-where">' + ((B.user() || {}).token ? '내 계정에 저장돼요. 다른 기기에서도 로그인하면 열려요.' : '디자인은 지금 쓰는 이 기기(브라우저)에 저장돼요. 카카오·네이버·구글·이메일 인증으로 로그인하면 어느 기기에서나 열려요.') + '</p></section>';
   }
   function signedIn(u) {
     if (q.get('next') === 'studio') { location.replace('studio.html?resume=1'); return; }
@@ -47,15 +47,15 @@
       signedIn(u);
     }); }
     $('#logout').addEventListener('click', function () { B.setUser(null); start(); });
-    var o = $('#opt-in'); if (o) o.addEventListener('click', function () { u.marketing = true; B.setUser(u); send(u); signedIn(u); });
+    var o = $('#opt-in'); if (o) o.addEventListener('click', function () { u.marketing = true; B.setUser(u); if (u.token) B.api('PUT', '/me', { marketing_opt_in: true }); send(u); signedIn(u); });
   }
   function send(u) {
     B.send('signup', { name: u.name, phone: u.phone || '', email: u.email, interest: [], source: u.via, agree_required: true, marketing_opt_in: !!u.marketing, website: '' },
       ['[슈즈텔러 가입]', '이름: ' + u.name, '이메일: ' + u.email, '연락처: ' + (u.phone || '-'), '소식·쿠폰 동의: ' + (u.marketing ? '예' : '아니오')].join('\n'), function () {});
   }
-  function profile(email, via) {
+  function profile(email, via, prename) {
     box.innerHTML = '<span class="lbl">Create account</span><h1>거의 다 됐어요</h1><p class="sub">' + email + '</p>' +
-      '<form class="fm" id="pf" novalidate><fieldset><label class="label" for="pf-name">이름 <span class="req">(필수)</span></label><input type="text" id="pf-name" autocomplete="name"><p class="err" id="err-name"></p></fieldset>' +
+      '<form class="fm" id="pf" novalidate><fieldset><label class="label" for="pf-name">이름 <span class="req">(필수)</span></label><input type="text" id="pf-name" autocomplete="name" value="' + String(prename || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }) + '"><p class="err" id="err-name"></p></fieldset>' +
       '<fieldset><label class="label" for="pf-phone">휴대폰 <span class="req">(선택 · 주문 안내용)</span></label><input type="tel" id="pf-phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"></fieldset>' +
       '<fieldset><label class="check"><input type="checkbox" id="pf-agree"><span><b>[필수]</b> <a href="terms.html">이용약관</a>과 <a href="privacy.html">개인정보 처리방침</a>에 동의해요.</span></label><p class="err" id="err-agree"></p>' +
       '<label class="check"><input type="checkbox" id="pf-mkt"><span><b>[선택] 소식·혜택 받기 — 동의하면 웰컴 쿠폰을 드려요.</b> 새 작품·수업·키트 소식을 이메일·문자·카카오로 받아요. 밤 9시~아침 8시에는 보내지 않고, 언제든 끊을 수 있어요.</span></label></fieldset>' +
@@ -67,38 +67,83 @@
       $('#err-agree').textContent = $('#pf-agree').checked ? '' : '필수 동의에 체크해 주세요.'; if (!$('#pf-agree').checked) ok = false;
       if (!ok) return;
       var u = { name: n, email: email, phone: $('#pf-phone').value.trim(), marketing: $('#pf-mkt').checked, via: via, at: Date.now() };
-      if (via === 'google' && pendingToken) u.token = pendingToken;
+      if (pendingToken) { u.token = pendingToken; B.api('PUT', '/me', { name: u.name, phone: u.phone, marketing_opt_in: u.marketing }); }
       B.setUser(u); send(u); signedIn(u);
     });
   }
-  function start() {
+  var API = (S.API_BASE || '').replace(/\/$/, ''), PROV = null;
+  var K = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#191919" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.9S17.5 3 12 3z"/></svg>';
+  var N = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M15.6 12.8 8.1 2H2v20h6.4V11.2L15.9 22H22V2h-6.4z"/></svg>';
+  /* 로그인 서버가 준 토큰 → 내 정보(/me) → 이미 가입한 사람이면 바로, 처음이면 이름·동의 받기 */
+  function withToken(tok, via, hint) {
+    var tmp = { token: tok, via: via, email: (hint && hint.email) || '', name: '' }; B.setUser(tmp);
+    B.api('GET', '/me').then(function (m) {
+      if (!m || !m.ok) { B.setUser(null); return start('로그인 정보를 확인하지 못했어요. 다시 시도해 주세요.'); }
+      var email = m.email || tmp.email || '', old = null; try { old = B.user(); } catch (e) {}
+      if (m.registered && m.name) {
+        var u = { name: m.name, email: email, phone: m.phone || '', marketing: !!m.marketing_opt_in, via: via, token: tok, at: Date.now() };
+        B.setUser(u); return signedIn(u);
+      }
+      pendingToken = tok; profile(email, via, m.name || (hint && hint.name) || '');
+    });
+  }
+  function btn(id, cls, ico, label, ready) {
+    return '<button class="gbtn ' + cls + '" type="button" id="' + id + '"' + (ready ? '' : ' data-off="1"') + '>' + ico + '<span>' + label + (ready ? '' : ' <small>(준비 중)</small>') + '</span></button>';
+  }
+  function start(msg) {
+    var P = PROV || {}, gid = S.GOOGLE_CLIENT_ID || P._gid || '';
     box.innerHTML = '<a class="brand dark" href="index.html" style="justify-self:center"><img src="assets/brand/logo-black-160.png" alt="" style="width:40px;height:44px"><span class="wordmark">BIUM</span></a>' +
       '<h1 style="margin-top:28px">로그인</h1><p class="sub">로그인하거나 새로 가입해요.</p>' +
-      '<button class="gbtn" type="button" id="g-btn">' + G + '<span>Google로 계속하기</span></button><p class="fine" id="g-note" hidden>구글 로그인은 연결 준비 중이에요. 이메일로 먼저 가입해 주세요.</p>' +
+      (msg ? '<p class="err" style="color:#B3261E;font-size:13px">' + msg + '</p>' : '') +
+      '<div class="snsbtns">' + btn('k-btn', 'kbtn', K, '카카오로 계속하기', !!P.kakao) + btn('n-btn', 'nbtn', N, '네이버로 계속하기', !!P.naver) + btn('g-btn', '', G, 'Google로 계속하기', !!gid) + '</div>' +
+      '<p class="fine" id="g-note" hidden>이 로그인은 연결 준비 중이에요. 다른 방법이나 이메일로 먼저 가입해 주세요.</p>' +
       '<div class="or">또는</div>' +
       '<form id="ef" novalidate><label class="sr" for="ef-email">이메일</label><div class="emailrow"><input type="email" id="ef-email" placeholder="이메일" autocomplete="email"><button type="submit" aria-label="이메일로 계속">→</button></div><p class="err" id="err-email" style="color:#B3261E;font-size:12px;margin-top:6px"></p></form>' +
+      '<div id="codebox" hidden><p class="fine" style="text-align:left" id="code-msg"></p><div class="emailrow"><input type="text" id="ef-code" inputmode="numeric" maxlength="6" placeholder="메일로 받은 6자리" autocomplete="one-time-code"><button type="button" id="code-go" aria-label="확인">→</button></div><p class="err" id="err-code" style="color:#B3261E;font-size:12px;margin-top:6px"></p><button class="link" type="button" id="code-again">코드 다시 받기</button></div>' +
       '<p class="fine">계속하면 <a href="terms.html">이용약관</a>과 <a href="privacy.html">개인정보 처리방침</a>에 동의하게 돼요.</p>';
+    function off() { $('#g-note').hidden = false; }
+    [['k-btn', 'kakao'], ['n-btn', 'naver']].forEach(function (x) {
+      $('#' + x[0]).addEventListener('click', function () { if (!P[x[1]] || !API) return off(); location.href = API + '/s-api/shoesteller/auth/' + x[1] + '/start'; });
+    });
+    var email = '';
+    function sendCode() {
+      $('#err-code').textContent = '';
+      B.api('POST', '/auth/email/start', { email: email }).then(function (j) {
+        if (j && j.ok) { $('#codebox').hidden = false; $('#code-msg').textContent = email + ' 로 6자리 코드를 보냈어요. 10분 안에 적어 주세요.'; $('#ef-code').focus(); return; }
+        if (j && j.error === 'too_soon') { $('#codebox').hidden = false; $('#err-code').textContent = '1분 뒤에 다시 받을 수 있어요.'; return; }
+        $('#err-email').textContent = '메일을 보내지 못했어요. 잠시 뒤 다시 해 주세요.';
+      });
+    }
     $('#ef').addEventListener('submit', function (e) {
       e.preventDefault(); var v = $('#ef-email').value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { $('#err-email').textContent = '이메일 주소를 확인해 주세요.'; return; }
-      var u = B.user(); if (u && u.email === v) return signedIn(u);
-      profile(v, 'email');
+      $('#err-email').textContent = ''; email = v;
+      var u = B.user(); if (u && u.email === v && u.token) return signedIn(u);
+      if (P.email && API) return sendCode();
+      profile(v, 'email');   /* 메일 인증 서버가 아직이면 예전처럼 이 기기에만 가입 */
     });
+    $('#code-go').addEventListener('click', function () {
+      var c = $('#ef-code').value.replace(/\D/g, '');
+      if (c.length !== 6) { $('#err-code').textContent = '6자리 숫자를 적어 주세요.'; return; }
+      B.api('POST', '/auth/email/verify', { email: email, code: c }).then(function (j) {
+        if (j && j.ok && j.token) return withToken(j.token, 'email', { email: email });
+        $('#err-code').textContent = j && j.error === 'too_many' ? '여러 번 틀렸어요. 코드를 다시 받아 주세요.' : '코드가 맞지 않거나 시간이 지났어요.';
+      });
+    });
+    $('#code-again').addEventListener('click', sendCode);
     var gb = $('#g-btn');
-    if (!S.GOOGLE_CLIENT_ID) { gb.addEventListener('click', function () { $('#g-note').hidden = false; }); }
+    if (!gid) { gb.addEventListener('click', off); }
     else {
       var sc = document.createElement('script'); sc.src = 'https://accounts.google.com/gsi/client'; sc.async = true;
       sc.onload = function () {
-        google.accounts.id.initialize({ client_id: S.GOOGLE_CLIENT_ID, callback: function (r) {
+        google.accounts.id.initialize({ client_id: gid, callback: function (r) {
           try {
             var p = JSON.parse(decodeURIComponent(escape(atob(r.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')))));
             B.api('POST', '/auth/google', { credential: r.credential }).then(function (j) {
-              var tok = j && j.token ? j.token : '';
-              var old = B.user();
-              if (old && old.email === p.email) { old.token = tok || old.token; old.via = 'google'; B.setUser(old); return signedIn(old); }
-              pendingToken = tok; profile(p.email, 'google'); setTimeout(function () { var n = $('#pf-name'); if (n && p.name) n.value = p.name; }, 0);
+              if (j && j.token) return withToken(j.token, 'google', { email: p.email, name: p.name });
+              off();
             });
-          } catch (err) { $('#g-note').hidden = false; }
+          } catch (err) { off(); }
         } });
         gb.addEventListener('click', function () { google.accounts.id.prompt(); });
       };
@@ -106,7 +151,32 @@
     }
     if (q.get('email')) $('#ef-email').value = q.get('email');
   }
-  var u = B.user(); if (u && u.email) signedIn(u); else start();
+  var payMsg = '';
+  var ERR = { not_ready: '이 로그인은 아직 연결 준비 중이에요.', cancelled: '로그인을 취소했어요.', rate: '잠시 뒤 다시 시도해 주세요.' };
+  function boot() {
+    /* 카카오·네이버에서 돌아오면 주소 # 뒤에 token 또는 login_error가 붙어 온다 → 바로 지운다 */
+    var h = new URLSearchParams((location.hash || '').slice(1)), tok = h.get('token'), le = h.get('login_error'), via = h.get('provider') || '';
+    var po = h.get('order'), ps = h.get('pay');
+    if (tok || le || po) history.replaceState(null, '', location.pathname + location.search);
+    if (po && ps) {   /* 네이버페이 결제창에서 돌아옴(서버가 승인·금액 대조 뒤 보냄) */
+      if (ps === 'paid') B.clearCart();
+      var PM = { paid: '결제가 끝났어요. 주문번호 ' + po + ' — 작가가 확인하고 연락드려요.', fail: '결제가 취소됐거나 끝나지 않았어요(주문번호 ' + po + '). 장바구니는 그대로 있어요.', pending: '결제 확인 중이에요(주문번호 ' + po + '). 확인되면 연락드려요.' };
+      payMsg = PM[ps] || '주문번호 ' + po + ' 결제 상태를 확인하고 있어요. 궁금하면 카카오톡으로 물어봐 주세요.';
+    }
+    if (tok) return withToken(tok, via);
+    if (le) return start(ERR[le] || '로그인하지 못했어요. 다시 시도해 주세요.');
+    var u = B.user(); if (u && u.email && u.name) return signedIn(u);
+    start();
+  }
+  function boot2() { boot(); if (payMsg) { var d = document.createElement('p'); d.className = 'payres'; d.textContent = payMsg; box.insertBefore(d, box.firstChild); } }
+  function go() {
+    if (!API) return boot2();
+    var done = false, t = setTimeout(function () { if (!done) { done = true; boot2(); } }, 2500);
+    fetch(API + '/s-api/shoesteller/auth/providers', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+      if (j && j.providers) { PROV = j.providers; PROV._gid = j.google_client_id || ''; }
+    }).catch(function () {}).then(function () { if (!done) { done = true; clearTimeout(t); boot2(); } });
+  }
+  go();
 })();
 </script>
 </body>

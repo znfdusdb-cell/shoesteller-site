@@ -21,7 +21,8 @@
         <label><span data-t="co.name"></span><input id="f-name" required autocomplete="name"></label>
         <label><span data-t="co.phone"></span><input id="f-phone" type="tel" required autocomplete="tel" inputmode="tel"></label>
         <label><span data-t="co.email"></span><input id="f-email" type="email" autocomplete="email"></label>
-        <label><span data-t="co.addr"></span><input id="f-addr" required autocomplete="street-address"></label>
+        <div class="addr3"><label><span>우편번호</span><input id="f-zip" inputmode="numeric" maxlength="5" placeholder="5자리" autocomplete="postal-code"></label><label><span data-t="co.addr"></span><input id="f-addr" required autocomplete="address-line1" placeholder="도로명 주소"></label></div>
+        <label><span>상세 주소</span><input id="f-addr2" autocomplete="address-line2" placeholder="동·호수"></label>
         <label><span data-t="co.note"></span><textarea id="f-note" placeholder="예: 왼쪽은 벚꽃, 오른쪽은 강아지 얼굴. 사진은 카톡으로 보낼게요."></textarea></label>
         <div><span class="lbl" data-t="co.pay"></span>
           <div class="pay" style="margin-top:8px">
@@ -31,7 +32,7 @@
         <button class="btn wide" type="submit" id="send">주문하기</button>
         <p class="msg" id="co-msg" style="font-size:13px;color:var(--grey-3)"></p>
       </form>
-      <aside class="sum"><span class="lbl" data-t="co.items"></span><div id="co-items"></div><div class="line tot"><span data-t="cart.total"></span><span class="price" id="co-total"></span></div></aside>
+      <aside class="sum"><span class="lbl" data-t="co.items"></span><div id="co-items"></div><div class="line"><span>배송비</span><span class="price" id="co-ship"></span></div><div class="line tot"><span data-t="cart.total"></span><span class="price" id="co-total"></span></div></aside>
     </div>
   </div>
 </main>
@@ -45,24 +46,46 @@
   if (u) { $('#f-name').value = u.name || ''; $('#f-email').value = u.email || ''; }
   var total = 0;
   $('#co-items').innerHTML = cart.length ? cart.map(function (c) { var p = B.byId(c.id), u = B.unitPrice(c); total += u * c.qty; return '<div class="line"><span>' + B.nameOf(p) + ' · ' + c.size + B.optLines(p, c.opts).map(function (x) { return ' · ' + x; }).join('') + ' × ' + c.qty + '</span><span class="price">' + B.won(u * c.qty) + '</span></div>'; }).join('') : '<p class="empty">' + B.t('co.empty') + '</p>';
-  $('#co-total').textContent = B.won(total);
+  var sub = total;
+  function shipFee() { var z = ($('#f-zip').value || '').replace(/\D/g, ''); var jeju = /^63\d{3}$/.test(z) && +z <= 63644; return (sub >= 100000 ? 0 : 3000) + (jeju ? 3000 : 0); }
+  function sums() { var f = cart.length ? shipFee() : 0; total = sub + f; $('#co-ship').textContent = f ? B.won(f) : '무료'; $('#co-total').textContent = B.won(total); }
+  sums(); $('#f-zip').addEventListener('input', sums);
   $('#send').toggleAttribute('disabled', !cart.length);
-  var NP = !!S.NAVERPAY_CLIENT_ID;
-  if (!NP) { $('#pay-npay').disabled = true; $('#npay-note').textContent = '가맹 연결 중이에요. 열리면 바로 쓸 수 있어요. 지금은 계좌이체로 주문해 주세요.'; }
-  else { var sc = document.createElement('script'); sc.src = 'https://nsp.pay.naver.com/sdk/js/naverpay.min.js'; document.head.appendChild(sc); }
-  function payNaver(orderId, name) {
-    /* 네이버페이 결제형: 결제창을 띄우고, 승인은 서버(두뇌)가 paymentId로 처리한다 */
-    var np = window.Naver.Pay.create({ mode: 'production', clientId: S.NAVERPAY_CLIENT_ID, chainId: S.NAVERPAY_CHAIN_ID || undefined });
-    np.open({ merchantPayKey: orderId, productName: name, productCount: cart.reduce(function (n, c) { return n + c.qty; }, 0), totalPayAmount: total, taxScopeAmount: total, taxExScopeAmount: 0, returnUrl: (S.API_BASE || '') + '/s-api/shoesteller/npay-return?order=' + encodeURIComponent(orderId) });
+  /* 네이버페이(11/12): 금액은 서버가 가격표로 다시 계산하고 주문을 저장한 뒤 결제창 값을 준다. 승인도 서버가 한다 */
+  var API = (S.API_BASE || '').replace(/\/$/, ''), SDK = null;
+  function npOff(msg) { $('#pay-npay').disabled = true; $('#npay-note').textContent = msg || '가맹 연결 중이에요. 열리면 바로 쓸 수 있어요. 지금은 계좌이체로 주문해 주세요.'; }
+  npOff();
+  if (API) fetch(API + '/s-api/shoesteller/pay/naver/config', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (c) {
+    if (!c || !c.ready || !c.client_id) return;
+    SDK = c; $('#pay-npay').disabled = false; $('#npay-note').textContent = '네이버 아이디로 카드·포인트 결제';
+    var sc = document.createElement('script'); sc.src = 'https://nsp.pay.naver.com/sdk/js/naverpay.min.js'; document.head.appendChild(sc);
+  }).catch(function () {});
+  var PAYERR = { ship: '이름·연락처·우편번호(5자리)·주소를 확인해 주세요.', size: '사이즈를 다시 골라 주세요.', options: '옵션을 다시 골라 주세요.', unknown_product: '지금 결제할 수 없는 작품이 담겨 있어요. 계좌이체로 주문해 주세요.', price_unavailable: '잠시 가격을 확인하지 못했어요. 조금 뒤 다시 해 주세요.', pay_not_ready: '네이버페이가 아직 연결 중이에요. 계좌이체로 주문해 주세요.', qty: '한 작품은 5켤레까지 결제할 수 있어요.', items: '장바구니를 확인해 주세요.' };
+  function payNaver() {
+    var items = cart.map(function (c) {
+      var p = B.byId(c.id), o = {};
+      (c.opts || []).forEach(function (x) { var g = (p.options || [])[x[0]], ch = g && g.choices[x[1]]; if (g && ch) o[g.name] = ch.label; });
+      return { id: c.id, size: c.size, qty: c.qty, options: o };
+    });
+    var ship = { name: $('#f-name').value.trim(), phone: $('#f-phone').value.trim(), zip: ($('#f-zip').value || '').replace(/\D/g, ''), addr1: $('#f-addr').value.trim(), addr2: $('#f-addr2').value.trim(), memo: ($('#f-note').value || '').slice(0, 200) };
+    if (!ship.name || !ship.phone || ship.zip.length !== 5 || !ship.addr1) { $('#co-msg').textContent = PAYERR.ship; return; }
+    $('#send').disabled = true; $('#co-msg').textContent = '결제창을 여는 중이에요…';
+    B.api('POST', '/pay/naver/reserve', { items: items, ship: ship }).then(function (j) {
+      $('#send').disabled = false;
+      if (!j || !j.ok || !j.pay) { $('#co-msg').textContent = PAYERR[(j && j.error) || ''] || '결제를 시작하지 못했어요. 잠시 뒤 다시 하거나 계좌이체로 주문해 주세요.'; return; }
+      if (j.amount !== total) { $('#co-total').textContent = B.won(j.amount); }
+      if (!window.Naver || !window.Naver.Pay) { $('#co-msg').textContent = '결제창을 불러오지 못했어요. 새로 고침 뒤 다시 해 주세요.'; return; }
+      $('#co-msg').textContent = '';
+      var np = window.Naver.Pay.create({ mode: SDK.mode === 'prod' ? 'production' : 'development', clientId: SDK.client_id, chainId: SDK.chain_id || undefined });
+      np.open(j.pay);
+    });
   }
   $('#co-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    if (document.querySelector('input[name=pay]:checked').value === 'npay' && NP && window.Naver) {
-      var p0 = B.byId(cart[0].id); payNaver('ST' + Date.now(), p0.name + (cart.length > 1 ? ' 외 ' + (cart.length - 1) + '건' : '')); return;
-    }
-    var lines = ['[슈즈텔러 주문서]', '이름: ' + $('#f-name').value, '연락처: ' + $('#f-phone').value, '이메일: ' + $('#f-email').value, '주소: ' + $('#f-addr').value, ''];
+    if (document.querySelector('input[name=pay]:checked').value === 'npay' && SDK) return payNaver();
+    var lines = ['[슈즈텔러 주문서]', '이름: ' + $('#f-name').value, '연락처: ' + $('#f-phone').value, '이메일: ' + $('#f-email').value, '주소: (' + $('#f-zip').value + ') ' + $('#f-addr').value + ' ' + $('#f-addr2').value, ''];
     cart.forEach(function (c) { var p = B.byId(c.id); lines.push('- ' + p.name + ' / ' + c.size + B.optLines(p, c.opts).map(function (x) { return ' / ' + x; }).join('') + ' / ' + c.qty + '켤레 / ' + B.won(B.unitPrice(c) * c.qty)); });
-    lines.push('합계: ' + B.won(total), '결제: 계좌이체(확인 후 안내)', '요청: ' + ($('#f-note').value || '없음'));
+    lines.push('배송비: ' + (shipFee() ? B.won(shipFee()) : '무료'), '합계: ' + B.won(total), '결제: 계좌이체(확인 후 안내)', '요청: ' + ($('#f-note').value || '없음'));
     var text = lines.join('\n');
     var orders = JSON.parse(localStorage.getItem('bium_orders') || '[]'); orders.push({ at: new Date().toISOString(), text: text }); localStorage.setItem('bium_orders', JSON.stringify(orders));
     function show() { var ta = document.createElement('textarea'); ta.value = text; ta.readOnly = true; ta.style.minHeight = '180px'; $('#co-form').appendChild(ta); }
