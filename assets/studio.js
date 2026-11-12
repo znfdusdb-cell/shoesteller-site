@@ -9,8 +9,12 @@
   function mk() { var c = document.createElement('canvas'); c.width = W; c.height = H; return c; }
   var lineCv = mk(), insideCv = mk(), paintCv = mk(), itemCv = mk(), lightCv = mk();
   /* 11/12 회장: 바깥 옆면·안쪽 옆면·뒷면·앞쪽 4면. 면마다 따로 꾸미고, 바탕색은 4면이 같이 바뀐다 */
-  var VIEWS = [['lateral', '바깥 옆면'], ['medial', '안쪽 옆면'], ['back', '뒷면'], ['front', '앞쪽']];
-  var LS = {};   // 면별 선화·경계·안쪽 {line, light, inside, boundary, outside}
+  /* 11/12 회장: 양발 바깥·안쪽 따로 + 뒤·앞. 칸(부위)은 실제 신발 부위로 나뉘고, 한 면에서 칠한 부위는 다른 면에서도 같은 색. 고무 밑창·끈은 칠하지 않음 */
+  var VIEWS = [['rout', '오른발 바깥'], ['rin', '오른발 안쪽'], ['lout', '왼발 바깥'], ['lin', '왼발 안쪽'], ['back', '뒤'], ['front', '앞']];
+  var PARTS = ['', 'toe', 'vamp', 'quarter', 'heel', 'collar', 'tongue', 'eyestay', 'logo', 'lace', 'sole'];
+  var PART_KO = { toe: '앞코', vamp: '발등 옆', quarter: '옆판', heel: '뒤꿈치', collar: '발목 둘레', tongue: '혀', eyestay: '끈 구멍 줄', logo: '로고', lace: '끈', sole: '밑창' };
+  var NOPAINT = { sole: '고무 밑창(아웃솔)은 도색이 안 돼요', lace: '신발 끈은 칠하지 않아요. 원하는 끈 색은 작가에게 한마디에 적어 주세요' };
+  var LS = {};   // 면별 {line, inside, map(부위 번호), outside}
 
   /* 11/11 회장: 고를 신발은 6개 모델(흰색·검정), 가격은 공식 판매가(회사가 한 달에 한 번 확인) */
   var MODELS = S.STUDIO_MODELS || [];
@@ -23,7 +27,17 @@
   function modelById(id) { return MODELS.filter(function (m) { return m.id === id; })[0]; }
   var PAINTS = ['#ffffff', '#111111', '#c8102e', '#e94e1b', '#f5c400', '#2f8f3a', '#0a4ea2', '#5a3fb8', '#f4a6c0', '#8fd3f4', '#b8e08a', '#8a5a3b', '#c9c1b6', '#6b6b6b', '#0b1f3a', '#7a0019'];
 
-  var st = { base: null, photo: null, ops: [], items: [], sel: -1, tool: 'fill', color: '#c8102e', bsize: 16, view: 'lateral', views: {}, baseColor: '#ffffff' };
+  var st = { base: null, photo: null, ops: [], items: [], sel: -1, tool: 'fill', color: '#c8102e', bsize: 16, view: 'rout', views: {}, baseColor: '#ffffff', parts: {} };
+  function rubberPatch(code) { return (st.model === 'chuckhi' || st.model === 'chuck') && PARTS[code % 16] === 'logo'; }
+  function soleColor() { return (st.model === 'af1' && st.color0 === 'black') ? '#1c1c1c' : '#f4f4f2'; }
+  function laceColor() { return st.color0 === 'black' ? '#222222' : '#fafafa'; }
+  function colorOf(code) {
+    var p = PARTS[code % 16];
+    if (p === 'sole') return soleColor();
+    if (p === 'lace') return laceColor();
+    if (rubberPatch(code)) return '#f4f4f2';
+    return st.parts[code] || st.baseColor;
+  }
   function emptyViews() { var o = {}; VIEWS.forEach(function (v) { o[v[0]] = { ops: [], items: [] }; }); return o; }
   st.views = emptyViews();
   function flush() { st.views[st.view] = { ops: st.ops, items: st.items }; }
@@ -32,7 +46,7 @@
     flush(); st.view = v; st.ops = st.views[v].ops; st.items = st.views[v].items; st.sel = -1;
     useLines(v); rebuildPaint(); draw(); syncSel(); markViews();
   }
-  function useLines(v) { var L = LS[v]; if (!L) return; lineCv = L.line; lightCv = L.light; insideCv = L.inside; boundary = L.boundary; outside = L.outside; }
+  function useLines(v) { var L = LS[v]; if (!L) return; lineCv = L.line; insideCv = L.inside; boundary = L.map; outside = L.outside; }
   function markViews() {
     var box = $('#views'); if (!box) return; box.hidden = !!st.photo || !st.base;
     flush();
@@ -46,7 +60,7 @@
   function won(n) { return B.won ? B.won(n) : n.toLocaleString() + '원'; }
   $('#models').innerHTML = MODELS.map(function (m) {
     var p = (m.colors.white || m.colors[Object.keys(m.colors)[0]]).price;
-    return '<button type="button" data-model="' + m.id + '"><img src="assets/studio/' + m.id + '-lateral.png" alt=""><b>' + m.ko + '</b><small>' + Object.keys(m.colors).map(function (c) { return m.colors[c].ko; }).join(' · ') + ' · ' + won(p) + '</small></button>';
+    return '<button type="button" data-model="' + m.id + '"><img src="assets/studio/' + m.id + '-rout.png?v=2" alt=""><b>' + m.ko + '</b><small>' + Object.keys(m.colors).map(function (c) { return m.colors[c].ko; }).join(' · ') + ' · ' + won(p) + '</small></button>';
   }).join('');
   $$('#models button').forEach(function (b) { b.onclick = function () { pickModel(b.getAttribute('data-model')); }; });
   function pickModel(id, color) {
@@ -71,23 +85,28 @@
     var left = VIEWS.length, NL = {};
     $('#empty').hidden = false; $('#empty').textContent = '신발을 불러오는 중…';
     VIEWS.forEach(function (v) {
-      var img = new Image();
-      img.onload = function () {
-        var L = { line: mk(), light: mk(), inside: mk() };
-        var lc = L.line.getContext('2d'); lc.drawImage(img, 0, 0, W, H);
-        var gl = L.light.getContext('2d'); gl.drawImage(img, 0, 0, W, H); gl.globalCompositeOperation = 'source-in'; gl.fillStyle = '#e8e8e8'; gl.fillRect(0, 0, W, H);
-        buildMasks(L); NL[v[0]] = L;
+      var img = new Image(), mp = new Image(), got = 0;
+      function both() {
+        if (++got < 2) return;
+        var L = { line: mk(), inside: mk() };
+        L.line.getContext('2d').drawImage(img, 0, 0, W, H);
+        var t = mk(), tg = t.getContext('2d'); tg.imageSmoothingEnabled = false; tg.drawImage(mp, 0, 0, W, H);
+        var d = tg.getImageData(0, 0, W, H).data, n = W * H, map = new Uint8Array(n), out = new Uint8Array(n);
+        var ic = L.inside.getContext('2d'), idd = ic.createImageData(W, H), a = idd.data;
+        for (var i = 0; i < n; i++) { map[i] = d[i * 4]; var pp = map[i] % 16; if (map[i] && pp !== 9 && pp !== 10) a[i * 4 + 3] = 255; if (!map[i]) out[i] = 1; }
+        ic.putImageData(idd, 0, 0); L.map = map; L.outside = out; NL[v[0]] = L;
         if (--left) return;
         LS = NL; st.base = id; st.photo = null;
         var keep = {}; flush(); VIEWS.forEach(function (x) { keep[x[0]] = { ops: [], items: (st.views[x[0]] || { items: [] }).items }; });
-        st.views = keep; st.view = 'lateral'; st.ops = keep.lateral.ops; st.items = keep.lateral.items;
+        st.views = keep; st.view = 'rout'; st.ops = keep.rout.ops; st.items = keep.rout.items; st.parts = {};
         st.baseColor = st.color0 === 'black' ? '#1c1c1c' : '#ffffff';
-        useLines('lateral'); $('#empty').textContent = '신발을 먼저 골라 주세요';
+        useLines('rout'); $('#empty').textContent = '신발을 먼저 골라 주세요';
         rebuildPaint(); draw(); afterModel(); setHint(); markViews();
         if (pendingLoad) { var d = pendingLoad; pendingLoad = null; applySaved(d); }
       };
-      img.onerror = function () { $('#empty').textContent = '신발 그림을 불러오지 못했어요. 새로고침해 주세요.'; };
-      img.src = 'assets/studio/' + id + '-' + v[0] + '.png';
+      img.onload = both; mp.onload = both;
+      img.onerror = mp.onerror = function () { $('#empty').textContent = '신발 그림을 불러오지 못했어요. 새로고침해 주세요.'; };
+      img.src = 'assets/studio/' + id + '-' + v[0] + '.png?v=2'; mp.src = 'assets/studio/' + id + '-' + v[0] + '-map.png?v=2';
     });
   }
   function markBases() { $$('#models button').forEach(function (b) { b.classList.toggle('on', !st.photo && b.getAttribute('data-model') === st.model); }); $('.st-photo').classList.toggle('on', !!st.photo); }
@@ -95,7 +114,7 @@
   $('#photo').onchange = function () {
     var f = this.files[0]; if (!f) return;
     loadImg(f, 1600, function (img) {
-      st.photo = img; st.base = 'photo'; flush(); st.views = emptyViews(); st.view = 'lateral'; st.ops = st.views.lateral.ops; st.items = st.views.lateral.items; LS = {};
+      st.photo = img; st.base = 'photo'; flush(); st.views = emptyViews(); st.view = 'rout'; st.ops = st.views.rout.ops; st.items = st.views.rout.items; LS = {};
       lineCv = mk(); lightCv = mk(); insideCv = mk();
       boundary = null; outside = null;
       var ic = insideCv.getContext('2d'); ic.fillStyle = '#000'; ic.fillRect(0, 0, W, H); markViews();
@@ -155,8 +174,12 @@
   function rebuildPaint() { paintInto(paintCv, st.ops); }
   function paintInto(c, ops) {
     var g = c.getContext('2d'); g.clearRect(0, 0, W, H);
-    if (!st.photo && st.base) { g.fillStyle = st.baseColor; g.fillRect(0, 0, W, H); }
-    ops.forEach(function (op) { if (op.type === 'fill') g.drawImage(fillMask(op), 0, 0); else strokeOn(g, op); });
+    if (!st.photo && st.base && boundary) {
+      var id = g.createImageData(W, H), a = id.data, lut = {}, n = W * H;
+      for (var i = 0; i < n; i++) { var k = boundary[i]; if (!k) continue; var c3 = lut[k] || (lut[k] = hex(colorOf(k))); a[i * 4] = c3[0]; a[i * 4 + 1] = c3[1]; a[i * 4 + 2] = c3[2]; a[i * 4 + 3] = 255; }
+      g.putImageData(id, 0, 0);
+    }
+    ops.forEach(function (op) { if (op.type !== 'fill') strokeOn(g, op); });
     if (!st.photo && st.base) { g.globalCompositeOperation = 'destination-in'; g.drawImage(insideCv, 0, 0); g.globalCompositeOperation = 'source-over'; }
   }
   function strokeOn(g, op) {
@@ -184,7 +207,7 @@
     st.items.forEach(function (it) { drawItem(g, it); });
     if (!st.photo && st.base) { g.globalCompositeOperation = 'destination-in'; g.drawImage(insideCv, 0, 0); g.globalCompositeOperation = 'source-over'; }
     ctx.drawImage(itemCv, 0, 0);
-    if (!st.photo && st.base) { if (dark(st.baseColor)) ctx.drawImage(lightCv, 0, 0); else { ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(lineCv, 0, 0); ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(lineCv, 0, 0); } }
+    if (!st.photo && st.base) ctx.drawImage(lineCv, 0, 0);
     if (!forExport && st.items[st.sel]) {
       var it = st.items[st.sel], sz = itemSize(it);
       ctx.translate(it.x, it.y); ctx.rotate(it.r * Math.PI / 180);
@@ -197,24 +220,25 @@
   var qPend = false;
 
   /* ---------- 되돌리기 ---------- */
-  function snap() { return { view: st.view, base: st.baseColor, ops: st.ops.slice(), items: st.items.map(function (i) { return Object.assign({}, i); }) }; }
+  function snap() { return { view: st.view, base: st.baseColor, parts: Object.assign({}, st.parts), ops: st.ops.slice(), items: st.items.map(function (i) { return Object.assign({}, i); }) }; }
   function push() { hist.push(snap()); if (hist.length > 50) hist.shift(); redo = []; dirtyFlag = true; syncUndo(); }
-  function restore(s) { if (s.view && s.view !== st.view && LS[s.view]) { flush(); st.view = s.view; useLines(s.view); } st.baseColor = s.base || st.baseColor; st.ops = s.ops; st.items = s.items; flush(); st.sel = -1; rebuildPaint(); draw(); syncSel(); markViews(); }
+  function restore(s) { if (s.view && s.view !== st.view && LS[s.view]) { flush(); st.view = s.view; useLines(s.view); } st.baseColor = s.base || st.baseColor; if (s.parts) st.parts = s.parts; st.ops = s.ops; st.items = s.items; flush(); st.sel = -1; rebuildPaint(); draw(); syncSel(); markViews(); }
   function syncUndo() { $('#undo').disabled = !hist.length; $('#redo').disabled = !redo.length; }
   $('#undo').onclick = function () { if (!hist.length) return; redo.push(snap()); restore(hist.pop()); syncUndo(); };
   $('#redo').onclick = function () { if (!redo.length) return; hist.push(snap()); restore(redo.pop()); syncUndo(); };
-  $('#clear').onclick = function () { if (!st.ops.length && !st.items.length) return; if (!confirm('이 면에 칠한 것과 올린 것을 모두 지울까요?')) return; push(); st.ops = []; st.items = []; st.sel = -1; rebuildPaint(); draw(); syncSel(); markViews(); };
-  $('#base-all').onclick = function () { if (!st.base || st.photo) return; push(); st.baseColor = st.color; rebuildPaint(); draw(); B.toast('4면 바탕색을 모두 바꿨어요'); };
+  $('#clear').onclick = function () { if (!st.ops.length && !st.items.length && !Object.keys(st.parts).length) return; if (!confirm('칠한 부위 색과 이 면에 그린 것·올린 것을 모두 지울까요?')) return; push(); st.parts = {}; st.ops = []; st.items = []; st.sel = -1; rebuildPaint(); draw(); syncSel(); markViews(); };
+  $('#base-all').onclick = function () { if (!st.base || st.photo) return; push(); st.baseColor = st.color; st.parts = {}; rebuildPaint(); draw(); B.toast('신발 전체를 이 색으로 칠했어요(밑창·끈 빼고)'); };
   $('#dl').onclick = function () { saveDesign(); };
   function exportUrl(w, q) {
     var c = document.createElement('canvas'); c.width = w; c.height = w / 2; var g = c.getContext('2d');
     g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height);
-    if (st.photo || !LS.lateral) { draw(true); g.drawImage(cv, 0, 0, c.width, c.height); draw(); return c.toDataURL('image/jpeg', q); }
+    if (st.photo || !LS.rout) { draw(true); g.drawImage(cv, 0, 0, c.width, c.height); draw(); return c.toDataURL('image/jpeg', q); }
     flush(); var cur = st.view, sel = st.sel; st.sel = -1;
     VIEWS.forEach(function (v, k) {
       st.view = v[0]; st.ops = st.views[v[0]].ops; st.items = st.views[v[0]].items; useLines(v[0]); rebuildPaint(); draw(true);
-      g.drawImage(cv, (k % 2) * c.width / 2, Math.floor(k / 2) * c.height / 2, c.width / 2, c.height / 2);
-      g.fillStyle = '#888'; g.font = Math.round(c.width / 60) + 'px sans-serif'; g.fillText(v[1], (k % 2) * c.width / 2 + 10, Math.floor(k / 2) * c.height / 2 + c.width / 50);
+      var cw = c.width / 3, chh = c.height / 2, cx = (k % 3) * cw, cy = Math.floor(k / 3) * chh;
+      g.drawImage(cv, cx, cy + (chh - cw / 2) / 2, cw, cw / 2);
+      g.fillStyle = '#888'; g.font = Math.round(c.width / 70) + 'px sans-serif'; g.fillText(v[1], cx + 8, cy + c.width / 60);
     });
     st.view = cur; st.ops = st.views[cur].ops; st.items = st.views[cur].items; st.sel = sel; useLines(cur); rebuildPaint(); draw();
     return c.toDataURL('image/jpeg', q);
@@ -232,7 +256,7 @@
   }
   function setHint() {
     var h = !st.base ? '먼저 1번에서 신발을 골라 주세요' :
-      st.tool === 'fill' ? (st.photo ? '사진 위에서는 붓으로 칠해 주세요' : '신발 안쪽 칸을 누르면 고른 색으로 칠해져요') :
+      st.tool === 'fill' ? (st.photo ? '사진 위에서는 붓으로 칠해 주세요' : '부위를 누르면 그 부위가 칠해지고, 다른 면에서도 같은 색으로 보여요. 고무 밑창·끈은 칠하지 않아요') :
       st.tool === 'brush' ? '손가락이나 마우스로 그려요' :
       st.tool === 'image' ? '올린 그림을 끌어서 옮기고, 두 손가락으로 크기·각도를 바꿔요' : '글자를 쓰고 올리기를 누르세요. 끌어서 옮겨요';
     $('#hint').textContent = h;
@@ -309,10 +333,15 @@
     if (st.tool === 'image' || st.tool === 'text') { st.sel = -1; draw(); syncSel(); return; }
     if (st.tool === 'fill') {
       if (st.photo) return;
-      var x = Math.round(p[0]), y = Math.round(p[1]), i = y * W + x;
-      if (outside[i]) return B.toast('신발 안쪽을 눌러 주세요');
-      if (boundary[i]) return;
-      push(); st.ops.push({ type: 'fill', x: x, y: y, color: st.color }); rebuildPaint(); draw(); markViews(); return;
+      var x = Math.round(p[0]), y = Math.round(p[1]), i = y * W + x, code = boundary[i];
+      if (!code) return B.toast('신발 안쪽을 눌러 주세요');
+      var part = PARTS[code % 16];
+      if (NOPAINT[part]) return B.toast(NOPAINT[part]);
+      if (rubberPatch(code)) return B.toast('고무 패치는 도색이 안 돼요');
+      push(); st.parts[code] = st.color;
+      var both = $('#both') && $('#both').checked; if (both) st.parts[code >= 32 ? code - 16 : code + 16] = st.color;
+      rebuildPaint(); draw(); markViews();
+      B.toast((both ? '양발 ' : code >= 32 ? '왼발 ' : '오른발 ') + PART_KO[part] + ' — 다른 면에서도 같은 색이에요'); return;
     }
     if (st.tool === 'brush') { push(); cur = { type: 'stroke', color: st.color, size: st.bsize, pts: [p] }; st.ops.push(cur); rebuildPaint(); draw(); }
   });
@@ -337,10 +366,11 @@
   $$('#q-src button').forEach(function (b) { b.onclick = function () { $$('#q-src button').forEach(function (x) { x.classList.toggle('on', x === b); }); quote(); }; });
   function counts() {
     var fills = 0, strokes = 0, imgs = 0, texts = 0; flush();
+    fills = Object.keys(st.parts).filter(function (k) { return st.parts[k] !== st.baseColor; }).length;
     Object.keys(st.views).forEach(function (k) { var v = st.views[k];
-      v.ops.forEach(function (op) { if (op.type === 'fill') fills++; else strokes++; });
+      v.ops.forEach(function (op) { if (op.type !== 'fill') strokes++; });
       v.items.forEach(function (i) { if (i.type === 'img') imgs++; else texts++; }); });
-    if (!st.photo && st.base && st.baseColor !== (st.color0 === 'black' ? '#1c1c1c' : '#ffffff')) fills += 4;
+    if (!st.photo && st.base && st.baseColor !== (st.color0 === 'black' ? '#1c1c1c' : '#ffffff')) fills += 6;
     return { fills: fills, strokes: strokes, imgs: imgs, texts: texts };
   }
   function paintEstimate() {
@@ -374,17 +404,17 @@
     Object.keys(st.views).forEach(function (k) { var v = st.views[k];
       views[k] = { ops: v.ops.map(function (o) { var c = Object.assign({}, o); delete c._m; return c; }),
         items: v.items.map(function (it) { var c = Object.assign({}, it); if (it.type === 'img') { c.src = it.img.toDataURL('image/jpeg', 0.8); delete c.img; } return c; }) }; });
-    return { v: 2, model: st.model, color0: st.color0, base: st.base, baseColor: st.baseColor, views: views };
+    return { v: 3, model: st.model, color0: st.color0, base: st.base, baseColor: st.baseColor, parts: Object.assign({}, st.parts), views: views };
   }
   function applySaved(d) {
-    var s0 = d.state || {}, src = s0.views || { lateral: { ops: [], items: s0.items || [] } }, waits = [], nv = emptyViews();
-    if (s0.baseColor) st.baseColor = s0.baseColor;
-    Object.keys(src).forEach(function (k) { if (!nv[k]) return; nv[k].ops = (src[k].ops || []).slice();
+    var s0 = d.state || {}, src = s0.views || { rout: { ops: [], items: s0.items || [] } }, waits = [], nv = emptyViews();
+    if (s0.baseColor) st.baseColor = s0.baseColor; st.parts = s0.v === 3 ? Object.assign({}, s0.parts || {}) : {};
+    Object.keys(src).forEach(function (k) { if (!nv[k]) return; nv[k].ops = (src[k].ops || []).filter(function (o) { return o.type !== 'fill'; });
       (src[k].items || []).forEach(function (it) { waits.push(new Promise(function (res) {
         if (it.type !== 'img') { nv[k].items.push(it); return res(); }
         var im = new Image(); im.onload = function () { var c = document.createElement('canvas'); c.width = it.w; c.height = it.h; c.getContext('2d').drawImage(im, 0, 0, it.w, it.h); var x = Object.assign({}, it); delete x.src; x.img = c; nv[k].items.push(x); res(); }; im.onerror = res; im.src = it.src;
       })); }); });
-    Promise.all(waits).then(function () { st.views = nv; st.view = 'lateral'; st.ops = nv.lateral.ops; st.items = nv.lateral.items; useLines('lateral'); st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); markViews(); dirtyFlag = false; editingId = d.id; });
+    Promise.all(waits).then(function () { st.views = nv; st.view = 'rout'; st.ops = nv.rout.ops; st.items = nv.rout.items; useLines('rout'); st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); markViews(); dirtyFlag = false; editingId = d.id; });
   }
   var editingId = null;
   function designs() { try { return JSON.parse(localStorage.getItem('bium_studio') || '[]'); } catch (e) { return []; } }

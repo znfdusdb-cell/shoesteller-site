@@ -29,7 +29,7 @@
         <button type="button" id="clear">처음부터</button>
         <button type="button" id="dl">내 스튜디오에 저장</button>
       </div>
-      <p class="st-hint" id="hint">신발 안쪽을 누르면 그 칸이 칠해져요</p>
+      <p class="st-hint" id="hint">부위를 누르면 그 부위가 칠해져요</p>
     </div>
 
     <aside class="st-panel">
@@ -52,7 +52,8 @@
         <div class="st-pane" data-pane="color">
           <div class="st-sw" id="sw"></div>
           <label class="st-custom">다른 색 <input type="color" id="pick" value="#c8102e"></label>
-          <button type="button" class="btn line small st-baseall" id="base-all">이 색을 신발 바탕색으로 (4면 모두)</button>
+          <label class="st-both"><input type="checkbox" id="both" checked> 양발 똑같이 칠하기</label>
+          <button type="button" class="btn line small st-baseall" id="base-all">이 색으로 신발 전체 칠하기 (밑창·끈 빼고)</button>
         </div>
         <div class="st-pane" data-pane="brush" hidden>
           <label class="st-lbl">붓 굵기 <input type="range" id="bsize" min="4" max="60" value="16"></label>

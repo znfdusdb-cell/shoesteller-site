@@ -960,3 +960,4 @@ footer .biz a { color: inherit; text-decoration: underline; font-size: 11px; }
 .st-views button.on { background: var(--ink); color: var(--white); border-color: var(--ink); }
 .st-views button i { font-style: normal; font-size: 8px; vertical-align: middle; color: #c8102e; }
 .st-baseall { margin-top: 10px; width: 100%; }
+.st-both { display: flex; gap: 8px; align-items: center; font-size: 13px; margin-top: 12px; cursor: pointer; }
