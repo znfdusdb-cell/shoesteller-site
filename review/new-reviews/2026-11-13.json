@@ -1,0 +1,20 @@
+{
+ "collected": "2026-11-13",
+ "note": "아이디어스 판매중 20개+스마트스토어 25개 대조, 새 후기 1건",
+ "reviews": [
+  {
+   "id": "chelsea-hazard",
+   "src": "smartstore",
+   "rating": 5,
+   "date": "2023-12-01",
+   "name": "seo_******",
+   "option": "사이즈: 275",
+   "text": "맨유 루니 선수로 변경 부탁드려서 신청드렸는데 너무 마음에 드네요!! 귀한 굿즈 얻은 것 같아서 너무 좋고, 잘 신고 다니겠습니다!! 감사합니다!",
+   "photos": [
+    "assets/r/chelsea-hazard/05-1.jpg"
+   ],
+   "uncertain": true,
+   "uncertain_why": "리뷰에 맨유 루니로 변경 요청이라 적혀 있음. 상품 주소(9522814949)로는 chelsea-hazard"
+  }
+ ]
+}
