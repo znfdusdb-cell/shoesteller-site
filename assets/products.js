@@ -1653,7 +1653,7 @@ window.SHOES = {
    "en": "",
    "sub": "나이키 코트 로얄 2",
    "price": 198000,
-   "reviews": 4,
+   "reviews": 5,
    "photos": [
     "assets/p/chelsea-hazard/01.jpg",
     "assets/p/chelsea-hazard/02.jpg",
