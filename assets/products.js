@@ -37,6 +37,7 @@ window.SHOES = {
  "KAKAO": "http://pf.kakao.com/_ARxfMC/chat",
  "BOOK": "book.html",
  "API_BASE": "https://brain.sauptycoon.com",
+ "COUPON_WON": 0,
  "NAVER_BOOKING": "",
  "NAVERPAY_CLIENT_ID": "",
  "NAVERPAY_CHAIN_ID": "",
