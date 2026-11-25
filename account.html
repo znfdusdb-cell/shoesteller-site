@@ -34,7 +34,7 @@
   function signedIn(u) {
     if (q.get('next') === 'studio') { location.replace('studio.html?resume=1'); return; }
     box.innerHTML = '<span class="lbl">Account</span><h1>' + u.name + ' 님</h1><p class="sub">' + (u.email || '') + '</p>' +
-      (u.marketing ? '<div class="coupon"><span class="lbl">Welcome coupon</span><b>웰컴 쿠폰 발급</b><span style="font-size:13px;color:var(--grey-3)">' + S.CONTENT.coupon + ' 쿠폰은 가입하신 이메일·연락처로 보내 드려요.</span></div>' : '<p class="fine" style="text-align:left">소식 받기에 동의하시면 웰컴 쿠폰을 드려요. <button class="link" type="button" id="opt-in">동의하고 쿠폰 받기</button></p>') +
+      (u.marketing ? '<div class="coupon"><span class="lbl">Welcome coupon</span><b>' + (u.coupon ? u.coupon : '웰컴 쿠폰 발급') + '</b><span style="font-size:13px;color:var(--grey-3)">' + S.CONTENT.coupon + (u.coupon ? ' 주문서의 쿠폰 칸에 이 코드를 넣어 주세요. 한 번 쓸 수 있어요.' : ' 쿠폰은 가입하신 이메일·연락처로 보내 드려요.') + '</span></div>' : '<p class="fine" style="text-align:left">소식 받기에 동의하시면 웰컴 쿠폰을 드려요. <button class="link" type="button" id="opt-in">동의하고 쿠폰 받기</button></p>') +
       '<a class="btn" href="index.html">작품 보러 가기</a><button class="btn line" type="button" id="logout">로그아웃</button>' + studioHtml();
     [].forEach.call(document.querySelectorAll('[data-rm]'), function (b) { b.onclick = function () { if (!confirm('이 디자인을 지울까요?')) return; var id = b.getAttribute('data-rm'), L = []; try { L = JSON.parse(localStorage.getItem('bium_studio') || '[]'); } catch (e) {} localStorage.setItem('bium_studio', JSON.stringify(L.filter(function (d) { return d.id !== id; }))); if (u.token) B.api('DELETE', '/designs/' + id); signedIn(u); }; });
     /* 서버에 있는 내 디자인을 이 기기 목록에 합친다(썸네일·이름만, 열 때 전체를 받는다) */
@@ -47,7 +47,14 @@
       signedIn(u);
     }); }
     $('#logout').addEventListener('click', function () { B.setUser(null); start(); });
-    var o = $('#opt-in'); if (o) o.addEventListener('click', function () { u.marketing = true; B.setUser(u); if (u.token) B.api('PUT', '/me', { marketing_opt_in: true }); send(u); signedIn(u); });
+    if (u.token && u.marketing && !u.coupon && !signedIn.cq) { signedIn.cq = true; B.api('GET', '/me').then(function (j) { gotCoupon(u, j); }); }   /* 전에 동의한 회원도 코드 받기 */
+    var o = $('#opt-in'); if (o) o.addEventListener('click', function () { u.marketing = true; B.setUser(u); if (u.token) B.api('PUT', '/me', { marketing_opt_in: true }).then(function (j) { gotCoupon(u, j); }); send(u); signedIn(u); });
+  }
+  /* 웰컴 쿠폰(11/25): 서버가 소식 동의한 회원에게 한 번 발급한 코드(ST-XXXXXX)를 계정 화면·주문서에 보인다 */
+  function gotCoupon(u, j) {
+    var c = j && j.coupon_code;
+    if (!c || u.coupon === c) return;
+    u.coupon = c; B.setUser(u); signedIn(u);
   }
   function send(u) {
     B.send('signup', { name: u.name, phone: u.phone || '', email: u.email, interest: [], source: u.via, agree_required: true, marketing_opt_in: !!u.marketing, website: '' },
@@ -67,7 +74,7 @@
       $('#err-agree').textContent = $('#pf-agree').checked ? '' : '필수 동의에 체크해 주세요.'; if (!$('#pf-agree').checked) ok = false;
       if (!ok) return;
       var u = { name: n, email: email, phone: $('#pf-phone').value.trim(), marketing: $('#pf-mkt').checked, via: via, at: Date.now() };
-      if (pendingToken) { u.token = pendingToken; B.api('PUT', '/me', { name: u.name, phone: u.phone, marketing_opt_in: u.marketing }); }
+      if (pendingToken) { u.token = pendingToken; B.api('PUT', '/me', { name: u.name, phone: u.phone, marketing_opt_in: u.marketing }).then(function (j) { gotCoupon(u, j); }); }
       B.setUser(u); send(u); signedIn(u);
     });
   }
@@ -79,9 +86,10 @@
     var tmp = { token: tok, via: via, email: (hint && hint.email) || '', name: '' }; B.setUser(tmp);
     B.api('GET', '/me').then(function (m) {
       if (!m || !m.ok) { B.setUser(null); return start('로그인 정보를 확인하지 못했어요. 다시 시도해 주세요.'); }
+      if (B.src()) B.api('PUT', '/me', {});   /* 구글·이메일·카카오·네이버 공통: 처음 들어온 곳(utm·ref)을 회원에 한 번 남김(이미 있으면 서버가 안 덮음) */
       var email = m.email || tmp.email || '', old = null; try { old = B.user(); } catch (e) {}
       if (m.registered && m.name) {
-        var u = { name: m.name, email: email, phone: m.phone || '', marketing: !!m.marketing_opt_in, via: via, token: tok, at: Date.now() };
+        var u = { name: m.name, email: email, phone: m.phone || '', marketing: !!m.marketing_opt_in, coupon: m.coupon_code || '', via: via, token: tok, at: Date.now() };
         B.setUser(u); return signedIn(u);
       }
       pendingToken = tok; profile(email, via, m.name || (hint && hint.name) || '');

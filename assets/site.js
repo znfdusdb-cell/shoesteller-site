@@ -8,6 +8,25 @@
     get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
+  /* 유입값(11/25): 첫 방문 주소의 utm_source·utm_medium·utm_campaign·ref(없으면 바깥 링크 주소)를 이 탭 동안만 기억(sessionStorage, 쿠키 없음).
+     신청·가입·주문을 보낼 때 같이 붙여 '어디서 와서 가입·주문했나'를 센다 */
+  var SRC = (function () {
+    var K = 'bium_src', v = null;
+    try { v = JSON.parse(sessionStorage.getItem(K) || 'null'); } catch (e) {}
+    if (v) return v;
+    var q = new URLSearchParams(location.search), o = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'ref'].forEach(function (k) { var x = (q.get(k) || '').trim(); if (x) o[k] = x.slice(0, 80); });
+    if (!o.ref) { var m = /^https?:\/\/(?:www\.)?([^\/?#]+)/i.exec(document.referrer || ''); if (m && m[1].toLowerCase() !== location.host.replace(/^www\./, '').toLowerCase()) o.ref = m[1].toLowerCase().slice(0, 60); }
+    try { sessionStorage.setItem(K, JSON.stringify(o)); } catch (e) {}
+    return o;
+  })();
+  /* 방문 세기: 페이지마다 한 번, 서버(두뇌)에 경로·바깥 링크·utm만 보낸다. 쿠키·개인정보 없음 */
+  (function () {
+    var base = (S.API_BASE || '').replace(/\/$/, '');
+    if (!base || !navigator.sendBeacon) return;
+    var q = new URLSearchParams(location.search);
+    try { navigator.sendBeacon(base + '/s-api/shoesteller/hit', JSON.stringify({ p: location.pathname, r: document.referrer || '', h: location.host, u: q.get('utm_source') || SRC.utm_source || '' })); } catch (e) {}
+  })();
   var won = function (n) { return Number(n).toLocaleString('ko-KR') + '원'; };
   var byId = function (id) { return S.products.filter(function (p) { return p.id === id; })[0]; };
 
@@ -251,12 +270,15 @@
     var u = user, base = (S.API_BASE || '').replace(/\/$/, '');
     if (!base) return Promise.resolve(null);
     var h = { 'Content-Type': 'application/json' }; if (u && u.token) h.Authorization = 'Bearer ' + u.token;
+    if (body && hasSrc() && (path === '/pay/naver/reserve' || (method === 'PUT' && path === '/me')) && !body.src) body.src = SRC;   /* 주문·회원 첫 유입 */
     return fetch(base + '/s-api/shoesteller' + path, { method: method, headers: h, body: body ? JSON.stringify(body) : undefined })
       .then(function (r) { return r.json().then(function (j) { j = j || {}; j._status = r.status; return j; }, function () { return { _status: r.status }; }); })
       .catch(function () { return null; });
   }
+  function hasSrc() { for (var k in SRC) if (SRC[k]) return true; return false; }
   function send(kind, payload, text, done) {
     var api = (S.API_BASE || '').replace(/\/$/, '') + '/s-api/shoesteller/' + kind;
+    if (payload) Object.keys(SRC).forEach(function (k) { if (SRC[k] && !payload[k]) payload[k] = SRC[k]; });   /* 신청·가입·주문 유입값 */
     function viaKakao() {
       var copied = false;
       function fin() { done({ via: 'kakao', copied: copied, text: text }); }
@@ -269,5 +291,5 @@
       .then(function (j) { clearTimeout(timer); if (j && j.ok && j.collecting !== false) done({ via: 'server', data: j }); else viaKakao(); })
       .catch(function () { clearTimeout(timer); viaKakao(); });
   }
-  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, api: api, addToCart: addToCart, optLines: optLines, optAdd: optAdd, unitPrice: unitPrice, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
+  window.BIUM = { setUser: function (u) { user = u; store.set('bium_user', u); renderUser(); }, send: send, src: function () { return hasSrc() ? SRC : null; }, KAKAO: S.KAKAO, t: t, lang: function () { return LANG; }, applyLang: applyLang, won: won, byId: byId, cardHtml: cardHtml, posAttr: posAttr, sizesOf: sizesOf, sizeOpts: sizeOpts, allOut: allOut, api: api, addToCart: addToCart, optLines: optLines, optAdd: optAdd, unitPrice: unitPrice, cart: function () { return cart; }, clearCart: function () { cart = []; saveCart(); }, user: function () { return user; }, toast: toast, nameOf: nameOf, openCart: function () { renderCart(); open('cart-sheet'); }, icon: icon, quickAdd: quickAdd, open: open, close: close };
 })();
