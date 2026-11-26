@@ -414,16 +414,21 @@
         if (it.type !== 'img') { nv[k].items.push(it); return res(); }
         var im = new Image(); im.onload = function () { var c = document.createElement('canvas'); c.width = it.w; c.height = it.h; c.getContext('2d').drawImage(im, 0, 0, it.w, it.h); var x = Object.assign({}, it); delete x.src; x.img = c; nv[k].items.push(x); res(); }; im.onerror = res; im.src = it.src;
       })); }); });
-    Promise.all(waits).then(function () { st.views = nv; st.view = 'rout'; st.ops = nv.rout.ops; st.items = nv.rout.items; useLines('rout'); st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); markViews(); dirtyFlag = false; editingId = d.id; });
+    Promise.all(waits).then(function () { st.views = nv; st.view = 'rout'; st.ops = nv.rout.ops; st.items = nv.rout.items; useLines('rout'); st.sel = -1; rebuildPaint(); draw(); syncSel(); quote(); markViews(); dirtyFlag = false; editingId = d.id; if (d.autoSave) setTimeout(saveDesign, 300); });   /* 로그인하고 돌아온 저장은 디자인이 다 그려진 뒤에(느린 폰에서 빈 신발이 저장되지 않게) */
   }
   var editingId = null;
+  /* 임시 보관은 내 스튜디오에 저장이 끝난 뒤에만 지운다(그 전에 새로고침·뒤로 가기를 해도 남게) */
+  function dropPending(id) { try { var p = JSON.parse(sessionStorage.getItem('bium_studio_pending') || 'null'); if (p && p.id === id) sessionStorage.removeItem('bium_studio_pending'); } catch (e) {} }
   function designs() { try { return JSON.parse(localStorage.getItem('bium_studio') || '[]'); } catch (e) { return []; } }
   function saveDesign() {
     if (!st.base) return B.toast('먼저 신발을 골라 주세요');
     var u = B.user();
     var item = { id: editingId || ('d' + Date.now().toString(36)), at: new Date().toISOString(), model: label(), src: src(), thumb: exportUrl(640, 0.78), state: stateOf() };
-    if (!u || !u.email) {
-      try { sessionStorage.setItem('bium_studio_pending', JSON.stringify(item)); } catch (e) {}
+    if (!u || !(u.email || (u.token && u.name))) {   /* 카카오·네이버는 이메일 없이 올 수 있다 */
+      if (st.photo && !confirm('올린 신발 사진은 로그인하는 동안 보관되지 않아요. 돌아오면 사진이 빠져요. 그래도 로그인하러 갈까요?')) return;
+      try { sessionStorage.setItem('bium_studio_pending', JSON.stringify(item)); }
+      catch (e) { alert('디자인을 잠시 보관하지 못해서 화면을 넘기지 않았어요. 지금 화면의 디자인은 그대로예요. 올린 그림이 크면 빼거나 작은 것으로 바꿔 다시 저장해 주세요. 인터넷 창의 비밀(시크릿) 모드라면 일반 창에서 해 주세요.'); return; }
+      dirtyFlag = false;
       B.toast('로그인하면 내 스튜디오에 저장돼요');
       setTimeout(function () { location.href = 'account.html?next=studio'; }, 900); return;
     }
@@ -432,8 +437,8 @@
     });
     var list = designs().filter(function (x) { return x.id !== item.id; }); list.unshift(item);
     for (var n = list.length; n > 0; n--) {
-      try { localStorage.setItem('bium_studio', JSON.stringify(list.slice(0, n))); editingId = item.id; dirtyFlag = false; B.toast('내 스튜디오에 저장했어요'); return; }
-      catch (e) { if (n === 1) { Object.keys(item.state.views || {}).forEach(function (k) { item.state.views[k].items = item.state.views[k].items.filter(function (i) { return i.type !== 'img'; }); }); try { localStorage.setItem('bium_studio', JSON.stringify([item])); B.toast('저장했어요(올린 사진은 용량 때문에 빠졌어요)'); } catch (e2) { B.toast('저장 공간이 꽉 찼어요. 내 스튜디오에서 안 쓰는 디자인을 지워 주세요'); } return; } }
+      try { localStorage.setItem('bium_studio', JSON.stringify(list.slice(0, n))); editingId = item.id; dirtyFlag = false; dropPending(item.id); B.toast('내 스튜디오에 저장했어요'); return; }
+      catch (e) { if (n === 1) { Object.keys(item.state.views || {}).forEach(function (k) { item.state.views[k].items = item.state.views[k].items.filter(function (i) { return i.type !== 'img'; }); }); try { localStorage.setItem('bium_studio', JSON.stringify([item])); dropPending(item.id); B.toast('저장했어요(올린 사진은 용량 때문에 빠졌어요)'); } catch (e2) { B.toast('저장 공간이 꽉 찼어요. 내 스튜디오에서 안 쓰는 디자인을 지워 주세요'); } return; } }
     }
   }
   $('#q-save').onclick = saveDesign;
@@ -484,8 +489,10 @@
   if (openId && !saved && (B.user() || {}).token) {
     B.api('GET', '/designs/' + openId).then(function (j) { var d = j && (j.design || j); if (d && d.state && d.state.model) { pendingLoad = { id: openId, state: d.state }; pickModel(d.state.model, d.state.color0); } });
   }
-  if (!saved && pend && q.get('resume') === '1') { saved = pend; try { sessionStorage.removeItem('bium_studio_pending'); } catch (e) {} }
-  if (saved && saved.state && saved.state.model) { pendingLoad = saved; pickModel(saved.state.model, saved.state.color0); if (q.get('resume') === '1') setTimeout(saveDesign, 1200); }
+  var resume = q.get('resume') === '1';
+  /* 로그인 화면에서 뒤로 가기로 돌아와도(주소에 아무 표시 없음) 만들던 디자인을 다시 연다 */
+  if (!saved && pend && (resume || (!openId && !q.get('model') && !q.get('m')))) saved = pend;
+  if (saved && saved.state && saved.state.model) { pendingLoad = resume ? Object.assign({ autoSave: true }, saved) : saved; pickModel(saved.state.model, saved.state.color0); }
   else if (q.get('model')) { var mq = q.get('model'), hit = MATCH.filter(function (m) { return m[0].test(mq); })[0]; pickModel(hit ? hit[1] : 'af1'); if (!hit) $('#model-note').textContent = '"' + mq + '"은 아직 고를 수 없어서 에어포스1로 열었어요. 다른 신발은 위에서 바꾸거나 "내 신발 사진으로 하기"를 써 주세요.'; }
   else pickModel(q.get('m') || 'af1');
   dirtyFlag = false;

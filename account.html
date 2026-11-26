@@ -165,7 +165,10 @@
     /* 카카오·네이버에서 돌아오면 주소 # 뒤에 token 또는 login_error가 붙어 온다 → 바로 지운다 */
     var h = new URLSearchParams((location.hash || '').slice(1)), tok = h.get('token'), le = h.get('login_error'), via = h.get('provider') || '';
     var po = h.get('order'), ps = h.get('pay');
-    if (tok || le || po) history.replaceState(null, '', location.pathname + location.search);
+    /* 카카오·네이버에 다녀오면 주소의 ?next=studio가 사라진다(서버는 account.html#… 로만 보냄)
+       → 같은 탭에 스튜디오 임시 보관이 있으면 복귀 표시를 되살린다(취소·실패 뒤 다시 로그인해도 유지) */
+    if ((tok || le) && !q.get('next')) { try { if (sessionStorage.getItem('bium_studio_pending')) q.set('next', 'studio'); } catch (e) {} }
+    if (tok || le || po) history.replaceState(null, '', location.pathname + (String(q) ? '?' + q : ''));
     if (po && ps) {   /* 네이버페이 결제창에서 돌아옴(서버가 승인·금액 대조 뒤 보냄) */
       if (ps === 'paid') B.clearCart();
       var PM = { paid: '결제가 끝났어요. 주문번호 ' + po + ' — 작가가 확인하고 연락드려요.', fail: '결제가 취소됐거나 끝나지 않았어요(주문번호 ' + po + '). 장바구니는 그대로 있어요.', pending: '결제 확인 중이에요(주문번호 ' + po + '). 확인되면 연락드려요.' };
@@ -173,7 +176,7 @@
     }
     if (tok) return withToken(tok, via);
     if (le) return start(ERR[le] || '로그인하지 못했어요. 다시 시도해 주세요.');
-    var u = B.user(); if (u && u.email && u.name) return signedIn(u);
+    var u = B.user(); if (u && (u.email || u.token) && u.name) return signedIn(u);
     start();
   }
   function boot2() { boot(); if (payMsg) { var d = document.createElement('p'); d.className = 'payres'; d.textContent = payMsg; box.insertBefore(d, box.firstChild); } }
