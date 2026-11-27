@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>[내부 시안] 개인 디자인 제작 전 확인</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+.cw{max-width:520px;margin:0 auto;padding:20px 16px 48px}
+.cw .draft{border:1px dashed #B3261E;color:#B3261E;font-size:12px;padding:8px 10px;margin:0 0 20px}
+.cw h1{font-size:20px;margin:0 0 16px}.cw h2{font-size:14px;margin:0 0 6px}
+.cw .art{aspect-ratio:4/3;background:#F5F5F3;display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center}
+.cw dl{display:grid;grid-template-columns:90px 1fr;gap:4px 10px;font-size:13px;margin:12px 0 20px}.cw dd{margin:0}
+.cw .note{border:2px solid #111;padding:14px;margin:0 0 14px}.cw .keep{background:#F5F5F3;padding:14px;margin:0 0 20px}
+.cw p{margin:0 0 8px}.cw .check{margin:0 0 12px}.cw .btn{width:100%;margin:0 0 8px}.cw .btn:disabled{opacity:.35;cursor:not-allowed}
+</style>
+</head>
+<body>
+<main class="cw">
+  <p class="draft">내부 시안 · 법 확인 전 · [ ] 안은 예시 자리 · 눌러도 아무것도 보내거나 저장하지 않아요</p>
+  <h1>제작을 시작하기 전에 확인해 주세요</h1>
+  <div class="art">[고객님이 확정한 시안 그림<br>4면 · 몇 번째 시안 · 확정 날짜]</div>
+  <dl><dt>주문</dt><dd>[주문 번호] 개인 디자인</dd><dt>담은 내용</dt><dd>[이름·사진·이야기 중 이 신발에만 들어가는 것]</dd><dt>신발</dt><dd>[모델 · 사이즈 · 새 신발 또는 보내신 신발]</dd><dt>금액</dt><dd>[총액 · 배송비]</dd><dt>제작 기간</dt><dd>[예상 날짜]</dd></dl>
+  <section class="note" aria-labelledby="h-limit">
+    <h2 id="h-limit">제작을 시작하면 단순 변심 환불이 안 돼요</h2>
+    <p>이 신발은 고객님의 [담은 내용]으로 새로 그리는 한 켤레라, 다른 분께 다시 팔기 어려워요.</p>
+    <p>동의하시면 <b>제작을 시작한 뒤에는 단순 변심으로 교환·환불을 할 수 없어요.</b></p>
+    <p>제작 시작은 [시작 알림을 보내 드리는 때]이고, 그 전에는 취소할 수 있어요. [회장 결정: 취소 때 돌려드리는 금액]</p>
+  </section>
+  <section class="keep">
+    <h2>동의해도 그대로인 것</h2>
+    <p>받은 신발이 설명이나 확정한 시안과 다르거나 문제가 있으면, 받은 날부터 3개월 안(안 날 또는 알 수 있었던 날부터 30일 안)에 교환·환불을 신청할 수 있어요.</p>
+    <p>상품에 안내한 무상 A/S도 따로 받을 수 있어요.</p>
+  </section>
+  <label class="check"><input type="checkbox" id="art-ok"><span>위 시안과 주문 내용이 맞아요.</span></label>
+  <label class="check"><input type="checkbox" id="limit-ok"><span><b>[개인 디자인 주문에만]</b> 제작 시작 뒤에는 단순 변심 교환·환불이 안 된다는 안내를 따로 읽었고, 동의해요.</span></label>
+  <button class="btn" type="button" id="go" disabled>동의하고 결제 안내 받기</button>
+  <button class="btn line" type="button" id="no">동의하지 않아요 · 상담하기</button>
+  <p id="msg" role="status"></p>
+</main>
+<script>
+(function(){var a=document.getElementById('art-ok'),b=document.getElementById('limit-ok'),g=document.getElementById('go'),m=document.getElementById('msg');
+function s(){g.disabled=!(a.checked&&b.checked);m.textContent='';}a.onchange=b.onchange=s;
+g.onclick=function(){m.textContent='(시안) 동의 시각·고지 문구·시안을 기록하고 사본을 보내는 자리예요.';};
+document.getElementById('no').onclick=function(){a.checked=b.checked=false;s();m.textContent='(시안) 제작을 시작하지 않고 상담으로 넘어가요.';};})();
+</script>
+</body>
+</html>
